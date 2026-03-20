@@ -29,8 +29,12 @@ const normalizeAndValidateDates = (startDate, endDate) => {
     return { error: 'startDate and endDate must be valid dates' };
   }
 
-  if (nextStart.getTime() >= nextEnd.getTime()) {
-    return { error: 'startDate must be earlier than endDate' };
+  if (nextStart.getTime() > nextEnd.getTime()) {
+    return { error: 'startDate must be earlier than or equal to endDate' };
+  }
+
+  if (nextStart.getTime() === nextEnd.getTime()) {
+    nextEnd.setHours(23, 59, 59, 999);
   }
 
   return { startDate: nextStart, endDate: nextEnd };
