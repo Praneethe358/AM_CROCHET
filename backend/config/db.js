@@ -14,27 +14,12 @@ const connectWithUri = async (uri, label) => {
 
 const connectDB = async () => {
   const primaryUri = process.env.MONGO_URI;
-  const fallbackUri = process.env.MONGO_FALLBACK_URI || 'mongodb://127.0.0.1:27017/am_crochet_dev';
 
-  if (!primaryUri) {
-    logger.warn('MONGO_URI is not defined, attempting fallback MongoDB connection');
-    return connectWithUri(fallbackUri, 'fallback');
+  if (!primaryUri || !primaryUri.trim()) {
+    throw new Error('MONGO_URI is required');
   }
 
-  try {
-    return await connectWithUri(primaryUri, 'primary');
-  } catch (primaryError) {
-    const isDevelopment = (process.env.NODE_ENV || 'development') !== 'production';
-
-    if (!isDevelopment) {
-      throw primaryError;
-    }
-
-    logger.warn(`Primary MongoDB connection failed: ${primaryError.message}`);
-    logger.warn(`Attempting fallback MongoDB connection: ${fallbackUri}`);
-
-    return connectWithUri(fallbackUri, 'fallback');
-  }
+  return connectWithUri(primaryUri, 'primary');
 };
 
 module.exports = connectDB;
