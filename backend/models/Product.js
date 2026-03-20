@@ -51,6 +51,15 @@ const productSchema = new mongoose.Schema(
       default: 0,
       min: [0, 'Stock cannot be negative'],
     },
+    isFeatured: {
+      type: Boolean,
+      default: false,
+      index: true,
+    },
+    featuredOrder: {
+      type: Number,
+      default: null,
+    },
     averageRating: {
       type: Number,
       default: 0,
@@ -78,6 +87,7 @@ productSchema.index({ category: 1, price: 1 });
 productSchema.index({ category: 1, createdAt: -1 });
 productSchema.index({ price: 1 });
 productSchema.index({ createdAt: -1 });
+productSchema.index({ isFeatured: 1, featuredOrder: 1, createdAt: -1 });
 productSchema.index({ createdBy: 1, createdAt: -1 });
 productSchema.index({ averageRating: -1 });
 

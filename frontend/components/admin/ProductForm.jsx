@@ -22,11 +22,13 @@ export default function ProductForm({ initialData = {}, onSubmit, isLoading }) {
     category: initialData.category || "handbags",
     images: initialImages,
     stock: initialData.countInStock || initialData.stock || 0,
+    isFeatured: Boolean(initialData.isFeatured),
+    featuredOrder: initialData.featuredOrder || 1,
   });
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    const { name, value, type, checked } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: type === "checkbox" ? checked : value }));
   };
 
   const handleImageChange = (index, value) => {
@@ -66,6 +68,8 @@ export default function ProductForm({ initialData = {}, onSubmit, isLoading }) {
       stock: Number(formData.stock),
       image: cleanedImages[0],
       images: cleanedImages,
+      isFeatured: formData.isFeatured,
+      featuredOrder: formData.isFeatured ? Number(formData.featuredOrder || 1) : null,
     };
 
     await onSubmit(payload);
@@ -189,6 +193,35 @@ export default function ProductForm({ initialData = {}, onSubmit, isLoading }) {
             className="w-full px-4 py-2 border border-gray-300 dark:border-white/10 rounded-lg bg-transparent text-dark-text dark:text-cream focus:ring-2 focus:ring-black dark:focus:ring-cream outline-none transition-all resize-none"
             placeholder="Detailed product description..."
           ></textarea>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 items-end">
+          <label className="inline-flex items-center gap-2 text-sm font-medium text-gray-700 dark:text-gray-300">
+            <input
+              type="checkbox"
+              name="isFeatured"
+              checked={formData.isFeatured}
+              onChange={handleChange}
+              className="h-4 w-4 rounded border-gray-300 dark:border-white/10"
+            />
+            Mark as Featured Product
+          </label>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              Featured Order
+            </label>
+            <input
+              type="number"
+              name="featuredOrder"
+              value={formData.featuredOrder}
+              onChange={handleChange}
+              min="1"
+              disabled={!formData.isFeatured}
+              className="w-full px-4 py-2 border border-gray-300 dark:border-white/10 rounded-lg bg-transparent text-dark-text dark:text-cream focus:ring-2 focus:ring-black dark:focus:ring-cream outline-none transition-all disabled:opacity-60"
+              placeholder="1"
+            />
+          </div>
         </div>
       </div>
 

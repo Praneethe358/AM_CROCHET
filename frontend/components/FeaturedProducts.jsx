@@ -11,7 +11,7 @@ export default function FeaturedProducts() {
     const fetchFeaturedProducts = async () => {
       try {
         const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:5000/api";
-        const response = await axios.get(`${API_BASE_URL}/products?limit=3&sort=newest`);
+        const response = await axios.get(`${API_BASE_URL}/products?isFeatured=true&sort=featured&limit=3`);
         const items = response.data?.data || [];
 
         setFeatured(

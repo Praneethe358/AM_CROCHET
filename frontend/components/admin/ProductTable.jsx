@@ -21,6 +21,8 @@ export default function ProductTable({ products, onDelete }) {
             <th className="px-6 py-4">Product</th>
             <th className="px-6 py-4">Category</th>
             <th className="px-6 py-4">Price</th>
+            <th className="px-6 py-4">Featured</th>
+            <th className="px-6 py-4">Order</th>
             <th className="px-6 py-4 text-right">Actions</th>
           </tr>
         </thead>
@@ -47,6 +49,20 @@ export default function ProductTable({ products, onDelete }) {
               </td>
               <td className="px-6 py-4 text-dark-text dark:text-cream font-medium">
                 ${product.price?.toFixed(2)}
+              </td>
+              <td className="px-6 py-4">
+                {product.isFeatured ? (
+                  <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-700 dark:bg-green-500/10 dark:text-green-300">
+                    Featured
+                  </span>
+                ) : (
+                  <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-600 dark:bg-white/10 dark:text-gray-400">
+                    No
+                  </span>
+                )}
+              </td>
+              <td className="px-6 py-4 text-gray-600 dark:text-gray-400">
+                {product.isFeatured ? product.featuredOrder || "-" : "-"}
               </td>
               <td className="px-6 py-4 text-right space-x-2">
                 <Link

@@ -50,7 +50,7 @@ const getAdminProducts = async (req, res, next) => {
 
     const [products, total] = await Promise.all([
       Product.find()
-        .select('name price category stock image images countInStock createdAt updatedAt')
+        .select('name price category stock image images countInStock isFeatured featuredOrder createdAt updatedAt')
         .sort({ createdAt: -1 })
         .skip(skip)
         .limit(limit)

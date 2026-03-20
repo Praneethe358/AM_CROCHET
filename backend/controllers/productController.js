@@ -6,6 +6,19 @@ const Product = require('../models/Product');
 const MAX_PAGE_SIZE = 100;
 const DEFAULT_PAGE_SIZE = 10;
 
+const parseBooleanFlag = (value) => {
+  if (value === true || value === 'true' || value === 1 || value === '1') return true;
+  if (value === false || value === 'false' || value === 0 || value === '0') return false;
+  return undefined;
+};
+
+const parseFeaturedOrder = (value) => {
+  if (value === null || value === undefined || value === '') return null;
+  const parsed = Number(value);
+  if (!Number.isFinite(parsed) || parsed < 1) return null;
+  return Math.floor(parsed);
+};
+
 const createProduct = async (req, res, next) => {
   try {
     const errors = validationResult(req);
@@ -24,12 +37,18 @@ const createProduct = async (req, res, next) => {
       image,
       images,
       stock,
+      isFeatured,
+      featuredOrder,
     } = req.body;
 
     const normalizedImages = Array.isArray(images)
       ? images.filter((img) => typeof img === 'string' && img.trim()).map((img) => img.trim())
       : [];
     const primaryImage = image || normalizedImages[0] || '';
+    const normalizedIsFeatured = parseBooleanFlag(isFeatured) ?? false;
+    const normalizedFeaturedOrder = normalizedIsFeatured
+      ? (parseFeaturedOrder(featuredOrder) ?? 1)
+      : null;
 
     const product = await Product.create({
       name,
@@ -39,6 +58,8 @@ const createProduct = async (req, res, next) => {
       image: primaryImage,
       images: normalizedImages,
       stock,
+      isFeatured: normalizedIsFeatured,
+      featuredOrder: normalizedFeaturedOrder,
       createdBy: req.user.id,
     });
 
@@ -58,7 +79,14 @@ const getProducts = async (req, res, next) => {
     const limit = Math.min(Math.max(requestedLimit, 1), MAX_PAGE_SIZE);
     const skip = (page - 1) * limit;
 
-    const { search, category, minPrice, maxPrice, sort } = req.query;
+    const {
+      search,
+      category,
+      minPrice,
+      maxPrice,
+      sort,
+      isFeatured,
+    } = req.query;
     const parsedMinPrice = minPrice !== undefined ? Number(minPrice) : undefined;
     const parsedMaxPrice = maxPrice !== undefined ? Number(maxPrice) : undefined;
 
@@ -85,6 +113,11 @@ const getProducts = async (req, res, next) => {
       query.category = category.trim();
     }
 
+    const parsedFeaturedFlag = parseBooleanFlag(isFeatured);
+    if (parsedFeaturedFlag !== undefined) {
+      query.isFeatured = parsedFeaturedFlag;
+    }
+
     if (minPrice !== undefined || maxPrice !== undefined) {
       query.price = {};
 
@@ -107,6 +140,7 @@ const getProducts = async (req, res, next) => {
       price_asc: { price: 1 },
       price_desc: { price: -1 },
       newest: { createdAt: -1 },
+      featured: { featuredOrder: 1, createdAt: -1 },
     };
 
     const sortQuery = sortMap[sort] || sortMap.newest;
@@ -119,6 +153,8 @@ const getProducts = async (req, res, next) => {
       image: 1,
       images: 1,
       stock: 1,
+      isFeatured: 1,
+      featuredOrder: 1,
       averageRating: 1,
       reviewCount: 1,
       createdAt: 1,
@@ -209,7 +245,7 @@ const updateProduct = async (req, res, next) => {
       return res.status(400).json({ message: 'Invalid product ID format' });
     }
 
-    const allowedFields = ['name', 'price', 'category', 'description', 'image', 'images', 'stock'];
+    const allowedFields = ['name', 'price', 'category', 'description', 'image', 'images', 'stock', 'isFeatured', 'featuredOrder'];
     const updates = {};
 
     allowedFields.forEach((field) => {
@@ -226,6 +262,23 @@ const updateProduct = async (req, res, next) => {
       if (!updates.image && updates.images.length > 0) {
         updates.image = updates.images[0];
       }
+    }
+
+    if (updates.isFeatured !== undefined) {
+      const parsedIsFeatured = parseBooleanFlag(updates.isFeatured);
+      updates.isFeatured = parsedIsFeatured ?? false;
+    }
+
+    if (updates.featuredOrder !== undefined) {
+      updates.featuredOrder = parseFeaturedOrder(updates.featuredOrder);
+    }
+
+    if (updates.isFeatured === false) {
+      updates.featuredOrder = null;
+    }
+
+    if (updates.isFeatured === true && updates.featuredOrder === undefined) {
+      updates.featuredOrder = 1;
     }
 
     const updatedProduct = await Product.findByIdAndUpdate(id, updates, {
