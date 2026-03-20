@@ -73,6 +73,111 @@ const hasValidShippingAddress = (shippingAddress) => {
   );
 };
 
+const getStatusForResponse = (order) => {
+  if (order?.status) return order.status;
+  if (order?.orderStatus === 'shipped') return 'shipped';
+  if (order?.orderStatus === 'delivered') return 'delivered';
+  return 'pending';
+};
+
+const attachLegacyItemFields = (items = []) => {
+  return (items || []).map((item) => ({
+    ...item,
+    productId: item.product?._id || item.product,
+    price: item.priceAtPurchase,
+  }));
+};
+
+const formatOrderResponse = (order) => ({
+  ...order,
+  status: getStatusForResponse(order),
+  items: attachLegacyItemFields(order.items),
+});
+
+const createDirectOrder = async (req, res, next) => {
+  try {
+    const { items = [], shippingAddress } = req.body;
+    const normalizedShippingAddress = normalizeShippingAddress(shippingAddress);
+
+    if (!hasValidShippingAddress(normalizedShippingAddress)) {
+      return res.status(400).json({
+        success: false,
+        message: 'Valid shipping details are required',
+      });
+    }
+
+    if (!Array.isArray(items) || items.length === 0) {
+      return res.status(400).json({ success: false, message: 'Cart items are required' });
+    }
+
+    const normalizedItems = items
+      .map((item) => ({
+        productId: item.productId || item.product || item._id || item.id,
+        quantity: Number(item.quantity || 0),
+      }))
+      .filter((item) => item.productId && item.quantity > 0);
+
+    if (normalizedItems.length === 0) {
+      return res.status(400).json({ success: false, message: 'Cart items are required' });
+    }
+
+    const productIds = [...new Set(normalizedItems.map((item) => String(item.productId)))];
+    const products = await Product.find({ _id: { $in: productIds } })
+      .select('name price stock')
+      .lean();
+
+    const productMap = new Map(products.map((product) => [String(product._id), product]));
+    const orderItems = [];
+
+    for (const item of normalizedItems) {
+      const product = productMap.get(String(item.productId));
+      if (!product) {
+        return res.status(400).json({ success: false, message: 'One or more products are invalid' });
+      }
+
+      if (item.quantity > Number(product.stock || 0)) {
+        return res.status(400).json({
+          success: false,
+          message: `Insufficient stock for product: ${product.name}`,
+        });
+      }
+
+      orderItems.push({
+        product: product._id,
+        quantity: item.quantity,
+        priceAtPurchase: Number(product.price || 0),
+      });
+    }
+
+    const totalAmount = Number(
+      orderItems.reduce((sum, item) => sum + item.priceAtPurchase * item.quantity, 0).toFixed(2)
+    );
+
+    const order = await Order.create({
+      user: req.user.id,
+      items: orderItems,
+      totalAmount,
+      finalAmount: totalAmount,
+      paymentStatus: 'pending',
+      status: 'pending',
+      orderStatus: 'pending',
+      shippingAddress: normalizedShippingAddress,
+    });
+
+    const populatedOrder = await Order.findById(order._id)
+      .populate('items.product', 'name price image')
+      .lean();
+
+    return res.status(201).json({
+      success: true,
+      message: 'Order created successfully',
+      data: formatOrderResponse(populatedOrder),
+    });
+  } catch (error) {
+    return next(error);
+  }
+};
+
 const createOrder = async (req, res, next) => {
   try {
     const { couponCode, shippingAddress } = req.body;
@@ -403,7 +508,7 @@ const getUserOrders = async (req, res, next) => {
 
     return res.status(200).json({
       success: true,
-      data: orders,
+      data: orders.map(formatOrderResponse),
     });
   } catch (error) {
     return next(error);
@@ -428,7 +533,7 @@ const getOrderById = async (req, res, next) => {
 
     return res.status(200).json({
       success: true,
-      data: order,
+      data: formatOrderResponse(order),
     });
   } catch (error) {
     return next(error);
@@ -436,6 +541,7 @@ const getOrderById = async (req, res, next) => {
 };
 
 module.exports = {
+  createDirectOrder,
   createOrder,
   verifyPayment,
   getUserOrders,

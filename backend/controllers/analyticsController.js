@@ -147,9 +147,10 @@ const getRevenueAnalytics = async (req, res, next) => {
 const updateOrderStatus = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const { orderStatus } = req.body;
+    const nextStatus = req.body.status || req.body.orderStatus;
+    const allowedStatuses = ['pending', 'shipped', 'delivered'];
     
-    if (!orderStatus) {
+    if (!nextStatus || !allowedStatuses.includes(nextStatus)) {
       return res.status(400).json({ message: 'Order status is required' });
     }
 
@@ -159,9 +160,27 @@ const updateOrderStatus = async (req, res, next) => {
       return res.status(404).json({ message: 'Order not found' });
     }
 
-    order.orderStatus = orderStatus;
+    const currentStatus = order.status
+      || (order.orderStatus === 'shipped' || order.orderStatus === 'delivered'
+        ? order.orderStatus
+        : 'pending');
+
+    if (currentStatus === 'delivered') {
+      return res.status(400).json({ message: 'Delivered orders cannot be updated' });
+    }
+
+    if (currentStatus === 'pending' && nextStatus === 'delivered') {
+      return res.status(400).json({ message: 'Order must be shipped before delivery' });
+    }
+
+    if (currentStatus === 'shipped' && nextStatus === 'pending') {
+      return res.status(400).json({ message: 'Order status cannot move backward' });
+    }
+
+    order.status = nextStatus;
+    order.orderStatus = nextStatus;
     
-    if (orderStatus === 'delivered' && order.paymentStatus !== 'success') {
+    if (nextStatus === 'delivered' && order.paymentStatus !== 'success') {
       order.paymentStatus = 'success';
     }
 

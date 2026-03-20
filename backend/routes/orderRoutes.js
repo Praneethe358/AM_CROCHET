@@ -3,6 +3,7 @@ const { body, param } = require('express-validator');
 const { validationResult } = require('express-validator');
 
 const {
+  createDirectOrder,
   createOrder,
   verifyPayment,
   getUserOrders,
@@ -25,6 +26,41 @@ const validateRequest = (req, res, next) => {
 };
 
 router.use(authMiddleware);
+
+router.post(
+  '/',
+  [
+    body('items')
+      .isArray({ min: 1 })
+      .withMessage('items must be a non-empty array'),
+    body('items.*.quantity')
+      .isInt({ min: 1 })
+      .withMessage('quantity must be at least 1'),
+    body('shippingAddress').isObject().withMessage('shippingAddress is required'),
+    body('shippingAddress.name')
+      .trim()
+      .notEmpty()
+      .withMessage('shippingAddress.name is required'),
+    body('shippingAddress.phone')
+      .trim()
+      .matches(/^\d{10}$/)
+      .withMessage('shippingAddress.phone must be a valid 10-digit number'),
+    body('shippingAddress.address')
+      .trim()
+      .notEmpty()
+      .withMessage('shippingAddress.address is required'),
+    body('shippingAddress.city')
+      .trim()
+      .notEmpty()
+      .withMessage('shippingAddress.city is required'),
+    body('shippingAddress.pincode')
+      .trim()
+      .matches(/^\d{6}$/)
+      .withMessage('shippingAddress.pincode must be a valid 6-digit number'),
+  ],
+  validateRequest,
+  createDirectOrder
+);
 
 router.post(
   '/create',
@@ -84,6 +120,8 @@ router.post(
   validateRequest,
   verifyPayment
 );
+
+router.get('/my', getUserOrders);
 
 router.get('/', getUserOrders);
 
