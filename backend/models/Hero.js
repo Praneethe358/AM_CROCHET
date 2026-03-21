@@ -1,5 +1,13 @@
 const mongoose = require('mongoose');
 
+const slideSchema = new mongoose.Schema({
+  image: { type: String, required: true, trim: true },
+  subtitle: { type: String, trim: true, default: '' },
+  title: { type: String, required: true, trim: true },
+  description: { type: String, trim: true, default: '' },
+  link: { type: String, trim: true, default: '/products' }
+});
+
 const heroSchema = new mongoose.Schema(
   {
     key: {
@@ -9,34 +17,9 @@ const heroSchema = new mongoose.Schema(
       immutable: true,
       index: true,
     },
-    title: {
-      type: String,
-      required: [true, 'Hero title is required'],
-      trim: true,
-      maxlength: 200,
-    },
-    subtitle: {
-      type: String,
-      required: [true, 'Hero subtitle is required'],
-      trim: true,
-      maxlength: 800,
-    },
-    buttonText: {
-      type: String,
-      required: [true, 'Button text is required'],
-      trim: true,
-      maxlength: 100,
-    },
-    buttonLink: {
-      type: String,
-      trim: true,
-      default: '/products',
-      maxlength: 300,
-    },
-    bannerImage: {
-      type: String,
-      required: [true, 'Banner image is required'],
-      trim: true,
+    slides: {
+      type: [slideSchema],
+      default: []
     },
     isActive: {
       type: Boolean,

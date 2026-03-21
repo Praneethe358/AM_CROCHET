@@ -97,7 +97,16 @@ const formatOrderResponse = (order) => ({
 const createDirectOrder = async (req, res, next) => {
   try {
     const { items = [], shippingAddress } = req.body;
+    const rawIdempotencyKey = req.headers['x-idempotency-key'] || req.body?.idempotencyKey;
+    const idempotencyKey = typeof rawIdempotencyKey === 'string' ? rawIdempotencyKey.trim() : null;
     const normalizedShippingAddress = normalizeShippingAddress(shippingAddress);
+
+    if (idempotencyKey && idempotencyKey.length > 120) {
+      return res.status(400).json({
+        success: false,
+        message: 'idempotencyKey is too long',
+      });
+    }
 
     if (!hasValidShippingAddress(normalizedShippingAddress)) {
       return res.status(400).json({
@@ -119,6 +128,20 @@ const createDirectOrder = async (req, res, next) => {
 
     if (normalizedItems.length === 0) {
       return res.status(400).json({ success: false, message: 'Cart items are required' });
+    }
+
+    if (idempotencyKey) {
+      const existingOrder = await Order.findOne({ user: req.user.id, idempotencyKey })
+        .populate('items.product', 'name price image')
+        .lean();
+
+      if (existingOrder) {
+        return res.status(200).json({
+          success: true,
+          message: 'Order already exists for this idempotency key',
+          data: formatOrderResponse(existingOrder),
+        });
+      }
     }
 
     const productIds = [...new Set(normalizedItems.map((item) => String(item.productId)))];
@@ -162,6 +185,7 @@ const createDirectOrder = async (req, res, next) => {
       status: 'pending',
       orderStatus: 'pending',
       shippingAddress: normalizedShippingAddress,
+      ...(idempotencyKey ? { idempotencyKey } : {}),
     });
 
     const populatedOrder = await Order.findById(order._id)
@@ -174,6 +198,25 @@ const createDirectOrder = async (req, res, next) => {
       data: formatOrderResponse(populatedOrder),
     });
   } catch (error) {
+    if (error?.code === 11000 && (error?.keyPattern?.idempotencyKey || error?.keyPattern?.user)) {
+      const rawIdempotencyKey = req.headers['x-idempotency-key'] || req.body?.idempotencyKey;
+      const idempotencyKey = typeof rawIdempotencyKey === 'string' ? rawIdempotencyKey.trim() : null;
+
+      if (idempotencyKey) {
+        const existingOrder = await Order.findOne({ user: req.user.id, idempotencyKey })
+          .populate('items.product', 'name price image')
+          .lean();
+
+        if (existingOrder) {
+          return res.status(200).json({
+            success: true,
+            message: 'Order already exists for this idempotency key',
+            data: formatOrderResponse(existingOrder),
+          });
+        }
+      }
+    }
+
     return next(error);
   }
 };

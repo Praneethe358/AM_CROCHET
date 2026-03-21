@@ -130,7 +130,7 @@ export default function AdminHeroPage() {
       <form onSubmit={onSave} className="space-y-6">
         {slides.length === 0 ? (
           <div className="bg-white dark:bg-dark-card rounded-2xl border border-black/5 dark:border-white/10 p-12 text-center">
-            <p className="text-gray-500">No slides found. Click "Add Slide" to begin.</p>
+            <p className="text-gray-500">No slides found. Click &quot;Add Slide&quot; to begin.</p>
           </div>
         ) : (
           slides.map((slide, index) => (

@@ -2145,3 +2145,1074 @@
 2026-03-21 00:02:43 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":168,"ip":"::1"}
 2026-03-21 00:02:43 [INFO] API request {"method":"GET","url":"/api/home","statusCode":304,"durationMs":663,"ip":"::1"}
 2026-03-21 00:02:43 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":188,"ip":"::1"}
+2026-03-21 09:56:05 [INFO] MongoDB connected (primary): ac-tqplvla-shard-00-00.qyy87sr.mongodb.net
+2026-03-21 09:56:05 [INFO] Server running in development mode on port 5000
+2026-03-21 09:56:56 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":197,"ip":"::1"}
+2026-03-21 09:56:56 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":190,"ip":"::1"}
+2026-03-21 09:56:56 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":304,"durationMs":469,"ip":"::1"}
+2026-03-21 09:56:56 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":287,"ip":"::1"}
+2026-03-21 09:56:56 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":282,"ip":"::1"}
+2026-03-21 09:56:56 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":304,"durationMs":235,"ip":"::1"}
+2026-03-21 09:56:57 [INFO] API request {"method":"GET","url":"/api/home","statusCode":304,"durationMs":1291,"ip":"::1"}
+2026-03-21 09:56:57 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":222,"ip":"::1"}
+2026-03-21 09:56:57 [INFO] API request {"method":"GET","url":"/api/home","statusCode":304,"durationMs":593,"ip":"::1"}
+2026-03-21 09:56:58 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":387,"ip":"::1"}
+2026-03-21 10:01:52 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":137,"ip":"::1"}
+2026-03-21 10:01:52 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":135,"ip":"::1"}
+2026-03-21 10:01:52 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":192,"ip":"::1"}
+2026-03-21 10:01:52 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":304,"durationMs":337,"ip":"::1"}
+2026-03-21 10:01:52 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":199,"ip":"::1"}
+2026-03-21 10:01:52 [INFO] API request {"method":"GET","url":"/api/home","statusCode":304,"durationMs":336,"ip":"::1"}
+2026-03-21 10:01:53 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":92,"ip":"::1"}
+2026-03-21 10:01:53 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":304,"durationMs":296,"ip":"::1"}
+2026-03-21 10:01:53 [INFO] API request {"method":"GET","url":"/api/home","statusCode":304,"durationMs":298,"ip":"::1"}
+2026-03-21 10:01:53 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":152,"ip":"::1"}
+2026-03-21 10:06:37 [INFO] API request {"method":"GET","url":"/api/orders/my","statusCode":401,"durationMs":2,"ip":"::1"}
+2026-03-21 10:06:37 [INFO] API request {"method":"GET","url":"/api/orders/my","statusCode":401,"durationMs":1,"ip":"::1"}
+2026-03-21 10:06:44 [ERROR] MongoServerSelectionError: getaddrinfo ENOTFOUND ac-tqplvla-shard-00-00.qyy87sr.mongodb.net
+    at Topology.selectServer (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\sdam\topology.js:327:38)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:549:9)
+    at process.processTimers (node:internal/timers:523:7)
+    at async tryOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:148:18)
+    at async executeOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:78:16)
+    at async Collection.estimatedDocumentCount (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\collection.js:480:16)
+    at async model.Query.exec (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongoose\lib\query.js:4627:63)
+    at async Promise.all (index 1)
+    at async getProducts (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\controllers\productController.js:178:39) {"path":"/api/products","method":"GET","statusCode":500}
+2026-03-21 10:06:44 [INFO] API request {"method":"GET","url":"/api/products","statusCode":500,"durationMs":15015,"ip":"::1"}
+2026-03-21 10:07:03 [ERROR] MongoServerSelectionError: getaddrinfo ENOTFOUND ac-tqplvla-shard-00-00.qyy87sr.mongodb.net
+    at Topology.selectServer (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\sdam\topology.js:327:38)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:549:9)
+    at process.processTimers (node:internal/timers:523:7)
+    at async tryOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:148:18)
+    at async executeOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:78:16)
+    at async FindCursor._initialize (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\find_cursor.js:62:26)
+    at async FindCursor.cursorInit (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:632:27)
+    at async FindCursor.fetchBatch (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:666:13)
+    at async FindCursor.next (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:342:17) {"path":"/api/promotions?placement=home_thematic_banner","method":"GET","statusCode":500}
+2026-03-21 10:07:03 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":500,"durationMs":15014,"ip":"::1"}
+2026-03-21 10:07:03 [ERROR] MongoServerSelectionError: getaddrinfo ENOTFOUND ac-tqplvla-shard-00-00.qyy87sr.mongodb.net
+    at Topology.selectServer (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\sdam\topology.js:327:38)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:549:9)
+    at process.processTimers (node:internal/timers:523:7)
+    at async tryOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:148:18)
+    at async executeOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:78:16)
+    at async FindCursor._initialize (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\find_cursor.js:62:26)
+    at async FindCursor.cursorInit (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:632:27)
+    at async FindCursor.fetchBatch (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:666:13)
+    at async FindCursor.next (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:342:17) {"path":"/api/promotions?placement=special_combos","method":"GET","statusCode":500}
+2026-03-21 10:07:03 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":500,"durationMs":15020,"ip":"::1"}
+2026-03-21 10:07:03 [ERROR] MongoServerSelectionError: getaddrinfo ENOTFOUND ac-tqplvla-shard-00-00.qyy87sr.mongodb.net
+    at Topology.selectServer (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\sdam\topology.js:327:38)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:549:9)
+    at process.processTimers (node:internal/timers:523:7)
+    at async tryOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:148:18)
+    at async executeOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:78:16)
+    at async AggregationCursor._initialize (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\aggregation_cursor.js:57:26)
+    at async AggregationCursor.cursorInit (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:632:27)
+    at async AggregationCursor.fetchBatch (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:666:13)
+    at async AggregationCursor.next (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:342:17) {"path":"/api/products?isFeatured=true&sort=featured&limit=6","method":"GET","statusCode":500}
+2026-03-21 10:07:03 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":500,"durationMs":15021,"ip":"::1"}
+2026-03-21 10:07:03 [ERROR] MongoServerSelectionError: getaddrinfo ENOTFOUND ac-tqplvla-shard-00-00.qyy87sr.mongodb.net
+    at Topology.selectServer (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\sdam\topology.js:327:38)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:549:9)
+    at process.processTimers (node:internal/timers:523:7)
+    at async tryOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:148:18)
+    at async executeOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:78:16)
+    at async FindCursor._initialize (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\find_cursor.js:62:26)
+    at async FindCursor.cursorInit (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:632:27)
+    at async FindCursor.fetchBatch (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:666:13)
+    at async FindCursor.next (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:342:17) {"path":"/api/home","method":"GET","statusCode":500}
+2026-03-21 10:07:03 [INFO] API request {"method":"GET","url":"/api/home","statusCode":500,"durationMs":15035,"ip":"::1"}
+2026-03-21 10:07:11 [ERROR] MongoServerSelectionError: getaddrinfo ENOTFOUND ac-tqplvla-shard-00-00.qyy87sr.mongodb.net
+    at Topology.selectServer (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\sdam\topology.js:327:38)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:549:9)
+    at process.processTimers (node:internal/timers:523:7)
+    at async tryOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:148:18)
+    at async executeOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:78:16)
+    at async Collection.estimatedDocumentCount (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\collection.js:480:16)
+    at async model.Query.exec (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongoose\lib\query.js:4627:63)
+    at async Promise.all (index 1)
+    at async getProducts (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\controllers\productController.js:178:39) {"path":"/api/products","method":"GET","statusCode":500}
+2026-03-21 10:07:11 [INFO] API request {"method":"GET","url":"/api/products","statusCode":500,"durationMs":15010,"ip":"::1"}
+2026-03-21 10:07:18 [ERROR] MongoServerSelectionError: getaddrinfo ENOTFOUND ac-tqplvla-shard-00-00.qyy87sr.mongodb.net
+    at Topology.selectServer (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\sdam\topology.js:327:38)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:549:9)
+    at process.processTimers (node:internal/timers:523:7)
+    at async tryOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:148:18)
+    at async executeOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:78:16)
+    at async FindCursor._initialize (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\find_cursor.js:62:26)
+    at async FindCursor.cursorInit (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:632:27)
+    at async FindCursor.fetchBatch (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:666:13)
+    at async FindCursor.next (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:342:17) {"path":"/api/promotions?placement=special_combos","method":"GET","statusCode":500}
+2026-03-21 10:07:18 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":500,"durationMs":15012,"ip":"::1"}
+2026-03-21 10:07:18 [ERROR] MongoServerSelectionError: getaddrinfo ENOTFOUND ac-tqplvla-shard-00-00.qyy87sr.mongodb.net
+    at Topology.selectServer (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\sdam\topology.js:327:38)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:549:9)
+    at process.processTimers (node:internal/timers:523:7)
+    at async tryOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:148:18)
+    at async executeOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:78:16)
+    at async AggregationCursor._initialize (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\aggregation_cursor.js:57:26)
+    at async AggregationCursor.cursorInit (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:632:27)
+    at async AggregationCursor.fetchBatch (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:666:13)
+    at async AggregationCursor.next (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:342:17) {"path":"/api/products?isFeatured=true&sort=featured&limit=6","method":"GET","statusCode":500}
+2026-03-21 10:07:18 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":500,"durationMs":15013,"ip":"::1"}
+2026-03-21 10:07:18 [ERROR] MongoServerSelectionError: getaddrinfo ENOTFOUND ac-tqplvla-shard-00-00.qyy87sr.mongodb.net
+    at Topology.selectServer (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\sdam\topology.js:327:38)
+    at async tryOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:148:18)
+    at async executeOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:78:16)
+    at async FindCursor._initialize (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\find_cursor.js:62:26)
+    at async FindCursor.cursorInit (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:632:27)
+    at async FindCursor.fetchBatch (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:666:13)
+    at async FindCursor.next (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:342:17)
+    at async [Symbol.asyncIterator] (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:250:34)
+    at async FindCursor.toArray (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:422:26)
+    at async model.Query._find (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongoose\lib\query.js:2430:14) {"path":"/api/promotions?placement=home_thematic_banner","method":"GET","statusCode":500}
+2026-03-21 10:07:18 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":500,"durationMs":15014,"ip":"::1"}
+2026-03-21 10:07:18 [ERROR] MongoServerSelectionError: getaddrinfo ENOTFOUND ac-tqplvla-shard-00-00.qyy87sr.mongodb.net
+    at Topology.selectServer (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\sdam\topology.js:327:38)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:549:9)
+    at process.processTimers (node:internal/timers:523:7)
+    at async tryOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:148:18)
+    at async executeOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:78:16)
+    at async FindCursor._initialize (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\find_cursor.js:62:26)
+    at async FindCursor.cursorInit (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:632:27)
+    at async FindCursor.fetchBatch (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:666:13)
+    at async FindCursor.next (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:342:17) {"path":"/api/home","method":"GET","statusCode":500}
+2026-03-21 10:07:18 [INFO] API request {"method":"GET","url":"/api/home","statusCode":500,"durationMs":15014,"ip":"::1"}
+2026-03-21 10:07:33 [ERROR] MongoServerSelectionError: getaddrinfo ENOTFOUND ac-tqplvla-shard-00-00.qyy87sr.mongodb.net
+    at Topology.selectServer (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\sdam\topology.js:327:38)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:549:9)
+    at process.processTimers (node:internal/timers:523:7)
+    at async tryOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:148:18)
+    at async executeOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:78:16)
+    at async AggregationCursor._initialize (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\aggregation_cursor.js:57:26)
+    at async AggregationCursor.cursorInit (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:632:27)
+    at async AggregationCursor.fetchBatch (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:666:13)
+    at async AggregationCursor.next (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:342:17) {"path":"/api/products?isFeatured=true&sort=featured&limit=6","method":"GET","statusCode":500}
+2026-03-21 10:07:33 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":500,"durationMs":15015,"ip":"::1"}
+2026-03-21 10:07:33 [ERROR] MongoServerSelectionError: getaddrinfo ENOTFOUND ac-tqplvla-shard-00-00.qyy87sr.mongodb.net
+    at Topology.selectServer (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\sdam\topology.js:327:38)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:549:9)
+    at process.processTimers (node:internal/timers:523:7)
+    at async tryOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:148:18)
+    at async executeOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:78:16)
+    at async FindCursor._initialize (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\find_cursor.js:62:26)
+    at async FindCursor.cursorInit (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:632:27)
+    at async FindCursor.fetchBatch (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:666:13)
+    at async FindCursor.next (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:342:17) {"path":"/api/promotions?placement=home_thematic_banner","method":"GET","statusCode":500}
+2026-03-21 10:07:33 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":500,"durationMs":15015,"ip":"::1"}
+2026-03-21 10:07:33 [ERROR] MongoServerSelectionError: getaddrinfo ENOTFOUND ac-tqplvla-shard-00-00.qyy87sr.mongodb.net
+    at Topology.selectServer (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\sdam\topology.js:327:38)
+    at async tryOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:148:18)
+    at async executeOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:78:16)
+    at async FindCursor._initialize (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\find_cursor.js:62:26)
+    at async FindCursor.cursorInit (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:632:27)
+    at async FindCursor.fetchBatch (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:666:13)
+    at async FindCursor.next (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:342:17)
+    at async [Symbol.asyncIterator] (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:250:34)
+    at async FindCursor.toArray (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:422:26)
+    at async model.Query._find (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongoose\lib\query.js:2430:14) {"path":"/api/promotions?placement=special_combos","method":"GET","statusCode":500}
+2026-03-21 10:07:33 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":500,"durationMs":15018,"ip":"::1"}
+2026-03-21 10:07:33 [ERROR] MongoServerSelectionError: getaddrinfo ENOTFOUND ac-tqplvla-shard-00-00.qyy87sr.mongodb.net
+    at Topology.selectServer (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\sdam\topology.js:327:38)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:549:9)
+    at process.processTimers (node:internal/timers:523:7)
+    at async tryOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:148:18)
+    at async executeOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:78:16)
+    at async FindCursor._initialize (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\find_cursor.js:62:26)
+    at async FindCursor.cursorInit (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:632:27)
+    at async FindCursor.fetchBatch (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:666:13)
+    at async FindCursor.next (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:342:17) {"path":"/api/home","method":"GET","statusCode":500}
+2026-03-21 10:07:33 [INFO] API request {"method":"GET","url":"/api/home","statusCode":500,"durationMs":15007,"ip":"::1"}
+2026-03-21 10:07:35 [ERROR] MongoServerSelectionError: getaddrinfo ENOTFOUND ac-tqplvla-shard-00-00.qyy87sr.mongodb.net
+    at Topology.selectServer (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\sdam\topology.js:327:38)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:549:9)
+    at process.processTimers (node:internal/timers:523:7)
+    at async tryOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:148:18)
+    at async executeOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:78:16)
+    at async FindCursor._initialize (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\find_cursor.js:62:26)
+    at async FindCursor.cursorInit (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:632:27)
+    at async FindCursor.fetchBatch (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:666:13)
+    at async FindCursor.next (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:342:17) {"path":"/api/promotions?placement=special_combos","method":"GET","statusCode":500}
+2026-03-21 10:07:35 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":500,"durationMs":15009,"ip":"::1"}
+2026-03-21 10:07:35 [ERROR] MongoServerSelectionError: getaddrinfo ENOTFOUND ac-tqplvla-shard-00-00.qyy87sr.mongodb.net
+    at Topology.selectServer (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\sdam\topology.js:327:38)
+    at async tryOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:148:18)
+    at async executeOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:78:16)
+    at async FindCursor._initialize (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\find_cursor.js:62:26)
+    at async FindCursor.cursorInit (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:632:27)
+    at async FindCursor.fetchBatch (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:666:13)
+    at async FindCursor.next (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:342:17)
+    at async [Symbol.asyncIterator] (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:250:34)
+    at async FindCursor.toArray (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:422:26)
+    at async model.Query._find (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongoose\lib\query.js:2430:14) {"path":"/api/promotions?placement=home_thematic_banner","method":"GET","statusCode":500}
+2026-03-21 10:07:35 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":500,"durationMs":15011,"ip":"::1"}
+2026-03-21 10:07:48 [ERROR] MongoServerSelectionError: getaddrinfo ENOTFOUND ac-tqplvla-shard-00-00.qyy87sr.mongodb.net
+    at Topology.selectServer (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\sdam\topology.js:327:38)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:549:9)
+    at process.processTimers (node:internal/timers:523:7)
+    at async tryOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:148:18)
+    at async executeOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:78:16)
+    at async AggregationCursor._initialize (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\aggregation_cursor.js:57:26)
+    at async AggregationCursor.cursorInit (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:632:27)
+    at async AggregationCursor.fetchBatch (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:666:13)
+    at async AggregationCursor.next (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:342:17) {"path":"/api/products?isFeatured=true&sort=featured&limit=6","method":"GET","statusCode":500}
+2026-03-21 10:07:48 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":500,"durationMs":15003,"ip":"::1"}
+2026-03-21 10:07:48 [ERROR] MongoServerSelectionError: getaddrinfo ENOTFOUND ac-tqplvla-shard-00-00.qyy87sr.mongodb.net
+    at Topology.selectServer (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\sdam\topology.js:327:38)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:549:9)
+    at process.processTimers (node:internal/timers:523:7)
+    at async tryOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:148:18)
+    at async executeOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:78:16)
+    at async FindCursor._initialize (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\find_cursor.js:62:26)
+    at async FindCursor.cursorInit (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:632:27)
+    at async FindCursor.fetchBatch (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:666:13)
+    at async FindCursor.next (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:342:17) {"path":"/api/home","method":"GET","statusCode":500}
+2026-03-21 10:07:48 [INFO] API request {"method":"GET","url":"/api/home","statusCode":500,"durationMs":15008,"ip":"::1"}
+2026-03-21 12:26:01 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":200,"durationMs":15931,"ip":"::1"}
+2026-03-21 12:26:15 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":200,"durationMs":10433,"ip":"::1"}
+2026-03-21 12:26:17 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":200,"durationMs":31692,"ip":"::1"}
+2026-03-21 12:26:18 [INFO] API request {"method":"GET","url":"/api/home","statusCode":200,"durationMs":32684,"ip":"::1"}
+2026-03-21 12:26:18 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":200,"durationMs":13200,"ip":"::1"}
+2026-03-21 12:26:21 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":200,"durationMs":35782,"ip":"::1"}
+2026-03-21 12:26:21 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":20264,"ip":"::1"}
+2026-03-21 12:26:23 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":1486,"ip":"::1"}
+2026-03-21 12:26:39 [INFO] API request {"method":"GET","url":"/api/home","statusCode":200,"durationMs":23549,"ip":"::1"}
+2026-03-21 12:26:41 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":1637,"ip":"::1"}
+2026-03-21 12:31:08 [INFO] API request {"method":"OPTIONS","url":"/api/auth/login","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-21 12:31:40 [ERROR] MongoServerSelectionError: getaddrinfo ENOTFOUND ac-tqplvla-shard-00-00.qyy87sr.mongodb.net
+    at Topology.selectServer (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\sdam\topology.js:327:38)
+    at async tryOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:196:22)
+    at async executeOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:78:16)
+    at async FindCursor._initialize (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\find_cursor.js:62:26)
+    at async FindCursor.cursorInit (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:632:27)
+    at async FindCursor.fetchBatch (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:666:13)
+    at async FindCursor.next (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:342:17)
+    at async Collection.findOne (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\collection.js:313:24)
+    at async model.Query._findOne (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongoose\lib\query.js:2710:15)
+    at async model.Query.exec (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongoose\lib\query.js:4627:63) {"path":"/api/auth/login","method":"POST","statusCode":500}
+2026-03-21 12:31:40 [INFO] API request {"method":"POST","url":"/api/auth/login","statusCode":500,"durationMs":31947,"ip":"::1"}
+2026-03-21 12:31:44 [INFO] API request {"method":"OPTIONS","url":"/api/auth/login","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-21 12:31:59 [ERROR] MongoServerSelectionError: getaddrinfo ENOTFOUND ac-tqplvla-shard-00-00.qyy87sr.mongodb.net
+    at Topology.selectServer (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\sdam\topology.js:327:38)
+    at async tryOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:148:18)
+    at async executeOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:78:16)
+    at async FindCursor._initialize (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\find_cursor.js:62:26)
+    at async FindCursor.cursorInit (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:632:27)
+    at async FindCursor.fetchBatch (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:666:13)
+    at async FindCursor.next (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:342:17)
+    at async Collection.findOne (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\collection.js:313:24)
+    at async model.Query._findOne (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongoose\lib\query.js:2710:15)
+    at async model.Query.exec (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongoose\lib\query.js:4627:63) {"path":"/api/auth/login","method":"POST","statusCode":500}
+2026-03-21 12:31:59 [INFO] API request {"method":"POST","url":"/api/auth/login","statusCode":500,"durationMs":15011,"ip":"::1"}
+2026-03-21 12:33:42 [ERROR] MongoServerSelectionError: getaddrinfo ENOTFOUND ac-tqplvla-shard-00-00.qyy87sr.mongodb.net
+    at Topology.selectServer (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\sdam\topology.js:327:38)
+    at async tryOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:148:18)
+    at async executeOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:78:16)
+    at async FindCursor._initialize (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\find_cursor.js:62:26)
+    at async FindCursor.cursorInit (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:632:27)
+    at async FindCursor.fetchBatch (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:666:13)
+    at async FindCursor.next (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:342:17)
+    at async [Symbol.asyncIterator] (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:250:34)
+    at async FindCursor.toArray (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:422:26)
+    at async model.Query._find (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongoose\lib\query.js:2430:14) {"path":"/api/promotions?placement=home_thematic_banner","method":"GET","statusCode":500}
+2026-03-21 12:33:42 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":500,"durationMs":15005,"ip":"::1"}
+2026-03-21 12:33:42 [ERROR] MongoServerSelectionError: getaddrinfo ENOTFOUND ac-tqplvla-shard-00-00.qyy87sr.mongodb.net
+    at Topology.selectServer (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\sdam\topology.js:327:38)
+    at async tryOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:148:18)
+    at async executeOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:78:16)
+    at async FindCursor._initialize (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\find_cursor.js:62:26)
+    at async FindCursor.cursorInit (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:632:27)
+    at async FindCursor.fetchBatch (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:666:13)
+    at async FindCursor.next (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:342:17)
+    at async [Symbol.asyncIterator] (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:250:34)
+    at async FindCursor.toArray (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:422:26)
+    at async model.Query._find (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongoose\lib\query.js:2430:14) {"path":"/api/promotions?placement=special_combos","method":"GET","statusCode":500}
+2026-03-21 12:33:42 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":500,"durationMs":15008,"ip":"::1"}
+2026-03-21 12:33:42 [ERROR] MongoServerSelectionError: getaddrinfo ENOTFOUND ac-tqplvla-shard-00-00.qyy87sr.mongodb.net
+    at Topology.selectServer (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\sdam\topology.js:327:38)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:549:9)
+    at process.processTimers (node:internal/timers:523:7)
+    at async tryOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:148:18)
+    at async executeOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:78:16)
+    at async AggregationCursor._initialize (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\aggregation_cursor.js:57:26)
+    at async AggregationCursor.cursorInit (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:632:27)
+    at async AggregationCursor.fetchBatch (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:666:13)
+    at async AggregationCursor.next (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:342:17) {"path":"/api/products?isFeatured=true&sort=featured&limit=6","method":"GET","statusCode":500}
+2026-03-21 12:33:42 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":500,"durationMs":15011,"ip":"::1"}
+2026-03-21 12:33:42 [ERROR] MongoServerSelectionError: getaddrinfo ENOTFOUND ac-tqplvla-shard-00-00.qyy87sr.mongodb.net
+    at Topology.selectServer (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\sdam\topology.js:327:38)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:549:9)
+    at process.processTimers (node:internal/timers:523:7)
+    at async tryOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:148:18)
+    at async executeOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:78:16)
+    at async FindCursor._initialize (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\find_cursor.js:62:26)
+    at async FindCursor.cursorInit (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:632:27)
+    at async FindCursor.fetchBatch (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:666:13)
+    at async FindCursor.next (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:342:17) {"path":"/api/home","method":"GET","statusCode":500}
+2026-03-21 12:33:42 [INFO] API request {"method":"GET","url":"/api/home","statusCode":500,"durationMs":15018,"ip":"::1"}
+2026-03-21 12:33:57 [ERROR] MongoServerSelectionError: getaddrinfo ENOTFOUND ac-tqplvla-shard-00-00.qyy87sr.mongodb.net
+    at Topology.selectServer (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\sdam\topology.js:327:38)
+    at async tryOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:148:18)
+    at async executeOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:78:16)
+    at async FindCursor._initialize (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\find_cursor.js:62:26)
+    at async FindCursor.cursorInit (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:632:27)
+    at async FindCursor.fetchBatch (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:666:13)
+    at async FindCursor.next (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:342:17)
+    at async [Symbol.asyncIterator] (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:250:34)
+    at async FindCursor.toArray (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:422:26)
+    at async model.Query._find (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongoose\lib\query.js:2430:14) {"path":"/api/promotions?placement=home_thematic_banner","method":"GET","statusCode":500}
+2026-03-21 12:33:57 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":500,"durationMs":15006,"ip":"::1"}
+2026-03-21 12:33:57 [ERROR] MongoServerSelectionError: getaddrinfo ENOTFOUND ac-tqplvla-shard-00-00.qyy87sr.mongodb.net
+    at Topology.selectServer (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\sdam\topology.js:327:38)
+    at async tryOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:148:18)
+    at async executeOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:78:16)
+    at async FindCursor._initialize (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\find_cursor.js:62:26)
+    at async FindCursor.cursorInit (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:632:27)
+    at async FindCursor.fetchBatch (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:666:13)
+    at async FindCursor.next (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:342:17)
+    at async [Symbol.asyncIterator] (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:250:34)
+    at async FindCursor.toArray (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:422:26)
+    at async model.Query._find (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongoose\lib\query.js:2430:14) {"path":"/api/promotions?placement=special_combos","method":"GET","statusCode":500}
+2026-03-21 12:33:57 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":500,"durationMs":15004,"ip":"::1"}
+2026-03-21 12:33:57 [ERROR] MongoServerSelectionError: getaddrinfo ENOTFOUND ac-tqplvla-shard-00-00.qyy87sr.mongodb.net
+    at Topology.selectServer (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\sdam\topology.js:327:38)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:549:9)
+    at process.processTimers (node:internal/timers:523:7)
+    at async tryOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:148:18)
+    at async executeOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:78:16)
+    at async AggregationCursor._initialize (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\aggregation_cursor.js:57:26)
+    at async AggregationCursor.cursorInit (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:632:27)
+    at async AggregationCursor.fetchBatch (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:666:13)
+    at async AggregationCursor.next (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:342:17) {"path":"/api/products?isFeatured=true&sort=featured&limit=6","method":"GET","statusCode":500}
+2026-03-21 12:33:57 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":500,"durationMs":15005,"ip":"::1"}
+2026-03-21 12:33:57 [ERROR] MongoServerSelectionError: getaddrinfo ENOTFOUND ac-tqplvla-shard-00-00.qyy87sr.mongodb.net
+    at Topology.selectServer (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\sdam\topology.js:327:38)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:549:9)
+    at process.processTimers (node:internal/timers:523:7)
+    at async tryOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:148:18)
+    at async executeOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:78:16)
+    at async FindCursor._initialize (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\find_cursor.js:62:26)
+    at async FindCursor.cursorInit (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:632:27)
+    at async FindCursor.fetchBatch (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:666:13)
+    at async FindCursor.next (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:342:17) {"path":"/api/home","method":"GET","statusCode":500}
+2026-03-21 12:33:57 [INFO] API request {"method":"GET","url":"/api/home","statusCode":500,"durationMs":15018,"ip":"::1"}
+2026-03-21 12:34:12 [ERROR] MongoServerSelectionError: getaddrinfo ENOTFOUND ac-tqplvla-shard-00-00.qyy87sr.mongodb.net
+    at Topology.selectServer (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\sdam\topology.js:327:38)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:549:9)
+    at process.processTimers (node:internal/timers:523:7)
+    at async tryOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:148:18)
+    at async executeOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:78:16)
+    at async FindCursor._initialize (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\find_cursor.js:62:26)
+    at async FindCursor.cursorInit (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:632:27)
+    at async FindCursor.fetchBatch (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:666:13)
+    at async FindCursor.next (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:342:17) {"path":"/api/promotions?placement=home_thematic_banner","method":"GET","statusCode":500}
+2026-03-21 12:34:12 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":500,"durationMs":15011,"ip":"::1"}
+2026-03-21 12:34:12 [ERROR] MongoServerSelectionError: getaddrinfo ENOTFOUND ac-tqplvla-shard-00-00.qyy87sr.mongodb.net
+    at Topology.selectServer (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\sdam\topology.js:327:38)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:549:9)
+    at process.processTimers (node:internal/timers:523:7)
+    at async tryOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:148:18)
+    at async executeOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:78:16)
+    at async FindCursor._initialize (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\find_cursor.js:62:26)
+    at async FindCursor.cursorInit (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:632:27)
+    at async FindCursor.fetchBatch (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:666:13)
+    at async FindCursor.next (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:342:17) {"path":"/api/promotions?placement=special_combos","method":"GET","statusCode":500}
+2026-03-21 12:34:12 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":500,"durationMs":15012,"ip":"::1"}
+2026-03-21 12:34:12 [ERROR] MongoServerSelectionError: getaddrinfo ENOTFOUND ac-tqplvla-shard-00-00.qyy87sr.mongodb.net
+    at Topology.selectServer (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\sdam\topology.js:327:38)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:549:9)
+    at process.processTimers (node:internal/timers:523:7)
+    at async tryOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:148:18)
+    at async executeOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:78:16)
+    at async AggregationCursor._initialize (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\aggregation_cursor.js:57:26)
+    at async AggregationCursor.cursorInit (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:632:27)
+    at async AggregationCursor.fetchBatch (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:666:13)
+    at async AggregationCursor.next (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:342:17) {"path":"/api/products?isFeatured=true&sort=featured&limit=6","method":"GET","statusCode":500}
+2026-03-21 12:34:12 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":500,"durationMs":15012,"ip":"::1"}
+2026-03-21 12:34:12 [ERROR] MongoServerSelectionError: getaddrinfo ENOTFOUND ac-tqplvla-shard-00-00.qyy87sr.mongodb.net
+    at Topology.selectServer (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\sdam\topology.js:327:38)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:549:9)
+    at process.processTimers (node:internal/timers:523:7)
+    at async tryOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:148:18)
+    at async executeOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:78:16)
+    at async FindCursor._initialize (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\find_cursor.js:62:26)
+    at async FindCursor.cursorInit (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:632:27)
+    at async FindCursor.fetchBatch (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:666:13)
+    at async FindCursor.next (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:342:17) {"path":"/api/home","method":"GET","statusCode":500}
+2026-03-21 12:34:12 [INFO] API request {"method":"GET","url":"/api/home","statusCode":500,"durationMs":15017,"ip":"::1"}
+2026-03-21 12:34:20 [ERROR] MongoServerSelectionError: getaddrinfo ENOTFOUND ac-tqplvla-shard-00-00.qyy87sr.mongodb.net
+    at Topology.selectServer (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\sdam\topology.js:327:38)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:549:9)
+    at process.processTimers (node:internal/timers:523:7)
+    at async tryOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:148:18)
+    at async executeOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:78:16)
+    at async FindCursor._initialize (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\find_cursor.js:62:26)
+    at async FindCursor.cursorInit (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:632:27)
+    at async FindCursor.fetchBatch (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:666:13)
+    at async FindCursor.next (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:342:17) {"path":"/api/promotions?placement=home_thematic_banner","method":"GET","statusCode":500}
+2026-03-21 12:34:20 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":500,"durationMs":15018,"ip":"::1"}
+2026-03-21 12:34:20 [ERROR] MongoServerSelectionError: getaddrinfo ENOTFOUND ac-tqplvla-shard-00-00.qyy87sr.mongodb.net
+    at Topology.selectServer (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\sdam\topology.js:327:38)
+    at async tryOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:148:18)
+    at async executeOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:78:16)
+    at async FindCursor._initialize (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\find_cursor.js:62:26)
+    at async FindCursor.cursorInit (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:632:27)
+    at async FindCursor.fetchBatch (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:666:13)
+    at async FindCursor.next (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:342:17)
+    at async [Symbol.asyncIterator] (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:250:34)
+    at async FindCursor.toArray (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:422:26)
+    at async model.Query._find (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongoose\lib\query.js:2430:14) {"path":"/api/promotions?placement=special_combos","method":"GET","statusCode":500}
+2026-03-21 12:34:20 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":500,"durationMs":15020,"ip":"::1"}
+2026-03-21 12:34:27 [ERROR] MongoServerSelectionError: getaddrinfo ENOTFOUND ac-tqplvla-shard-00-00.qyy87sr.mongodb.net
+    at Topology.selectServer (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\sdam\topology.js:327:38)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:549:9)
+    at process.processTimers (node:internal/timers:523:7)
+    at async tryOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:148:18)
+    at async executeOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:78:16)
+    at async AggregationCursor._initialize (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\aggregation_cursor.js:57:26)
+    at async AggregationCursor.cursorInit (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:632:27)
+    at async AggregationCursor.fetchBatch (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:666:13)
+    at async AggregationCursor.next (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:342:17) {"path":"/api/products?isFeatured=true&sort=featured&limit=6","method":"GET","statusCode":500}
+2026-03-21 12:34:27 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":500,"durationMs":15009,"ip":"::1"}
+2026-03-21 12:34:27 [ERROR] MongoServerSelectionError: getaddrinfo ENOTFOUND ac-tqplvla-shard-00-00.qyy87sr.mongodb.net
+    at Topology.selectServer (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\sdam\topology.js:327:38)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:549:9)
+    at process.processTimers (node:internal/timers:523:7)
+    at async tryOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:148:18)
+    at async executeOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:78:16)
+    at async FindCursor._initialize (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\find_cursor.js:62:26)
+    at async FindCursor.cursorInit (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:632:27)
+    at async FindCursor.fetchBatch (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:666:13)
+    at async FindCursor.next (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:342:17) {"path":"/api/home","method":"GET","statusCode":500}
+2026-03-21 12:34:27 [INFO] API request {"method":"GET","url":"/api/home","statusCode":500,"durationMs":15011,"ip":"::1"}
+2026-03-21 13:43:05 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":200,"durationMs":952,"ip":"::1"}
+2026-03-21 13:43:05 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":200,"durationMs":1222,"ip":"::1"}
+2026-03-21 13:43:05 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":405,"ip":"::1"}
+2026-03-21 13:43:05 [INFO] API request {"method":"GET","url":"/api/home","statusCode":200,"durationMs":1424,"ip":"::1"}
+2026-03-21 13:43:05 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":200,"durationMs":1561,"ip":"::1"}
+2026-03-21 13:43:05 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":304,"durationMs":341,"ip":"::1"}
+2026-03-21 13:43:06 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":171,"ip":"::1"}
+2026-03-21 13:43:06 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":156,"ip":"::1"}
+2026-03-21 13:43:06 [INFO] API request {"method":"GET","url":"/api/home","statusCode":304,"durationMs":1091,"ip":"::1"}
+2026-03-21 13:43:07 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":204,"ip":"::1"}
+2026-03-21 14:06:18 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":969,"ip":"::1"}
+2026-03-21 14:06:18 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":304,"durationMs":1291,"ip":"::1"}
+2026-03-21 14:06:18 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":386,"ip":"::1"}
+2026-03-21 14:06:18 [INFO] API request {"method":"GET","url":"/api/home","statusCode":304,"durationMs":1481,"ip":"::1"}
+2026-03-21 14:06:18 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":1589,"ip":"::1"}
+2026-03-21 14:06:18 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":304,"durationMs":305,"ip":"::1"}
+2026-03-21 14:06:18 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":101,"ip":"::1"}
+2026-03-21 14:06:19 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":119,"ip":"::1"}
+2026-03-21 14:06:19 [INFO] API request {"method":"GET","url":"/api/home","statusCode":304,"durationMs":712,"ip":"::1"}
+2026-03-21 14:06:19 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":96,"ip":"::1"}
+2026-03-21 14:08:46 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_deals","statusCode":200,"durationMs":91,"ip":"::1"}
+2026-03-21 14:08:46 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":92,"ip":"::1"}
+2026-03-21 14:08:46 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":98,"ip":"::1"}
+2026-03-21 14:08:46 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":89,"ip":"::1"}
+2026-03-21 14:08:46 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_deals","statusCode":304,"durationMs":88,"ip":"::1"}
+2026-03-21 14:08:46 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":97,"ip":"::1"}
+2026-03-21 14:08:47 [INFO] API request {"method":"GET","url":"/api/home","statusCode":304,"durationMs":1000,"ip":"::1"}
+2026-03-21 14:08:47 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":85,"ip":"::1"}
+2026-03-21 14:08:47 [INFO] API request {"method":"GET","url":"/api/home","statusCode":304,"durationMs":187,"ip":"::1"}
+2026-03-21 14:08:47 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":90,"ip":"::1"}
+2026-03-21 14:11:33 [INFO] API request {"method":"OPTIONS","url":"/api/auth/login","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-21 14:11:34 [INFO] API request {"method":"POST","url":"/api/auth/login","statusCode":200,"durationMs":326,"ip":"::1"}
+2026-03-21 14:11:34 [INFO] API request {"method":"OPTIONS","url":"/api/admin/products","statusCode":204,"durationMs":0,"ip":"::1"}
+2026-03-21 14:11:34 [INFO] API request {"method":"OPTIONS","url":"/api/admin/orders","statusCode":204,"durationMs":0,"ip":"::1"}
+2026-03-21 14:11:34 [INFO] API request {"method":"OPTIONS","url":"/api/admin/orders","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-21 14:11:34 [INFO] API request {"method":"OPTIONS","url":"/api/admin/products","statusCode":204,"durationMs":0,"ip":"::1"}
+2026-03-21 14:11:34 [INFO] API request {"method":"GET","url":"/api/admin/products","statusCode":304,"durationMs":292,"ip":"::1"}
+2026-03-21 14:11:34 [INFO] API request {"method":"GET","url":"/api/admin/orders","statusCode":304,"durationMs":329,"ip":"::1"}
+2026-03-21 14:11:34 [INFO] API request {"method":"GET","url":"/api/admin/products","statusCode":304,"durationMs":209,"ip":"::1"}
+2026-03-21 14:11:35 [INFO] API request {"method":"GET","url":"/api/admin/orders","statusCode":304,"durationMs":243,"ip":"::1"}
+2026-03-21 14:11:38 [INFO] API request {"method":"OPTIONS","url":"/api/admin/hero","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-21 14:11:38 [INFO] API request {"method":"OPTIONS","url":"/api/admin/hero","statusCode":204,"durationMs":2,"ip":"::1"}
+2026-03-21 14:11:38 [INFO] API request {"method":"GET","url":"/api/admin/hero","statusCode":304,"durationMs":284,"ip":"::1"}
+2026-03-21 14:11:39 [INFO] API request {"method":"GET","url":"/api/admin/hero","statusCode":304,"durationMs":305,"ip":"::1"}
+2026-03-21 14:12:10 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":154,"ip":"::1"}
+2026-03-21 14:12:10 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":161,"ip":"::1"}
+2026-03-21 14:12:10 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_deals","statusCode":304,"durationMs":160,"ip":"::1"}
+2026-03-21 14:12:10 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":64,"ip":"::1"}
+2026-03-21 14:12:10 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":68,"ip":"::1"}
+2026-03-21 14:12:10 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_deals","statusCode":304,"durationMs":70,"ip":"::1"}
+2026-03-21 14:12:11 [INFO] API request {"method":"GET","url":"/api/home","statusCode":304,"durationMs":1072,"ip":"::1"}
+2026-03-21 14:12:11 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":90,"ip":"::1"}
+2026-03-21 14:12:11 [INFO] API request {"method":"GET","url":"/api/home","statusCode":304,"durationMs":168,"ip":"::1"}
+2026-03-21 14:12:11 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":125,"ip":"::1"}
+2026-03-21 14:12:17 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_deals","statusCode":304,"durationMs":95,"ip":"::1"}
+2026-03-21 14:12:17 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":95,"ip":"::1"}
+2026-03-21 14:12:17 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":106,"ip":"::1"}
+2026-03-21 14:12:17 [INFO] API request {"method":"GET","url":"/api/home","statusCode":304,"durationMs":161,"ip":"::1"}
+2026-03-21 14:12:17 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_deals","statusCode":304,"durationMs":75,"ip":"::1"}
+2026-03-21 14:12:17 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":78,"ip":"::1"}
+2026-03-21 14:12:17 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":95,"ip":"::1"}
+2026-03-21 14:12:17 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":320,"ip":"::1"}
+2026-03-21 14:12:18 [INFO] API request {"method":"GET","url":"/api/home","statusCode":304,"durationMs":542,"ip":"::1"}
+2026-03-21 14:12:18 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":89,"ip":"::1"}
+2026-03-21 14:13:24 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_deals","statusCode":200,"durationMs":91,"ip":"::1"}
+2026-03-21 14:13:24 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":200,"durationMs":94,"ip":"::1"}
+2026-03-21 14:13:24 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":200,"durationMs":99,"ip":"::1"}
+2026-03-21 14:13:24 [INFO] API request {"method":"GET","url":"/api/home","statusCode":200,"durationMs":150,"ip":"::1"}
+2026-03-21 14:13:24 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":200,"durationMs":182,"ip":"::1"}
+2026-03-21 14:13:24 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_deals","statusCode":200,"durationMs":181,"ip":"::1"}
+2026-03-21 14:13:24 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":200,"durationMs":181,"ip":"::1"}
+2026-03-21 14:13:24 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_deals","statusCode":304,"durationMs":110,"ip":"::1"}
+2026-03-21 14:13:24 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":106,"ip":"::1"}
+2026-03-21 14:13:24 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":113,"ip":"::1"}
+2026-03-21 14:13:25 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_deals","statusCode":304,"durationMs":144,"ip":"::1"}
+2026-03-21 14:13:25 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":149,"ip":"::1"}
+2026-03-21 14:13:25 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":145,"ip":"::1"}
+2026-03-21 14:13:25 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":319,"ip":"::1"}
+2026-03-21 14:13:25 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_deals","statusCode":304,"durationMs":323,"ip":"::1"}
+2026-03-21 14:13:25 [INFO] API request {"method":"GET","url":"/api/home","statusCode":200,"durationMs":470,"ip":"::1"}
+2026-03-21 14:13:25 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":323,"ip":"::1"}
+2026-03-21 14:13:25 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":79,"ip":"::1"}
+2026-03-21 14:13:26 [INFO] API request {"method":"GET","url":"/api/home","statusCode":304,"durationMs":187,"ip":"::1"}
+2026-03-21 14:13:26 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":188,"ip":"::1"}
+2026-03-21 14:14:35 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_deals","statusCode":304,"durationMs":96,"ip":"::1"}
+2026-03-21 14:14:35 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":98,"ip":"::1"}
+2026-03-21 14:14:35 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":105,"ip":"::1"}
+2026-03-21 14:14:35 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_deals","statusCode":304,"durationMs":59,"ip":"::1"}
+2026-03-21 14:14:35 [INFO] API request {"method":"GET","url":"/api/home","statusCode":304,"durationMs":167,"ip":"::1"}
+2026-03-21 14:14:35 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":62,"ip":"::1"}
+2026-03-21 14:14:35 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":69,"ip":"::1"}
+2026-03-21 14:14:35 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":113,"ip":"::1"}
+2026-03-21 14:14:35 [INFO] API request {"method":"GET","url":"/api/home","statusCode":304,"durationMs":193,"ip":"::1"}
+2026-03-21 14:14:35 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":127,"ip":"::1"}
+2026-03-21 14:17:07 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_deals","statusCode":304,"durationMs":93,"ip":"::1"}
+2026-03-21 14:17:07 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":98,"ip":"::1"}
+2026-03-21 14:17:07 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":97,"ip":"::1"}
+2026-03-21 14:17:07 [INFO] API request {"method":"GET","url":"/api/home","statusCode":304,"durationMs":189,"ip":"::1"}
+2026-03-21 14:17:07 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_deals","statusCode":304,"durationMs":96,"ip":"::1"}
+2026-03-21 14:17:07 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":97,"ip":"::1"}
+2026-03-21 14:17:07 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":97,"ip":"::1"}
+2026-03-21 14:17:07 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":64,"ip":"::1"}
+2026-03-21 14:17:07 [INFO] API request {"method":"GET","url":"/api/home","statusCode":304,"durationMs":147,"ip":"::1"}
+2026-03-21 14:17:07 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":77,"ip":"::1"}
+2026-03-21 14:19:51 [INFO] MongoDB connected (primary): ac-tqplvla-shard-00-01.qyy87sr.mongodb.net
+2026-03-21 14:21:14 [INFO] MongoDB connected (primary): ac-tqplvla-shard-00-02.qyy87sr.mongodb.net
+2026-03-21 14:22:00 [INFO] MongoDB connected (primary): ac-tqplvla-shard-00-00.qyy87sr.mongodb.net
+2026-03-21 14:22:00 [INFO] Server running in development mode on port 5000
+2026-03-21 14:23:06 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_deals","statusCode":304,"durationMs":84,"ip":"::1"}
+2026-03-21 14:23:06 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":122,"ip":"::1"}
+2026-03-21 14:23:06 [INFO] API request {"method":"GET","url":"/api/home","statusCode":304,"durationMs":199,"ip":"::1"}
+2026-03-21 14:23:06 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_deals","statusCode":304,"durationMs":96,"ip":"::1"}
+2026-03-21 14:23:06 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":93,"ip":"::1"}
+2026-03-21 14:23:06 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":100,"ip":"::1"}
+2026-03-21 14:23:06 [INFO] API request {"method":"GET","url":"/api/home","statusCode":304,"durationMs":208,"ip":"::1"}
+2026-03-21 14:23:06 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":82,"ip":"::1"}
+2026-03-21 14:23:07 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":921,"ip":"::1"}
+2026-03-21 14:23:07 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":102,"ip":"::1"}
+2026-03-21 14:23:09 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_deals","statusCode":304,"durationMs":200,"ip":"::1"}
+2026-03-21 14:23:09 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":208,"ip":"::1"}
+2026-03-21 14:23:09 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":219,"ip":"::1"}
+2026-03-21 14:23:09 [INFO] API request {"method":"GET","url":"/api/home","statusCode":304,"durationMs":295,"ip":"::1"}
+2026-03-21 14:23:09 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":81,"ip":"::1"}
+2026-03-21 14:23:09 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":82,"ip":"::1"}
+2026-03-21 14:23:09 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_deals","statusCode":304,"durationMs":94,"ip":"::1"}
+2026-03-21 14:23:09 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":110,"ip":"::1"}
+2026-03-21 14:23:09 [INFO] API request {"method":"GET","url":"/api/home","statusCode":304,"durationMs":140,"ip":"::1"}
+2026-03-21 14:23:09 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":141,"ip":"::1"}
+2026-03-21 14:23:36 [INFO] API request {"method":"OPTIONS","url":"/api/auth/login","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-21 14:23:37 [INFO] API request {"method":"POST","url":"/api/auth/login","statusCode":200,"durationMs":342,"ip":"::1"}
+2026-03-21 14:23:37 [INFO] API request {"method":"OPTIONS","url":"/api/admin/products","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-21 14:23:37 [INFO] API request {"method":"OPTIONS","url":"/api/admin/orders","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-21 14:23:37 [INFO] API request {"method":"OPTIONS","url":"/api/admin/products","statusCode":204,"durationMs":0,"ip":"::1"}
+2026-03-21 14:23:37 [INFO] API request {"method":"OPTIONS","url":"/api/admin/orders","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-21 14:23:37 [INFO] API request {"method":"GET","url":"/api/admin/products","statusCode":304,"durationMs":243,"ip":"::1"}
+2026-03-21 14:23:37 [INFO] API request {"method":"GET","url":"/api/admin/orders","statusCode":304,"durationMs":445,"ip":"::1"}
+2026-03-21 14:23:37 [INFO] API request {"method":"GET","url":"/api/admin/products","statusCode":304,"durationMs":303,"ip":"::1"}
+2026-03-21 14:23:38 [INFO] API request {"method":"GET","url":"/api/admin/orders","statusCode":304,"durationMs":301,"ip":"::1"}
+2026-03-21 14:23:41 [INFO] API request {"method":"OPTIONS","url":"/api/admin/hero","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-21 14:23:41 [INFO] API request {"method":"OPTIONS","url":"/api/admin/hero","statusCode":204,"durationMs":0,"ip":"::1"}
+2026-03-21 14:23:41 [INFO] API request {"method":"GET","url":"/api/admin/hero","statusCode":200,"durationMs":340,"ip":"::1"}
+2026-03-21 14:23:42 [INFO] API request {"method":"GET","url":"/api/admin/hero","statusCode":304,"durationMs":409,"ip":"::1"}
+2026-03-21 14:24:49 [INFO] API request {"method":"OPTIONS","url":"/api/user/me","statusCode":204,"durationMs":0,"ip":"::1"}
+2026-03-21 14:24:50 [INFO] API request {"method":"GET","url":"/api/user/me","statusCode":304,"durationMs":357,"ip":"::1"}
+2026-03-21 14:24:50 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_deals","statusCode":304,"durationMs":141,"ip":"::1"}
+2026-03-21 14:24:50 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":152,"ip":"::1"}
+2026-03-21 14:24:50 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":151,"ip":"::1"}
+2026-03-21 14:24:50 [INFO] API request {"method":"GET","url":"/api/home","statusCode":304,"durationMs":238,"ip":"::1"}
+2026-03-21 14:24:50 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":104,"ip":"::1"}
+2026-03-21 14:24:50 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":110,"ip":"::1"}
+2026-03-21 14:24:50 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_deals","statusCode":304,"durationMs":116,"ip":"::1"}
+2026-03-21 14:24:50 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":179,"ip":"::1"}
+2026-03-21 14:24:50 [INFO] API request {"method":"GET","url":"/api/home","statusCode":304,"durationMs":274,"ip":"::1"}
+2026-03-21 14:24:50 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":65,"ip":"::1"}
+2026-03-21 14:27:51 [INFO] API request {"method":"OPTIONS","url":"/api/user/me","statusCode":204,"durationMs":0,"ip":"::1"}
+2026-03-21 14:27:52 [INFO] API request {"method":"GET","url":"/api/user/me","statusCode":304,"durationMs":409,"ip":"::1"}
+2026-03-21 14:27:52 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_deals","statusCode":304,"durationMs":229,"ip":"::1"}
+2026-03-21 14:27:52 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":229,"ip":"::1"}
+2026-03-21 14:27:52 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":233,"ip":"::1"}
+2026-03-21 14:27:52 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_deals","statusCode":304,"durationMs":66,"ip":"::1"}
+2026-03-21 14:27:52 [INFO] API request {"method":"GET","url":"/api/home","statusCode":304,"durationMs":290,"ip":"::1"}
+2026-03-21 14:27:52 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":63,"ip":"::1"}
+2026-03-21 14:27:52 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":66,"ip":"::1"}
+2026-03-21 14:27:52 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":115,"ip":"::1"}
+2026-03-21 14:27:53 [INFO] API request {"method":"GET","url":"/api/home","statusCode":304,"durationMs":336,"ip":"::1"}
+2026-03-21 14:27:53 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":89,"ip":"::1"}
+2026-03-21 14:29:15 [INFO] API request {"method":"GET","url":"/api/home","statusCode":200,"durationMs":323,"ip":"::1"}
+2026-03-21 14:29:19 [INFO] API request {"method":"GET","url":"/api/home","statusCode":200,"durationMs":327,"ip":"::1"}
+2026-03-21 14:29:23 [INFO] API request {"method":"GET","url":"/api/home","statusCode":200,"durationMs":200,"ip":"::1"}
+2026-03-21 14:29:50 [INFO] API request {"method":"OPTIONS","url":"/api/user/me","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-21 14:29:50 [INFO] API request {"method":"GET","url":"/api/user/me","statusCode":304,"durationMs":221,"ip":"::1"}
+2026-03-21 14:29:50 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":152,"ip":"::1"}
+2026-03-21 14:29:50 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":152,"ip":"::1"}
+2026-03-21 14:29:50 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":304,"durationMs":246,"ip":"::1"}
+2026-03-21 14:29:50 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":91,"ip":"::1"}
+2026-03-21 14:29:50 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":93,"ip":"::1"}
+2026-03-21 14:29:50 [INFO] API request {"method":"GET","url":"/api/home","statusCode":304,"durationMs":245,"ip":"::1"}
+2026-03-21 14:29:51 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":108,"ip":"::1"}
+2026-03-21 14:29:51 [INFO] API request {"method":"GET","url":"/api/home","statusCode":304,"durationMs":150,"ip":"::1"}
+2026-03-21 14:29:51 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":304,"durationMs":165,"ip":"::1"}
+2026-03-21 14:29:51 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":132,"ip":"::1"}
+2026-03-21 14:30:08 [INFO] API request {"method":"GET","url":"/api/products","statusCode":200,"durationMs":117,"ip":"::1"}
+2026-03-21 14:30:12 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":97,"ip":"::1"}
+2026-03-21 14:30:12 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":108,"ip":"::1"}
+2026-03-21 14:30:12 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":156,"ip":"::1"}
+2026-03-21 14:30:12 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":153,"ip":"::1"}
+2026-03-21 14:30:12 [INFO] API request {"method":"GET","url":"/api/home","statusCode":304,"durationMs":264,"ip":"::1"}
+2026-03-21 14:30:12 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":304,"durationMs":271,"ip":"::1"}
+2026-03-21 14:30:13 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":107,"ip":"::1"}
+2026-03-21 14:30:13 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":304,"durationMs":191,"ip":"::1"}
+2026-03-21 14:30:13 [INFO] API request {"method":"GET","url":"/api/home","statusCode":304,"durationMs":196,"ip":"::1"}
+2026-03-21 14:30:13 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":113,"ip":"::1"}
+2026-03-21 14:36:05 [INFO] API request {"method":"OPTIONS","url":"/api/user/me","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-21 14:36:05 [INFO] API request {"method":"GET","url":"/api/user/me","statusCode":304,"durationMs":263,"ip":"::1"}
+2026-03-21 14:36:05 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":144,"ip":"::1"}
+2026-03-21 14:36:05 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":141,"ip":"::1"}
+2026-03-21 14:36:05 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":63,"ip":"::1"}
+2026-03-21 14:36:05 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":304,"durationMs":210,"ip":"::1"}
+2026-03-21 14:36:05 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":66,"ip":"::1"}
+2026-03-21 14:36:05 [INFO] API request {"method":"GET","url":"/api/home","statusCode":304,"durationMs":208,"ip":"::1"}
+2026-03-21 14:36:06 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":304,"durationMs":134,"ip":"::1"}
+2026-03-21 14:36:06 [INFO] API request {"method":"GET","url":"/api/home","statusCode":304,"durationMs":138,"ip":"::1"}
+2026-03-21 14:36:06 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":60,"ip":"::1"}
+2026-03-21 14:36:06 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":190,"ip":"::1"}
+2026-03-21 14:48:32 [INFO] API request {"method":"OPTIONS","url":"/api/user/me","statusCode":204,"durationMs":35,"ip":"::1"}
+2026-03-21 14:48:32 [INFO] API request {"method":"GET","url":"/api/user/me","statusCode":304,"durationMs":284,"ip":"::1"}
+2026-03-21 14:48:32 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":141,"ip":"::1"}
+2026-03-21 14:48:32 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":137,"ip":"::1"}
+2026-03-21 14:48:32 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":304,"durationMs":210,"ip":"::1"}
+2026-03-21 14:48:32 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":66,"ip":"::1"}
+2026-03-21 14:48:32 [INFO] API request {"method":"GET","url":"/api/home","statusCode":304,"durationMs":216,"ip":"::1"}
+2026-03-21 14:48:32 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":80,"ip":"::1"}
+2026-03-21 14:48:32 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":304,"durationMs":192,"ip":"::1"}
+2026-03-21 14:48:32 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":105,"ip":"::1"}
+2026-03-21 14:48:32 [INFO] API request {"method":"GET","url":"/api/home","statusCode":304,"durationMs":200,"ip":"::1"}
+2026-03-21 14:48:32 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":73,"ip":"::1"}
+2026-03-21 14:51:27 [INFO] API request {"method":"GET","url":"/api/products","statusCode":200,"durationMs":457,"ip":"::1"}
+2026-03-21 14:51:38 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":164,"ip":"::1"}
+2026-03-21 14:51:38 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":168,"ip":"::1"}
+2026-03-21 14:51:38 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":57,"ip":"::1"}
+2026-03-21 14:51:38 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":304,"durationMs":226,"ip":"::1"}
+2026-03-21 14:51:38 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":61,"ip":"::1"}
+2026-03-21 14:51:38 [INFO] API request {"method":"GET","url":"/api/home","statusCode":304,"durationMs":238,"ip":"::1"}
+2026-03-21 14:51:38 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":304,"durationMs":149,"ip":"::1"}
+2026-03-21 14:51:38 [INFO] API request {"method":"GET","url":"/api/home","statusCode":304,"durationMs":152,"ip":"::1"}
+2026-03-21 14:51:38 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":153,"ip":"::1"}
+2026-03-21 14:51:38 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":97,"ip":"::1"}
+2026-03-21 14:57:50 [INFO] API request {"method":"POST","url":"/api/promotions/69bd707d0eebb59b0a844b26/click","statusCode":200,"durationMs":255,"ip":"::1"}
+2026-03-21 14:57:51 [INFO] API request {"method":"GET","url":"/api/products/69bd6b440eebb59b0a8448eb","statusCode":200,"durationMs":325,"ip":"::1"}
+2026-03-21 14:57:52 [INFO] API request {"method":"GET","url":"/api/products?limit=8&sort=newest","statusCode":200,"durationMs":172,"ip":"::1"}
+2026-03-21 15:01:15 [INFO] API request {"method":"GET","url":"/api/products","statusCode":200,"durationMs":154,"ip":"::1"}
+2026-03-21 15:01:22 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":74,"ip":"::1"}
+2026-03-21 15:01:22 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":79,"ip":"::1"}
+2026-03-21 15:01:22 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":65,"ip":"::1"}
+2026-03-21 15:01:22 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":200,"durationMs":141,"ip":"::1"}
+2026-03-21 15:01:22 [INFO] API request {"method":"GET","url":"/api/home","statusCode":200,"durationMs":141,"ip":"::1"}
+2026-03-21 15:01:22 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":70,"ip":"::1"}
+2026-03-21 15:01:22 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":111,"ip":"::1"}
+2026-03-21 15:01:22 [INFO] API request {"method":"GET","url":"/api/home","statusCode":304,"durationMs":250,"ip":"::1"}
+2026-03-21 15:01:22 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":304,"durationMs":291,"ip":"::1"}
+2026-03-21 15:01:22 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":95,"ip":"::1"}
+2026-03-21 15:02:25 [INFO] API request {"method":"OPTIONS","url":"/api/orders/my","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-21 15:02:25 [INFO] API request {"method":"OPTIONS","url":"/api/orders/my","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-21 15:02:25 [INFO] API request {"method":"GET","url":"/api/orders/my","statusCode":200,"durationMs":394,"ip":"::1"}
+2026-03-21 15:02:25 [INFO] API request {"method":"GET","url":"/api/orders/my","statusCode":304,"durationMs":181,"ip":"::1"}
+2026-03-21 15:02:31 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":147,"ip":"::1"}
+2026-03-21 15:02:31 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":149,"ip":"::1"}
+2026-03-21 15:02:31 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":304,"durationMs":187,"ip":"::1"}
+2026-03-21 15:02:31 [INFO] API request {"method":"GET","url":"/api/home","statusCode":304,"durationMs":312,"ip":"::1"}
+2026-03-21 15:02:31 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":154,"ip":"::1"}
+2026-03-21 15:02:31 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":164,"ip":"::1"}
+2026-03-21 15:02:31 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":304,"durationMs":243,"ip":"::1"}
+2026-03-21 15:02:31 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":120,"ip":"::1"}
+2026-03-21 15:02:31 [INFO] API request {"method":"GET","url":"/api/home","statusCode":304,"durationMs":260,"ip":"::1"}
+2026-03-21 15:02:32 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":165,"ip":"::1"}
+2026-03-21 15:05:26 [INFO] API request {"method":"POST","url":"/api/promotions/69bd6ca80eebb59b0a8449c0/click","statusCode":200,"durationMs":341,"ip":"::1"}
+2026-03-21 15:05:27 [INFO] API request {"method":"GET","url":"/api/products/69bd1a00ca8d426aebad8f35","statusCode":200,"durationMs":397,"ip":"::1"}
+2026-03-21 15:05:28 [INFO] API request {"method":"GET","url":"/api/products?limit=8&sort=newest","statusCode":200,"durationMs":173,"ip":"::1"}
+2026-03-21 15:05:28 [INFO] API request {"method":"OPTIONS","url":"/api/wishlist","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-21 15:05:28 [INFO] API request {"method":"OPTIONS","url":"/api/wishlist","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-21 15:05:28 [INFO] API request {"method":"GET","url":"/api/wishlist","statusCode":200,"durationMs":264,"ip":"::1"}
+2026-03-21 15:05:28 [INFO] API request {"method":"GET","url":"/api/wishlist","statusCode":304,"durationMs":204,"ip":"::1"}
+2026-03-21 15:05:34 [INFO] API request {"method":"OPTIONS","url":"/api/wishlist","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-21 15:05:35 [INFO] API request {"method":"POST","url":"/api/wishlist","statusCode":200,"durationMs":788,"ip":"::1"}
+2026-03-21 15:05:36 [INFO] API request {"method":"OPTIONS","url":"/api/wishlist/69bd1a00ca8d426aebad8f35","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-21 15:05:37 [INFO] API request {"method":"DELETE","url":"/api/wishlist/69bd1a00ca8d426aebad8f35","statusCode":200,"durationMs":403,"ip":"::1"}
+2026-03-21 15:06:40 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":125,"ip":"::1"}
+2026-03-21 15:06:40 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":123,"ip":"::1"}
+2026-03-21 15:06:40 [INFO] API request {"method":"GET","url":"/api/home","statusCode":200,"durationMs":209,"ip":"::1"}
+2026-03-21 15:06:40 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":200,"durationMs":222,"ip":"::1"}
+2026-03-21 15:06:40 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":95,"ip":"::1"}
+2026-03-21 15:06:40 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":101,"ip":"::1"}
+2026-03-21 15:06:40 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":96,"ip":"::1"}
+2026-03-21 15:06:40 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":304,"durationMs":221,"ip":"::1"}
+2026-03-21 15:06:40 [INFO] API request {"method":"GET","url":"/api/home","statusCode":304,"durationMs":253,"ip":"::1"}
+2026-03-21 15:06:40 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":140,"ip":"::1"}
+2026-03-21 15:07:00 [INFO] API request {"method":"GET","url":"/api/products","statusCode":200,"durationMs":160,"ip":"::1"}
+2026-03-21 15:08:13 [INFO] API request {"method":"OPTIONS","url":"/api/orders/my","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-21 15:08:13 [INFO] API request {"method":"OPTIONS","url":"/api/orders/my","statusCode":204,"durationMs":0,"ip":"::1"}
+2026-03-21 15:08:13 [INFO] API request {"method":"GET","url":"/api/orders/my","statusCode":304,"durationMs":285,"ip":"::1"}
+2026-03-21 15:08:13 [INFO] API request {"method":"GET","url":"/api/orders/my","statusCode":304,"durationMs":204,"ip":"::1"}
+2026-03-21 15:08:19 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":137,"ip":"::1"}
+2026-03-21 15:08:19 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":138,"ip":"::1"}
+2026-03-21 15:08:19 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":304,"durationMs":337,"ip":"::1"}
+2026-03-21 15:08:19 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":197,"ip":"::1"}
+2026-03-21 15:08:19 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":201,"ip":"::1"}
+2026-03-21 15:08:19 [INFO] API request {"method":"GET","url":"/api/home","statusCode":304,"durationMs":346,"ip":"::1"}
+2026-03-21 15:08:19 [INFO] API request {"method":"GET","url":"/api/home","statusCode":304,"durationMs":165,"ip":"::1"}
+2026-03-21 15:08:19 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":304,"durationMs":223,"ip":"::1"}
+2026-03-21 15:08:19 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":152,"ip":"::1"}
+2026-03-21 15:08:19 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":108,"ip":"::1"}
+2026-03-21 15:08:40 [INFO] API request {"method":"GET","url":"/api/products/69bd6b440eebb59b0a8448eb","statusCode":200,"durationMs":242,"ip":"::1"}
+2026-03-21 15:08:40 [INFO] API request {"method":"GET","url":"/api/products?limit=8&sort=newest","statusCode":200,"durationMs":130,"ip":"::1"}
+2026-03-21 15:08:40 [INFO] API request {"method":"OPTIONS","url":"/api/wishlist","statusCode":204,"durationMs":0,"ip":"::1"}
+2026-03-21 15:08:40 [INFO] API request {"method":"OPTIONS","url":"/api/wishlist","statusCode":204,"durationMs":0,"ip":"::1"}
+2026-03-21 15:08:41 [INFO] API request {"method":"GET","url":"/api/wishlist","statusCode":200,"durationMs":376,"ip":"::1"}
+2026-03-21 15:08:41 [INFO] API request {"method":"GET","url":"/api/wishlist","statusCode":304,"durationMs":313,"ip":"::1"}
+2026-03-21 15:09:30 [INFO] API request {"method":"GET","url":"/api/products","statusCode":200,"durationMs":75,"ip":"::1"}
+2026-03-21 15:09:49 [INFO] API request {"method":"OPTIONS","url":"/api/orders/my","statusCode":204,"durationMs":0,"ip":"::1"}
+2026-03-21 15:09:49 [INFO] API request {"method":"OPTIONS","url":"/api/orders/my","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-21 15:09:49 [INFO] API request {"method":"GET","url":"/api/orders/my","statusCode":304,"durationMs":396,"ip":"::1"}
+2026-03-21 15:09:50 [INFO] API request {"method":"GET","url":"/api/orders/my","statusCode":304,"durationMs":311,"ip":"::1"}
+2026-03-21 15:09:53 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":83,"ip":"::1"}
+2026-03-21 15:09:53 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":79,"ip":"::1"}
+2026-03-21 15:09:53 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":304,"durationMs":157,"ip":"::1"}
+2026-03-21 15:09:53 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":70,"ip":"::1"}
+2026-03-21 15:09:53 [INFO] API request {"method":"GET","url":"/api/home","statusCode":304,"durationMs":154,"ip":"::1"}
+2026-03-21 15:09:53 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":76,"ip":"::1"}
+2026-03-21 15:09:53 [INFO] API request {"method":"GET","url":"/api/home","statusCode":304,"durationMs":299,"ip":"::1"}
+2026-03-21 15:09:53 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":304,"durationMs":308,"ip":"::1"}
+2026-03-21 15:09:53 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":190,"ip":"::1"}
+2026-03-21 15:09:53 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":129,"ip":"::1"}
+2026-03-21 15:09:57 [INFO] API request {"method":"POST","url":"/api/promotions/69bd707d0eebb59b0a844b26/click","statusCode":200,"durationMs":202,"ip":"::1"}
+2026-03-21 15:10:01 [INFO] API request {"method":"POST","url":"/api/promotions/69bd707d0eebb59b0a844b26/click","statusCode":200,"durationMs":983,"ip":"::1"}
+2026-03-21 15:10:01 [INFO] API request {"method":"POST","url":"/api/promotions/69bd707d0eebb59b0a844b26/click","statusCode":200,"durationMs":112,"ip":"::1"}
+2026-03-21 15:10:02 [INFO] API request {"method":"GET","url":"/api/products/69bd6b440eebb59b0a8448eb","statusCode":200,"durationMs":383,"ip":"::1"}
+2026-03-21 15:10:02 [INFO] API request {"method":"GET","url":"/api/products/69bd6b440eebb59b0a8448eb","statusCode":200,"durationMs":343,"ip":"::1"}
+2026-03-21 15:10:02 [INFO] API request {"method":"GET","url":"/api/products?limit=8&sort=newest","statusCode":200,"durationMs":81,"ip":"::1"}
+2026-03-21 15:10:02 [INFO] API request {"method":"GET","url":"/api/products?limit=8&sort=newest","statusCode":200,"durationMs":93,"ip":"::1"}
+2026-03-21 15:10:02 [INFO] API request {"method":"GET","url":"/api/products/69bd6b440eebb59b0a8448eb","statusCode":200,"durationMs":218,"ip":"::1"}
+2026-03-21 15:10:03 [INFO] API request {"method":"GET","url":"/api/products?limit=8&sort=newest","statusCode":200,"durationMs":147,"ip":"::1"}
+2026-03-21 15:10:03 [INFO] API request {"method":"OPTIONS","url":"/api/wishlist","statusCode":204,"durationMs":4,"ip":"::1"}
+2026-03-21 15:10:03 [INFO] API request {"method":"OPTIONS","url":"/api/wishlist","statusCode":204,"durationMs":2,"ip":"::1"}
+2026-03-21 15:10:03 [INFO] API request {"method":"GET","url":"/api/wishlist","statusCode":304,"durationMs":297,"ip":"::1"}
+2026-03-21 15:10:04 [INFO] API request {"method":"GET","url":"/api/wishlist","statusCode":304,"durationMs":296,"ip":"::1"}
+2026-03-21 15:10:45 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":155,"ip":"::1"}
+2026-03-21 15:10:45 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":149,"ip":"::1"}
+2026-03-21 15:10:45 [INFO] API request {"method":"GET","url":"/api/home","statusCode":200,"durationMs":232,"ip":"::1"}
+2026-03-21 15:10:45 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":200,"durationMs":246,"ip":"::1"}
+2026-03-21 15:10:45 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":115,"ip":"::1"}
+2026-03-21 15:10:45 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":126,"ip":"::1"}
+2026-03-21 15:10:45 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":304,"durationMs":189,"ip":"::1"}
+2026-03-21 15:10:45 [INFO] API request {"method":"GET","url":"/api/home","statusCode":304,"durationMs":224,"ip":"::1"}
+2026-03-21 15:10:45 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":125,"ip":"::1"}
+2026-03-21 15:10:45 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":118,"ip":"::1"}
+2026-03-21 15:11:06 [INFO] API request {"method":"GET","url":"/api/products?limit=60&sort=newest","statusCode":200,"durationMs":82,"ip":"::1"}
+2026-03-21 15:11:31 [INFO] API request {"method":"GET","url":"/api/products?limit=60&sort=newest","statusCode":200,"durationMs":157,"ip":"::1"}
+2026-03-21 15:12:22 [INFO] API request {"method":"OPTIONS","url":"/api/orders/my","statusCode":204,"durationMs":0,"ip":"::1"}
+2026-03-21 15:12:22 [INFO] API request {"method":"OPTIONS","url":"/api/orders/my","statusCode":204,"durationMs":2,"ip":"::1"}
+2026-03-21 15:12:23 [INFO] API request {"method":"GET","url":"/api/orders/my","statusCode":304,"durationMs":255,"ip":"::1"}
+2026-03-21 15:12:23 [INFO] API request {"method":"GET","url":"/api/orders/my","statusCode":304,"durationMs":309,"ip":"::1"}
+2026-03-21 15:14:55 [INFO] API request {"method":"OPTIONS","url":"/api/orders/my","statusCode":204,"durationMs":0,"ip":"::1"}
+2026-03-21 15:14:55 [INFO] API request {"method":"OPTIONS","url":"/api/orders/my","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-21 15:14:56 [INFO] API request {"method":"GET","url":"/api/orders/my","statusCode":304,"durationMs":412,"ip":"::1"}
+2026-03-21 15:14:56 [INFO] API request {"method":"GET","url":"/api/orders/my","statusCode":304,"durationMs":286,"ip":"::1"}
+2026-03-21 15:15:00 [INFO] API request {"method":"OPTIONS","url":"/api/orders/my","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-21 15:15:00 [INFO] API request {"method":"OPTIONS","url":"/api/orders/my","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-21 15:15:01 [INFO] API request {"method":"GET","url":"/api/orders/my","statusCode":304,"durationMs":311,"ip":"::1"}
+2026-03-21 15:15:01 [INFO] API request {"method":"GET","url":"/api/orders/my","statusCode":304,"durationMs":408,"ip":"::1"}
+2026-03-21 15:15:53 [INFO] API request {"method":"OPTIONS","url":"/api/orders/my","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-21 15:15:54 [INFO] API request {"method":"GET","url":"/api/orders/my","statusCode":304,"durationMs":258,"ip":"::1"}
+2026-03-21 15:18:33 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":181,"ip":"::1"}
+2026-03-21 15:18:33 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":172,"ip":"::1"}
+2026-03-21 15:18:33 [INFO] API request {"method":"GET","url":"/api/home","statusCode":304,"durationMs":220,"ip":"::1"}
+2026-03-21 15:18:33 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":304,"durationMs":241,"ip":"::1"}
+2026-03-21 15:18:33 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":77,"ip":"::1"}
+2026-03-21 15:18:33 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":77,"ip":"::1"}
+2026-03-21 15:18:33 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":304,"durationMs":235,"ip":"::1"}
+2026-03-21 15:18:33 [INFO] API request {"method":"GET","url":"/api/home","statusCode":304,"durationMs":253,"ip":"::1"}
+2026-03-21 15:18:33 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":184,"ip":"::1"}
+2026-03-21 15:18:33 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":218,"ip":"::1"}
+2026-03-21 15:28:39 [INFO] API request {"method":"OPTIONS","url":"/api/admin/products","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-21 15:28:39 [INFO] API request {"method":"OPTIONS","url":"/api/admin/orders","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-21 15:28:39 [INFO] API request {"method":"OPTIONS","url":"/api/admin/orders","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-21 15:28:39 [INFO] API request {"method":"GET","url":"/api/admin/products","statusCode":304,"durationMs":264,"ip":"::1"}
+2026-03-21 15:28:39 [INFO] API request {"method":"GET","url":"/api/admin/orders","statusCode":304,"durationMs":449,"ip":"::1"}
+2026-03-21 15:28:39 [INFO] API request {"method":"GET","url":"/api/admin/products","statusCode":304,"durationMs":304,"ip":"::1"}
+2026-03-21 15:28:40 [INFO] API request {"method":"GET","url":"/api/admin/orders","statusCode":304,"durationMs":506,"ip":"::1"}
+2026-03-21 15:30:59 [INFO] API request {"method":"OPTIONS","url":"/api/admin/hero","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-21 15:31:00 [INFO] API request {"method":"GET","url":"/api/admin/hero","statusCode":304,"durationMs":321,"ip":"::1"}
+2026-03-21 15:31:00 [INFO] API request {"method":"GET","url":"/api/admin/hero","statusCode":304,"durationMs":204,"ip":"::1"}
+2026-03-21 15:31:16 [INFO] API request {"method":"OPTIONS","url":"/api/admin/products","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-21 15:31:16 [INFO] API request {"method":"OPTIONS","url":"/api/admin/featured","statusCode":204,"durationMs":0,"ip":"::1"}
+2026-03-21 15:31:16 [INFO] API request {"method":"GET","url":"/api/admin/products","statusCode":304,"durationMs":236,"ip":"::1"}
+2026-03-21 15:31:16 [INFO] API request {"method":"GET","url":"/api/admin/featured","statusCode":304,"durationMs":436,"ip":"::1"}
+2026-03-21 15:31:16 [INFO] API request {"method":"GET","url":"/api/admin/products","statusCode":304,"durationMs":384,"ip":"::1"}
+2026-03-21 15:31:17 [INFO] API request {"method":"GET","url":"/api/admin/featured","statusCode":304,"durationMs":381,"ip":"::1"}
+2026-03-21 15:31:24 [INFO] API request {"method":"OPTIONS","url":"/api/admin/categories","statusCode":204,"durationMs":0,"ip":"::1"}
+2026-03-21 15:31:24 [INFO] API request {"method":"GET","url":"/api/admin/categories","statusCode":304,"durationMs":215,"ip":"::1"}
+2026-03-21 15:31:24 [INFO] API request {"method":"GET","url":"/api/admin/categories","statusCode":304,"durationMs":290,"ip":"::1"}
+2026-03-21 15:33:13 [INFO] API request {"method":"OPTIONS","url":"/api/admin/products","statusCode":204,"durationMs":0,"ip":"::1"}
+2026-03-21 15:33:13 [INFO] API request {"method":"OPTIONS","url":"/api/admin/products","statusCode":204,"durationMs":0,"ip":"::1"}
+2026-03-21 15:33:13 [INFO] API request {"method":"OPTIONS","url":"/api/admin/promotions","statusCode":204,"durationMs":0,"ip":"::1"}
+2026-03-21 15:33:13 [INFO] API request {"method":"OPTIONS","url":"/api/admin/promotions","statusCode":204,"durationMs":0,"ip":"::1"}
+2026-03-21 15:33:13 [INFO] API request {"method":"GET","url":"/api/admin/products","statusCode":304,"durationMs":186,"ip":"::1"}
+2026-03-21 15:33:14 [INFO] API request {"method":"GET","url":"/api/admin/promotions","statusCode":200,"durationMs":288,"ip":"::1"}
+2026-03-21 15:33:14 [INFO] API request {"method":"GET","url":"/api/admin/products","statusCode":304,"durationMs":160,"ip":"::1"}
+2026-03-21 15:33:14 [INFO] API request {"method":"GET","url":"/api/admin/promotions","statusCode":304,"durationMs":302,"ip":"::1"}
+2026-03-21 15:33:42 [INFO] API request {"method":"OPTIONS","url":"/api/admin/products","statusCode":204,"durationMs":0,"ip":"::1"}
+2026-03-21 15:33:42 [INFO] API request {"method":"OPTIONS","url":"/api/admin/products","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-21 15:33:42 [INFO] API request {"method":"OPTIONS","url":"/api/admin/promotions","statusCode":204,"durationMs":5,"ip":"::1"}
+2026-03-21 15:33:42 [INFO] API request {"method":"OPTIONS","url":"/api/admin/promotions","statusCode":204,"durationMs":5,"ip":"::1"}
+2026-03-21 15:33:42 [INFO] API request {"method":"GET","url":"/api/admin/products","statusCode":304,"durationMs":277,"ip":"::1"}
+2026-03-21 15:33:42 [INFO] API request {"method":"GET","url":"/api/admin/promotions","statusCode":304,"durationMs":337,"ip":"::1"}
+2026-03-21 15:33:42 [INFO] API request {"method":"GET","url":"/api/admin/products","statusCode":304,"durationMs":190,"ip":"::1"}
+2026-03-21 15:33:42 [INFO] API request {"method":"GET","url":"/api/admin/promotions","statusCode":304,"durationMs":401,"ip":"::1"}
+2026-03-21 15:33:44 [INFO] API request {"method":"OPTIONS","url":"/api/admin/categories","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-21 15:33:44 [INFO] API request {"method":"OPTIONS","url":"/api/admin/categories","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-21 15:33:44 [INFO] API request {"method":"GET","url":"/api/admin/categories","statusCode":304,"durationMs":408,"ip":"::1"}
+2026-03-21 15:33:45 [INFO] API request {"method":"GET","url":"/api/admin/categories","statusCode":304,"durationMs":407,"ip":"::1"}
+2026-03-21 15:33:48 [INFO] API request {"method":"OPTIONS","url":"/api/admin/products","statusCode":204,"durationMs":0,"ip":"::1"}
+2026-03-21 15:33:48 [INFO] API request {"method":"OPTIONS","url":"/api/admin/featured","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-21 15:33:48 [INFO] API request {"method":"OPTIONS","url":"/api/admin/products","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-21 15:33:48 [INFO] API request {"method":"OPTIONS","url":"/api/admin/featured","statusCode":204,"durationMs":0,"ip":"::1"}
+2026-03-21 15:33:48 [INFO] API request {"method":"GET","url":"/api/admin/products","statusCode":304,"durationMs":220,"ip":"::1"}
+2026-03-21 15:33:48 [INFO] API request {"method":"GET","url":"/api/admin/featured","statusCode":304,"durationMs":317,"ip":"::1"}
+2026-03-21 15:33:48 [INFO] API request {"method":"GET","url":"/api/admin/products","statusCode":304,"durationMs":200,"ip":"::1"}
+2026-03-21 15:33:49 [INFO] API request {"method":"GET","url":"/api/admin/featured","statusCode":304,"durationMs":304,"ip":"::1"}
+2026-03-21 15:33:51 [INFO] API request {"method":"OPTIONS","url":"/api/admin/hero","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-21 15:33:51 [INFO] API request {"method":"OPTIONS","url":"/api/admin/hero","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-21 15:33:52 [INFO] API request {"method":"GET","url":"/api/admin/hero","statusCode":304,"durationMs":395,"ip":"::1"}
+2026-03-21 15:33:52 [INFO] API request {"method":"GET","url":"/api/admin/hero","statusCode":304,"durationMs":391,"ip":"::1"}
+2026-03-21 15:33:53 [INFO] API request {"method":"GET","url":"/api/admin/products","statusCode":304,"durationMs":294,"ip":"::1"}
+2026-03-21 15:33:53 [INFO] API request {"method":"GET","url":"/api/admin/featured","statusCode":304,"durationMs":390,"ip":"::1"}
+2026-03-21 15:33:53 [INFO] API request {"method":"GET","url":"/api/admin/products","statusCode":304,"durationMs":168,"ip":"::1"}
+2026-03-21 15:33:53 [INFO] API request {"method":"GET","url":"/api/admin/featured","statusCode":304,"durationMs":304,"ip":"::1"}
+2026-03-21 15:33:57 [INFO] API request {"method":"OPTIONS","url":"/api/admin/categories","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-21 15:33:57 [INFO] API request {"method":"GET","url":"/api/admin/categories","statusCode":304,"durationMs":200,"ip":"::1"}
+2026-03-21 15:33:57 [INFO] API request {"method":"GET","url":"/api/admin/categories","statusCode":304,"durationMs":184,"ip":"::1"}
+2026-03-21 15:33:59 [INFO] API request {"method":"OPTIONS","url":"/api/admin/products","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-21 15:33:59 [INFO] API request {"method":"OPTIONS","url":"/api/admin/products","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-21 15:33:59 [INFO] API request {"method":"OPTIONS","url":"/api/admin/promotions","statusCode":204,"durationMs":0,"ip":"::1"}
+2026-03-21 15:33:59 [INFO] API request {"method":"OPTIONS","url":"/api/admin/promotions","statusCode":204,"durationMs":0,"ip":"::1"}
+2026-03-21 15:34:00 [INFO] API request {"method":"GET","url":"/api/admin/products","statusCode":304,"durationMs":381,"ip":"::1"}
+2026-03-21 15:34:00 [INFO] API request {"method":"GET","url":"/api/admin/promotions","statusCode":304,"durationMs":478,"ip":"::1"}
+2026-03-21 15:34:00 [INFO] API request {"method":"GET","url":"/api/admin/products","statusCode":304,"durationMs":198,"ip":"::1"}
+2026-03-21 15:34:00 [INFO] API request {"method":"GET","url":"/api/admin/promotions","statusCode":304,"durationMs":433,"ip":"::1"}
+2026-03-21 15:34:02 [INFO] API request {"method":"GET","url":"/api/admin/products","statusCode":304,"durationMs":246,"ip":"::1"}
+2026-03-21 15:34:02 [INFO] API request {"method":"GET","url":"/api/admin/promotions","statusCode":304,"durationMs":336,"ip":"::1"}
+2026-03-21 15:34:02 [INFO] API request {"method":"GET","url":"/api/admin/products","statusCode":304,"durationMs":194,"ip":"::1"}
+2026-03-21 15:34:02 [INFO] API request {"method":"GET","url":"/api/admin/promotions","statusCode":304,"durationMs":508,"ip":"::1"}
+2026-03-21 15:34:07 [INFO] API request {"method":"OPTIONS","url":"/api/admin/orders","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-21 15:34:07 [INFO] API request {"method":"OPTIONS","url":"/api/admin/orders","statusCode":204,"durationMs":0,"ip":"::1"}
+2026-03-21 15:34:07 [INFO] API request {"method":"GET","url":"/api/admin/orders","statusCode":304,"durationMs":546,"ip":"::1"}
+2026-03-21 15:34:08 [INFO] API request {"method":"GET","url":"/api/admin/orders","statusCode":304,"durationMs":557,"ip":"::1"}
+2026-03-21 15:34:10 [INFO] API request {"method":"OPTIONS","url":"/api/admin/products","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-21 15:34:10 [INFO] API request {"method":"OPTIONS","url":"/api/admin/products","statusCode":204,"durationMs":0,"ip":"::1"}
+2026-03-21 15:34:10 [INFO] API request {"method":"GET","url":"/api/admin/products","statusCode":304,"durationMs":304,"ip":"::1"}
+2026-03-21 15:34:11 [INFO] API request {"method":"GET","url":"/api/admin/products","statusCode":304,"durationMs":409,"ip":"::1"}
+2026-03-21 15:34:12 [INFO] API request {"method":"OPTIONS","url":"/api/admin/orders","statusCode":204,"durationMs":0,"ip":"::1"}
+2026-03-21 15:34:12 [INFO] API request {"method":"OPTIONS","url":"/api/admin/orders","statusCode":204,"durationMs":0,"ip":"::1"}
+2026-03-21 15:34:13 [INFO] API request {"method":"GET","url":"/api/admin/orders","statusCode":304,"durationMs":487,"ip":"::1"}
+2026-03-21 15:34:13 [INFO] API request {"method":"GET","url":"/api/admin/orders","statusCode":304,"durationMs":304,"ip":"::1"}
+2026-03-21 15:34:17 [INFO] API request {"method":"OPTIONS","url":"/api/admin/products","statusCode":204,"durationMs":0,"ip":"::1"}
+2026-03-21 15:34:18 [INFO] API request {"method":"GET","url":"/api/admin/products","statusCode":304,"durationMs":587,"ip":"::1"}
+2026-03-21 15:34:18 [INFO] API request {"method":"GET","url":"/api/admin/products","statusCode":304,"durationMs":450,"ip":"::1"}
+2026-03-21 15:34:26 [INFO] API request {"method":"OPTIONS","url":"/api/admin/products","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-21 15:34:26 [INFO] API request {"method":"OPTIONS","url":"/api/admin/products","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-21 15:34:26 [INFO] API request {"method":"OPTIONS","url":"/api/admin/promotions","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-21 15:34:26 [INFO] API request {"method":"OPTIONS","url":"/api/admin/promotions","statusCode":204,"durationMs":0,"ip":"::1"}
+2026-03-21 15:34:27 [INFO] API request {"method":"GET","url":"/api/admin/products","statusCode":304,"durationMs":402,"ip":"::1"}
+2026-03-21 15:34:27 [INFO] API request {"method":"GET","url":"/api/admin/promotions","statusCode":304,"durationMs":389,"ip":"::1"}
+2026-03-21 15:34:27 [INFO] API request {"method":"GET","url":"/api/admin/products","statusCode":304,"durationMs":200,"ip":"::1"}
+2026-03-21 15:34:27 [INFO] API request {"method":"GET","url":"/api/admin/promotions","statusCode":304,"durationMs":275,"ip":"::1"}
+2026-03-21 15:34:30 [INFO] API request {"method":"OPTIONS","url":"/api/admin/categories","statusCode":204,"durationMs":0,"ip":"::1"}
+2026-03-21 15:34:30 [INFO] API request {"method":"OPTIONS","url":"/api/admin/categories","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-21 15:34:30 [INFO] API request {"method":"GET","url":"/api/admin/categories","statusCode":304,"durationMs":372,"ip":"::1"}
+2026-03-21 15:34:31 [INFO] API request {"method":"GET","url":"/api/admin/categories","statusCode":304,"durationMs":300,"ip":"::1"}
+2026-03-21 15:34:32 [INFO] API request {"method":"OPTIONS","url":"/api/admin/products","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-21 15:34:32 [INFO] API request {"method":"OPTIONS","url":"/api/admin/products","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-21 15:34:32 [INFO] API request {"method":"OPTIONS","url":"/api/admin/promotions","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-21 15:34:32 [INFO] API request {"method":"OPTIONS","url":"/api/admin/promotions","statusCode":204,"durationMs":0,"ip":"::1"}
+2026-03-21 15:34:32 [INFO] API request {"method":"GET","url":"/api/admin/products","statusCode":304,"durationMs":317,"ip":"::1"}
+2026-03-21 15:34:33 [INFO] API request {"method":"GET","url":"/api/admin/promotions","statusCode":304,"durationMs":515,"ip":"::1"}
+2026-03-21 15:34:33 [INFO] API request {"method":"GET","url":"/api/admin/products","statusCode":304,"durationMs":302,"ip":"::1"}
+2026-03-21 15:34:33 [INFO] API request {"method":"GET","url":"/api/admin/promotions","statusCode":304,"durationMs":300,"ip":"::1"}
+2026-03-21 15:34:42 [INFO] API request {"method":"OPTIONS","url":"/api/admin/products","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-21 15:34:42 [INFO] API request {"method":"OPTIONS","url":"/api/admin/products","statusCode":204,"durationMs":0,"ip":"::1"}
+2026-03-21 15:34:42 [INFO] API request {"method":"OPTIONS","url":"/api/admin/promotions","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-21 15:34:42 [INFO] API request {"method":"OPTIONS","url":"/api/admin/promotions","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-21 15:34:43 [INFO] API request {"method":"GET","url":"/api/admin/products","statusCode":304,"durationMs":249,"ip":"::1"}
+2026-03-21 15:34:43 [INFO] API request {"method":"GET","url":"/api/admin/promotions","statusCode":304,"durationMs":328,"ip":"::1"}
+2026-03-21 15:34:43 [INFO] API request {"method":"GET","url":"/api/admin/products","statusCode":304,"durationMs":232,"ip":"::1"}
+2026-03-21 15:34:43 [INFO] API request {"method":"GET","url":"/api/admin/promotions","statusCode":304,"durationMs":448,"ip":"::1"}
+2026-03-21 15:34:48 [INFO] API request {"method":"OPTIONS","url":"/api/admin/products","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-21 15:34:48 [INFO] API request {"method":"OPTIONS","url":"/api/admin/products","statusCode":204,"durationMs":0,"ip":"::1"}
+2026-03-21 15:34:48 [INFO] API request {"method":"OPTIONS","url":"/api/admin/promotions","statusCode":204,"durationMs":0,"ip":"::1"}
+2026-03-21 15:34:48 [INFO] API request {"method":"OPTIONS","url":"/api/admin/promotions","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-21 15:34:49 [INFO] API request {"method":"GET","url":"/api/admin/products","statusCode":304,"durationMs":454,"ip":"::1"}
+2026-03-21 15:34:49 [INFO] API request {"method":"GET","url":"/api/admin/promotions","statusCode":304,"durationMs":654,"ip":"::1"}
+2026-03-21 15:34:49 [INFO] API request {"method":"GET","url":"/api/admin/products","statusCode":304,"durationMs":306,"ip":"::1"}
+2026-03-21 15:34:49 [INFO] API request {"method":"GET","url":"/api/admin/promotions","statusCode":304,"durationMs":292,"ip":"::1"}
+2026-03-21 15:34:50 [INFO] API request {"method":"OPTIONS","url":"/api/admin/categories","statusCode":204,"durationMs":0,"ip":"::1"}
+2026-03-21 15:34:50 [INFO] API request {"method":"OPTIONS","url":"/api/admin/categories","statusCode":204,"durationMs":0,"ip":"::1"}
+2026-03-21 15:34:50 [INFO] API request {"method":"GET","url":"/api/admin/categories","statusCode":304,"durationMs":283,"ip":"::1"}
+2026-03-21 15:34:50 [INFO] API request {"method":"GET","url":"/api/admin/categories","statusCode":304,"durationMs":203,"ip":"::1"}
+2026-03-21 15:35:01 [INFO] API request {"method":"OPTIONS","url":"/api/admin/products","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-21 15:35:01 [INFO] API request {"method":"OPTIONS","url":"/api/admin/featured","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-21 15:35:01 [INFO] API request {"method":"OPTIONS","url":"/api/admin/products","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-21 15:35:01 [INFO] API request {"method":"OPTIONS","url":"/api/admin/featured","statusCode":204,"durationMs":0,"ip":"::1"}
+2026-03-21 15:35:01 [INFO] API request {"method":"GET","url":"/api/admin/products","statusCode":304,"durationMs":259,"ip":"::1"}
+2026-03-21 15:35:02 [INFO] API request {"method":"GET","url":"/api/admin/featured","statusCode":304,"durationMs":427,"ip":"::1"}
+2026-03-21 15:35:02 [INFO] API request {"method":"GET","url":"/api/admin/products","statusCode":304,"durationMs":303,"ip":"::1"}
+2026-03-21 15:35:02 [INFO] API request {"method":"GET","url":"/api/admin/featured","statusCode":304,"durationMs":404,"ip":"::1"}
+2026-03-21 15:35:03 [INFO] API request {"method":"OPTIONS","url":"/api/admin/hero","statusCode":204,"durationMs":0,"ip":"::1"}
+2026-03-21 15:35:03 [INFO] API request {"method":"OPTIONS","url":"/api/admin/hero","statusCode":204,"durationMs":0,"ip":"::1"}
+2026-03-21 15:35:04 [INFO] API request {"method":"GET","url":"/api/admin/hero","statusCode":304,"durationMs":173,"ip":"::1"}
+2026-03-21 15:35:04 [INFO] API request {"method":"GET","url":"/api/admin/hero","statusCode":304,"durationMs":218,"ip":"::1"}
+2026-03-21 15:35:06 [INFO] API request {"method":"GET","url":"/api/admin/products","statusCode":304,"durationMs":189,"ip":"::1"}
+2026-03-21 15:35:06 [INFO] API request {"method":"GET","url":"/api/admin/featured","statusCode":304,"durationMs":288,"ip":"::1"}
+2026-03-21 15:35:06 [INFO] API request {"method":"GET","url":"/api/admin/products","statusCode":304,"durationMs":200,"ip":"::1"}
+2026-03-21 15:35:06 [INFO] API request {"method":"GET","url":"/api/admin/featured","statusCode":304,"durationMs":299,"ip":"::1"}
+2026-03-21 15:35:24 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":171,"ip":"::1"}
+2026-03-21 15:35:24 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":179,"ip":"::1"}
+2026-03-21 15:35:24 [INFO] API request {"method":"GET","url":"/api/home","statusCode":304,"durationMs":229,"ip":"::1"}
+2026-03-21 15:35:24 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":64,"ip":"::1"}
+2026-03-21 15:35:24 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":304,"durationMs":246,"ip":"::1"}
+2026-03-21 15:35:24 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":66,"ip":"::1"}
+2026-03-21 15:35:24 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":61,"ip":"::1"}
+2026-03-21 15:35:24 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":304,"durationMs":147,"ip":"::1"}
+2026-03-21 15:35:24 [INFO] API request {"method":"GET","url":"/api/home","statusCode":304,"durationMs":161,"ip":"::1"}
+2026-03-21 15:35:24 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":129,"ip":"::1"}
+2026-03-21 15:36:11 [INFO] API request {"method":"GET","url":"/api/products?limit=60&sort=newest","statusCode":200,"durationMs":125,"ip":"::1"}
+2026-03-21 15:36:27 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":178,"ip":"::1"}
+2026-03-21 15:36:27 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":176,"ip":"::1"}
+2026-03-21 15:36:28 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":304,"durationMs":250,"ip":"::1"}
+2026-03-21 15:36:28 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":70,"ip":"::1"}
+2026-03-21 15:36:28 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":75,"ip":"::1"}
+2026-03-21 15:36:28 [INFO] API request {"method":"GET","url":"/api/home","statusCode":304,"durationMs":294,"ip":"::1"}
+2026-03-21 15:36:28 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":91,"ip":"::1"}
+2026-03-21 15:36:28 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":304,"durationMs":217,"ip":"::1"}
+2026-03-21 15:36:28 [INFO] API request {"method":"GET","url":"/api/home","statusCode":304,"durationMs":208,"ip":"::1"}
+2026-03-21 15:36:28 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":112,"ip":"::1"}
+2026-03-21 15:42:52 [INFO] MongoDB connected (primary): ac-tqplvla-shard-00-00.qyy87sr.mongodb.net
+2026-03-21 15:43:00 [INFO] API request {"method":"GET","url":"/api/health","statusCode":200,"durationMs":0,"ip":"::1"}
+2026-03-21 15:43:20 [INFO] API request {"method":"GET","url":"/api/orders/my","statusCode":401,"durationMs":2,"ip":"::1"}
+2026-03-21 15:43:20 [INFO] API request {"method":"GET","url":"/api/admin/orders","statusCode":401,"durationMs":0,"ip":"::1"}
+2026-03-21 15:43:20 [INFO] API request {"method":"GET","url":"/api/orders","statusCode":401,"durationMs":1,"ip":"::1"}
+2026-03-21 17:39:42 [INFO] MongoDB connected (primary): ac-tqplvla-shard-00-01.qyy87sr.mongodb.net
+2026-03-21 17:39:42 [INFO] Server running in development mode on port 5000
+2026-03-21 17:40:04 [INFO] API request {"method":"GET","url":"/api/health","statusCode":200,"durationMs":4,"ip":"::1"}
+2026-03-21 17:40:29 [INFO] API request {"method":"GET","url":"/api/health","statusCode":200,"durationMs":0,"ip":"::1"}
+2026-03-21 17:40:29 [INFO] API request {"method":"POST","url":"/api/auth/register","statusCode":201,"durationMs":409,"ip":"::1"}
+2026-03-21 17:40:32 [INFO] API request {"method":"POST","url":"/api/auth/login","statusCode":200,"durationMs":144,"ip":"::1"}
+2026-03-21 17:40:32 [INFO] API request {"method":"POST","url":"/api/products","statusCode":201,"durationMs":241,"ip":"::1"}
+2026-03-21 17:40:32 [INFO] API request {"method":"POST","url":"/api/cart","statusCode":200,"durationMs":515,"ip":"::1"}
+2026-03-21 17:40:33 [INFO] API request {"method":"POST","url":"/api/coupons","statusCode":201,"durationMs":259,"ip":"::1"}
+2026-03-21 17:40:33 [INFO] API request {"method":"POST","url":"/api/coupons/apply","statusCode":200,"durationMs":162,"ip":"::1"}
+2026-03-21 17:40:33 [INFO] API request {"method":"POST","url":"/api/orders/create","statusCode":400,"durationMs":68,"ip":"::1"}
+2026-03-21 17:40:48 [INFO] API request {"method":"GET","url":"/api/health","statusCode":200,"durationMs":1,"ip":"::1"}
+2026-03-21 17:40:48 [INFO] API request {"method":"POST","url":"/api/auth/register","statusCode":409,"durationMs":108,"ip":"::1"}
+2026-03-21 17:40:50 [INFO] API request {"method":"POST","url":"/api/auth/login","statusCode":200,"durationMs":120,"ip":"::1"}
+2026-03-21 17:40:50 [INFO] API request {"method":"POST","url":"/api/products","statusCode":201,"durationMs":142,"ip":"::1"}
+2026-03-21 17:40:50 [INFO] API request {"method":"POST","url":"/api/cart","statusCode":200,"durationMs":342,"ip":"::1"}
+2026-03-21 17:40:51 [INFO] API request {"method":"POST","url":"/api/coupons","statusCode":409,"durationMs":119,"ip":"::1"}
+2026-03-21 17:40:51 [INFO] API request {"method":"POST","url":"/api/coupons/apply","statusCode":200,"durationMs":131,"ip":"::1"}
+2026-03-21 17:40:51 [ERROR] Unhandled error {"path":"/api/orders/create","method":"POST","statusCode":500}
+2026-03-21 17:40:51 [INFO] API request {"method":"POST","url":"/api/orders/create","statusCode":500,"durationMs":459,"ip":"::1"}
+2026-03-21 17:41:21 [INFO] API request {"method":"GET","url":"/api/health","statusCode":200,"durationMs":0,"ip":"::1"}
+2026-03-21 17:41:21 [INFO] API request {"method":"POST","url":"/api/auth/register","statusCode":409,"durationMs":69,"ip":"::1"}
+2026-03-21 17:41:23 [INFO] API request {"method":"POST","url":"/api/auth/login","statusCode":200,"durationMs":127,"ip":"::1"}
+2026-03-21 17:41:23 [INFO] API request {"method":"POST","url":"/api/products","statusCode":201,"durationMs":163,"ip":"::1"}
+2026-03-21 17:41:23 [INFO] API request {"method":"POST","url":"/api/cart","statusCode":200,"durationMs":478,"ip":"::1"}
+2026-03-21 17:41:24 [INFO] API request {"method":"POST","url":"/api/coupons","statusCode":409,"durationMs":183,"ip":"::1"}
+2026-03-21 17:41:24 [INFO] API request {"method":"POST","url":"/api/coupons/apply","statusCode":200,"durationMs":151,"ip":"::1"}
+2026-03-21 17:41:24 [ERROR] MongoServerError: E11000 duplicate key error collection: test.orders index: razorpayOrderId_1 dup key: { razorpayOrderId: null }
+    at InsertOneOperation.handleOk (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\insert.js:51:19)
+    at tryOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:214:34)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async executeOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:78:16)
+    at async Collection.insertOne (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\collection.js:154:16) {"path":"/api/orders","method":"POST","statusCode":500}
+2026-03-21 17:41:24 [INFO] API request {"method":"POST","url":"/api/orders","statusCode":409,"durationMs":313,"ip":"::1"}
+2026-03-21 17:41:48 [INFO] API request {"method":"GET","url":"/api/health","statusCode":200,"durationMs":0,"ip":"::1"}
+2026-03-21 17:41:48 [INFO] API request {"method":"POST","url":"/api/auth/register","statusCode":409,"durationMs":60,"ip":"::1"}
+2026-03-21 17:41:50 [INFO] API request {"method":"POST","url":"/api/auth/login","statusCode":200,"durationMs":125,"ip":"::1"}
+2026-03-21 17:41:51 [INFO] API request {"method":"POST","url":"/api/products","statusCode":201,"durationMs":170,"ip":"::1"}
+2026-03-21 17:41:51 [INFO] API request {"method":"POST","url":"/api/cart","statusCode":200,"durationMs":478,"ip":"::1"}
+2026-03-21 17:41:51 [INFO] API request {"method":"POST","url":"/api/coupons","statusCode":409,"durationMs":145,"ip":"::1"}
+2026-03-21 17:41:51 [INFO] API request {"method":"POST","url":"/api/coupons/apply","statusCode":200,"durationMs":158,"ip":"::1"}
+2026-03-21 17:41:52 [ERROR] MongoServerError: E11000 duplicate key error collection: test.orders index: paymentId_1 dup key: { paymentId: null }
+    at InsertOneOperation.handleOk (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\insert.js:51:19)
+    at tryOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:214:34)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async executeOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:78:16)
+    at async Collection.insertOne (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\collection.js:154:16) {"path":"/api/orders","method":"POST","statusCode":500}
+2026-03-21 17:41:52 [INFO] API request {"method":"POST","url":"/api/orders","statusCode":409,"durationMs":309,"ip":"::1"}
+2026-03-21 17:42:03 [INFO] API request {"method":"GET","url":"/api/health","statusCode":200,"durationMs":1,"ip":"::1"}
+2026-03-21 17:42:03 [INFO] API request {"method":"POST","url":"/api/auth/register","statusCode":409,"durationMs":55,"ip":"::1"}
+2026-03-21 17:42:06 [INFO] API request {"method":"POST","url":"/api/auth/login","statusCode":200,"durationMs":157,"ip":"::1"}
+2026-03-21 17:42:06 [INFO] API request {"method":"POST","url":"/api/products","statusCode":201,"durationMs":168,"ip":"::1"}
+2026-03-21 17:42:06 [INFO] API request {"method":"POST","url":"/api/cart","statusCode":200,"durationMs":472,"ip":"::1"}
+2026-03-21 17:42:06 [INFO] API request {"method":"POST","url":"/api/coupons","statusCode":409,"durationMs":148,"ip":"::1"}
+2026-03-21 17:42:07 [INFO] API request {"method":"POST","url":"/api/coupons/apply","statusCode":200,"durationMs":144,"ip":"::1"}
+2026-03-21 17:42:07 [ERROR] MongoServerError: E11000 duplicate key error collection: test.orders index: razorpayOrderId_1 dup key: { razorpayOrderId: null }
+    at InsertOneOperation.handleOk (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\insert.js:51:19)
+    at tryOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:214:34)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async executeOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:78:16)
+    at async Collection.insertOne (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\collection.js:154:16) {"path":"/api/orders","method":"POST","statusCode":500}
+2026-03-21 17:42:07 [INFO] API request {"method":"POST","url":"/api/orders","statusCode":409,"durationMs":319,"ip":"::1"}
+2026-03-21 17:42:38 [INFO] MongoDB connected (primary): ac-tqplvla-shard-00-00.qyy87sr.mongodb.net
+2026-03-21 17:42:38 [INFO] Server running in development mode on port 5000
+2026-03-21 17:42:42 [INFO] MongoDB connected (primary): ac-tqplvla-shard-00-00.qyy87sr.mongodb.net
+2026-03-21 17:42:42 [INFO] Server running in development mode on port 5000
+2026-03-21 17:42:50 [INFO] API request {"method":"GET","url":"/api/health","statusCode":200,"durationMs":5,"ip":"::1"}
+2026-03-21 17:42:50 [INFO] API request {"method":"POST","url":"/api/auth/register","statusCode":409,"durationMs":79,"ip":"::1"}
+2026-03-21 17:42:53 [INFO] API request {"method":"POST","url":"/api/auth/login","statusCode":200,"durationMs":138,"ip":"::1"}
+2026-03-21 17:42:53 [INFO] API request {"method":"POST","url":"/api/products","statusCode":201,"durationMs":166,"ip":"::1"}
+2026-03-21 17:42:54 [INFO] API request {"method":"POST","url":"/api/cart","statusCode":200,"durationMs":506,"ip":"::1"}
+2026-03-21 17:42:54 [INFO] API request {"method":"POST","url":"/api/coupons","statusCode":409,"durationMs":179,"ip":"::1"}
+2026-03-21 17:42:54 [INFO] API request {"method":"POST","url":"/api/coupons/apply","statusCode":200,"durationMs":161,"ip":"::1"}
+2026-03-21 17:42:55 [INFO] API request {"method":"POST","url":"/api/orders","statusCode":201,"durationMs":581,"ip":"::1"}
+2026-03-21 17:42:55 [INFO] API request {"method":"GET","url":"/api/orders","statusCode":200,"durationMs":310,"ip":"::1"}

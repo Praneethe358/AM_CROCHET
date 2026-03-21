@@ -67,12 +67,19 @@ const orderSchema = new mongoose.Schema(
       unique: true,
       sparse: true,
       index: true,
-      default: null,
+      default: undefined,
     },
     paymentId: {
       type: String,
-      default: null,
+      default: undefined,
       unique: true,
+      sparse: true,
+      index: true,
+    },
+    idempotencyKey: {
+      type: String,
+      trim: true,
+      default: undefined,
       sparse: true,
       index: true,
     },
@@ -80,27 +87,27 @@ const orderSchema = new mongoose.Schema(
       name: {
         type: String,
         trim: true,
-        default: null,
+        required: true,
       },
       phone: {
         type: String,
         trim: true,
-        default: null,
+        required: true,
       },
       address: {
         type: String,
         trim: true,
-        default: null,
+        required: true,
       },
       city: {
         type: String,
         trim: true,
-        default: null,
+        required: true,
       },
       pincode: {
         type: String,
         trim: true,
-        default: null,
+        required: true,
       },
     },
     status: {
@@ -124,5 +131,7 @@ const orderSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
+
+orderSchema.index({ user: 1, idempotencyKey: 1 }, { unique: true, sparse: true });
 
 module.exports = mongoose.model('Order', orderSchema);

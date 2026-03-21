@@ -1,5 +1,4 @@
 const { validationResult } = require('express-validator');
-
 const Hero = require('../models/Hero');
 
 const HERO_KEY = 'home_hero';
@@ -13,11 +12,7 @@ const getAdminHero = async (req, res, next) => {
         message: 'Hero fetched successfully',
         data: {
           key: HERO_KEY,
-          title: '',
-          subtitle: '',
-          buttonText: 'Explore Collection',
-          buttonLink: '/products',
-          bannerImage: '',
+          slides: [],
           isActive: true,
         },
       });
@@ -42,24 +37,13 @@ const upsertAdminHero = async (req, res, next) => {
       });
     }
 
-    const {
-      title,
-      subtitle,
-      buttonText,
-      buttonLink,
-      bannerImage,
-      isActive,
-    } = req.body;
+    const { slides, isActive } = req.body;
 
     const hero = await Hero.findOneAndUpdate(
       { key: HERO_KEY },
       {
         key: HERO_KEY,
-        title: title.trim(),
-        subtitle: subtitle.trim(),
-        buttonText: buttonText.trim(),
-        buttonLink: (buttonLink || '/products').trim(),
-        bannerImage: bannerImage.trim(),
+        slides: slides || [],
         isActive: isActive === false || isActive === 'false' ? false : true,
       },
       {

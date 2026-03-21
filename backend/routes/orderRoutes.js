@@ -30,9 +30,19 @@ router.use(authMiddleware);
 router.post(
   '/',
   [
+    body('idempotencyKey')
+      .optional()
+      .isString()
+      .withMessage('idempotencyKey must be a string')
+      .trim()
+      .isLength({ min: 1, max: 120 })
+      .withMessage('idempotencyKey must be between 1 and 120 characters'),
     body('items')
       .isArray({ min: 1 })
       .withMessage('items must be a non-empty array'),
+    body('items.*.productId')
+      .isMongoId()
+      .withMessage('productId must be a valid product id'),
     body('items.*.quantity')
       .isInt({ min: 1 })
       .withMessage('quantity must be at least 1'),

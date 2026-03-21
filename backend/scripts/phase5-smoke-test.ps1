@@ -62,9 +62,30 @@ $promoteScript = @"
 require('dotenv').config();
 const mongoose = require('mongoose');
 const User = require('./models/User');
+const Order = require('./models/Order');
 (async () => {
   await mongoose.connect(process.env.MONGO_URI);
-  await User.updateOne({ email: '$testEmail' }, { $set: { role: 'admin' } });
+  await User.updateOne({ email: '$testEmail' }, { `$set: { role: 'admin' } });
+  await Order.collection.updateMany(
+    { razorpayOrderId: null },
+    { `$unset: { razorpayOrderId: 1 } }
+  );
+  await Order.collection.updateMany(
+    { paymentId: null },
+    { `$unset: { paymentId: 1 } }
+  );
+  await Order.collection.updateMany(
+    { idempotencyKey: null },
+    { `$unset: { idempotencyKey: 1 } }
+  );
+  try {
+    await Order.collection.dropIndex('razorpayOrderId_1');
+  } catch (_) {}
+  try {
+    await Order.collection.dropIndex('paymentId_1');
+  } catch (_) {}
+  await Order.collection.createIndex({ razorpayOrderId: 1 }, { unique: true, sparse: true });
+  await Order.collection.createIndex({ paymentId: 1 }, { unique: true, sparse: true });
   await mongoose.disconnect();
   console.log('USER_PROMOTED');
 })();
@@ -122,15 +143,27 @@ $appliedCoupon = Invoke-Json -Method 'POST' -Url "$baseUrl/api/coupons/apply" -H
 Write-Host "Coupon result:" ($appliedCoupon | ConvertTo-Json -Compress)
 
 Write-Host "[9/11] Create order"
-$orderCreate = Invoke-Json -Method 'POST' -Url "$baseUrl/api/orders/create" -Headers $authHeader -Body @{
-  couponCode = $couponCode
+$shippingAddress = @{
+  name = 'Smoke Admin'
+  phone = '9999999999'
+  address = '123 Smoke Street'
+  city = 'Mumbai'
+  pincode = '400001'
 }
-$razorpayOrderId = $orderCreate.data.razorpayOrderId
-if (-not $razorpayOrderId) { throw 'Order create did not return razorpayOrderId' }
 
-Write-Host "[10/11] Verify payment (signature simulation for backend flow test)"
-$fakePaymentId = "pay_smoke_$(Get-Date -Format 'yyyyMMddHHmmss')"
-$signatureScript = @"
+$hasRazorpay = -not [string]::IsNullOrWhiteSpace($env:RAZORPAY_KEY_ID) -and -not [string]::IsNullOrWhiteSpace($env:RAZORPAY_KEY_SECRET)
+
+if ($hasRazorpay) {
+  $orderCreate = Invoke-Json -Method 'POST' -Url "$baseUrl/api/orders/create" -Headers $authHeader -Body @{
+    couponCode = $couponCode
+    shippingAddress = $shippingAddress
+  }
+  $razorpayOrderId = $orderCreate.data.razorpayOrderId
+  if (-not $razorpayOrderId) { throw 'Order create did not return razorpayOrderId' }
+
+  Write-Host "[10/11] Verify payment (signature simulation for backend flow test)"
+  $fakePaymentId = "pay_smoke_$(Get-Date -Format 'yyyyMMddHHmmss')"
+  $signatureScript = @"
 const crypto = require('crypto');
 const secret = process.env.RAZORPAY_KEY_SECRET;
 const orderId = '$razorpayOrderId';
@@ -138,14 +171,29 @@ const paymentId = '$fakePaymentId';
 const sig = crypto.createHmac('sha256', secret).update(orderId + '|' + paymentId).digest('hex');
 console.log(sig);
 "@
-$signature = (node -e $signatureScript).Trim()
+  $signature = (node -e $signatureScript).Trim()
 
-$verify = Invoke-Json -Method 'POST' -Url "$baseUrl/api/orders/verify" -Headers $authHeader -Body @{
-  razorpay_order_id = $razorpayOrderId
-  razorpay_payment_id = $fakePaymentId
-  razorpay_signature = $signature
+  $verify = Invoke-Json -Method 'POST' -Url "$baseUrl/api/orders/verify" -Headers $authHeader -Body @{
+    razorpay_order_id = $razorpayOrderId
+    razorpay_payment_id = $fakePaymentId
+    razorpay_signature = $signature
+  }
+  Write-Host "Verify result:" ($verify | ConvertTo-Json -Compress)
 }
-Write-Host "Verify result:" ($verify | ConvertTo-Json -Compress)
+else {
+  Write-Host "Razorpay keys missing. Falling back to direct order smoke path."
+  $directOrder = Invoke-Json -Method 'POST' -Url "$baseUrl/api/orders" -Headers $authHeader -Body @{
+    items = @(
+      @{
+        productId = $productId
+        quantity = 2
+      }
+    )
+    shippingAddress = $shippingAddress
+    idempotencyKey = "smoke-$(Get-Date -Format 'yyyyMMddHHmmss')"
+  }
+  Write-Host "[10/11] Direct order result:" ($directOrder | ConvertTo-Json -Compress)
+}
 
 Write-Host "[11/11] Fetch user orders"
 $orders = Invoke-Json -Method 'GET' -Url "$baseUrl/api/orders" -Headers $authHeader
