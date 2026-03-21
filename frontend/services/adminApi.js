@@ -1,47 +1,34 @@
-import axios from "axios";
-import { getStoredToken } from "./authApi";
-
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:5000/api";
-
-const getAuthHeaders = () => {
-  const token = getStoredToken();
-  return {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  };
-};
+import authClient from "./authApi";
 
 export const getAdminProducts = async () => {
-  const response = await axios.get(`${API_BASE_URL}/admin/products`, getAuthHeaders());
+  const response = await authClient.get("/admin/products");
   return response.data?.data || [];
 };
 
 export const createAdminProduct = async (productData) => {
-  const response = await axios.post(`${API_BASE_URL}/admin/products`, productData, getAuthHeaders());
+  const response = await authClient.post("/admin/products", productData);
   return response.data?.data || response.data;
 };
 
 export const updateAdminProduct = async (id, productData) => {
-  const response = await axios.put(`${API_BASE_URL}/admin/products/${id}`, productData, getAuthHeaders());
+  const response = await authClient.put(`/admin/products/${id}`, productData);
   return response.data?.data || response.data;
 };
 
 export const deleteAdminProduct = async (id) => {
-  const response = await axios.delete(`${API_BASE_URL}/admin/products/${id}`, getAuthHeaders());
+  const response = await authClient.delete(`/admin/products/${id}`);
   return response.data?.data || response.data;
 };
 
 export const getAdminOrders = async () => {
-  const response = await axios.get(`${API_BASE_URL}/admin/orders`, getAuthHeaders());
+  const response = await authClient.get("/admin/orders");
   return response.data?.data || [];
 };
 
 export const updateOrderStatus = async (id, orderStatus) => {
-  const response = await axios.put(
-    `${API_BASE_URL}/admin/orders/${id}`,
+  const response = await authClient.put(
+    `/admin/orders/${id}`,
     { status: orderStatus, orderStatus },
-    getAuthHeaders()
   );
   return response.data?.data || response.data;
 };
@@ -72,10 +59,8 @@ export const uploadAdminImage = async (file) => {
   const formData = new FormData();
   formData.append("image", file);
 
-  const response = await axios.post(`${API_BASE_URL}/upload`, formData, {
-    ...getAuthHeaders(),
+  const response = await authClient.post("/upload", formData, {
     headers: {
-      ...getAuthHeaders().headers,
       "Content-Type": "multipart/form-data",
     },
   });
@@ -84,41 +69,41 @@ export const uploadAdminImage = async (file) => {
 };
 
 export const getAdminHero = async () => {
-  const response = await axios.get(`${API_BASE_URL}/admin/hero`, getAuthHeaders());
+  const response = await authClient.get("/admin/hero");
   return response.data?.data || null;
 };
 
 export const updateAdminHero = async (heroData) => {
-  const response = await axios.put(`${API_BASE_URL}/admin/hero`, heroData, getAuthHeaders());
+  const response = await authClient.put("/admin/hero", heroData);
   return response.data?.data || response.data;
 };
 
 export const getAdminCategories = async () => {
-  const response = await axios.get(`${API_BASE_URL}/admin/categories`, getAuthHeaders());
+  const response = await authClient.get("/admin/categories");
   return response.data?.data || [];
 };
 
 export const createAdminCategory = async (categoryData) => {
-  const response = await axios.post(`${API_BASE_URL}/admin/categories`, categoryData, getAuthHeaders());
+  const response = await authClient.post("/admin/categories", categoryData);
   return response.data?.data || response.data;
 };
 
 export const updateAdminCategory = async (id, categoryData) => {
-  const response = await axios.put(`${API_BASE_URL}/admin/categories/${id}`, categoryData, getAuthHeaders());
+  const response = await authClient.put(`/admin/categories/${id}`, categoryData);
   return response.data?.data || response.data;
 };
 
 export const deleteAdminCategory = async (id) => {
-  const response = await axios.delete(`${API_BASE_URL}/admin/categories/${id}`, getAuthHeaders());
+  const response = await authClient.delete(`/admin/categories/${id}`);
   return response.data?.data || response.data;
 };
 
 export const getAdminFeatured = async () => {
-  const response = await axios.get(`${API_BASE_URL}/admin/featured`, getAuthHeaders());
+  const response = await authClient.get("/admin/featured");
   return response.data?.data || { items: [], maxItems: 6, isActive: true };
 };
 
 export const updateAdminFeatured = async (featuredData) => {
-  const response = await axios.put(`${API_BASE_URL}/admin/featured`, featuredData, getAuthHeaders());
+  const response = await authClient.put("/admin/featured", featuredData);
   return response.data?.data || response.data;
 };

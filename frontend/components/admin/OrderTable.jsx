@@ -29,6 +29,7 @@ export default function OrderTable({ orders, onStatusUpdate }) {
             <th className="px-6 py-4">Order ID</th>
             <th className="px-6 py-4">Date</th>
             <th className="px-6 py-4">Customer</th>
+            <th className="px-6 py-4">Items</th>
             <th className="px-6 py-4">Total</th>
             <th className="px-6 py-4">Status</th>
           </tr>
@@ -46,6 +47,24 @@ export default function OrderTable({ orders, onStatusUpdate }) {
                 {order.user?.name || "Unknown"}
                 <div className="text-xs text-gray-500 dark:text-gray-400">
                   {order.user?.email || ""}
+                </div>
+              </td>
+              <td className="px-6 py-4 text-dark-text dark:text-cream">
+                <div className="space-y-1 min-w-56 max-w-72 whitespace-normal">
+                  {(order.items || []).slice(0, 2).map((item, index) => (
+                    <div key={`${order._id}-item-${index}`} className="text-xs leading-5 text-gray-700 dark:text-gray-300">
+                      <span className="font-medium">{item.product?.name || "Product"}</span>
+                      <span className="text-gray-500 dark:text-gray-400"> × {item.quantity || 0}</span>
+                    </div>
+                  ))}
+                  {(order.items || []).length > 2 && (
+                    <div className="text-xs text-gray-500 dark:text-gray-400">
+                      +{(order.items || []).length - 2} more
+                    </div>
+                  )}
+                  {(!order.items || order.items.length === 0) && (
+                    <div className="text-xs text-gray-500 dark:text-gray-400">No items</div>
+                  )}
                 </div>
               </td>
               <td className="px-6 py-4 text-dark-text dark:text-cream font-medium">₹{Number(order.finalAmount || order.totalAmount || 0).toFixed(2)}

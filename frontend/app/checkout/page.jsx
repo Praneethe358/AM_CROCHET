@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { toast } from "react-hot-toast";
@@ -14,6 +14,7 @@ import { createOrderRecordRequest } from "@/services/orderApi";
 export default function CheckoutPage() {
   const router = useRouter();
   const { cartItems, clearCart } = useCart();
+  const idempotencyKeyRef = useRef(null);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -79,14 +80,28 @@ export default function CheckoutPage() {
       price: Number(item.price || 0),
     }));
 
+    if (!idempotencyKeyRef.current) {
+      if (typeof crypto !== "undefined" && typeof crypto.randomUUID === "function") {
+        idempotencyKeyRef.current = crypto.randomUUID();
+      } else {
+        idempotencyKeyRef.current = `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+      }
+    }
+
     setIsPlacingOrder(true);
     try {
-      await createOrderRecordRequest({
-        items: itemsPayload,
-        shippingAddress: formData,
-      });
+      await createOrderRecordRequest(
+        {
+          items: itemsPayload,
+          shippingAddress: formData,
+        },
+        {
+          idempotencyKey: idempotencyKeyRef.current,
+        }
+      );
 
       clearCart();
+      idempotencyKeyRef.current = null;
       toast.success("Order placed successfully");
       router.push("/orders");
     } catch (error) {

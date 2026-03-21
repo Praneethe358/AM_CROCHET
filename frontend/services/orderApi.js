@@ -55,9 +55,16 @@ export const getUserOrdersRequest = async () => {
   }
 };
 
-export const createOrderRecordRequest = async (payload) => {
+export const createOrderRecordRequest = async (payload, options = {}) => {
   try {
-    const response = await authClient.post("/orders", payload);
+    const requestPayload = { ...(payload || {}) };
+    const headers = {};
+    if (options?.idempotencyKey) {
+      headers["x-idempotency-key"] = options.idempotencyKey;
+      requestPayload.idempotencyKey = options.idempotencyKey;
+    }
+
+    const response = await authClient.post("/orders", requestPayload, { headers });
     return response.data?.data || response.data;
   } catch (error) {
     throw new Error(extractMessage(error));
