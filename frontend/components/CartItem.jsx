@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { Trash2 } from "lucide-react";
 import QuantitySelector from "./QuantitySelector";
 import { useCart } from "@/context/CartContext";
+import { getOptimizedImageUrl } from "@/utils/cloudinaryImage";
 
 export default function CartItem({ item }) {
   const { removeFromCart, increaseQuantity, decreaseQuantity } = useCart();
@@ -23,7 +24,7 @@ export default function CartItem({ item }) {
       <div className="w-24 h-24 sm:w-32 sm:h-32 relative bg-gray-50 rounded-xl overflow-hidden flex-shrink-0 border border-gray-100/50 mx-auto sm:mx-0">
         <Link href={`/products/${item.id}`}>
           <Image
-            src={item.image}
+            src={getOptimizedImageUrl(item.image, { width: 300 })}
             alt={item.name}
             fill
             className="object-cover transition-transform duration-500 group-hover:scale-105"

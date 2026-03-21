@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { getActivePromotions, trackPromotionClick } from "@/services/promotionApi";
+import { getOptimizedImageUrl } from "@/utils/cloudinaryImage";
 
 const audienceOrder = ["women", "teens", "college"];
 
@@ -123,7 +124,7 @@ export default function ThematicBannerStrip({ initialSlides = [] }) {
           <div className="grid items-center md:grid-cols-2 min-h-[290px] sm:min-h-[360px]">
             <div className="relative h-[220px] sm:h-[360px] md:h-full">
               <Image
-                src={activeSlide.banner || "https://picsum.photos/1400/700"}
+                src={getOptimizedImageUrl(activeSlide.banner || "https://picsum.photos/1400/700", { width: 1400 })}
                 alt={activeSlide.title || "Thematic promotion banner"}
                 fill
                 className="object-cover"

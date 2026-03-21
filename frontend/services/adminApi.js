@@ -56,6 +56,9 @@ export const getAdminDashboardStats = async () => {
 };
 
 export const uploadAdminImage = async (file) => {
+  // If it's already a URL string, return it directly
+  if (typeof file === "string") return file;
+
   const formData = new FormData();
   formData.append("image", file);
 
@@ -66,6 +69,32 @@ export const uploadAdminImage = async (file) => {
   });
 
   return response.data?.data?.imageUrl || response.data?.imageUrl || "";
+};
+
+export const uploadAdminMultipleImages = async (files) => {
+  // Separate files (File objects) from existing URLs (strings)
+  const existingUrls = files.filter((f) => typeof f === "string");
+  const fileObjects = files.filter((f) => f instanceof File);
+
+  const uploadedUrls = [];
+
+  if (fileObjects.length > 0) {
+    const formData = new FormData();
+    fileObjects.forEach((f) => formData.append("images", f));
+
+    const response = await authClient.post("/upload/multiple", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+
+    const images = response.data?.data?.images || response.data?.images || [];
+    images.forEach((img) => {
+      if (img.imageUrl) uploadedUrls.push(img.imageUrl);
+    });
+  }
+
+  return [...existingUrls, ...uploadedUrls];
 };
 
 export const getAdminHero = async () => {

@@ -5,12 +5,14 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Plus } from "lucide-react";
 import { useCart } from "@/context/CartContext";
+import { getOptimizedImageUrl, getResponsiveSizes } from "@/utils/cloudinaryImage";
 
 export default function ProductCard({ product }) {
   const { addToCart } = useCart();
   const imageRef = useRef(null);
   const productId = product.id || product._id;
-  const imageSrc = product.images?.[0] || product.image || "https://picsum.photos/200/300";
+  const rawImageSrc = product.images?.[0] || product.image || "https://picsum.photos/200/300";
+  const imageSrc = getOptimizedImageUrl(rawImageSrc, { width: 800 });
 
   const handleQuickAdd = (e) => {
     e.preventDefault(); 
@@ -36,7 +38,7 @@ export default function ProductCard({ product }) {
               src={imageSrc}
               alt={product.name}
               fill
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+              sizes={getResponsiveSizes("card")}
               className="object-cover mix-blend-multiply opacity-95 transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-[1.05] will-change-transform"
             />
           </motion.div>

@@ -10,6 +10,8 @@ import { Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 
+import { getOptimizedImageUrl } from '@/utils/cloudinaryImage';
+
 export default function PromotionsShowcase({ initialPromotions = [] }) {
   const [promotions, setPromotions] = useState([]);
   const [nowMs, setNowMs] = useState(() => Date.now());
@@ -149,7 +151,7 @@ export default function PromotionsShowcase({ initialPromotions = [] }) {
                       className="relative block w-full aspect-square overflow-hidden bg-gray-100"
                     >
                       <Image
-                        src={imageSrc}
+                        src={getOptimizedImageUrl(imageSrc, { width: 600 })}
                         alt={item.product?.name || 'Combo item'}
                         fill
                         className="object-cover transition-transform duration-700 group-hover:scale-105"

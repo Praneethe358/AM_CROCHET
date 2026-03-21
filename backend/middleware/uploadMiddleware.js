@@ -10,7 +10,8 @@ const cloudinary = require('../config/cloudinary');
 
 const ALLOWED_FORMATS = ['jpg', 'jpeg', 'png', 'webp'];
 const ALLOWED_MIME_TYPES = ['image/jpeg', 'image/png', 'image/webp'];
-const MAX_FILE_SIZE = 2 * 1024 * 1024;
+// Increased to 10 MB so high-res originals aren't rejected
+const MAX_FILE_SIZE = 10 * 1024 * 1024;
 
 const isValidImageFile = (file) => {
   const mime = (file.mimetype || '').toLowerCase();
@@ -49,13 +50,17 @@ const storage = new StorageClass({
       overwrite: false,
       unique_filename: true,
       use_filename: false,
+      // Upload at MAXIMUM quality — no lossy compression, no resizing.
+      // The original high-resolution file is preserved on Cloudinary.
+      // On-the-fly transformations handle responsive delivery later.
       transformation: [
-        { quality: 'auto:good', fetch_format: 'auto', width: 1400, crop: 'limit' },
+        { quality: 'auto:best', fetch_format: 'auto' },
       ],
     };
   },
 });
 
+// Single-image uploader
 const upload = multer({
   storage,
   limits: {
@@ -73,4 +78,23 @@ const upload = multer({
   },
 });
 
+// Multi-image uploader (up to 10 at once)
+const uploadMultiple = multer({
+  storage,
+  limits: {
+    fileSize: MAX_FILE_SIZE,
+    files: 10,
+  },
+  fileFilter: (req, file, callback) => {
+    if (!isValidImageFile(file)) {
+      const error = new Error('Invalid file type. Only jpg, jpeg, png, and webp are allowed');
+      error.code = 'INVALID_FILE_TYPE';
+      return callback(error);
+    }
+
+    return callback(null, true);
+  },
+});
+
 module.exports = upload;
+module.exports.uploadMultiple = uploadMultiple;

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { Edit2, Trash2 } from "lucide-react";
 import Image from "next/image";
+import { getOptimizedImageUrl } from "@/utils/cloudinaryImage";
 
 export default function ProductTable({ products, onDelete }) {
   if (!products || products.length === 0) {
@@ -33,7 +34,7 @@ export default function ProductTable({ products, onDelete }) {
                 <div className="flex items-center space-x-4">
                   <div className="w-12 h-12 relative rounded-md overflow-hidden bg-gray-100 dark:bg-white/10 shrink-0">
                     <Image
-                      src={product.images?.[0] || product.image || "/bags/placeholder.jpg"}
+                      src={getOptimizedImageUrl(product.images?.[0] || product.image || "/bags/placeholder.jpg", { width: 200 })}
                       alt={product.name}
                       fill
                       className="object-cover"

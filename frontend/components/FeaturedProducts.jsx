@@ -9,6 +9,8 @@ import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 
+import { getOptimizedImageUrl } from "@/utils/cloudinaryImage";
+
 export default function FeaturedProducts({ initialItems = [], limit = 6 }) {
   const [featured, setFeatured] = useState([]);
 
@@ -90,7 +92,7 @@ export default function FeaturedProducts({ initialItems = [], limit = 6 }) {
           }`}
         >
           <Image
-            src={card.image}
+            src={getOptimizedImageUrl(card.image, { width: 1400 })}
             alt={card.name || "Featured collection"}
             fill
             className="object-cover transition-transform duration-700 group-hover:scale-105"
