@@ -5,7 +5,6 @@ import { Toaster } from "react-hot-toast";
 import { usePathname } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import BottomNav from "@/components/BottomNav";
 import { useAuth } from "@/context/AuthContext";
 
 function FullScreenLoader() {
@@ -62,9 +61,8 @@ export default function AppShell({ children }) {
       ) : (
         <>
           {!isAdminRoute && <Navbar />}
-          <main className={isAdminRoute ? "flex-grow" : "flex-grow pb-32 md:pb-0"}>{children}</main>
+          <main className={isAdminRoute ? "flex-grow" : "flex-grow"}>{children}</main>
           {!isAdminRoute && <Footer />}
-          {!isAdminRoute && <BottomNav />}
         </>
       )}
     </>
