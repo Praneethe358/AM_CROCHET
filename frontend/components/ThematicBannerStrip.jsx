@@ -42,11 +42,15 @@ const getAudienceLabel = (audience) => {
   return "Collection";
 };
 
-export default function ThematicBannerStrip() {
+export default function ThematicBannerStrip({ initialSlides = [] }) {
   const [slides, setSlides] = useState([]);
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
+    if (Array.isArray(initialSlides) && initialSlides.length) {
+      return;
+    }
+
     const loadSlides = async () => {
       try {
         const results = await getActivePromotions({ placement: "home_thematic_banner" });
@@ -58,19 +62,27 @@ export default function ThematicBannerStrip() {
     };
 
     loadSlides();
-  }, []);
+  }, [initialSlides]);
+
+  const effectiveSlides = useMemo(() => {
+    if (Array.isArray(initialSlides) && initialSlides.length) {
+      return initialSlides;
+    }
+
+    return slides;
+  }, [initialSlides, slides]);
 
   const orderedSlides = useMemo(() => {
     const byAudience = new Map();
 
-    slides.forEach((slide) => {
+    effectiveSlides.forEach((slide) => {
       if (slide?.audience && !byAudience.has(slide.audience)) {
         byAudience.set(slide.audience, slide);
       }
     });
 
     return audienceOrder.map((audience) => byAudience.get(audience) || fallbackSlides[audience]);
-  }, [slides]);
+  }, [effectiveSlides]);
 
   useEffect(() => {
     if (!orderedSlides.length) {
@@ -106,8 +118,8 @@ export default function ThematicBannerStrip() {
 
   return (
     <section className="bg-theme-bg py-8 sm:py-10">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="relative overflow-hidden rounded-3xl border border-theme-border bg-theme-secondary shadow-sm">
+      <div className="mx-auto max-w-7xl px-0 sm:px-6 lg:px-8">
+        <div className="relative overflow-hidden rounded-none sm:rounded-3xl border-0 sm:border border-theme-border bg-theme-secondary shadow-sm">
           <div className="grid md:grid-cols-2 items-center min-h-[360px]">
             <div className="relative h-[300px] sm:h-[360px] md:h-full">
               <Image

@@ -24,11 +24,11 @@ export default function CartSummary() {
       <div className="space-y-5 mb-8">
         <div className="flex justify-between text-gray-500 font-medium">
           <span>Subtotal</span>
-          <span className="text-gray-900">${subtotal.toFixed(2)}</span>
+          <span className="text-gray-900">₹{subtotal.toFixed(2)}</span>
         </div>
         <div className="flex justify-between text-gray-500 font-medium">
           <span>Shipping estimate</span>
-          <span className="text-gray-900">${shipping.toFixed(2)}</span>
+          <span className="text-gray-900">₹{shipping.toFixed(2)}</span>
         </div>
       </div>
       
@@ -40,8 +40,7 @@ export default function CartSummary() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.3 }}
-          >
-            ${total.toFixed(2)}
+          >₹{total.toFixed(2)}
           </motion.span>
         </div>
       </div>

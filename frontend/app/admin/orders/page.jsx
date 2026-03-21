@@ -32,11 +32,11 @@ export default function AdminOrdersPage() {
       await updateOrderStatus(id, newStatus);
       toast.success("Order status updated");
       setOrders(orders.map(order => 
-        order._id === id ? { ...order, orderStatus: newStatus } : order
+        order._id === id ? { ...order, orderStatus: newStatus, status: newStatus } : order
       ));
     } catch (error) {
       console.error(error);
-      toast.error("Failed to update status");
+      toast.error(error?.response?.data?.message || "Failed to update status");
     }
   };
 

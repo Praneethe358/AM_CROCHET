@@ -48,7 +48,7 @@ export const syncCartWithBackend = async (cartItems = []) => {
 
 export const getUserOrdersRequest = async () => {
   try {
-    const response = await authClient.get("/orders");
+    const response = await authClient.get("/orders/my");
     return response.data?.data || [];
   } catch (error) {
     throw new Error(extractMessage(error));
@@ -60,10 +60,6 @@ export const createOrderRecordRequest = async (payload) => {
     const response = await authClient.post("/orders", payload);
     return response.data?.data || response.data;
   } catch (error) {
-    if (error?.response?.status === 404 || error?.response?.status === 405) {
-      return null;
-    }
-
     throw new Error(extractMessage(error));
   }
 };

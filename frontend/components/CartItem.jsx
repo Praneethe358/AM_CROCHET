@@ -40,7 +40,7 @@ export default function CartItem({ item }) {
           {item.name}
         </Link>
         <p className="text-gray-400 font-medium text-xs tracking-widest uppercase mt-1.5">{item.category}</p>
-        <p className="text-lg font-semibold text-gray-800 mt-3">${item.price.toFixed(2)}</p>
+        <p className="text-lg font-semibold text-gray-800 mt-3">₹{item.price.toFixed(2)}</p>
       </div>
 
       {/* Controls & Action */}

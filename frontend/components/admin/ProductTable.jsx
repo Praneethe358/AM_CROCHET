@@ -47,8 +47,7 @@ export default function ProductTable({ products, onDelete }) {
               <td className="px-6 py-4 text-gray-600 dark:text-gray-400 capitalize">
                 {product.category || "Uncategorized"}
               </td>
-              <td className="px-6 py-4 text-dark-text dark:text-cream font-medium">
-                ${product.price?.toFixed(2)}
+              <td className="px-6 py-4 text-dark-text dark:text-cream font-medium">₹{product.price?.toFixed(2)}
               </td>
               <td className="px-6 py-4">
                 {product.isFeatured ? (

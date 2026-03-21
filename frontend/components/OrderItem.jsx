@@ -6,17 +6,16 @@ import { ChevronDown, Package2 } from "lucide-react";
 
 const STATUS_COLOR = {
   pending: "bg-amber-100 text-amber-700 border-amber-200",
-  paid: "bg-emerald-100 text-emerald-700 border-emerald-200",
   shipped: "bg-blue-100 text-blue-700 border-blue-200",
   delivered: "bg-green-100 text-green-700 border-green-200",
-  cancelled: "bg-red-100 text-red-700 border-red-200",
 };
 
 export default function OrderItem({ order }) {
   const [expanded, setExpanded] = useState(false);
 
   const itemCount = (order.items || []).reduce((acc, item) => acc + Number(item.quantity || 0), 0);
-  const statusClass = STATUS_COLOR[order.orderStatus] || STATUS_COLOR.pending;
+  const effectiveStatus = order.status || order.orderStatus || "pending";
+  const statusClass = STATUS_COLOR[effectiveStatus] || STATUS_COLOR.pending;
   const total = Number(order.finalAmount || order.totalAmount || 0);
 
   return (
@@ -33,7 +32,7 @@ export default function OrderItem({ order }) {
         </div>
 
         <div className="flex items-center gap-2 shrink-0">
-          <span className={`text-xs px-2.5 py-1 rounded-full border capitalize ${statusClass}`}>{order.orderStatus}</span>
+          <span className={`text-xs px-2.5 py-1 rounded-full border capitalize ${statusClass}`}>{effectiveStatus}</span>
           <motion.span animate={{ rotate: expanded ? 180 : 0 }} transition={{ duration: 0.2 }}>
             <ChevronDown size={18} className="text-theme-faint" />
           </motion.span>

@@ -146,8 +146,7 @@ export default function ProductDetails({ product }) {
         <h1 ref={addToRefs} className="text-2xl sm:text-3xl lg:text-4xl font-extrabold font-serif text-theme-text mb-2.5 tracking-tight leading-tight">
           {product.name}
         </h1>
-        <p ref={addToRefs} className="text-xl font-medium text-theme-text mb-4 tracking-tight">
-          ${Number(product.price || 0).toFixed(2)}
+        <p ref={addToRefs} className="text-xl font-medium text-theme-text mb-4 tracking-tight">₹{Number(product.price || 0).toFixed(2)}
         </p>
         
         <div ref={addToRefs} className="h-px bg-theme-border w-full mb-4"></div>
@@ -183,7 +182,7 @@ export default function ProductDetails({ product }) {
       <div className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-theme-bg/95 backdrop-blur-xl border-t border-theme-border p-4 shadow-[0_-10px_40px_rgba(44,44,44,0.05)] flex items-center gap-4 animate-in slide-in-from-bottom duration-500 pb-safe">
         <div className="flex-shrink-0">
           <p className="text-xs text-theme-faint font-medium mb-0.5 uppercase tracking-wider">Total</p>
-          <p className="text-lg font-bold text-theme-text">${(Number(product.price || 0) * quantity).toFixed(2)}</p>
+          <p className="text-lg font-bold text-theme-text">₹{(Number(product.price || 0) * quantity).toFixed(2)}</p>
         </div>
         <Button 
           className="flex-1 py-3.5 rounded-xl text-base font-semibold bg-theme-text text-white active:bg-theme-accent active:scale-[0.98] transition-all flex justify-center items-center shadow-md shadow-theme-text/10"

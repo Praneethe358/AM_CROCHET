@@ -2,7 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { LayoutDashboard, Package, ShoppingBag, Tags, LogOut } from "lucide-react";
+import { LayoutDashboard, Package, ShoppingBag, LogOut, ImageIcon, Star, FolderTree, Layers, Gift } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
 
 export default function Sidebar({ isOpen, setIsOpen }) {
@@ -15,9 +15,13 @@ export default function Sidebar({ isOpen, setIsOpen }) {
 
   const menuItems = [
     { name: "Dashboard", href: "/admin", icon: <LayoutDashboard size={20} /> },
+    { name: "Hero", href: "/admin/hero", icon: <ImageIcon size={20} /> },
+    { name: "Featured", href: "/admin/featured", icon: <Star size={20} /> },
+    { name: "Categories", href: "/admin/categories", icon: <FolderTree size={20} /> },
+    { name: "Home Banners", href: "/admin/home-banners", icon: <Layers size={20} /> },
+    { name: "Special Combos", href: "/admin/special-combos", icon: <Gift size={20} /> },
     { name: "Products", href: "/admin/products", icon: <Package size={20} /> },
     { name: "Orders", href: "/admin/orders", icon: <ShoppingBag size={20} /> },
-    { name: "Promotions", href: "/admin/promotions", icon: <Tags size={20} /> },
   ];
 
   return (

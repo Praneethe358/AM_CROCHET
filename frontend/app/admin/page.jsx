@@ -59,7 +59,7 @@ export default function AdminDashboardPage() {
         <StatCard
           icon={<DollarSign className="w-8 h-8 text-black dark:text-white" />}
           title="Total Revenue"
-          value={`$${stats.revenue.toFixed(2)}`}
+          value={`₹${stats.revenue.toFixed(2)}`}
         />
         <StatCard
           icon={<Package className="w-8 h-8 text-black dark:text-white" />}

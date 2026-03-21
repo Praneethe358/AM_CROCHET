@@ -62,7 +62,7 @@ export default function AppShell({ children }) {
       ) : (
         <>
           {!isAdminRoute && <Navbar />}
-          <main className={isAdminRoute ? "flex-grow" : "flex-grow pb-28 md:pb-0"}>{children}</main>
+          <main className={isAdminRoute ? "flex-grow" : "flex-grow pb-32 md:pb-0"}>{children}</main>
           {!isAdminRoute && <Footer />}
           {!isAdminRoute && <BottomNav />}
         </>

@@ -33,37 +33,58 @@ const toDateInput = (value) => {
   return date.toISOString().slice(0, 10);
 };
 
-export default function AdminPromotionsPage() {
+const getPlacementLabel = (placement) => {
+  if (placement === "home_thematic_banner") return "Home Banner Slider";
+  if (placement === "special_combos") return "Home Special Combos";
+  return "General Promotion";
+};
+
+export default function PromotionManager({
+  pageTitle = "Promotions",
+  fixedPlacement,
+  description,
+}) {
   const [promotions, setPromotions] = useState([]);
   const [products, setProducts] = useState([]);
-  const [form, setForm] = useState(initialForm);
+  const [form, setForm] = useState({
+    ...initialForm,
+    placement: fixedPlacement || initialForm.placement,
+  });
   const [editingId, setEditingId] = useState("");
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [uploading, setUploading] = useState(false);
 
-  const pageTitle = useMemo(() => (editingId ? "Edit Promotion" : "Create Promotion"), [editingId]);
+  const isPlacementLocked = Boolean(fixedPlacement);
+  const formTitle = useMemo(() => (editingId ? "Edit Promotion" : "Create Promotion"), [editingId]);
 
   useEffect(() => {
-    loadData();
-  }, []);
+    const loadData = async () => {
+      try {
+        setLoading(true);
+        const [promoData, productData] = await Promise.all([getAdminPromotions(), getAdminProducts()]);
+        const filteredPromotions = fixedPlacement
+          ? (promoData || []).filter((promotion) => promotion.placement === fixedPlacement)
+          : (promoData || []);
 
-  const loadData = async () => {
-    try {
-      setLoading(true);
-      const [promoData, productData] = await Promise.all([getAdminPromotions(), getAdminProducts()]);
-      setPromotions(promoData || []);
-      setProducts(productData || []);
-    } catch (error) {
-      console.error(error);
-      toast.error("Failed to load promotions");
-    } finally {
-      setLoading(false);
-    }
-  };
+        setPromotions(filteredPromotions);
+        setProducts(productData || []);
+      } catch (error) {
+        console.error(error);
+        toast.error("Failed to load promotions");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadData();
+  }, [fixedPlacement]);
 
   const resetForm = () => {
-    setForm(initialForm);
+    setForm({
+      ...initialForm,
+      placement: fixedPlacement || initialForm.placement,
+    });
     setEditingId("");
   };
 
@@ -108,7 +129,7 @@ export default function AdminPromotionsPage() {
       startDate: toDateInput(promotion.startDate),
       endDate: toDateInput(promotion.endDate),
       status: promotion.status || "active",
-      placement: promotion.placement || "general",
+      placement: fixedPlacement || promotion.placement || "general",
       audience: promotion.audience || "",
       products: (promotion.products || []).map((product) => product._id || product),
     });
@@ -136,6 +157,8 @@ export default function AdminPromotionsPage() {
       return;
     }
 
+    const placement = fixedPlacement || form.placement;
+
     const payload = {
       title: form.title.trim(),
       description: form.description.trim(),
@@ -144,7 +167,7 @@ export default function AdminPromotionsPage() {
       startDate: new Date(form.startDate).toISOString(),
       endDate: new Date(form.endDate).toISOString(),
       status: form.status,
-      placement: form.placement,
+      placement,
       audience: form.audience || undefined,
       products: form.products,
     };
@@ -158,7 +181,9 @@ export default function AdminPromotionsPage() {
         toast.success("Promotion updated");
       } else {
         const created = await createAdminPromotion(payload);
-        setPromotions((prev) => [created, ...prev]);
+        if (!fixedPlacement || created.placement === fixedPlacement) {
+          setPromotions((prev) => [created, ...prev]);
+        }
         toast.success("Promotion created");
       }
 
@@ -173,10 +198,11 @@ export default function AdminPromotionsPage() {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl sm:text-3xl font-serif text-dark-text dark:text-cream">Promotions</h1>
+      <h1 className="text-2xl sm:text-3xl font-serif text-dark-text dark:text-cream">{pageTitle}</h1>
+      {description ? <p className="text-sm text-gray-500 -mt-2">{description}</p> : null}
 
       <section className="bg-white dark:bg-dark-card rounded-2xl border border-black/5 dark:border-white/10 p-5 sm:p-6">
-        <h2 className="text-lg font-semibold text-dark-text dark:text-cream mb-4">{pageTitle}</h2>
+        <h2 className="text-lg font-semibold text-dark-text dark:text-cream mb-4">{formTitle}</h2>
         <form onSubmit={onSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="md:col-span-2">
             <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Title *</label>
@@ -251,18 +277,27 @@ export default function AdminPromotionsPage() {
             </select>
           </div>
 
-          <div>
-            <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Placement</label>
-            <select
-              value={form.placement}
-              onChange={(e) => onFieldChange("placement", e.target.value)}
-              className="mt-1 w-full rounded-lg border border-gray-300 dark:border-white/10 bg-transparent px-4 py-2"
-            >
-              <option value="general">General Promotion</option>
-              <option value="home_thematic_banner">Home Thematic Banner</option>
-              <option value="special_combos">Special Combos</option>
-            </select>
-          </div>
+          {isPlacementLocked ? (
+            <div>
+              <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Placement</label>
+              <div className="mt-1 w-full rounded-lg border border-gray-300 dark:border-white/10 bg-gray-50 dark:bg-black/20 px-4 py-2 text-sm">
+                {getPlacementLabel(fixedPlacement)}
+              </div>
+            </div>
+          ) : (
+            <div>
+              <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Placement</label>
+              <select
+                value={form.placement}
+                onChange={(e) => onFieldChange("placement", e.target.value)}
+                className="mt-1 w-full rounded-lg border border-gray-300 dark:border-white/10 bg-transparent px-4 py-2"
+              >
+                <option value="general">General Promotion (not pinned to Home sections)</option>
+                <option value="home_thematic_banner">Home Banner Slider (Women/Teens/College banner)</option>
+                <option value="special_combos">Home Special Combos Section</option>
+              </select>
+            </div>
+          )}
 
           <div>
             <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Audience</label>

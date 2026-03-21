@@ -7,7 +7,13 @@ import gsap from "gsap";
 import Container from "./Container";
 import Button from "./Button";
 
-export default function Hero() {
+export default function Hero({
+  title = "Minimalism. Perfected.",
+  subtitle = "Premium handcrafted bags designed for everyday elegance. Experience the seamless blend of luxury materials and modern utility.",
+  buttonText = "Explore Collection",
+  buttonLink = "/products",
+  bannerImage = "/bag.png",
+}) {
   const containerRef = useRef(null);
   const textRef = useRef(null);
   const descRef = useRef(null);
@@ -60,9 +66,9 @@ export default function Hero() {
   }, []);
 
   return (
-    <section ref={containerRef} className="pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden min-h-screen flex items-center bg-gradient-to-r from-[#FDF6EC] via-[#F7EFE5] to-[#F3E8D9]">
+    <section ref={containerRef} className="pt-24 pb-20 md:pt-40 md:pb-28 overflow-hidden min-h-screen md:min-h-[90vh] flex items-center bg-gradient-to-r from-[#FDF6EC] via-[#F7EFE5] to-[#F3E8D9]">
       <Container>
-        <div className="flex flex-col md:flex-row items-center justify-between gap-12 lg:gap-24">
+        <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-8 md:gap-12 lg:gap-24">
           
           {/* LEFT SIDE: Text Content */}
           <div className="w-full md:w-1/2 flex flex-col items-center md:items-start text-center md:text-left z-10">
@@ -70,25 +76,25 @@ export default function Hero() {
               ref={textRef}
               className="text-5xl md:text-7xl lg:text-[5rem] font-serif font-bold tracking-tight text-theme-text mb-6 leading-[1.05]"
             >
-              Minimalism. <br className="hidden md:block" /> Perfected.
+              {title}
             </h1>
             <p 
               ref={descRef}
               className="text-lg md:text-xl text-theme-muted mb-10 max-w-lg leading-relaxed font-normal"
             >
-              Premium handcrafted bags designed for everyday elegance. Experience the seamless blend of luxury materials and modern utility.
+              {subtitle}
             </p>
             <div ref={btnRef}>
-              <Link href="/products">
+              <Link href={buttonLink || "/products"}>
                 <Button variant="primary" className="text-lg px-8 py-4 rounded-full">
-                  Explore Collection
+                  {buttonText}
                 </Button>
               </Link>
             </div>
           </div>
 
           {/* RIGHT SIDE: Large bag product image */}
-          <div className="w-full md:w-1/2 relative flex justify-center mt-10 md:mt-0">
+          <div className="w-full md:w-1/2 relative flex justify-center md:mt-0 pb-4 md:pb-0">
             {/* Premium blur overlay behind the image */}
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] md:w-[450px] md:h-[450px] bg-theme-bg/60 rounded-full blur-[80px] opacity-70 z-0 pointer-events-none"></div>
             
@@ -96,7 +102,7 @@ export default function Hero() {
               <div className="w-full h-full relative object-contain will-change-transform">
                 {!imageError ? (
                   <Image
-                    src="/bag.png"
+                    src={bannerImage || "/bag.png"}
                     alt="Premium Stylish Bag"
                     fill
                     className="object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.15)]"

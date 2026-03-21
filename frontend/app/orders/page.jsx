@@ -36,7 +36,7 @@ export default function OrdersPage() {
           <div className="max-w-3xl mx-auto">
             <div className="mb-6">
               <h1 className="text-3xl font-serif font-bold text-theme-text">Your Orders</h1>
-              <p className="text-theme-faint mt-1">Track all purchases and payment status in one place.</p>
+              <p className="text-theme-faint mt-1">Track all purchases and delivery status in one place.</p>
             </div>
 
             {isLoading ? (

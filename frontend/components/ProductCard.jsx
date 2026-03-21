@@ -70,8 +70,7 @@ export default function ProductCard({ product }) {
                 {product.category}
               </p>
             </div>
-            <p className="text-base font-semibold text-theme-text bg-theme-secondary px-2.5 py-1 rounded-lg border border-theme-border/50">
-              ${Number(product.price || 0).toFixed(2)}
+            <p className="text-base font-semibold text-theme-text bg-theme-secondary px-2.5 py-1 rounded-lg border border-theme-border/50">₹{Number(product.price || 0).toFixed(2)}
             </p>
           </div>
         </div>

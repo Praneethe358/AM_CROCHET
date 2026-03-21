@@ -3,16 +3,17 @@
 import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
+import { toast } from "react-hot-toast";
 import ProtectedRoute from "@/components/ProtectedRoute";
 import Container from "@/components/Container";
 import CheckoutForm from "@/components/CheckoutForm";
 import OrderSummary from "@/components/OrderSummary";
-import PaymentButton from "@/components/PaymentButton";
 import { useCart } from "@/context/CartContext";
+import { createOrderRecordRequest } from "@/services/orderApi";
 
 export default function CheckoutPage() {
   const router = useRouter();
-  const { cartItems } = useCart();
+  const { cartItems, clearCart } = useCart();
 
   const [formData, setFormData] = useState({
     name: "",
@@ -22,14 +23,14 @@ export default function CheckoutPage() {
     pincode: "",
   });
   const [errors, setErrors] = useState({});
-  const [isProcessingPayment, setIsProcessingPayment] = useState(false);
+  const [isPlacingOrder, setIsPlacingOrder] = useState(false);
 
   const totals = useMemo(() => {
     const subtotal = (cartItems || []).reduce(
       (acc, item) => acc + Number(item.price || 0) * Number(item.quantity || 0),
       0
     );
-    const shipping = subtotal > 0 ? 49 : 0;
+    const shipping = 0;
     const total = subtotal + shipping;
 
     return { subtotal, shipping, total };
@@ -59,20 +60,44 @@ export default function CheckoutPage() {
     return Object.keys(nextErrors).length === 0;
   };
 
-  const handlePaymentStart = () => {
-    setIsProcessingPayment(true);
+  const handlePlaceOrder = async () => {
+    if (isPlacingOrder) return;
+
+    const isFormValid = validateForm();
+    if (!isFormValid) {
+      return;
+    }
+
+    if (!Array.isArray(cartItems) || cartItems.length === 0) {
+      toast.error("Your cart is empty");
+      return;
+    }
+
+    const itemsPayload = cartItems.map((item) => ({
+      productId: item._id || item.id || item.productId,
+      quantity: Number(item.quantity || 1),
+      price: Number(item.price || 0),
+    }));
+
+    setIsPlacingOrder(true);
+    try {
+      await createOrderRecordRequest({
+        items: itemsPayload,
+        shippingAddress: formData,
+      });
+
+      clearCart();
+      toast.success("Order placed successfully");
+      router.push("/orders");
+    } catch (error) {
+      toast.error(error.message || "Failed to place order");
+    } finally {
+      setIsPlacingOrder(false);
+    }
   };
 
-  const handlePaymentEnd = () => {
-    setIsProcessingPayment(false);
-  };
-
-  const handleOrderPlaced = () => {
-    router.push("/orders");
-  };
-
-  const canProceedToPay =
-    !isProcessingPayment &&
+  const canPlaceOrder =
+    !isPlacingOrder &&
     (cartItems || []).length > 0 &&
     Object.values(formData).every((value) => value.trim().length > 0);
 
@@ -103,15 +128,14 @@ export default function CheckoutPage() {
                 <OrderSummary shippingFee={totals.shipping} />
 
                 <div className="hidden md:block">
-                  <PaymentButton
-                    shippingAddress={formData}
-                    disabled={!canProceedToPay}
-                    beforePay={validateForm}
-                    isLoading={isProcessingPayment}
-                    onPaymentStart={handlePaymentStart}
-                    onPaymentEnd={handlePaymentEnd}
-                    onOrderPlaced={handleOrderPlaced}
-                  />
+                  <button
+                    type="button"
+                    disabled={!canPlaceOrder}
+                    onClick={handlePlaceOrder}
+                    className="w-full h-12 sm:h-14 rounded-xl bg-theme-text text-white font-semibold flex items-center justify-center gap-2 hover:bg-theme-accent disabled:opacity-60 disabled:cursor-not-allowed transition-colors"
+                  >
+                    {isPlacingOrder ? "Placing Order..." : "Place Order"}
+                  </button>
                 </div>
               </div>
             </div>
@@ -124,15 +148,14 @@ export default function CheckoutPage() {
               <p className="text-sm text-theme-faint">Total</p>
               <p className="text-xl font-bold text-theme-text">₹{totals.total.toFixed(2)}</p>
             </div>
-            <PaymentButton
-              shippingAddress={formData}
-              disabled={!canProceedToPay}
-              beforePay={validateForm}
-              isLoading={isProcessingPayment}
-              onPaymentStart={handlePaymentStart}
-              onPaymentEnd={handlePaymentEnd}
-              onOrderPlaced={handleOrderPlaced}
-            />
+            <button
+              type="button"
+              disabled={!canPlaceOrder}
+              onClick={handlePlaceOrder}
+              className="w-full h-12 rounded-xl bg-theme-text text-white font-semibold flex items-center justify-center gap-2 hover:bg-theme-accent disabled:opacity-60 disabled:cursor-not-allowed transition-colors"
+            >
+              {isPlacingOrder ? "Placing Order..." : "Place Order"}
+            </button>
           </div>
         )}
       </section>

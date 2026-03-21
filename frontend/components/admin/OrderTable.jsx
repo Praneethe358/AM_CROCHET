@@ -11,7 +11,15 @@ export default function OrderTable({ orders, onStatusUpdate }) {
     );
   }
 
-  const STATUS_OPTIONS = ["pending", "paid", "shipped", "delivered", "cancelled"];
+  const STATUS_OPTIONS = ["pending", "shipped", "delivered"];
+  const STATUS_BADGE_CLASS = {
+    pending:
+      "bg-amber-100 text-amber-800 border-amber-300 dark:bg-amber-500/20 dark:text-amber-300 dark:border-amber-500/40",
+    shipped:
+      "bg-blue-100 text-blue-800 border-blue-300 dark:bg-blue-500/20 dark:text-blue-300 dark:border-blue-500/40",
+    delivered:
+      "bg-green-100 text-green-800 border-green-300 dark:bg-green-500/20 dark:text-green-300 dark:border-green-500/40",
+  };
 
   return (
     <div className="overflow-x-auto">
@@ -40,24 +48,25 @@ export default function OrderTable({ orders, onStatusUpdate }) {
                   {order.user?.email || ""}
                 </div>
               </td>
-              <td className="px-6 py-4 text-dark-text dark:text-cream font-medium">
-                ${order.totalPrice?.toFixed(2)}
+              <td className="px-6 py-4 text-dark-text dark:text-cream font-medium">₹{Number(order.finalAmount || order.totalAmount || 0).toFixed(2)}
               </td>
               <td className="px-6 py-4">
+                <div className="mb-2">
+                  <span
+                    className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold border capitalize ${
+                      STATUS_BADGE_CLASS[order.status || order.orderStatus || "pending"]
+                    }`}
+                  >
+                    {order.status || order.orderStatus || "pending"}
+                  </span>
+                </div>
                 <select
-                  value={order.orderStatus || "pending"}
+                  value={order.status || order.orderStatus || "pending"}
                   onChange={(e) => onStatusUpdate(order._id, e.target.value)}
-                  className={`
-                    px-3 py-1.5 rounded-full text-xs font-medium outline-none border focus:ring-2 focus:ring-black/10 transition-colors capitalize
-                    ${order.orderStatus === "delivered" ? "bg-green-50 text-green-700 border-green-200 dark:bg-green-500/10 dark:text-green-400 dark:border-green-500/20" : ""}
-                    ${order.orderStatus === "shipped" ? "bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-500/10 dark:text-blue-400 dark:border-blue-500/20" : ""}
-                    ${order.orderStatus === "paid" ? "bg-purple-50 text-purple-700 border-purple-200 dark:bg-purple-500/10 dark:text-purple-400 dark:border-purple-500/20" : ""}
-                    ${order.orderStatus === "cancelled" ? "bg-red-50 text-red-700 border-red-200 dark:bg-red-500/10 dark:text-red-400 dark:border-red-500/20" : ""}
-                    ${(!order.orderStatus || order.orderStatus === "pending") ? "bg-yellow-50 text-yellow-700 border-yellow-200 dark:bg-yellow-500/10 dark:text-yellow-400 dark:border-yellow-500/20" : ""}
-                  `}
+                  className="w-full px-3 py-2 rounded-lg text-sm font-semibold outline-none border border-gray-300 bg-white text-gray-900 focus:ring-2 focus:ring-black/10 transition-colors capitalize dark:bg-dark-card dark:text-cream dark:border-white/20"
                 >
                   {STATUS_OPTIONS.map((status) => (
-                    <option key={status} value={status} className="bg-white dark:bg-dark-card text-black dark:text-white capitalize">
+                    <option key={status} value={status} className="capitalize">
                       {status}
                     </option>
                   ))}
