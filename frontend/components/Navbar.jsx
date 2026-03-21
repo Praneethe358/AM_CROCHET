@@ -56,23 +56,29 @@ export default function Navbar() {
     setMobileMenuOpen(false);
   };
 
+  const isHomePage = pathname === "/";
+  // The header is transparent if we are on the homepage AND haven't scrolled down yet
+  const isTransparent = isHomePage && !scrolled;
+
   return (
     <>
-      <motion.nav 
+      <motion.nav
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] ${
-          scrolled
-            ? "bg-[#DED8CD]/95 backdrop-blur-xl border-b border-[#CFC8BB] py-3 md:py-4 shadow-[0_4px_30px_rgba(44,44,44,0.02)]"
-            : "bg-[#DED8CD] py-4 md:py-6 border-b border-[#CFC8BB]"
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] ${
+          isTransparent
+            ? "bg-transparent py-6 md:py-8"
+            : scrolled
+              ? "bg-white/95 backdrop-blur-xl border-b border-gray-100 py-3 md:py-4 shadow-sm"
+              : "bg-white py-4 md:py-6 border-b border-gray-100"
         }`}
       >
         <Container>
           <div className="flex items-center justify-between">
             {/* Logo */}
-            <Link href="/" className="relative z-10 flex text-xl md:text-2xl font-bold font-serif tracking-tight text-[#2C2C2C] group">
-              BagStore<span className="text-[#C8A97E] group-hover:text-[#2C2C2C] transition-colors ml-0.5">.</span>
+            <Link href="/" className={`relative z-10 flex text-xl md:text-2xl font-bold font-serif tracking-widest uppercase transition-colors duration-500 group ${isTransparent ? 'text-white' : 'text-black'}`}>
+              MIRAGGIO<span className="text-gray-400 group-hover:text-black transition-colors ml-0.5">.</span>
             </Link>
 
             {/* Center Navigation (Desktop) */}
@@ -80,50 +86,51 @@ export default function Navbar() {
               {navLinks.map((link) => {
                 const isActive = pathname === link.href;
                 return (
-                  <Link 
-                    key={link.name} 
-                    href={link.href} 
-                    className="group relative py-2 text-sm font-medium text-[#2C2C2C] transition-colors duration-300 hover:text-[#C8A97E] focus:outline-none"
+                  <Link
+                    key={link.name}
+                    href={link.href}
+                    className={`group relative py-2 text-xs uppercase tracking-[0.2em] font-medium transition-colors duration-500 focus:outline-none ${
+                      isTransparent ? "text-white/90 hover:text-white" : "text-gray-600 hover:text-black"
+                    }`}
                   >
                     {link.name}
                     {/* Active / Hover subtle underline */}
-                    <span className={`absolute left-0 bottom-0 block h-[1.5px] bg-[#C8A97E] transition-all duration-300 ease-out ${isActive ? "w-full" : "w-0 group-hover:w-full"}`}></span>
+                    <span className={`absolute left-0 bottom-0 block h-[1px] bg-current transition-all duration-500 ease-out ${isActive ? "w-full" : "w-0 group-hover:w-full"}`}></span>
                   </Link>
                 );
               })}
             </div>
 
             {/* Right Side */}
-            <div className="flex items-center space-x-5 md:space-x-6">
+            <div className={`flex items-center space-x-5 md:space-x-8 transition-colors duration-500 ${isTransparent ? 'text-white' : 'text-black'}`}>
               {isAuthenticated ? (
-                <div className="hidden md:flex items-center gap-3">
-                  <div className="flex items-center gap-2 px-3 py-2 rounded-lg border border-[#EADFD0] bg-[#F7EFE5]">
-                    <User size={16} className="text-[#C8A97E]" />
-                    <span className="text-sm font-medium text-[#2C2C2C] max-w-28 truncate">{user?.name || "Account"}</span>
+                <div className="hidden md:flex items-center gap-4">
+                  <div className={`flex items-center gap-2 px-3 py-1.5 rounded-full border ${isTransparent ? 'border-white/20 bg-white/10' : 'border-gray-200 bg-gray-50'}`}>
+                    <User size={14} className={isTransparent ? 'text-white' : 'text-gray-500'} />
+                    <span className="text-xs font-medium tracking-wide max-w-[100px] truncate">{user?.name || "Account"}</span>
                   </div>
                   <motion.button
                     whileTap={{ scale: 0.97 }}
                     onClick={handleLogout}
-                    className="flex items-center justify-center gap-2 bg-[#2C2C2C] text-white px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-300 hover:bg-[#C8A97E]"
+                    className={`flex items-center justify-center gap-2 px-4 py-2 rounded-full text-xs font-medium tracking-widest uppercase transition-all duration-500 ${isTransparent ? 'bg-white text-black hover:bg-white/90' : 'bg-black text-white hover:bg-gray-800'}`}
                   >
-                    <LogOut size={16} />
                     Logout
                   </motion.button>
                 </div>
               ) : (
-                <div className="hidden md:flex items-center gap-3">
-                  <Link href="/login" className="flex items-center justify-center bg-[#2C2C2C] text-white px-5 py-2.5 rounded-lg text-sm font-medium transition-all duration-300 hover:bg-[#C8A97E] hover:shadow-[0_4px_20px_rgba(200,169,126,0.25)] hover:scale-[1.02] active:scale-95">
+                <div className="hidden md:flex items-center gap-4">
+                  <Link href="/login" className="text-xs font-medium tracking-widest uppercase hover:opacity-70 transition-opacity">
                     Login
                   </Link>
-                  <Link href="/signup" className="flex items-center justify-center border border-[#EADFD0] text-[#2C2C2C] px-5 py-2.5 rounded-lg text-sm font-medium transition-all duration-300 hover:bg-[#F7EFE5]">
-                    Signup
+                  <Link href="/signup" className={`flex items-center justify-center px-5 py-2 rounded-full text-xs font-medium tracking-widest uppercase transition-all duration-500 ${isTransparent ? 'bg-white text-black hover:bg-white/90' : 'bg-black text-white hover:bg-gray-800'}`}>
+                    Sign Up
                   </Link>
                 </div>
               )}
-              
-              <Link href="/cart" className="relative text-[#2C2C2C] hover:text-[#C8A97E] transition-colors duration-300 group focus:outline-none flex items-center justify-center h-10 w-10">
+
+              <Link href="/cart" className="relative transition-opacity duration-500 hover:opacity-70 focus:outline-none flex items-center justify-center h-10 w-10">
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <ShoppingBag size={22} strokeWidth={1.75} className="group-hover:stroke-[#C8A97E] transition-colors duration-300" />
+                  <ShoppingBag size={20} strokeWidth={1.5} className="transition-colors duration-500" />
                 </motion.div>
                 <AnimatePresence>
                   {totalItems > 0 && (
@@ -131,7 +138,7 @@ export default function Navbar() {
                       initial={{ scale: 0, opacity: 0 }}
                       animate={{ scale: 1, opacity: 1 }}
                       exit={{ scale: 0, opacity: 0 }}
-                      className="absolute top-1.5 right-1 bg-[#C8A97E] text-white text-[10px] font-bold h-4 w-4 rounded-full flex items-center justify-center -translate-y-1/2 translate-x-1/2 shadow-sm border border-[#FDF6EC]"
+                      className={`absolute top-1.5 right-1 text-[9px] font-bold h-4 w-4 rounded-full flex items-center justify-center -translate-y-1/2 translate-x-1/2 ${isTransparent ? 'bg-white text-black' : 'bg-black text-white'}`}
                     >
                       {totalItems}
                     </motion.div>
@@ -140,12 +147,12 @@ export default function Navbar() {
               </Link>
 
               {/* Mobile menu button */}
-              <button 
-                className="md:hidden text-[#2C2C2C] hover:text-[#C8A97E] transition-colors focus:outline-none rounded-lg p-2 -mr-2"
+              <button
+                className="md:hidden transition-opacity hover:opacity-70 focus:outline-none rounded-lg p-2 -mr-2"
                 onClick={() => setMobileMenuOpen(true)}
                 aria-label="Open Menu"
               >
-                <Menu size={24} strokeWidth={2} />
+                <Menu size={24} strokeWidth={1.5} />
               </button>
             </div>
           </div>

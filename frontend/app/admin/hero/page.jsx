@@ -2,24 +2,16 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { Loader2, Upload } from "lucide-react";
+import { Loader2, Plus, Trash2, GripVertical, Upload } from "lucide-react";
 import { toast } from "react-hot-toast";
 import { getAdminHero, updateAdminHero, uploadAdminImage } from "@/services/adminApi";
 
-const initialState = {
-  title: "",
-  subtitle: "",
-  buttonText: "Explore Collection",
-  buttonLink: "/products",
-  bannerImage: "",
-  isActive: true,
-};
-
 export default function AdminHeroPage() {
-  const [form, setForm] = useState(initialState);
+  const [slides, setSlides] = useState([]);
+  const [isActive, setIsActive] = useState(true);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
-  const [uploading, setUploading] = useState(false);
+  const [uploadingIndex, setUploadingIndex] = useState(null);
 
   useEffect(() => {
     const loadHero = async () => {
@@ -27,14 +19,8 @@ export default function AdminHeroPage() {
         setLoading(true);
         const hero = await getAdminHero();
         if (hero) {
-          setForm({
-            title: hero.title || "",
-            subtitle: hero.subtitle || "",
-            buttonText: hero.buttonText || "Explore Collection",
-            buttonLink: hero.buttonLink || "/products",
-            bannerImage: hero.bannerImage || "",
-            isActive: hero.isActive !== false,
-          });
+          setSlides(hero.slides || []);
+          setIsActive(hero.isActive !== false);
         }
       } catch (error) {
         console.error(error);
@@ -47,29 +33,41 @@ export default function AdminHeroPage() {
     loadHero();
   }, []);
 
-  const onFieldChange = (field, value) => {
-    setForm((prev) => ({ ...prev, [field]: value }));
+  const handleAddSlide = () => {
+    setSlides([...slides, { image: '', subtitle: '', title: '', description: '', link: '/products' }]);
   };
 
-  const onUploadBanner = async (event) => {
+  const handleRemoveSlide = (index) => {
+    const newSlides = [...slides];
+    newSlides.splice(index, 1);
+    setSlides(newSlides);
+  };
+
+  const onFieldChange = (index, field, value) => {
+    const newSlides = [...slides];
+    newSlides[index][field] = value;
+    setSlides(newSlides);
+  };
+
+  const onUploadImage = async (event, index) => {
     const file = event.target.files?.[0];
     if (!file) return;
 
     try {
-      setUploading(true);
+      setUploadingIndex(index);
       const imageUrl = await uploadAdminImage(file);
       if (!imageUrl) {
         toast.error("Upload failed. Please add URL manually.");
         return;
       }
 
-      onFieldChange("bannerImage", imageUrl);
-      toast.success("Banner uploaded");
+      onFieldChange(index, "image", imageUrl);
+      toast.success("Image uploaded");
     } catch (error) {
       console.error(error);
-      toast.error(error?.response?.data?.message || "Banner upload failed");
+      toast.error(error?.response?.data?.message || "Image upload failed");
     } finally {
-      setUploading(false);
+      setUploadingIndex(null);
       event.target.value = "";
     }
   };
@@ -77,35 +75,32 @@ export default function AdminHeroPage() {
   const onSave = async (event) => {
     event.preventDefault();
 
-    if (!form.title || !form.subtitle || !form.buttonText || !form.bannerImage) {
-      toast.error("Please fill all required fields");
+    const invalid = slides.some(slide => !slide.title || !slide.image);
+    if (invalid) {
+      toast.error("Please fill Title and Image for all slides");
       return;
     }
 
     const payload = {
-      title: form.title.trim(),
-      subtitle: form.subtitle.trim(),
-      buttonText: form.buttonText.trim(),
-      buttonLink: (form.buttonLink || "/products").trim(),
-      bannerImage: form.bannerImage.trim(),
-      isActive: form.isActive,
+      slides: slides.map((s) => ({
+        image: (s.image || '').trim(),
+        subtitle: (s.subtitle || '').trim(),
+        title: (s.title || '').trim(),
+        description: (s.description || '').trim(),
+        link: (s.link || '/products').trim(),
+      })),
+      isActive,
     };
 
     try {
       setSaving(true);
       const updated = await updateAdminHero(payload);
-      setForm({
-        title: updated.title || "",
-        subtitle: updated.subtitle || "",
-        buttonText: updated.buttonText || "Explore Collection",
-        buttonLink: updated.buttonLink || "/products",
-        bannerImage: updated.bannerImage || "",
-        isActive: updated.isActive !== false,
-      });
-      toast.success("Hero section updated");
+      setSlides(updated.slides || []);
+      setIsActive(updated.isActive !== false);
+      toast.success("Hero sections updated");
     } catch (error) {
       console.error(error);
-      toast.error(error?.response?.data?.message || "Failed to save hero section");
+      toast.error(error?.response?.data?.message || "Failed to save hero sections");
     } finally {
       setSaving(false);
     }
@@ -121,128 +116,161 @@ export default function AdminHeroPage() {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl sm:text-3xl font-serif text-dark-text dark:text-cream">Hero Section</h1>
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+        <h1 className="text-2xl sm:text-3xl font-serif text-dark-text dark:text-cream">Luxury Hero Slider</h1>
+        <button
+          onClick={handleAddSlide}
+          className="flex items-center gap-2 bg-black text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-gray-800 transition-colors"
+        >
+          <Plus size={16} />
+          Add Slide
+        </button>
+      </div>
 
-      <section className="bg-white dark:bg-dark-card rounded-2xl border border-black/5 dark:border-white/10 p-5 sm:p-6">
-        <form onSubmit={onSave} className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="md:col-span-2">
-            <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Title *</label>
-            <input
-              type="text"
-              value={form.title}
-              onChange={(event) => onFieldChange("title", event.target.value)}
-              className="mt-1 w-full rounded-lg border border-gray-300 dark:border-white/10 bg-transparent px-4 py-2"
-              required
-            />
+      <form onSubmit={onSave} className="space-y-6">
+        {slides.length === 0 ? (
+          <div className="bg-white dark:bg-dark-card rounded-2xl border border-black/5 dark:border-white/10 p-12 text-center">
+            <p className="text-gray-500">No slides found. Click "Add Slide" to begin.</p>
           </div>
+        ) : (
+          slides.map((slide, index) => (
+            <div key={index} className="bg-white dark:bg-dark-card rounded-2xl border border-black/5 dark:border-white/10 p-5 sm:p-6 mb-4 relative">
+              
+              <div className="absolute top-4 right-4 flex gap-2">
+                <button
+                  type="button"
+                  onClick={() => handleRemoveSlide(index)}
+                  className="p-2 text-red-500 hover:bg-red-50 rounded-lg transition-colors"
+                  title="Remove Slide"
+                >
+                  <Trash2 size={18} />
+                </button>
+              </div>
 
-          <div className="md:col-span-2">
-            <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Subtitle *</label>
-            <textarea
-              value={form.subtitle}
-              onChange={(event) => onFieldChange("subtitle", event.target.value)}
-              rows={3}
-              className="mt-1 w-full rounded-lg border border-gray-300 dark:border-white/10 bg-transparent px-4 py-2"
-              required
-            />
-          </div>
+              <div className="flex items-center gap-2 mb-4">
+                <GripVertical size={20} className="text-gray-400 cursor-move" />
+                <h3 className="text-lg font-medium">Slide {index + 1}</h3>
+              </div>
 
-          <div>
-            <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Button text *</label>
-            <input
-              type="text"
-              value={form.buttonText}
-              onChange={(event) => onFieldChange("buttonText", event.target.value)}
-              className="mt-1 w-full rounded-lg border border-gray-300 dark:border-white/10 bg-transparent px-4 py-2"
-              required
-            />
-          </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {/* Image Section */}
+                <div className="md:col-span-2 flex flex-col sm:flex-row gap-4 sm:items-end">
+                  <div className="flex-1">
+                    <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Background Image URL *</label>
+                    <input
+                      type="text"
+                      value={slide.image}
+                      onChange={(e) => onFieldChange(index, "image", e.target.value)}
+                      placeholder="https://..."
+                      className="mt-1 w-full rounded-lg border border-gray-300 dark:border-white/10 bg-transparent px-4 py-2"
+                      required
+                    />
+                  </div>
+                  <div className="relative">
+                    <label className="flex items-center justify-center gap-2 cursor-pointer bg-gray-100 hover:bg-gray-200 dark:bg-white/5 dark:hover:bg-white/10 text-gray-700 dark:text-gray-200 px-4 py-2.5 rounded-lg font-medium transition-colors h-[42px]">
+                      {uploadingIndex === index ? <Loader2 className="w-4 h-4 animate-spin" /> : <Upload className="w-4 h-4" />}
+                      <span className="text-sm">{uploadingIndex === index ? "Uploading..." : "Upload Image"}</span>
+                      <input
+                        type="file"
+                        accept="image/*"
+                        className="hidden"
+                        onChange={(e) => onUploadImage(e, index)}
+                        disabled={uploadingIndex !== null}
+                      />
+                    </label>
+                  </div>
+                </div>
 
-          <div>
-            <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Button link</label>
-            <input
-              type="text"
-              value={form.buttonLink}
-              onChange={(event) => onFieldChange("buttonLink", event.target.value)}
-              className="mt-1 w-full rounded-lg border border-gray-300 dark:border-white/10 bg-transparent px-4 py-2"
-              placeholder="/products"
-            />
-          </div>
+                <div className="md:col-span-1">
+                  <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Subtitle (Top label)</label>
+                  <input
+                    type="text"
+                    value={slide.subtitle}
+                    onChange={(e) => onFieldChange(index, "subtitle", e.target.value)}
+                    placeholder="THE NEW STANDARD"
+                    className="mt-1 w-full rounded-lg border border-gray-300 dark:border-white/10 bg-transparent px-4 py-2 uppercase"
+                  />
+                </div>
 
-          <div className="md:col-span-2 space-y-2">
-            <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Banner image URL *</label>
-            <input
-              type="url"
-              value={form.bannerImage}
-              onChange={(event) => onFieldChange("bannerImage", event.target.value)}
-              className="w-full rounded-lg border border-gray-300 dark:border-white/10 bg-transparent px-4 py-2"
-              placeholder="https://..."
-              required
-            />
+                <div className="md:col-span-1">
+                  <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Main Title *</label>
+                  <input
+                    type="text"
+                    value={slide.title}
+                    onChange={(e) => onFieldChange(index, "title", e.target.value)}
+                    placeholder="WORK HOUR"
+                    className="mt-1 w-full rounded-lg border border-gray-300 dark:border-white/10 bg-transparent px-4 py-2 uppercase"
+                    required
+                  />
+                </div>
 
-            <div className="flex items-center gap-3">
-              <label className="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 dark:border-white/10 cursor-pointer text-sm">
-                <Upload size={14} />
-                {uploading ? "Uploading..." : "Upload banner"}
-                <input
-                  type="file"
-                  accept="image/*"
-                  onChange={onUploadBanner}
-                  disabled={uploading}
-                  className="hidden"
-                />
-              </label>
+                <div className="md:col-span-2">
+                  <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Description</label>
+                  <textarea
+                    value={slide.description}
+                    onChange={(e) => onFieldChange(index, "description", e.target.value)}
+                    rows={2}
+                    placeholder="Structure meets fluidity in our latest collection."
+                    className="mt-1 w-full rounded-lg border border-gray-300 dark:border-white/10 bg-transparent px-4 py-2"
+                  />
+                </div>
+
+                <div className="md:col-span-2">
+                  <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Button Link</label>
+                  <input
+                    type="text"
+                    value={slide.link}
+                    onChange={(e) => onFieldChange(index, "link", e.target.value)}
+                    placeholder="/products"
+                    className="mt-1 w-full rounded-lg border border-gray-300 dark:border-white/10 bg-transparent px-4 py-2"
+                  />
+                </div>
+
+                {/* Preview Image if Available */}
+                {slide.image && (
+                  <div className="md:col-span-2 mt-2">
+                    <p className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Image Preview:</p>
+                    <div className="relative w-full max-w-sm aspect-[4/3] rounded-lg overflow-hidden border border-gray-200">
+                      <Image
+                        src={slide.image}
+                        alt="Slide Preview"
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
-          </div>
+          ))
+        )}
 
-          <div className="md:col-span-2">
-            <label className="inline-flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300">
+        <div className="flex items-center justify-between bg-white dark:bg-dark-card rounded-2xl border border-black/5 dark:border-white/10 p-5 sm:p-6">
+          <label className="flex items-center gap-3 cursor-pointer">
+            <div className="relative">
               <input
                 type="checkbox"
-                checked={form.isActive}
-                onChange={(event) => onFieldChange("isActive", event.target.checked)}
+                checked={isActive}
+                onChange={(e) => setIsActive(e.target.checked)}
+                className="sr-only peer"
               />
-              Set hero section as active
-            </label>
-          </div>
+              <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-theme-accent"></div>
+            </div>
+            <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+              {isActive ? "Hero is Visible" : "Hero is Hidden"}
+            </span>
+          </label>
 
-          <div className="md:col-span-2">
-            <button
-              type="submit"
-              disabled={saving}
-              className="inline-flex items-center gap-2 rounded-lg bg-black text-white dark:bg-cream dark:text-dark-bg px-4 py-2 text-sm font-medium disabled:opacity-70"
-            >
-              {saving ? <Loader2 className="w-4 h-4 animate-spin" /> : null}
-              Save Hero Section
-            </button>
-          </div>
-        </form>
-      </section>
-
-      <section className="bg-white dark:bg-dark-card rounded-2xl border border-black/5 dark:border-white/10 p-5 sm:p-6">
-        <h2 className="text-lg font-semibold text-dark-text dark:text-cream mb-4">Preview</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
-          <div>
-            <h3 className="text-2xl font-serif text-theme-text">{form.title || "Hero title"}</h3>
-            <p className="mt-2 text-sm text-theme-muted">{form.subtitle || "Hero subtitle"}</p>
-            <button
-              type="button"
-              className="mt-4 inline-flex items-center justify-center rounded-lg bg-theme-text px-4 py-2 text-sm font-semibold text-white"
-            >
-              {form.buttonText || "Explore Collection"}
-            </button>
-          </div>
-          <div className="relative h-44 rounded-xl overflow-hidden border border-theme-border">
-            {form.bannerImage ? (
-              <Image src={form.bannerImage} alt="Hero preview" fill className="object-cover" />
-            ) : (
-              <div className="absolute inset-0 flex items-center justify-center text-sm text-theme-muted bg-theme-bg">
-                Banner preview
-              </div>
-            )}
-          </div>
+          <button
+            type="submit"
+            disabled={saving || uploadingIndex !== null}
+            className="px-6 py-2.5 bg-theme-accent hover:bg-[#b0956f] text-white text-sm font-medium rounded-lg transition-colors flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            {saving ? <Loader2 className="w-4 h-4 animate-spin" /> : null}
+            {saving ? "Saving..." : "Save Changes"}
+          </button>
         </div>
-      </section>
+      </form>
     </div>
   );
 }

@@ -1,50 +1,51 @@
 import { Truck, ShieldCheck, HeadphonesIcon, CreditCard } from "lucide-react";
-import Container from "./Container";
 
 const features = [
   {
     icon: Truck,
-    title: "Free Shipping",
-    description: "Available on all prepaid orders.",
+    title: "COMPLIMENTARY SHIPPING",
+    description: "Worldwide delivery on all primary orders.",
   },
   {
     icon: ShieldCheck,
-    title: "Secure Checkout",
+    title: "SECURE CHECKOUT",
     description: "Encrypted & safe payment gateways.",
   },
   {
     icon: HeadphonesIcon,
-    title: "Online Support",
-    description: "Mon-Sat, 9 AM to 6 PM.",
+    title: "CLIENT SERVICES",
+    description: "Dedicated support, Mon-Sat.",
   },
   {
     icon: CreditCard,
-    title: "Flexible Payments",
-    description: "Multiple payment options available.",
+    title: "FLEXIBLE PAYMENTS",
+    description: "Multiple premium payment options.",
   },
 ];
 
 export default function FeaturesStrip() {
   return (
-    <section className="py-5 sm:py-12 border-t border-theme-border bg-theme-bg mt-4 sm:mt-12">
-      <Container className="px-5 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-8 auto-rows-fr">
+    <section className="py-8 md:py-16 bg-[#FAFAFA] border-t border-gray-100">
+      <div className="mx-auto max-w-[1400px] px-4 sm:px-12 lg:px-16">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-10 lg:gap-8">
           {features.map((feature, index) => {
             const Icon = feature.icon;
             return (
-              <div key={index} className="h-full min-h-[88px] flex items-start gap-2.5 sm:gap-4 justify-start w-full rounded-xl border border-theme-border/70 bg-white/40 px-2.5 py-2.5 sm:min-h-0 sm:px-0 sm:py-0 sm:rounded-none sm:border-0 sm:bg-transparent">
-                <div className="flex-shrink-0 flex items-center justify-center p-2 sm:p-3 border border-theme-border rounded-full bg-theme-bg">
-                  <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-theme-text" strokeWidth={1.5} />
+              <div key={index} className="flex flex-col items-center text-center group">
+                <div className="mb-3 sm:mb-5 text-black transition-transform duration-500 group-hover:-translate-y-1">
+                  <Icon className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8" strokeWidth={1} />
                 </div>
-                <div className="flex-1">
-                  <h4 className="text-[14px] sm:text-base font-semibold text-theme-text leading-tight">{feature.title}</h4>
-                  <p className="text-[12px] sm:text-sm text-theme-muted mt-0.5 leading-snug">{feature.description}</p>
-                </div>
+                <h4 className="text-[9px] sm:text-[10px] md:text-xs font-medium tracking-[0.12em] sm:tracking-[0.2em] text-black uppercase mb-2 sm:mb-3">
+                  {feature.title}
+                </h4>
+                <p className="text-[11px] sm:text-xs md:text-sm font-light text-gray-500 max-w-[160px] sm:max-w-[200px] mx-auto leading-snug sm:leading-relaxed">
+                  {feature.description}
+                </p>
               </div>
             );
           })}
         </div>
-      </Container>
+      </div>
     </section>
   );
 }

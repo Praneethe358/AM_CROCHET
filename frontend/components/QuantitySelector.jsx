@@ -2,13 +2,14 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-export default function QuantitySelector({ quantity, onIncrease, onDecrease }) {
+export default function QuantitySelector({ quantity, onIncrease, onDecrease, disabled = false }) {
   return (
-    <div className="flex items-center bg-gray-50 border border-gray-100 rounded-full w-32 h-11 p-1 shadow-sm">
+    <div className={`flex items-center border rounded-full w-32 h-11 p-1 shadow-sm ${disabled ? "bg-gray-100 border-gray-200 opacity-60" : "bg-gray-50 border-gray-100"}`}>
       <motion.button
-        whileTap={{ scale: 0.9 }}
+        whileTap={disabled ? undefined : { scale: 0.9 }}
         onClick={onDecrease}
-        className="w-10 h-full flex items-center justify-center text-gray-500 hover:text-black hover:bg-gray-100 rounded-full focus:outline-none transition-colors"
+        disabled={disabled}
+        className="w-10 h-full flex items-center justify-center text-gray-500 hover:text-black hover:bg-gray-100 rounded-full focus:outline-none transition-colors disabled:cursor-not-allowed disabled:hover:text-gray-500 disabled:hover:bg-transparent"
       >
         <span className="text-lg font-medium">−</span>
       </motion.button>
@@ -23,9 +24,10 @@ export default function QuantitySelector({ quantity, onIncrease, onDecrease }) {
         </motion.span>
       </div>
       <motion.button
-        whileTap={{ scale: 0.9 }}
+        whileTap={disabled ? undefined : { scale: 0.9 }}
         onClick={onIncrease}
-        className="w-10 h-full flex items-center justify-center text-gray-500 hover:text-black hover:bg-gray-100 rounded-full focus:outline-none transition-colors"
+        disabled={disabled}
+        className="w-10 h-full flex items-center justify-center text-gray-500 hover:text-black hover:bg-gray-100 rounded-full focus:outline-none transition-colors disabled:cursor-not-allowed disabled:hover:text-gray-500 disabled:hover:bg-transparent"
       >
         <span className="text-lg font-medium">+</span>
       </motion.button>

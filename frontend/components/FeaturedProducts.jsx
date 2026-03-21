@@ -3,8 +3,13 @@ import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import axios from "axios";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination } from "swiper/modules";
 
-export default function FeaturedProducts({ initialItems = [], limit = 3 }) {
+import "swiper/css";
+import "swiper/css/pagination";
+
+export default function FeaturedProducts({ initialItems = [], limit = 6 }) {
   const [featured, setFeatured] = useState([]);
 
   useEffect(() => {
@@ -68,44 +73,75 @@ export default function FeaturedProducts({ initialItems = [], limit = 3 }) {
     return effectiveFeatured.length ? effectiveFeatured.slice(0, limit) : fallback.slice(0, limit);
   }, [effectiveFeatured, limit]);
 
+  const renderBannerCard = (card, idx, isMobile = false) => {
+    const targetHref = card.id && !String(card.id).startsWith("featured-") ? `/products/${card.id}` : "/products";
+    const isPrimaryBanner = idx === 0;
+
+    return (
+      <article key={card.id} className={`group cursor-pointer ${!isMobile && isPrimaryBanner ? "md:col-span-2" : ""}`}>
+        <Link
+          href={targetHref}
+          className={`relative block w-full overflow-hidden rounded-2xl bg-gray-50 ${
+            isMobile
+              ? "aspect-[16/10]"
+              : isPrimaryBanner
+                ? "aspect-[16/9] md:aspect-[18/7]"
+                : "aspect-[16/9]"
+          }`}
+        >
+          <Image
+            src={card.image}
+            alt={card.name || "Featured collection"}
+            fill
+            className="object-cover transition-transform duration-700 group-hover:scale-105"
+            sizes={isMobile ? "100vw" : isPrimaryBanner ? "100vw" : "(max-width: 768px) 100vw, 50vw"}
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/35 to-black/10" />
+
+          <span className="absolute left-3 top-3 rounded-full bg-[#0b4e6e] px-3 py-1 text-[10px] font-semibold tracking-wider text-white uppercase">
+            New
+          </span>
+
+          <div className="absolute bottom-4 left-4 right-4 text-white">
+            <h3 className={`line-clamp-2 font-semibold uppercase tracking-wide drop-shadow-sm ${isMobile ? "text-base" : isPrimaryBanner ? "text-lg md:text-2xl" : "text-base md:text-lg"}`}>
+              {card.name}
+            </h3>
+            <span className="mt-1.5 inline-block text-xs md:text-sm font-medium underline underline-offset-2">
+              Explore Now
+            </span>
+          </div>
+        </Link>
+      </article>
+    );
+  };
+
   return (
-    <section className="bg-[#Fbf9f6] py-8 sm:py-20" id="featured-products">
-      <div className="mx-auto max-w-[1400px] px-3 sm:px-6 lg:px-8">
-        
-        {/* Header matching exactly */}
-        <div className="text-center flex justify-center items-center gap-2 mb-6 sm:gap-4 sm:mb-10">
-          <span className="text-[#e27339] text-[15px] sm:text-[20px] leading-none">•</span>
-          <h2 className="text-[17px] md:text-[23px] font-bold text-[#2b4c5c] font-serif tracking-wide pt-1">Featured Collection</h2>
-          <span className="text-[#e27339] text-[15px] sm:text-[20px] leading-none">•</span>
+    <section className="bg-white py-8 sm:py-12" id="featured-products">
+      <div className="mx-auto max-w-[1400px] px-4 sm:px-8 lg:px-16">
+        <div className="mb-5 md:mb-8 text-center">
+          <h2 className="text-2xl md:text-4xl font-semibold text-[#0b4e6e]">
+            Featured Collection
+          </h2>
         </div>
 
-        <div className="flex overflow-x-auto md:grid md:grid-cols-3 gap-2 sm:gap-3 md:gap-[18px] pb-4 md:pb-0 snap-x snap-mandatory -mx-3 px-3 sm:mx-0 sm:px-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-          {cards.map((card) => {
-            const targetHref = card.id && !String(card.id).startsWith("featured-") ? `/products/${card.id}` : "/products";
-            return (
-              <Link
-                key={card.id}
-                href={targetHref}
-                className="min-w-[55%] sm:min-w-[45%] md:min-w-0 snap-center group relative overflow-hidden rounded-[8px] border-[1px] border-[#d5a067]/30 shadow-sm aspect-[1/1.05] bg-[#f5f5f5]"
-              >
-                <Image
-                  src={card.image}
-                  alt={card.name || "Featured collection"}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                <div className="absolute inset-x-0 bottom-0 p-4 md:p-6 flex flex-col items-center justify-center text-white">
-                  <h3 className="text-[12px] md:text-[19px] font-medium tracking-[0.1em] mb-1 text-center">
-                    {card.name.toUpperCase()}
-                  </h3>
-                  <span className="text-[11px] md:text-[13px] leading-none underline underline-offset-[5px] decoration-white/80 hover:decoration-white transition-colors">
-                    Explore Now
-                  </span>
-                </div>
-              </Link>
-            );
+        <div className="md:hidden">
+          <Swiper
+            modules={[Autoplay, Pagination]}
+            slidesPerView={1.08}
+            spaceBetween={12}
+            autoplay={{ delay: 3200, disableOnInteraction: false }}
+            pagination={{ clickable: true }}
+            className="featured-banners-swiper !pb-8"
+          >
+            {cards.map((card, idx) => (
+              <SwiperSlide key={card.id}>{renderBannerCard(card, idx, true)}</SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+
+        <div className="hidden md:grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-5">
+          {cards.map((card, idx) => {
+            return renderBannerCard(card, idx);
           })}
         </div>
       </div>

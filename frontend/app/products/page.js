@@ -12,7 +12,7 @@ export default async function ProductsPage() {
   let products = [];
 
   try {
-    const response = await fetch(`${API_BASE_URL}/products`, { cache: "no-store" });
+    const response = await fetch(`${API_BASE_URL}/products?limit=60&sort=newest`, { cache: "no-store" });
     const payload = await response.json();
     const items = payload?.data || [];
 
@@ -26,13 +26,13 @@ export default async function ProductsPage() {
   }
 
   return (
-    <div className="pt-32 pb-20 min-h-screen bg-white">
+    <div className="pt-24 md:pt-32 pb-16 md:pb-20 min-h-screen bg-white">
       <Container>
         <SectionTitle 
           title="Our Collection" 
           subtitle="Browse our entire collection of meticulously crafted bags." 
         />
-        <div className="mt-12">
+        <div className="mt-5 md:mt-10">
           <ProductGrid products={products} />
         </div>
       </Container>

@@ -33,13 +33,7 @@ export default function Home() {
 
   return (
     <>
-      <Hero
-        title={homeData.hero?.title}
-        subtitle={homeData.hero?.subtitle}
-        buttonText={homeData.hero?.buttonText}
-        buttonLink={homeData.hero?.buttonLink}
-        bannerImage={homeData.hero?.bannerImage}
-      />
+      <Hero slides={homeData.hero?.slides} />
       <ThematicBannerStrip initialSlides={homeData.promotions?.thematicBanners || []} />
       <PromotionsShowcase initialPromotions={homeData.promotions?.deals || []} />
       <FeaturedProducts

@@ -2,7 +2,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { Trash2 } from "lucide-react";
 import QuantitySelector from "./QuantitySelector";
 import { useCart } from "@/context/CartContext";
@@ -17,10 +17,10 @@ export default function CartItem({ item }) {
       animate={{ opacity: 1, y: 0, scale: 1 }}
       exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
       transition={{ duration: 0.4, type: "spring", stiffness: 300, damping: 25 }}
-      className="flex flex-col sm:flex-row items-center gap-6 py-8 border-b border-gray-100 group"
+      className="group rounded-xl border border-gray-100 p-3 sm:p-0 sm:rounded-none sm:border-0 sm:flex sm:flex-row sm:items-center sm:gap-6 py-3 sm:py-8 border-b sm:border-b-gray-100"
     >
       {/* Product Image */}
-      <div className="w-28 h-28 sm:w-36 sm:h-36 relative bg-gray-50 rounded-2xl overflow-hidden flex-shrink-0 border border-gray-100/50">
+      <div className="w-24 h-24 sm:w-32 sm:h-32 relative bg-gray-50 rounded-xl overflow-hidden flex-shrink-0 border border-gray-100/50 mx-auto sm:mx-0">
         <Link href={`/products/${item.id}`}>
           <Image
             src={item.image}
@@ -32,19 +32,19 @@ export default function CartItem({ item }) {
       </div>
 
       {/* Product Details */}
-      <div className="flex-grow flex flex-col items-center sm:items-start text-center sm:text-left h-full justify-center">
+      <div className="flex-grow flex flex-col items-center sm:items-start text-center sm:text-left h-full justify-center mt-3 sm:mt-0">
         <Link
           href={`/products/${item.id}`}
-          className="text-xl font-bold text-gray-900 tracking-tight hover:text-gray-500 transition-colors"
+          className="text-base sm:text-lg font-bold text-gray-900 tracking-tight hover:text-gray-500 transition-colors line-clamp-1"
         >
           {item.name}
         </Link>
-        <p className="text-gray-400 font-medium text-xs tracking-widest uppercase mt-1.5">{item.category}</p>
-        <p className="text-lg font-semibold text-gray-800 mt-3">₹{item.price.toFixed(2)}</p>
+        <p className="text-gray-400 font-medium text-[10px] sm:text-xs tracking-wider sm:tracking-widest uppercase mt-1">{item.category}</p>
+        <p className="text-base sm:text-lg font-semibold text-gray-800 mt-2">₹{item.price.toFixed(2)}</p>
       </div>
 
       {/* Controls & Action */}
-      <div className="flex flex-col items-center sm:items-end gap-4 mt-4 sm:mt-0 justify-center">
+      <div className="flex items-center justify-between sm:justify-center sm:flex-col sm:items-end gap-3 mt-3 sm:mt-0 w-full sm:w-auto">
         <QuantitySelector
           quantity={item.quantity}
           onIncrease={() => increaseQuantity(item.id)}
@@ -54,7 +54,7 @@ export default function CartItem({ item }) {
           whileHover={{ scale: 1.05, color: "#ef4444" }}
           whileTap={{ scale: 0.95 }}
           onClick={() => removeFromCart(item.id)}
-          className="flex items-center gap-1.5 text-sm font-medium text-gray-400 hover:text-red-500 transition-colors focus:outline-none py-1 px-2 rounded-md"
+          className="flex items-center gap-1 text-xs sm:text-sm font-medium text-gray-400 hover:text-red-500 transition-colors focus:outline-none py-1 px-2 rounded-md"
         >
           <Trash2 size={16} strokeWidth={2} />
           Remove

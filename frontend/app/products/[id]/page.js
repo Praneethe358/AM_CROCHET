@@ -81,7 +81,17 @@ export default async function ProductPage({ params }) {
                   <div className="p-3">
                     <p className="text-sm font-semibold text-theme-text truncate">{item.name}</p>
                     <p className="text-xs text-theme-faint uppercase mt-1">{item.category}</p>
-                    <p className="text-sm font-bold text-theme-text mt-2">${Number(item.price || 0).toFixed(2)}</p>
+                    <div className="mt-2 flex items-center justify-between gap-2">
+                      <p className="text-sm font-bold text-theme-text">₹{Number(item.price || 0).toFixed(2)}</p>
+                      <p className={`text-[10px] font-semibold ${Number(item.stock || 0) > 0 ? "text-emerald-700" : "text-red-700"}`}>
+                        {Number(item.stock || 0) > 0 ? "In stock" : "Out of stock"}
+                      </p>
+                    </div>
+                    <p className="text-[11px] text-theme-faint mt-1">
+                      {Number(item.reviewCount || 0) > 0
+                        ? `${Number(item.averageRating || 0).toFixed(1)}★ (${Number(item.reviewCount || 0)})`
+                        : "New product"}
+                    </p>
                   </div>
                 </Link>
               ))}

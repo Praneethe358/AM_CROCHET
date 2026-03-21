@@ -1,82 +1,99 @@
-"use client";
+'use client';
 
-import { useEffect, useMemo, useState } from "react";
-import Link from "next/link";
-import Image from "next/image";
-import { Heart, Hourglass } from "lucide-react";
-import { getActivePromotions, trackPromotionClick } from "@/services/promotionApi";
+import { useEffect, useMemo, useState } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import { getActivePromotions, trackPromotionClick } from '@/services/promotionApi';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation } from 'swiper/modules';
 
-const formatPrice = (price) => {
-  if (price === null || price === undefined || Number.isNaN(Number(price))) {
-    return "₹ 0.00";
-  }
-  return `₹ ${Number(price).toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-};
+import 'swiper/css';
+import 'swiper/css/navigation';
 
 export default function PromotionsShowcase({ initialPromotions = [] }) {
   const [promotions, setPromotions] = useState([]);
+  const [nowMs, setNowMs] = useState(() => Date.now());
 
   useEffect(() => {
-    if (Array.isArray(initialPromotions) && initialPromotions.length > 0) {
+    if (Array.isArray(initialPromotions) && initialPromotions.length) {
       return;
     }
 
-    const fetchSpecialCombos = async () => {
+    const loadPromotions = async () => {
       try {
-        const data = await getActivePromotions({ placement: "special_combos" });
-        setPromotions(data || []);
+        const results = await getActivePromotions({ placement: 'special_combos' });
+        setPromotions(results || []);
       } catch (error) {
-        console.error("Failed to fetch special combos", error);
-        setPromotions([]);
+        console.error('Failed to load promotions', error);
       }
     };
 
-    fetchSpecialCombos();
+    loadPromotions();
   }, [initialPromotions]);
 
   const effectivePromotions = useMemo(() => {
-    if (Array.isArray(initialPromotions) && initialPromotions.length > 0) {
-      return initialPromotions;
-    }
-    return promotions;
+    return (Array.isArray(initialPromotions) && initialPromotions.length)
+      ? initialPromotions
+      : promotions;
   }, [initialPromotions, promotions]);
 
   const comboItems = useMemo(() => {
     return effectivePromotions
+      .filter((promo) => promo && (promo.applicableProducts?.length > 0 || promo.products?.length > 0))
       .flatMap((promotion) => {
-        const linkedProducts = promotion.products || [];
-
-        if (!linkedProducts.length) {
-          return [
-            {
-              product: null,
-              promotionId: promotion._id,
-              badge: promotion.title,
-              title: promotion.title,
-              banner: promotion.banner,
-              discount: promotion.discount,
-            },
-          ];
-        }
-
+        const productsArr = promotion.products || promotion.applicableProducts || [];
+        const linkedProducts = productsArr.slice(0, 4);
         return linkedProducts.map((product) => ({
           product,
           promotionId: promotion._id,
-          badge: promotion.title,
+          badge: promotion.title || 'MOST-LOVED COMBO',
           title: promotion.title,
           banner: promotion.banner,
           discount: promotion.discount,
+          endDate: promotion.endDate,
         }));
-      })
-      .slice(0, 5);
+      });
   }, [effectivePromotions]);
+
+  useEffect(() => {
+    if (!comboItems.length) return undefined;
+
+    const intervalId = window.setInterval(() => {
+      setNowMs(Date.now());
+    }, 1000);
+
+    return () => window.clearInterval(intervalId);
+  }, [comboItems.length]);
+
+  const formatCountdown = (endDate) => {
+    const endTime = new Date(endDate).getTime();
+    if (!endDate || Number.isNaN(endTime)) {
+      return null;
+    }
+
+    const remainingMs = endTime - nowMs;
+    if (remainingMs <= 0) {
+      return '00h 00m 00s';
+    }
+
+    const totalSeconds = Math.floor(remainingMs / 1000);
+    const hours = Math.floor(totalSeconds / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = totalSeconds % 60;
+
+    const hh = String(hours).padStart(2, '0');
+    const mm = String(minutes).padStart(2, '0');
+    const ss = String(seconds).padStart(2, '0');
+
+    return `${hh}h ${mm}m ${ss}s`;
+  };
 
   const handleComboClick = async (promotionId) => {
     if (!promotionId) return;
     try {
       await trackPromotionClick(promotionId);
     } catch (error) {
-      console.error("Failed to track combo click", error);
+      console.error('Failed to track combo click', error);
     }
   };
 
@@ -85,95 +102,125 @@ export default function PromotionsShowcase({ initialPromotions = [] }) {
   }
 
   return (
-    <section className="py-6 md:py-12 bg-[#Fbf9f6] border-t border-theme-border/40 pb-8 md:pb-16">
-      <div className="mx-auto max-w-[1400px] px-2 sm:px-6 lg:px-8">
-        
-        {/* Header */}
-        <div className="relative mb-1.5 md:mb-6 flex justify-between items-center px-1 md:px-0">
-          <h2 className="text-[18px] md:text-[22px] font-bold tracking-tight text-[#1a3b4d]">Special Combos</h2>
+    <section className="bg-[#fef9f8] px-3 py-5 md:px-8 md:py-8">
+      <div className="mx-auto max-w-[1400px]">
+        <div className="mb-3 flex items-center justify-between md:mb-6">
+          <h2 className="text-xl md:text-3xl font-semibold text-[#0a5d5d]">
+            Special Combos
+          </h2>
           <Link 
             href="/products" 
-            className="text-[11px] md:text-[13px] text-[#4a6b7d] hover:text-[#1a3b4d] transition-colors underline underline-offset-4"
+            className="text-sm md:text-base text-[#0a5d5d] underline underline-offset-4 decoration-1 hover:text-[#063f3f] transition-colors"
           >
             View All
           </Link>
         </div>
 
-        {/* Grid (5 small cards width) */}
-        <div className="flex overflow-x-auto snap-x snap-mandatory gap-2 sm:gap-4 pb-4 -mx-2 px-2 sm:mx-0 sm:px-0 sm:grid sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-          {comboItems.map((item, index) => {
-            const productId = item.product?._id;
-            const productLink = productId ? `/products/${productId}` : "/products";
-            
-            let imageSrc = item.banner;
-            if (item.product?.image) imageSrc = item.product.image;
-            if (item.product?.images?.length > 0) imageSrc = item.product.images[0];
-            if (!imageSrc) imageSrc = `https://picsum.photos/400/400?random=${index}`;
+        <div className="relative w-full">
+          <Swiper
+            modules={[Navigation]}
+            spaceBetween={6}
+            slidesPerView={2.05}
+            loop={comboItems.length > 2}
+            grabCursor
+            allowTouchMove={comboItems.length > 1}
+            breakpoints={{
+              390: { slidesPerView: 2.2 },
+              480: { slidesPerView: 2.45 },
+              768: { slidesPerView: 2.4 },
+              1024: { slidesPerView: 4 },
+            }}
+            navigation
+            className="promotions-swiper pb-2 !px-0.5 md:!px-2"
+          >
+            {comboItems.map((item, index) => {
+              const productId = item.product?._id;
+              const productLink = productId ? `/products/${productId}` : '/products';
+              const countdownText = formatCountdown(item.endDate);
+              
+              const imageSrc = item.product?.image || item.product?.images?.[0] || item.banner || `https://picsum.photos/600/800?random=${index}`;
 
-            return (
-              <article key={`${item.promotionId}-${productId || index}`} className="min-w-[150px] sm:min-w-0 snap-start flex flex-col bg-white rounded-lg overflow-hidden border border-[#e8e8e8] shadow-sm hover:shadow-md transition-shadow">
-                
-                {/* Image Container with strict aspect ratio */}
-                <div className="relative aspect-[4/5] sm:aspect-square bg-[#f5f5f5] group">
-                  {/* Timer Badge (Red) */}
-                  <div className="absolute top-0 left-0 z-10 bg-[#df2c25] text-white text-[8px] sm:text-[11px] font-bold pl-1.5 pr-2 py-1 md:pl-2 md:pr-2.5 md:py-1.5 flex items-center gap-1 sm:gap-1.5 rounded-br-[6px]">
-                    <Hourglass className="w-3 h-3 sm:w-3.5 sm:h-3.5 opacity-90" />
-                    <span className="tracking-wide">01h 40m 11s</span>
-                  </div>
+              return (
+                <SwiperSlide key={`${item.promotionId}-${productId || index}`} className="h-auto">
+                  <article className="group flex h-full flex-col overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm transition-shadow hover:shadow-md">
+                    <Link
+                      href={productLink}
+                      onClick={() => handleComboClick(item.promotionId)}
+                      className="relative block w-full aspect-square overflow-hidden bg-gray-100"
+                    >
+                      <Image
+                        src={imageSrc}
+                        alt={item.product?.name || 'Combo item'}
+                        fill
+                        className="object-cover transition-transform duration-700 group-hover:scale-105"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                      />
+                      {countdownText ? (
+                        <div className="absolute left-0 top-0 z-10 flex items-center gap-1 rounded-br-md bg-[#d9232d] px-1.5 py-0.5 text-[9px] font-bold text-white md:gap-1.5 md:rounded-br-lg md:px-3 md:py-1.5 md:text-sm">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><line x1="10" x2="14" y1="2" y2="2"/><line x1="12" x2="15" y1="14" y2="11"/><circle cx="12" cy="14" r="8"/></svg>
+                          {countdownText}
+                        </div>
+                      ) : null}
+                      {/* Wishlist Heart */}
+                      <div className="absolute right-2 top-2 z-10 rounded-full bg-white/80 p-1 text-gray-400 shadow-sm backdrop-blur-sm transition-colors hover:bg-white hover:text-red-500 md:right-3 md:top-3 md:p-1.5">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+                      </div>
+                    </Link>
 
-                  {/* Wishlist Button */}
-                  <button className="absolute top-2.5 right-2.5 z-10 p-[7px] bg-white/90 backdrop-blur-sm rounded-full text-gray-400 hover:text-[#df2c25] hover:bg-white shadow-sm border border-gray-100 transition-colors">
-                    <Heart className="w-3.5 h-3.5 sm:w-[15px] sm:h-[15px]" />
-                  </button>
-
-                  <Link href={productLink} onClick={() => handleComboClick(item.promotionId)}>
-                    <Image
-                      src={imageSrc}
-                      alt={item.product?.name || item.title || "Combo product"}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
-                      sizes="(max-width: 768px) 50vw, 20vw"
-                    />
-                  </Link>
-
-                  {/* Most-Loved Tag over image (Bottom left inside image area) */}
-                  {(index < 2 || item.badge?.toLowerCase().includes('loved')) && (
-                     <div className="absolute bottom-2 left-2 z-10">
-                      <span className="inline-block bg-[#0f3443] text-white text-[7px] sm:text-[9px] font-bold px-1 py-[1.5px] sm:px-2 sm:py-[2.5px] rounded border border-[#0f3443]/20 shadow-sm uppercase tracking-wider">
-                        MOST-LOVED COMBO
+                    <div className="flex min-h-[94px] flex-1 flex-col gap-1 p-2 md:min-h-[160px] md:gap-3 md:p-4">
+                      <span className="inline-flex max-w-full self-start truncate rounded-full bg-[#0a5d5d] px-2 py-0.5 text-[7px] font-bold uppercase tracking-wide text-white md:px-3 md:py-1.5 md:text-xs">
+                        {item.badge}
                       </span>
+                      
+                      <Link href={productLink} onClick={() => handleComboClick(item.promotionId)} className="block flex-1">
+                        <h3 className="mb-0.5 line-clamp-2 text-[10px] font-medium leading-snug text-gray-800 transition-colors hover:text-[#0a5d5d] md:text-base">
+                          {item.product?.name || item.title || 'Special Collection Item'}
+                        </h3>
+                      </Link>
+
+                      <div className="mt-auto flex items-end justify-between gap-1 pt-0.5 md:gap-3 md:pt-2">
+                        <span className="text-[13px] font-semibold text-gray-900 md:text-xl">
+                          ₹ {item.product?.price ? parseInt(item.product.price).toLocaleString('en-IN') : '2,099'}.00
+                        </span>
+                        <button type="button" className="min-w-[44px] rounded-md border border-gray-300 bg-white px-1.5 py-0.5 text-[10px] font-medium text-gray-700 transition-all hover:border-gray-400 hover:bg-gray-50 md:min-w-[86px] md:px-5 md:py-1.5 md:text-sm">
+                          Add
+                        </button>
+                      </div>
                     </div>
-                  )}
-                </div>
-
-                {/* Content Details */}
-                <div className="p-2 sm:p-3.5 flex-1 flex flex-col pt-2 sm:pt-4">
-                  <Link href={productLink} onClick={() => handleComboClick(item.promotionId)} className="block group mb-3">
-                    <h3 className="text-[11px] sm:text-[13px] leading-[1.3] md:leading-snug font-medium text-[#2f2f2f] line-clamp-2 group-hover:text-[#df2c25] transition-colors">
-                      {item.product?.name || item.title || "Exclusive Combo Package"}
-                    </h3>
-                  </Link>
-
-                  {/* Pricing and Button */}
-                  <div className="mt-auto pt-2 sm:pt-3 border-t border-[#f0f0f0] flex items-center justify-between">
-                    {item.product?.price !== undefined && item.product?.price !== null ? (
-                      <span className="text-[12px] xs:text-[13px] sm:text-[15px] font-bold text-[#111]">{formatPrice(item.product.price)}</span>
-                    ) : item.discount ? (
-                      <span className="text-[12px] xs:text-[13px] sm:text-[15px] font-bold text-[#df2c25]">{item.discount}% OFF</span>
-                    ) : (
-                      <span className="text-[14px] sm:text-[15px] font-bold text-[#111]">Exclusive</span>
-                    )}
-
-                    <button className="text-[9px] sm:text-[11px] font-medium px-2 py-1 md:px-4 md:py-[5px] border border-[#d8d8d8] rounded text-[#444] hover:border-gray-500 hover:bg-gray-50 transition-colors focus:outline-none">
-                      Add
-                    </button>
-                  </div>
-                </div>
-              </article>
-            );
-          })}
+                  </article>
+                </SwiperSlide>
+              );
+            })}
+          </Swiper>
         </div>
       </div>
+
+      <style dangerouslySetInnerHTML={{ __html: `
+        .promotions-swiper .swiper-button-next, 
+        .promotions-swiper .swiper-button-prev {
+          background-color: white;
+          color: #333;
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+        .promotions-swiper .swiper-button-next:after, 
+        .promotions-swiper .swiper-button-prev:after {
+          font-size: 16px;
+          font-weight: bold;
+        }
+        .promotions-swiper .swiper-button-disabled {
+          opacity: 0 !important;
+          pointer-events: none;
+        }
+        @media (max-width: 767px) {
+          .promotions-swiper .swiper-button-next,
+          .promotions-swiper .swiper-button-prev {
+            display: none;
+          }
+        }
+      `}} />
     </section>
   );
 }
