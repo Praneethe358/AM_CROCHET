@@ -104,7 +104,7 @@ export default function PromotionsShowcase({ initialPromotions = [] }) {
   }
 
   return (
-    <section className="bg-[#fef9f8] px-3 py-5 md:px-8 md:py-8">
+    <section className="bg-theme-bg px-3 py-6 md:px-8 md:py-12 border-t border-theme-border/50">
       <div className="mx-auto max-w-[1400px]">
         <div className="mb-3 flex items-center justify-between md:mb-6">
           <h2 className="text-theme-text font-bold">
@@ -144,7 +144,7 @@ export default function PromotionsShowcase({ initialPromotions = [] }) {
 
               return (
                 <SwiperSlide key={`${item.promotionId}-${productId || index}`} className="h-auto">
-                  <article className="group flex h-full flex-col overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm transition-shadow hover:shadow-md">
+                  <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-theme-border/40 bg-white shadow-[0_4px_20px_rgba(0,0,0,0.03)] transition-all hover:shadow-[0_10px_30px_rgba(0,0,0,0.08)]">
                     <Link
                       href={productLink}
                       onClick={() => handleComboClick(item.promotionId)}
@@ -158,9 +158,9 @@ export default function PromotionsShowcase({ initialPromotions = [] }) {
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                       />
                       {countdownText ? (
-                        <div className="absolute left-0 top-0 z-10 flex items-center gap-1 rounded-br-md bg-[#d9232d] px-1.5 py-0.5 text-[9px] font-bold text-white md:gap-1.5 md:rounded-br-lg md:px-3 md:py-1.5 md:text-sm">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><line x1="10" x2="14" y1="2" y2="2"/><line x1="12" x2="15" y1="14" y2="11"/><circle cx="12" cy="14" r="8"/></svg>
-                          {countdownText}
+                        <div className="absolute left-2 top-2 z-10 flex items-center gap-1.5 rounded-full bg-theme-text/80 backdrop-blur-md px-2.5 py-1 text-[9px] font-semibold text-white md:gap-2 md:px-4 md:py-2 md:text-xs">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="animate-pulse"><line x1="10" x2="14" y1="2" y2="2"/><line x1="12" x2="15" y1="14" y2="11"/><circle cx="12" cy="14" r="8"/></svg>
+                          <span className="tracking-wider">{countdownText}</span>
                         </div>
                       ) : null}
                       {/* Wishlist Heart */}
@@ -180,11 +180,11 @@ export default function PromotionsShowcase({ initialPromotions = [] }) {
                         </h3>
                       </Link>
 
-                      <div className="mt-auto flex items-end justify-between gap-1 pt-0.5 md:gap-3 md:pt-2">
-                        <span className="text-[13px] font-semibold text-gray-900 md:text-xl">
+                      <div className="mt-auto flex items-center justify-between gap-1 pt-1 md:gap-3 md:pt-4">
+                        <span className="text-sm font-bold text-theme-text md:text-xl">
                           ₹ {item.product?.price ? parseInt(item.product.price).toLocaleString('en-IN') : '2,099'}.00
                         </span>
-                        <button type="button" className="min-w-[44px] rounded-md border border-gray-300 bg-white px-1.5 py-0.5 text-[10px] font-medium text-gray-700 transition-all hover:border-gray-400 hover:bg-gray-50 md:min-w-[86px] md:px-5 md:py-1.5 md:text-sm">
+                        <button type="button" className="inline-flex items-center justify-center rounded-full bg-theme-text px-4 py-1.5 text-[10px] font-medium text-white transition-all hover:bg-theme-accent md:px-6 md:py-2.5 md:text-xs uppercase tracking-widest">
                           Add
                         </button>
                       </div>
