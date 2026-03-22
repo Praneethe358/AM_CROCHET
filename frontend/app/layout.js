@@ -8,8 +8,8 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair' });
 
 export const metadata = {
-  title: "BagStore | Premium Handcrafted Bags",
-  description: "Discover stylish bags designed for everyday style and premium durability.",
+  title: "AM CROCHET | Luxury Handcrafted Bags",
+  description: "Exquisite handcrafted crochet bags and accessories designed for enduring style and refined luxury.",
 };
 
 export default function RootLayout({ children }) {

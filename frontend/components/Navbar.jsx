@@ -78,7 +78,7 @@ export default function Navbar() {
           <div className="flex items-center justify-between">
             {/* Logo */}
             <Link href="/" className={`relative z-10 flex text-xl md:text-2xl font-bold font-serif tracking-widest uppercase transition-colors duration-500 group ${isTransparent ? 'text-white' : 'text-black'}`}>
-              MIRAGGIO<span className="text-gray-400 group-hover:text-black transition-colors ml-0.5">.</span>
+              AM CROCHET<span className="text-theme-accent ml-0.5">.</span>
             </Link>
 
             {/* Center Navigation (Desktop) */}
@@ -181,8 +181,8 @@ export default function Navbar() {
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
               className="fixed top-0 right-0 bottom-0 w-[85%] max-w-sm bg-[#FDF6EC] z-50 shadow-2xl md:hidden border-l border-[#EADFD0] flex flex-col"
             >
-              <div className="flex items-center justify-between p-6 border-b border-[#EADFD0]">
-                <span className="text-xl font-bold font-serif text-[#2C2C2C]">Menu</span>
+              <div className="flex items-center justify-between p-6 border-b border-theme-border">
+                <span className="text-xl font-bold font-serif text-theme-text uppercase tracking-widest">AM CROCHET</span>
                 <button 
                   onClick={() => setMobileMenuOpen(false)}
                   className="p-2 -mr-2 text-[#2C2C2C] hover:text-[#C8A97E] transition-colors rounded-full bg-[#F7EFE5]"

@@ -84,7 +84,7 @@ export default function FeaturedProducts({ initialItems = [], limit = 6 }) {
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/35 to-black/10" />
 
-          <span className="absolute left-3 top-3 rounded-full bg-[#0b4e6e] px-3 py-1 text-[10px] font-semibold tracking-wider text-white uppercase">
+          <span className="absolute left-3 top-3 rounded-full bg-theme-accent px-3 py-1 text-[10px] font-semibold tracking-wider text-theme-text uppercase">
             New
           </span>
 
@@ -105,7 +105,7 @@ export default function FeaturedProducts({ initialItems = [], limit = 6 }) {
     <section className="bg-white py-8 sm:py-12" id="featured-products">
       <div className="mx-auto max-w-[1400px] px-4 sm:px-8 lg:px-16">
         <div className="mb-5 md:mb-8 text-center">
-          <h2 className="text-2xl md:text-4xl font-semibold text-[#0b4e6e]">
+          <h2 className="text-theme-text font-bold">
             Featured Collection
           </h2>
         </div>

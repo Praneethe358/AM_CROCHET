@@ -107,12 +107,12 @@ export default function PromotionsShowcase({ initialPromotions = [] }) {
     <section className="bg-[#fef9f8] px-3 py-5 md:px-8 md:py-8">
       <div className="mx-auto max-w-[1400px]">
         <div className="mb-3 flex items-center justify-between md:mb-6">
-          <h2 className="text-xl md:text-3xl font-semibold text-[#0a5d5d]">
+          <h2 className="text-theme-text font-bold">
             Special Combos
           </h2>
           <Link 
             href="/products" 
-            className="text-sm md:text-base text-[#0a5d5d] underline underline-offset-4 decoration-1 hover:text-[#063f3f] transition-colors"
+            className="text-sm md:text-base text-theme-accent underline underline-offset-4 decoration-1 hover:text-theme-text transition-colors"
           >
             View All
           </Link>
@@ -170,12 +170,12 @@ export default function PromotionsShowcase({ initialPromotions = [] }) {
                     </Link>
 
                     <div className="flex min-h-[94px] flex-1 flex-col gap-1 p-2 md:min-h-[160px] md:gap-3 md:p-4">
-                      <span className="inline-flex max-w-full self-start truncate rounded-full bg-[#0a5d5d] px-2 py-0.5 text-[7px] font-bold uppercase tracking-wide text-white md:px-3 md:py-1.5 md:text-xs">
+                      <span className="inline-flex max-w-full self-start truncate rounded-full bg-theme-accent px-2 py-0.5 text-[7px] font-bold uppercase tracking-wide text-theme-text md:px-3 md:py-1.5 md:text-xs">
                         {item.badge}
                       </span>
                       
                       <Link href={productLink} onClick={() => handleComboClick(item.promotionId)} className="block flex-1">
-                        <h3 className="mb-0.5 line-clamp-2 text-[10px] font-medium leading-snug text-gray-800 transition-colors hover:text-[#0a5d5d] md:text-base">
+                        <h3 className="mb-0.5 line-clamp-2 text-[10px] font-medium leading-snug text-theme-text transition-colors hover:text-theme-accent md:text-base">
                           {item.product?.name || item.title || 'Special Collection Item'}
                         </h3>
                       </Link>
