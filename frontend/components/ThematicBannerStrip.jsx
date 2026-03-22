@@ -103,10 +103,10 @@ export default function ThematicBannerStrip({ initialSlides = [] }) {
 
             <div className="p-4 sm:p-8 md:p-10">
               <p className="text-xs sm:text-sm uppercase tracking-[0.18em] font-semibold text-theme-faint">{getAudienceLabel(activeSlide.audience)}</p>
-              <h2 className="mt-1.5 text-4xl md:text-5xl font-semibold tracking-tight text-theme-text leading-tight">
+              <h2 className="mt-1.5 text-3xl md:text-4xl font-bold tracking-tight text-theme-text leading-tight">
                 {activeSlide.title || "Season Collection"}
               </h2>
-              <p className="mt-2 text-theme-muted text-sm sm:text-lg leading-relaxed max-w-xl">
+              <p className="mt-2 text-theme-muted text-xs sm:text-base leading-relaxed max-w-xl">
                 {activeSlide.description || "Discover premium styles crafted for your daily lifestyle."}
               </p>
               {activeSlide.discount !== null && activeSlide.discount !== undefined ? (

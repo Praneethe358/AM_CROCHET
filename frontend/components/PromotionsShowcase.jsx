@@ -144,7 +144,7 @@ export default function PromotionsShowcase({ initialPromotions = [] }) {
 
               return (
                 <SwiperSlide key={`${item.promotionId}-${productId || index}`} className="h-auto">
-                  <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-theme-border/40 bg-white shadow-[0_4px_20px_rgba(0,0,0,0.03)] transition-all hover:shadow-[0_10px_30px_rgba(0,0,0,0.08)]">
+                  <article className="group flex h-full flex-col overflow-hidden rounded-none border border-theme-border/60 bg-white shadow-[0_4px_20px_rgba(0,0,0,0.02)] transition-all hover:shadow-[0_10px_30px_rgba(0,0,0,0.06)]">
                     <Link
                       href={productLink}
                       onClick={() => handleComboClick(item.promotionId)}
