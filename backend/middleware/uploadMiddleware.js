@@ -50,12 +50,7 @@ const storage = new StorageClass({
       overwrite: false,
       unique_filename: true,
       use_filename: false,
-      // Upload at MAXIMUM quality — no lossy compression, no resizing.
-      // The original high-resolution file is preserved on Cloudinary.
-      // On-the-fly transformations handle responsive delivery later.
-      transformation: [
-        { quality: 'auto:best', fetch_format: 'auto' },
-      ],
+      // We removed eager transformations here to make uploads significantly faster.
     };
   },
 });

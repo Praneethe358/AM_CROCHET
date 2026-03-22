@@ -26,7 +26,7 @@ const errorHandler = (error, req, res, next) => {
     if (error.code === 'LIMIT_FILE_SIZE') {
       return res.status(413).json({
         success: false,
-        message: 'File too large. Maximum allowed size is 2MB',
+        message: 'File too large. Maximum allowed size is 10MB',
         data: {},
       });
     }
