@@ -67,13 +67,13 @@ export default function FeaturedProducts({ initialItems = [], limit = 6 }) {
       <article key={card.id} className={`group cursor-pointer ${!isMobile && isPrimaryBanner ? "md:col-span-2" : ""}`}>
         <Link
           href={targetHref}
-          className={`relative block w-full overflow-hidden rounded-2xl bg-gray-50 ${
+          className={`relative block w-full overflow-hidden rounded-[2rem] bg-theme-secondary ${
             isMobile
               ? "aspect-[16/10]"
               : isPrimaryBanner
-                ? "aspect-[16/9] md:aspect-[18/7]"
+                ? "aspect-[16/9] md:aspect-[21/9]"
                 : "aspect-[16/9]"
-          }`}
+          } border border-theme-border/50 shadow-sm`}
         >
           <Image
             src={getOptimizedImageUrl(card.image, { width: 1400 })}
@@ -82,18 +82,19 @@ export default function FeaturedProducts({ initialItems = [], limit = 6 }) {
             className="object-cover transition-transform duration-700 group-hover:scale-105"
             sizes={isMobile ? "100vw" : isPrimaryBanner ? "100vw" : "(max-width: 768px) 100vw, 50vw"}
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/35 to-black/10" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
 
-          <span className="absolute left-3 top-3 rounded-full bg-theme-accent px-3 py-1 text-[10px] font-semibold tracking-wider text-theme-text uppercase">
+          <span className="absolute left-4 top-4 rounded-full bg-theme-accent/90 backdrop-blur-md px-4 py-1.5 text-[10px] font-bold tracking-widest text-theme-text uppercase">
             New
           </span>
 
-          <div className="absolute bottom-4 left-4 right-4 text-white">
-            <h3 className={`line-clamp-2 font-semibold uppercase tracking-wide drop-shadow-sm ${isMobile ? "text-base" : isPrimaryBanner ? "text-lg md:text-2xl" : "text-base md:text-lg"}`}>
+          <div className="absolute bottom-6 left-6 right-6 text-white">
+            <h3 className={`line-clamp-2 font-bold uppercase tracking-widest drop-shadow-md ${isMobile ? "text-lg" : isPrimaryBanner ? "text-xl md:text-3xl" : "text-lg md:text-xl"}`}>
               {card.name}
             </h3>
-            <span className="mt-1.5 inline-block text-xs md:text-sm font-medium underline underline-offset-2">
-              Explore Now
+            <span className="mt-2 inline-flex items-center gap-2 text-xs md:text-sm font-semibold uppercase tracking-widest opacity-90 group-hover:opacity-100 transition-opacity">
+              Explore Collection
+              <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
             </span>
           </div>
         </Link>
@@ -102,7 +103,7 @@ export default function FeaturedProducts({ initialItems = [], limit = 6 }) {
   };
 
   return (
-    <section className="bg-white py-8 sm:py-12" id="featured-products">
+    <section className="bg-theme-bg py-12 sm:py-20" id="featured-products">
       <div className="mx-auto max-w-[1400px] px-4 sm:px-8 lg:px-16">
         <div className="mb-5 md:mb-8 text-center">
           <h2 className="text-theme-text font-bold">
