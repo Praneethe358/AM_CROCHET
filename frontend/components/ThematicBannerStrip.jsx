@@ -9,32 +9,7 @@ import { getOptimizedImageUrl } from "@/utils/cloudinaryImage";
 
 const audienceOrder = ["women", "teens", "college"];
 
-const fallbackSlides = {
-  women: {
-    _id: "fallback-women",
-    title: "Women Collection",
-    description: "Elegant handcrafted bags for everyday confidence.",
-    banner: "https://picsum.photos/seed/women-banner/1400/700",
-    audience: "women",
-    discount: 25,
-  },
-  teens: {
-    _id: "fallback-teens",
-    title: "Teens Collection",
-    description: "Trendy and lightweight styles for daily college life.",
-    banner: "https://picsum.photos/seed/teens-banner/1400/700",
-    audience: "teens",
-    discount: 20,
-  },
-  college: {
-    _id: "fallback-college",
-    title: "College Collection",
-    description: "Spacious and stylish picks designed for busy campus days.",
-    banner: "https://picsum.photos/seed/college-banner/1400/700",
-    audience: "college",
-    discount: 30,
-  },
-};
+const fallbackSlides = {};
 
 const getAudienceLabel = (audience) => {
   if (audience === "women") return "Women";
@@ -74,15 +49,8 @@ export default function ThematicBannerStrip({ initialSlides = [] }) {
   }, [initialSlides, slides]);
 
   const orderedSlides = useMemo(() => {
-    const byAudience = new Map();
-
-    effectiveSlides.forEach((slide) => {
-      if (slide?.audience && !byAudience.has(slide.audience)) {
-        byAudience.set(slide.audience, slide);
-      }
-    });
-
-    return audienceOrder.map((audience) => byAudience.get(audience) || fallbackSlides[audience]);
+    // Only show what's actually in Atlas; no fallbacks.
+    return effectiveSlides;
   }, [effectiveSlides]);
 
   useEffect(() => {
@@ -124,7 +92,7 @@ export default function ThematicBannerStrip({ initialSlides = [] }) {
           <div className="grid items-center md:grid-cols-2 min-h-[290px] sm:min-h-[360px]">
             <div className="relative h-[220px] sm:h-[360px] md:h-full">
               <Image
-                src={getOptimizedImageUrl(activeSlide.banner || "https://picsum.photos/1400/700", { width: 1400 })}
+                src={getOptimizedImageUrl(activeSlide.banner || "", { width: 1400 })}
                 alt={activeSlide.title || "Thematic promotion banner"}
                 fill
                 className="object-cover"

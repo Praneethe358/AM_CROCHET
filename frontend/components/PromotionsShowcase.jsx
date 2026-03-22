@@ -140,7 +140,7 @@ export default function PromotionsShowcase({ initialPromotions = [] }) {
               const productLink = productId ? `/products/${productId}` : '/products';
               const countdownText = formatCountdown(item.endDate);
               
-              const imageSrc = item.product?.image || item.product?.images?.[0] || item.banner || `https://picsum.photos/600/800?random=${index}`;
+              const imageSrc = item.product?.image || item.product?.images?.[0] || item.banner || '';
 
               return (
                 <SwiperSlide key={`${item.promotionId}-${productId || index}`} className="h-auto">

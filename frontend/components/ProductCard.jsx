@@ -11,7 +11,7 @@ export default function ProductCard({ product }) {
   const { addToCart } = useCart();
   const imageRef = useRef(null);
   const productId = product.id || product._id;
-  const rawImageSrc = product.images?.[0] || product.image || "https://picsum.photos/200/300";
+  const rawImageSrc = product.images?.[0] || product.image || "";
   const imageSrc = getOptimizedImageUrl(rawImageSrc, { width: 800 });
 
   const handleQuickAdd = (e) => {

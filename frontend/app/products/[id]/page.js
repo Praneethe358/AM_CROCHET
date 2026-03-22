@@ -27,7 +27,7 @@ export default async function ProductPage({ params }) {
     product = {
       ...item,
       id: item._id,
-      image: item.image || "https://picsum.photos/200/300",
+      image: item.image || "",
       images: item.images || [],
     };
   } catch {
@@ -48,7 +48,7 @@ export default async function ProductPage({ params }) {
       .map((item) => ({
         ...item,
         id: item._id,
-        image: item.image || item.images?.[0] || "https://picsum.photos/200/300",
+        image: item.image || item.images?.[0] || "",
       }));
   } catch {
     availableProducts = [];

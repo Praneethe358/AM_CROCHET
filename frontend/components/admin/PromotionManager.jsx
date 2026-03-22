@@ -392,7 +392,7 @@ export default function PromotionManager({
               <article key={promotion._id} className="p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center gap-4">
                 <div className="relative h-20 w-full sm:w-32 rounded-lg overflow-hidden border border-black/5 dark:border-white/10 shrink-0">
                   <Image
-                    src={getOptimizedImageUrl(promotion.banner || "https://picsum.photos/800/500", { width: 400 })}
+                    src={getOptimizedImageUrl(promotion.banner || "", { width: 400 })}
                     alt={promotion.title}
                     fill
                     className="object-cover"

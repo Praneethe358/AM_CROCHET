@@ -11,22 +11,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/effect-fade';
 
-const defaultSlides = [
-  {
-    image: 'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?q=80&w=1000&auto=format&fit=crop',
-    subtitle: 'THE NEW STANDARD',
-    title: 'WORK HOUR',
-    description: 'Structure meets fluidity in our latest collection.',
-    link: '/products',
-  },
-  {
-    image: 'https://images.unsplash.com/photo-1591561954557-26941169b49e?q=80&w=1000&auto=format&fit=crop',
-    subtitle: 'CURATED ESSENTIALS',
-    title: 'BUCKLED',
-    description: 'Hardware that makes a statement.',
-    link: '/products',
-  },
-];
+const defaultSlides = [];
 
 export default function Hero({ slides }) {
   const activeSlides = useMemo(() => {

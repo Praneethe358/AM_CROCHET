@@ -19,7 +19,7 @@ export default async function ProductsPage() {
     products = items.map((item) => ({
       ...item,
       id: item._id,
-      image: item.image || "https://picsum.photos/200/300",
+      image: item.image || "",
     }));
   } catch (error) {
     console.error("Failed to load products", error);

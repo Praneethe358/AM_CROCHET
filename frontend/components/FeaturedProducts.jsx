@@ -29,7 +29,7 @@ export default function FeaturedProducts({ initialItems = [], limit = 6 }) {
           items.map((item) => ({
             ...item,
             id: item._id,
-            image: item.image || item.images?.[0] || "https://picsum.photos/1200/1600",
+            image: item.image || item.images?.[0] || "",
           }))
         );
       } catch (error) {
@@ -46,7 +46,7 @@ export default function FeaturedProducts({ initialItems = [], limit = 6 }) {
       return initialItems.map((item) => ({
         ...item,
         id: item._id || item.id,
-        image: item.image || item.images?.[0] || "https://picsum.photos/1200/1600",
+        image: item.image || item.images?.[0] || "",
       }));
     }
 
@@ -54,26 +54,10 @@ export default function FeaturedProducts({ initialItems = [], limit = 6 }) {
   }, [initialItems, featured]);
 
   const cards = useMemo(() => {
-    const fallback = [
-      {
-        id: "featured-1",
-        name: "Gift Shop Collection",
-        image: "https://picsum.photos/seed/featured-1/1200/1600",
-      },
-      {
-        id: "featured-2",
-        name: "Signature Collection",
-        image: "https://picsum.photos/seed/featured-2/1200/1600",
-      },
-      {
-        id: "featured-3",
-        name: "Alt Collection",
-        image: "https://picsum.photos/seed/featured-3/1200/1600",
-      },
-    ];
-
-    return effectiveFeatured.length ? effectiveFeatured.slice(0, limit) : fallback.slice(0, limit);
+    return effectiveFeatured.length ? effectiveFeatured.slice(0, limit) : [];
   }, [effectiveFeatured, limit]);
+
+  if (cards.length === 0) return null;
 
   const renderBannerCard = (card, idx, isMobile = false) => {
     const targetHref = card.id && !String(card.id).startsWith("featured-") ? `/products/${card.id}` : "/products";

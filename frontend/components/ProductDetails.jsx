@@ -39,7 +39,7 @@ export default function ProductDetails({ product }) {
   const galleryImages =
     Array.isArray(product.images) && product.images.length > 0
       ? product.images
-      : [product.image || "https://picsum.photos/200/300"];
+      : [product.image || ""];
 
   const goPrevImage = () => {
     setActiveImageIndex((prev) => (prev === 0 ? galleryImages.length - 1 : prev - 1));
