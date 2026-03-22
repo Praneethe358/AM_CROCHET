@@ -17,7 +17,6 @@ export default function Sidebar({ isOpen, setIsOpen }) {
     { name: "Dashboard", href: "/admin", icon: <LayoutDashboard size={20} /> },
     { name: "Hero", href: "/admin/hero", icon: <ImageIcon size={20} /> },
     { name: "Featured", href: "/admin/featured", icon: <Star size={20} /> },
-    { name: "Categories", href: "/admin/categories", icon: <FolderTree size={20} /> },
     { name: "Home Banners", href: "/admin/home-banners", icon: <Layers size={20} /> },
     { name: "Special Combos", href: "/admin/special-combos", icon: <Gift size={20} /> },
     { name: "Products", href: "/admin/products", icon: <Package size={20} /> },

@@ -20,7 +20,6 @@ const adminRoutes = require('./routes/adminRoutes');
 const promotionRoutes = require('./routes/promotionRoutes');
 const adminPromotionRoutes = require('./routes/adminPromotionRoutes');
 const adminHeroRoutes = require('./routes/adminHeroRoutes');
-const adminCategoryRoutes = require('./routes/adminCategoryRoutes');
 const adminFeaturedRoutes = require('./routes/adminFeaturedRoutes');
 const homeRoutes = require('./routes/homeRoutes');
 const { swaggerUi, specs } = require('./docs/swagger');
@@ -135,7 +134,6 @@ app.use('/api/home', homeRoutes);
 app.use('/api/user', userRoutes);
 app.use('/api/admin/promotions', adminPromotionRoutes);
 app.use('/api/admin/hero', adminHeroRoutes);
-app.use('/api/admin/categories', adminCategoryRoutes);
 app.use('/api/admin/featured', adminFeaturedRoutes);
 app.use('/api/admin', adminRoutes);
 

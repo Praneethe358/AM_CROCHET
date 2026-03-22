@@ -1,5 +1,4 @@
 const Hero = require('../models/Hero');
-const Category = require('../models/Category');
 const FeaturedCollection = require('../models/FeaturedCollection');
 const Product = require('../models/Product');
 const Promotion = require('../models/Promotion');
@@ -14,7 +13,6 @@ const getHomeData = async (req, res, next) => {
     const [
       hero,
       featuredCollection,
-      categories,
       thematicBanners,
       dealPromotions,
     ] = await Promise.all([
@@ -22,7 +20,6 @@ const getHomeData = async (req, res, next) => {
       FeaturedCollection.findOne({ key: FEATURED_KEY, isActive: true })
         .populate('items.product', 'name price image images category stock isFeatured featuredOrder createdAt')
         .lean(),
-      Category.find({ isActive: true }).sort({ sortOrder: 1, createdAt: -1 }).lean(),
       Promotion.find({
         status: 'active',
         placement: 'home_thematic_banner',
@@ -68,7 +65,6 @@ const getHomeData = async (req, res, next) => {
           maxItems,
           items: featuredItems,
         },
-        categories,
         promotions: {
           thematicBanners,
           deals: dealPromotions,

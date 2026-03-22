@@ -14,7 +14,6 @@ export default function Home() {
   const [homeData, setHomeData] = useState({
     hero: null,
     featured: { items: [], maxItems: 6 },
-    categories: [],
     promotions: { thematicBanners: [], deals: [] },
   });
 
