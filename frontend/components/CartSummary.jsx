@@ -46,8 +46,8 @@ export default function CartSummary() {
       </div>
       
       <Link href="/checkout" className="block w-full">
-        <Button variant="primary" className="w-full py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-xl sm:rounded-2xl shadow-lg">
-          Proceed to Checkout
+        <Button variant="primary" className="w-full py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-xl sm:rounded-2xl shadow-lg bg-green-600 hover:bg-green-700">
+          Order via WhatsApp
         </Button>
       </Link>
     </div>

@@ -4,12 +4,16 @@ import { useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { toast } from "react-hot-toast";
+import { MessageCircle } from "lucide-react";
 import ProtectedRoute from "@/components/ProtectedRoute";
 import Container from "@/components/Container";
 import CheckoutForm from "@/components/CheckoutForm";
 import OrderSummary from "@/components/OrderSummary";
 import { useCart } from "@/context/CartContext";
 import { createOrderRecordRequest } from "@/services/orderApi";
+
+// WhatsApp business number (without + or country code spaces)
+const WHATSAPP_PHONE = "919080689844"; // Update this with actual WhatsApp business number
 
 export default function CheckoutPage() {
   const router = useRouter();
@@ -25,6 +29,7 @@ export default function CheckoutPage() {
   });
   const [errors, setErrors] = useState({});
   const [isPlacingOrder, setIsPlacingOrder] = useState(false);
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
 
   const totals = useMemo(() => {
     const subtotal = (cartItems || []).reduce(
@@ -61,6 +66,47 @@ export default function CheckoutPage() {
     return Object.keys(nextErrors).length === 0;
   };
 
+  const generateWhatsAppMessage = (orderData) => {
+    const items = cartItems || [];
+    if (items.length === 0) return "";
+
+    let message = "Hello, I want to order:\n\n";
+    
+    items.forEach((item) => {
+      const name = item.name || "Product";
+      const qty = item.quantity || 1;
+      const price = Number(item.price || 0) * qty;
+      message += `${name} x${qty} - ₹${price.toFixed(2)}\n`;
+    });
+
+    message += `\n*Total: ₹${totals.total.toFixed(2)}*\n\n`;
+    message += `*Shipping Details:*\n`;
+    message += `Name: ${formData.name}\n`;
+    message += `Phone: ${formData.phone}\n`;
+    message += `Address: ${formData.address}, ${formData.city} - ${formData.pincode}\n`;
+    
+    if (orderData?._id) {
+      message += `\nOrder ID: ${orderData._id}`;
+    }
+
+    return message;
+  };
+
+  const openWhatsApp = (orderData) => {
+    try {
+      const message = generateWhatsAppMessage(orderData);
+      const encodedMessage = encodeURIComponent(message);
+      const whatsappUrl = `https://wa.me/${WHATSAPP_PHONE}?text=${encodedMessage}`;
+      
+      window.open(whatsappUrl, "_blank");
+      return true;
+    } catch (error) {
+      console.error("WhatsApp redirect error:", error);
+      toast.error("Failed to open WhatsApp. Please try again.");
+      return false;
+    }
+  };
+
   const handlePlaceOrder = async () => {
     if (isPlacingOrder) return;
 
@@ -74,6 +120,13 @@ export default function CheckoutPage() {
       return;
     }
 
+    // Show confirmation modal
+    setShowConfirmModal(true);
+  };
+
+  const confirmWhatsAppOrder = async () => {
+    setShowConfirmModal(false);
+    
     const itemsPayload = cartItems.map((item) => ({
       productId: item._id || item.id || item.productId,
       quantity: Number(item.quantity || 1),
@@ -90,7 +143,7 @@ export default function CheckoutPage() {
 
     setIsPlacingOrder(true);
     try {
-      await createOrderRecordRequest(
+      const orderData = await createOrderRecordRequest(
         {
           items: itemsPayload,
           shippingAddress: formData,
@@ -100,10 +153,15 @@ export default function CheckoutPage() {
         }
       );
 
-      clearCart();
-      idempotencyKeyRef.current = null;
-      toast.success("Order placed successfully");
-      router.push("/orders");
+      // Open WhatsApp with order details
+      const whatsappOpened = openWhatsApp(orderData);
+      
+      if (whatsappOpened) {
+        clearCart();
+        idempotencyKeyRef.current = null;
+        toast.success("Order saved! Complete your order on WhatsApp.");
+        router.push("/orders");
+      }
     } catch (error) {
       toast.error(error.message || "Failed to place order");
     } finally {
@@ -123,7 +181,7 @@ export default function CheckoutPage() {
           <div className="flex items-center justify-between gap-4 mb-6">
             <div>
               <h1 className="text-3xl font-serif font-bold text-theme-text">Checkout</h1>
-              <p className="text-theme-faint mt-1">Secure payment and fast order confirmation.</p>
+              <p className="text-theme-faint mt-1">Complete your order via WhatsApp.</p>
             </div>
           </div>
 
@@ -147,9 +205,10 @@ export default function CheckoutPage() {
                     type="button"
                     disabled={!canPlaceOrder}
                     onClick={handlePlaceOrder}
-                    className="w-full h-12 sm:h-14 rounded-xl bg-theme-text text-white font-semibold flex items-center justify-center gap-2 hover:bg-theme-accent disabled:opacity-60 disabled:cursor-not-allowed transition-colors"
+                    className="w-full h-12 sm:h-14 rounded-xl bg-green-600 text-white font-semibold flex items-center justify-center gap-2 hover:bg-green-700 disabled:opacity-60 disabled:cursor-not-allowed transition-colors"
                   >
-                    {isPlacingOrder ? "Placing Order..." : "Place Order"}
+                    <MessageCircle size={20} />
+                    {isPlacingOrder ? "Processing..." : "Order via WhatsApp"}
                   </button>
                 </div>
               </div>
@@ -167,10 +226,48 @@ export default function CheckoutPage() {
               type="button"
               disabled={!canPlaceOrder}
               onClick={handlePlaceOrder}
-              className="w-full h-12 rounded-xl bg-theme-text text-white font-semibold flex items-center justify-center gap-2 hover:bg-theme-accent disabled:opacity-60 disabled:cursor-not-allowed transition-colors"
+              className="w-full h-12 rounded-xl bg-green-600 text-white font-semibold flex items-center justify-center gap-2 hover:bg-green-700 disabled:opacity-60 disabled:cursor-not-allowed transition-colors"
             >
-              {isPlacingOrder ? "Placing Order..." : "Place Order"}
+              <MessageCircle size={18} />
+              {isPlacingOrder ? "Processing..." : "Order via WhatsApp"}
             </button>
+          </div>
+        )}
+
+        {/* WhatsApp Confirmation Modal */}
+        {showConfirmModal && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="bg-white dark:bg-theme-card rounded-2xl p-6 max-w-sm w-full shadow-xl"
+            >
+              <div className="flex items-center justify-center w-14 h-14 bg-green-100 rounded-full mx-auto mb-4">
+                <MessageCircle className="w-7 h-7 text-green-600" />
+              </div>
+              <h3 className="text-xl font-bold text-center text-theme-text mb-2">
+                Confirm WhatsApp Order
+              </h3>
+              <p className="text-center text-theme-faint mb-6">
+                You will be redirected to WhatsApp to complete your order. Your order will be saved first.
+              </p>
+              <div className="flex gap-3">
+                <button
+                  type="button"
+                  onClick={() => setShowConfirmModal(false)}
+                  className="flex-1 h-11 rounded-xl border border-theme-border font-medium text-theme-text hover:bg-theme-bg transition-colors"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="button"
+                  onClick={confirmWhatsAppOrder}
+                  className="flex-1 h-11 rounded-xl bg-green-600 text-white font-semibold hover:bg-green-700 transition-colors"
+                >
+                  Continue
+                </button>
+              </div>
+            </motion.div>
           </div>
         )}
       </section>

@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { Toaster } from "react-hot-toast";
 import { usePathname } from "next/navigation";
@@ -27,6 +28,16 @@ export default function AppShell({ children }) {
   const { authLoading } = useAuth();
   const pathname = usePathname();
   const isAdminRoute = pathname?.startsWith("/admin");
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (window.history?.scrollRestoration) {
+      window.history.scrollRestoration = "manual";
+    }
+
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+    document.body.style.overflow = "";
+  }, [pathname]);
 
   return (
     <>

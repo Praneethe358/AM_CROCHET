@@ -2,6 +2,12 @@ const express = require('express');
 const path = require('path');
 const cors = require('cors');
 const dotenv = require('dotenv');
+
+// Load env vars FIRST before local requires
+const envFile = process.env.NODE_ENV === 'production' ? '.env.production' : '.env';
+dotenv.config({ path: path.resolve(__dirname, envFile) });
+dotenv.config(); // fallback
+
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 const xssClean = require('xss-clean');
@@ -25,10 +31,6 @@ const homeRoutes = require('./routes/homeRoutes');
 const { swaggerUi, specs } = require('./docs/swagger');
 const { notFoundHandler, errorHandler } = require('./middleware/errorMiddleware');
 const logger = require('./utils/logger');
-
-const envFile = process.env.NODE_ENV === 'production' ? '.env.production' : '.env';
-dotenv.config({ path: path.resolve(__dirname, envFile) });
-dotenv.config();
 
 const app = express();
 

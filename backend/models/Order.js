@@ -118,8 +118,12 @@ const orderSchema = new mongoose.Schema(
     },
     orderStatus: {
       type: String,
-      enum: ['pending', 'paid', 'shipped', 'delivered', 'cancelled'],
+      enum: ['pending', 'pending_whatsapp', 'contacted', 'paid', 'shipped', 'delivered', 'cancelled'],
       default: 'pending',
+    },
+    whatsappOrder: {
+      type: Boolean,
+      default: true,
     },
     paymentStatus: {
       type: String,

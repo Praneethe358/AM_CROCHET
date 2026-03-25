@@ -11,15 +11,29 @@ export default function OrderTable({ orders, onStatusUpdate }) {
     );
   }
 
-  const STATUS_OPTIONS = ["pending", "shipped", "delivered"];
+  const STATUS_OPTIONS = ["pending_whatsapp", "contacted", "shipped", "delivered"];
   const STATUS_BADGE_CLASS = {
     pending:
       "bg-amber-100 text-amber-800 border-amber-300 dark:bg-amber-500/20 dark:text-amber-300 dark:border-amber-500/40",
+    pending_whatsapp:
+      "bg-green-100 text-green-800 border-green-300 dark:bg-green-500/20 dark:text-green-300 dark:border-green-500/40",
+    contacted:
+      "bg-purple-100 text-purple-800 border-purple-300 dark:bg-purple-500/20 dark:text-purple-300 dark:border-purple-500/40",
     shipped:
       "bg-blue-100 text-blue-800 border-blue-300 dark:bg-blue-500/20 dark:text-blue-300 dark:border-blue-500/40",
     delivered:
       "bg-green-100 text-green-800 border-green-300 dark:bg-green-500/20 dark:text-green-300 dark:border-green-500/40",
   };
+
+  const STATUS_LABELS = {
+    pending: "Pending",
+    pending_whatsapp: "WhatsApp Order",
+    contacted: "Contacted",
+    shipped: "Shipped",
+    delivered: "Delivered",
+  };
+
+  const getStatusLabel = (status) => STATUS_LABELS[status] || status;
 
   return (
     <div className="overflow-x-auto">
@@ -71,22 +85,27 @@ export default function OrderTable({ orders, onStatusUpdate }) {
               </td>
               <td className="px-6 py-4">
                 <div className="mb-2">
+                  {order.whatsappOrder && (
+                    <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800 dark:bg-green-500/20 dark:text-green-300 mr-2">
+                      📱 WhatsApp
+                    </span>
+                  )}
                   <span
                     className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold border capitalize ${
-                      STATUS_BADGE_CLASS[order.status || order.orderStatus || "pending"]
+                      STATUS_BADGE_CLASS[order.status || order.orderStatus || "pending"] || STATUS_BADGE_CLASS.pending
                     }`}
                   >
-                    {order.status || order.orderStatus || "pending"}
+                    {getStatusLabel(order.status || order.orderStatus || "pending")}
                   </span>
                 </div>
                 <select
-                  value={order.status || order.orderStatus || "pending"}
+                  value={order.status || order.orderStatus || "pending_whatsapp"}
                   onChange={(e) => onStatusUpdate(order._id, e.target.value)}
                   className="w-full px-3 py-2 rounded-lg text-sm font-semibold outline-none border border-gray-300 bg-white text-gray-900 focus:ring-2 focus:ring-black/10 transition-colors capitalize dark:bg-dark-card dark:text-cream dark:border-white/20"
                 >
                   {STATUS_OPTIONS.map((status) => (
                     <option key={status} value={status} className="capitalize">
-                      {status}
+                      {getStatusLabel(status)}
                     </option>
                   ))}
                 </select>

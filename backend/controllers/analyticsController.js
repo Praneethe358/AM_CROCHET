@@ -148,10 +148,10 @@ const updateOrderStatus = async (req, res, next) => {
   try {
     const { id } = req.params;
     const nextStatus = req.body.status || req.body.orderStatus;
-    const allowedStatuses = ['pending', 'shipped', 'delivered'];
+    const allowedStatuses = ['pending', 'pending_whatsapp', 'contacted', 'shipped', 'delivered'];
     
     if (!nextStatus || !allowedStatuses.includes(nextStatus)) {
-      return res.status(400).json({ message: 'Order status is required' });
+      return res.status(400).json({ message: 'Invalid order status' });
     }
 
     const order = await Order.findById(id);
@@ -169,12 +169,18 @@ const updateOrderStatus = async (req, res, next) => {
       return res.status(400).json({ message: 'Delivered orders cannot be updated' });
     }
 
-    if (currentStatus === 'pending' && nextStatus === 'delivered') {
-      return res.status(400).json({ message: 'Order must be shipped before delivery' });
-    }
+    // Allow WhatsApp order status transitions
+    const whatsappTransitions = ['pending_whatsapp', 'contacted', 'shipped', 'delivered'];
+    const isValidWhatsappTransition = order.whatsappOrder && whatsappTransitions.includes(nextStatus);
 
-    if (currentStatus === 'shipped' && nextStatus === 'pending') {
-      return res.status(400).json({ message: 'Order status cannot move backward' });
+    if (!isValidWhatsappTransition) {
+      if (currentStatus === 'pending' && nextStatus === 'delivered') {
+        return res.status(400).json({ message: 'Order must be shipped before delivery' });
+      }
+
+      if (currentStatus === 'shipped' && nextStatus === 'pending') {
+        return res.status(400).json({ message: 'Order status cannot move backward' });
+      }
     }
 
     order.status = nextStatus;

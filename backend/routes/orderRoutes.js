@@ -4,8 +4,8 @@ const { validationResult } = require('express-validator');
 
 const {
   createDirectOrder,
-  createOrder,
-  verifyPayment,
+  // createOrder, // Disabled: Razorpay payment flow
+  // verifyPayment, // Disabled: Razorpay payment verification
   getUserOrders,
   getOrderById,
 } = require('../controllers/orderController');
@@ -72,6 +72,11 @@ router.post(
   createDirectOrder
 );
 
+/*
+ * DISABLED: Razorpay Payment Routes
+ * These routes are commented out as we now use WhatsApp checkout flow.
+ * Payment files are preserved for potential future use.
+ *
 router.post(
   '/create',
   [
@@ -130,6 +135,7 @@ router.post(
   validateRequest,
   verifyPayment
 );
+*/
 
 router.get('/my', getUserOrders);
 

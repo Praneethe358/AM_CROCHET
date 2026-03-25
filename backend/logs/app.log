@@ -3216,3 +3216,7 @@
 2026-03-21 17:42:54 [INFO] API request {"method":"POST","url":"/api/coupons/apply","statusCode":200,"durationMs":161,"ip":"::1"}
 2026-03-21 17:42:55 [INFO] API request {"method":"POST","url":"/api/orders","statusCode":201,"durationMs":581,"ip":"::1"}
 2026-03-21 17:42:55 [INFO] API request {"method":"GET","url":"/api/orders","statusCode":200,"durationMs":310,"ip":"::1"}
+2026-03-25 16:31:23 [INFO] MongoDB connected (primary): ac-tqplvla-shard-00-02.qyy87sr.mongodb.net
+2026-03-25 16:31:23 [INFO] Server running in development mode on port 5000
+2026-03-25 16:37:32 [INFO] MongoDB connected (primary): ac-tqplvla-shard-00-00.qyy87sr.mongodb.net
+2026-03-25 16:37:32 [INFO] Server running in development mode on port 5000

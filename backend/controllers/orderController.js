@@ -183,7 +183,8 @@ const createDirectOrder = async (req, res, next) => {
       finalAmount: totalAmount,
       paymentStatus: 'pending',
       status: 'pending',
-      orderStatus: 'pending',
+      orderStatus: 'pending_whatsapp',
+      whatsappOrder: true,
       shippingAddress: normalizedShippingAddress,
       ...(idempotencyKey ? { idempotencyKey } : {}),
     });
