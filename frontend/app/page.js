@@ -43,30 +43,26 @@ export default function Home() {
     let isMounted = true;
 
     const loadHomeData = async () => {
-      try {
-        const data = await getHomeData();
-        if (!isMounted || !data) return;
+      const data = await getHomeData();
+      if (!isMounted || !data) return;
 
-        setHomeData((prev) => ({
-          hero: data.hero || prev.hero,
-          featured: {
-            items: Array.isArray(data.featured?.items) && data.featured.items.length
-              ? data.featured.items
-              : prev.featured.items,
-            maxItems: data.featured?.maxItems || prev.featured.maxItems,
-          },
-          promotions: {
-            thematicBanners: Array.isArray(data.promotions?.thematicBanners)
-              ? data.promotions.thematicBanners
-              : prev.promotions.thematicBanners,
-            deals: Array.isArray(data.promotions?.deals)
-              ? data.promotions.deals
-              : prev.promotions.deals,
-          },
-        }));
-      } catch (error) {
-        console.error("Failed to fetch home data", error);
-      }
+      setHomeData((prev) => ({
+        hero: data.hero || prev.hero,
+        featured: {
+          items: Array.isArray(data.featured?.items) && data.featured.items.length
+            ? data.featured.items
+            : prev.featured.items,
+          maxItems: data.featured?.maxItems || prev.featured.maxItems,
+        },
+        promotions: {
+          thematicBanners: Array.isArray(data.promotions?.thematicBanners)
+            ? data.promotions.thematicBanners
+            : prev.promotions.thematicBanners,
+          deals: Array.isArray(data.promotions?.deals)
+            ? data.promotions.deals
+            : prev.promotions.deals,
+        },
+      }));
     };
 
     loadHomeData();
