@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
-import { LogIn } from "lucide-react";
+import { Eye, EyeOff } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -21,6 +21,7 @@ export default function LoginPage() {
   const router = useRouter();
   const { login } = useAuth();
   const [nextPath, setNextPath] = useState("/");
+  const [showPassword, setShowPassword] = useState(false);
 
   const {
     register,
@@ -66,69 +67,82 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="pt-28 pb-28 min-h-screen bg-theme-bg flex items-center justify-center px-4">
+    <div className="min-h-screen bg-white flex items-center justify-center px-4 py-8 sm:py-12">
       <Container className="max-w-md w-full">
         <motion.div
-          initial={{ opacity: 0, y: 18 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-          className="w-full bg-theme-card/90 border border-theme-border rounded-3xl shadow-[0_12px_40px_rgba(200,169,126,0.16)] p-6 sm:p-8"
+          className="w-full"
         >
-          <div className="text-center mb-6">
-            <h1 className="text-3xl font-bold font-serif text-theme-text mb-2">Welcome Back</h1>
-            <p className="text-theme-faint text-sm">Sign in to continue your premium shopping journey.</p>
+          {/* Header */}
+          <div className="mb-8 sm:mb-12">
+            <h1 className="text-xl sm:text-2xl font-light text-gray-900 flex items-center gap-2">
+              <span className="text-xl sm:text-2xl">👤</span>
+              <span>Login</span>
+            </h1>
           </div>
 
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 sm:space-y-6">
+            {/* Email */}
             <div>
-              <label className="block text-sm font-medium text-theme-text mb-2">Email Address</label>
               <input
                 type="email"
                 {...register("email")}
-                placeholder="you@example.com"
+                placeholder="EMAIL"
                 autoComplete="email"
-                className={`w-full h-12 px-4 rounded-xl bg-theme-bg border outline-none transition-all ${
+                className={`w-full px-0 py-3 bg-transparent border-b outline-none text-gray-700 placeholder-gray-500 transition-colors ${
                   errors.email
-                    ? "border-red-300 focus:border-red-400 focus:ring-2 focus:ring-red-100"
-                    : "border-theme-border focus:border-theme-accent focus:ring-2 focus:ring-theme-accent/20"
+                    ? "border-b-red-400"
+                    : "border-b-gray-300 focus:border-b-gray-700"
                 }`}
               />
-              {errors.email && <p className="mt-1.5 text-xs text-red-500">{errors.email.message}</p>}
+              {errors.email && <p className="mt-2 text-xs text-red-500">{errors.email.message}</p>}
             </div>
 
+            {/* Password */}
             <div>
-              <label className="block text-sm font-medium text-theme-text mb-2">Password</label>
-              <input
-                type="password"
-                {...register("password")}
-                placeholder="••••••••"
-                autoComplete="current-password"
-                className={`w-full h-12 px-4 rounded-xl bg-theme-bg border outline-none transition-all ${
-                  errors.password
-                    ? "border-red-300 focus:border-red-400 focus:ring-2 focus:ring-red-100"
-                    : "border-theme-border focus:border-theme-accent focus:ring-2 focus:ring-theme-accent/20"
-                }`}
-              />
-              {errors.password && <p className="mt-1.5 text-xs text-red-500">{errors.password.message}</p>}
+              <div className="relative">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  {...register("password")}
+                  placeholder="PASSWORD"
+                  autoComplete="current-password"
+                  className={`w-full px-0 py-3 bg-transparent border-b outline-none text-gray-700 placeholder-gray-500 transition-colors ${
+                    errors.password
+                      ? "border-b-red-400"
+                      : "border-b-gray-300 focus:border-b-gray-700"
+                  }`}
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-0 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700 transition-colors"
+                >
+                  {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                </button>
+              </div>
+              {errors.password && <p className="mt-2 text-xs text-red-500">{errors.password.message}</p>}
             </div>
 
+            {/* Submit Button */}
             <motion.button
-              whileTap={{ scale: 0.97 }}
+              whileTap={{ scale: 0.98 }}
               type="submit"
               disabled={isSubmitting}
-              className="w-full h-12 rounded-xl bg-theme-text text-white font-medium flex items-center justify-center gap-2 hover:bg-theme-accent disabled:opacity-70 disabled:cursor-not-allowed transition-colors"
+              className={`w-full h-10 sm:h-12 rounded-none bg-black text-white font-medium text-xs sm:text-sm uppercase tracking-wider hover:bg-gray-900 disabled:opacity-70 disabled:cursor-not-allowed transition-colors mt-6 sm:mt-8`}
             >
-              <LogIn size={18} />
-              {isSubmitting ? "Signing in..." : "Sign In"}
+              {isSubmitting ? "Submitting..." : "Submit"}
             </motion.button>
           </form>
 
-          <p className="text-sm text-theme-faint mt-5 text-center">
-            New here?{" "}
-            <Link href="/signup" className="text-theme-accent font-semibold hover:underline">
-              Create an account
+          {/* Sign Up Link */}
+          <div className="mt-8 sm:mt-12 text-center">
+            <p className="text-xs sm:text-sm text-gray-600 mb-2">DO NOT HAVE AN ACCOUNT YET?</p>
+            <Link href="/signup" className="text-xs sm:text-sm text-gray-900 font-medium uppercase tracking-wider hover:underline">
+              Create account
             </Link>
-          </p>
+          </div>
         </motion.div>
       </Container>
     </div>
