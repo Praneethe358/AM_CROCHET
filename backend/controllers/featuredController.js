@@ -13,14 +13,13 @@ const normalizeFeaturedItems = (items) => {
   }
 
   const ids = [];
+  const seen = new Set();
 
   items.forEach((item) => {
     if (typeof item === 'string') {
       ids.push(item);
       return;
-    }
-
-    if (item && typeof item === 'object') {
+    } else if (item && typeof item === 'object') {
       if (typeof item.product === 'string') {
         ids.push(item.product);
       } else if (item.product && typeof item.product === 'object' && item.product._id) {
@@ -30,7 +29,6 @@ const normalizeFeaturedItems = (items) => {
   });
 
   const uniqueIds = [];
-  const seen = new Set();
 
   ids.forEach((id) => {
     if (!mongoose.Types.ObjectId.isValid(id)) {

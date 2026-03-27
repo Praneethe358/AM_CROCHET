@@ -141,6 +141,8 @@ export default function PromotionsShowcase({ initialPromotions = [] }) {
               const productId = item.product?._id;
               const productLink = productId ? `/products/${productId}` : '/products';
               const countdownText = formatCountdown(item.endDate);
+              const discountValue = Number(item.discount);
+              const showDiscount = Number.isFinite(discountValue) && discountValue > 0;
               
               const imageSrc = item.product?.image || item.product?.images?.[0] || item.banner || '';
 
@@ -183,9 +185,16 @@ export default function PromotionsShowcase({ initialPromotions = [] }) {
                       </Link>
 
                       <div className="mt-auto flex items-center justify-between gap-1 pt-1 md:gap-3 md:pt-4">
-                        <span className="text-sm font-bold text-theme-text md:text-xl">
-                          ₹ {item.product?.price ? parseInt(item.product.price).toLocaleString('en-IN') : '2,099'}.00
-                        </span>
+                        <div className="flex flex-col">
+                          {showDiscount ? (
+                            <span className="mb-0.5 inline-flex self-start rounded-full border border-theme-accent/70 bg-theme-accent/15 px-1.5 py-0.5 text-[8px] font-bold uppercase tracking-wide text-theme-text md:mb-1 md:px-2 md:text-[10px]">
+                              {Math.round(discountValue)}% Off
+                            </span>
+                          ) : null}
+                          <span className="text-sm font-bold text-theme-text md:text-xl">
+                            ₹ {item.product?.price ? parseInt(item.product.price).toLocaleString('en-IN') : '2,099'}.00
+                          </span>
+                        </div>
                         <button type="button" className="inline-flex items-center justify-center rounded-full border border-theme-text bg-theme-text px-4 py-1.5 text-[10px] font-medium text-white transition-all hover:border-theme-accent hover:bg-theme-accent md:px-6 md:py-2.5 md:text-xs uppercase tracking-widest">
                           Add
                         </button>
