@@ -72,13 +72,13 @@ export default function FeaturedProducts({ initialItems = [], limit = 6 }) {
       <article key={card.id} className={`group cursor-pointer ${!isMobile && isPrimaryBanner ? "md:col-span-2" : ""}`}>
         <Link
           href={targetHref}
-          className={`relative block w-full overflow-hidden rounded-[2rem] bg-theme-secondary ${
+          className={`relative block w-full overflow-hidden rounded-none bg-theme-secondary ${
             isMobile
               ? "aspect-[16/10]"
               : isPrimaryBanner
                 ? "aspect-[16/9] md:aspect-[21/9]"
                 : "aspect-[16/9]"
-          } border border-theme-border/50 shadow-sm`}
+          } border-2 border-theme-border/85 shadow-[0_8px_24px_rgba(0,0,0,0.08)] ring-1 ring-black/5 transition-all duration-300 hover:border-theme-accent/60 hover:shadow-[0_12px_30px_rgba(0,0,0,0.12)]`}
         >
           <Image
             src={getOptimizedImageUrl(card.image, { width: 1400 })}
@@ -89,7 +89,7 @@ export default function FeaturedProducts({ initialItems = [], limit = 6 }) {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
 
-          <span className="absolute left-4 top-4 rounded-full bg-theme-accent/90 backdrop-blur-md px-4 py-1.5 text-[10px] font-bold tracking-widest text-theme-text uppercase">
+          <span className="absolute left-4 top-4 rounded-full border border-theme-border/70 bg-theme-accent/90 backdrop-blur-md px-4 py-1.5 text-[10px] font-bold tracking-widest text-theme-text uppercase shadow-sm">
             New
           </span>
 
@@ -108,15 +108,15 @@ export default function FeaturedProducts({ initialItems = [], limit = 6 }) {
   };
 
   return (
-    <section className="bg-theme-bg py-12 sm:py-20" id="featured-products">
+    <section className="bg-theme-bg py-12 sm:py-20 border-y border-theme-border/50" id="featured-products">
       <div className="mx-auto max-w-[1400px] px-4 sm:px-8 lg:px-16">
         <div className="mb-5 md:mb-8 text-center">
-          <h2 className="text-theme-text font-bold">
+          <h2 className="inline-block border-b-2 border-theme-border/70 px-2 pb-1 text-theme-text font-bold">
             Featured Collection
           </h2>
         </div>
 
-        <div className="md:hidden">
+        <div className="rounded-none border-2 border-theme-border/75 bg-white/75 p-2 shadow-[inset_0_0_0_1px_rgba(0,0,0,0.04)] md:hidden">
           <Swiper
             modules={[Autoplay, Pagination]}
             slidesPerView={1.08}
@@ -131,11 +131,27 @@ export default function FeaturedProducts({ initialItems = [], limit = 6 }) {
           </Swiper>
         </div>
 
-        <div className="hidden md:grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-5">
+        <div className="hidden rounded-none border-2 border-theme-border/75 bg-white/75 p-4 shadow-[inset_0_0_0_1px_rgba(0,0,0,0.04)] md:grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5 md:p-5">
           {cards.map((card, idx) => {
             return renderBannerCard(card, idx);
           })}
         </div>
+
+        <style dangerouslySetInnerHTML={{ __html: `
+          .featured-banners-swiper .swiper-pagination-bullet {
+            width: 10px;
+            height: 10px;
+            background: rgba(34, 34, 34, 0.28);
+            border: 1px solid rgba(34, 34, 34, 0.4);
+            opacity: 1;
+          }
+          .featured-banners-swiper .swiper-pagination-bullet-active {
+            width: 20px;
+            border-radius: 9999px;
+            background: #2f4156;
+            border-color: #2f4156;
+          }
+        `}} />
       </div>
     </section>
   );
