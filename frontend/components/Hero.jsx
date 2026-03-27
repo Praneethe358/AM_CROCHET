@@ -41,10 +41,23 @@ export default function Hero({ slides }) {
               transition={{ duration: 7, ease: "easeOut" }}
               className="absolute inset-0 w-full h-full"
             >
-              <div
-                className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-                style={{ backgroundImage: 'url(' + slide.image + ')' }}
-              />
+              {(slide?.mediaType === 'video' && slide?.video) ? (
+                <video
+                  key={`video-${index}-${slide.video}`}
+                  className="absolute inset-0 h-full w-full object-cover"
+                  src={slide.video}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="metadata"
+                />
+              ) : (
+                <div
+                  className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+                  style={{ backgroundImage: 'url(' + (slide.image || '') + ')' }}
+                />
+              )}
               <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/60" />
             </motion.div>
 

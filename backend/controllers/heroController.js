@@ -3,6 +3,26 @@ const Hero = require('../models/Hero');
 
 const HERO_KEY = 'home_hero';
 
+const normalizeSlides = (slides = []) => {
+  if (!Array.isArray(slides)) return [];
+
+  return slides.map((slide) => {
+    const mediaType = slide?.mediaType === 'video' ? 'video' : 'image';
+    const image = (slide?.image || '').trim();
+    const video = (slide?.video || '').trim();
+
+    return {
+      mediaType,
+      image: mediaType === 'image' ? image : '',
+      video: mediaType === 'video' ? video : '',
+      subtitle: (slide?.subtitle || '').trim(),
+      title: (slide?.title || '').trim(),
+      description: (slide?.description || '').trim(),
+      link: (slide?.link || '/products').trim(),
+    };
+  });
+};
+
 const getAdminHero = async (req, res, next) => {
   try {
     const hero = await Hero.findOne({ key: HERO_KEY }).lean();
@@ -38,12 +58,13 @@ const upsertAdminHero = async (req, res, next) => {
     }
 
     const { slides, isActive } = req.body;
+    const normalizedSlides = normalizeSlides(slides);
 
     const hero = await Hero.findOneAndUpdate(
       { key: HERO_KEY },
       {
         key: HERO_KEY,
-        slides: slides || [],
+        slides: normalizedSlides,
         isActive: isActive === false || isActive === 'false' ? false : true,
       },
       {

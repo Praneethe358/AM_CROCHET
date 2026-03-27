@@ -97,6 +97,23 @@ export const uploadAdminMultipleImages = async (files) => {
   return [...existingUrls, ...uploadedUrls];
 };
 
+export const uploadAdminMedia = async (file, mediaType = "image") => {
+  if (typeof file === "string") return file;
+
+  const normalizedType = mediaType === "video" ? "video" : "image";
+  const formData = new FormData();
+  formData.append("media", file);
+  formData.append("mediaType", normalizedType);
+
+  const response = await authClient.post("/upload/media", formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+
+  return response.data?.data?.mediaUrl || response.data?.mediaUrl || "";
+};
+
 export const getAdminHero = async () => {
   const response = await authClient.get("/admin/hero");
   return response.data?.data || null;

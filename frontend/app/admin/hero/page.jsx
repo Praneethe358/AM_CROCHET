@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Loader2, Plus, Trash2, GripVertical, Upload } from "lucide-react";
 import { toast } from "react-hot-toast";
-import { getAdminHero, updateAdminHero, uploadAdminImage } from "@/services/adminApi";
+import { getAdminHero, updateAdminHero, uploadAdminMedia } from "@/services/adminApi";
 
 export default function AdminHeroPage() {
   const [slides, setSlides] = useState([]);
@@ -19,7 +19,17 @@ export default function AdminHeroPage() {
         setLoading(true);
         const hero = await getAdminHero();
         if (hero) {
-          setSlides(hero.slides || []);
+          setSlides(
+            (hero.slides || []).map((slide) => ({
+              mediaType: slide.mediaType === "video" ? "video" : "image",
+              image: slide.image || "",
+              video: slide.video || "",
+              subtitle: slide.subtitle || "",
+              title: slide.title || "",
+              description: slide.description || "",
+              link: slide.link || "/products",
+            }))
+          );
           setIsActive(hero.isActive !== false);
         }
       } catch (error) {
@@ -34,7 +44,7 @@ export default function AdminHeroPage() {
   }, []);
 
   const handleAddSlide = () => {
-    setSlides([...slides, { image: '', subtitle: '', title: '', description: '', link: '/products' }]);
+    setSlides([...slides, { mediaType: 'image', image: '', video: '', subtitle: '', title: '', description: '', link: '/products' }]);
   };
 
   const handleRemoveSlide = (index) => {
@@ -45,27 +55,45 @@ export default function AdminHeroPage() {
 
   const onFieldChange = (index, field, value) => {
     const newSlides = [...slides];
-    newSlides[index][field] = value;
+    if (field === "mediaType") {
+      newSlides[index].mediaType = value === "video" ? "video" : "image";
+      if (newSlides[index].mediaType === "image") {
+        newSlides[index].video = "";
+      } else {
+        newSlides[index].image = "";
+      }
+    } else {
+      newSlides[index][field] = value;
+    }
     setSlides(newSlides);
   };
 
-  const onUploadImage = async (event, index) => {
+  const onUploadMedia = async (event, index) => {
     const file = event.target.files?.[0];
     if (!file) return;
 
+    const mediaType = slides[index]?.mediaType === "video" ? "video" : "image";
+
     try {
       setUploadingIndex(index);
-      const imageUrl = await uploadAdminImage(file);
-      if (!imageUrl) {
+      const mediaUrl = await uploadAdminMedia(file, mediaType);
+      if (!mediaUrl) {
         toast.error("Upload failed. Please add URL manually.");
         return;
       }
 
-      onFieldChange(index, "image", imageUrl);
-      toast.success("Image uploaded");
+      if (mediaType === "video") {
+        onFieldChange(index, "video", mediaUrl);
+        onFieldChange(index, "image", "");
+      } else {
+        onFieldChange(index, "image", mediaUrl);
+        onFieldChange(index, "video", "");
+      }
+
+      toast.success(mediaType === "video" ? "Video uploaded" : "Image uploaded");
     } catch (error) {
       console.error(error);
-      toast.error(error?.response?.data?.message || "Image upload failed");
+      toast.error(error?.response?.data?.message || "Media upload failed");
     } finally {
       setUploadingIndex(null);
       event.target.value = "";
@@ -75,15 +103,28 @@ export default function AdminHeroPage() {
   const onSave = async (event) => {
     event.preventDefault();
 
-    const invalid = slides.some(slide => !slide.title || !slide.image);
+    const invalid = slides.some((slide) => {
+      const mediaType = slide.mediaType === "video" ? "video" : "image";
+      const hasImage = Boolean((slide.image || "").trim());
+      const hasVideo = Boolean((slide.video || "").trim());
+
+      if (!slide.title) return true;
+      if (hasImage && hasVideo) return true;
+      if (mediaType === "image" && !hasImage) return true;
+      if (mediaType === "video" && !hasVideo) return true;
+
+      return false;
+    });
     if (invalid) {
-      toast.error("Please fill Title and Image for all slides");
+      toast.error("Each slide needs a title and one valid media based on selected media type");
       return;
     }
 
     const payload = {
       slides: slides.map((s) => ({
-        image: (s.image || '').trim(),
+        mediaType: s.mediaType === "video" ? "video" : "image",
+        image: s.mediaType === "image" ? (s.image || '').trim() : '',
+        video: s.mediaType === "video" ? (s.video || '').trim() : '',
         subtitle: (s.subtitle || '').trim(),
         title: (s.title || '').trim(),
         description: (s.description || '').trim(),
@@ -153,14 +194,29 @@ export default function AdminHeroPage() {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {/* Image Section */}
+                <div className="md:col-span-1">
+                  <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Media Type *</label>
+                  <select
+                    value={slide.mediaType || "image"}
+                    onChange={(e) => onFieldChange(index, "mediaType", e.target.value)}
+                    className="mt-1 w-full rounded-lg border border-gray-300 dark:border-white/10 bg-transparent px-4 py-2"
+                  >
+                    <option value="image">Image</option>
+                    <option value="video">Video</option>
+                  </select>
+                </div>
+
+                <div className="md:col-span-1" />
+
                 <div className="md:col-span-2 flex flex-col sm:flex-row gap-4 sm:items-end">
                   <div className="flex-1">
-                    <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Background Image URL *</label>
+                    <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                      {slide.mediaType === "video" ? "Background Video URL *" : "Background Image URL *"}
+                    </label>
                     <input
                       type="text"
-                      value={slide.image}
-                      onChange={(e) => onFieldChange(index, "image", e.target.value)}
+                      value={slide.mediaType === "video" ? (slide.video || "") : (slide.image || "")}
+                      onChange={(e) => onFieldChange(index, slide.mediaType === "video" ? "video" : "image", e.target.value)}
                       placeholder="https://..."
                       className="mt-1 w-full rounded-lg border border-gray-300 dark:border-white/10 bg-transparent px-4 py-2"
                       required
@@ -169,12 +225,12 @@ export default function AdminHeroPage() {
                   <div className="relative">
                     <label className="flex items-center justify-center gap-2 cursor-pointer bg-gray-100 hover:bg-gray-200 dark:bg-white/5 dark:hover:bg-white/10 text-gray-700 dark:text-gray-200 px-4 py-2.5 rounded-lg font-medium transition-colors h-[42px]">
                       {uploadingIndex === index ? <Loader2 className="w-4 h-4 animate-spin" /> : <Upload className="w-4 h-4" />}
-                      <span className="text-sm">{uploadingIndex === index ? "Uploading..." : "Upload Image"}</span>
+                      <span className="text-sm">{uploadingIndex === index ? "Uploading..." : `Upload ${slide.mediaType === "video" ? "Video" : "Image"}`}</span>
                       <input
                         type="file"
-                        accept="image/*"
+                        accept={slide.mediaType === "video" ? "video/mp4,video/quicktime,video/webm,video/x-m4v" : "image/*"}
                         className="hidden"
-                        onChange={(e) => onUploadImage(e, index)}
+                        onChange={(e) => onUploadMedia(e, index)}
                         disabled={uploadingIndex !== null}
                       />
                     </label>
@@ -226,17 +282,32 @@ export default function AdminHeroPage() {
                   />
                 </div>
 
-                {/* Preview Image if Available */}
-                {slide.image && (
+                {/* Preview Media if Available */}
+                {(slide.image || slide.video) && (
                   <div className="md:col-span-2 mt-2">
-                    <p className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Image Preview:</p>
+                    <p className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                      {slide.mediaType === "video" ? "Video Preview:" : "Image Preview:"}
+                    </p>
                     <div className="relative w-full max-w-sm aspect-[4/3] rounded-lg overflow-hidden border border-gray-200">
-                      <Image
-                        src={slide.image}
-                        alt="Slide Preview"
-                        fill
-                        className="object-cover"
-                      />
+                      {slide.mediaType === "video" ? (
+                        <video
+                          src={slide.video}
+                          className="h-full w-full object-cover"
+                          muted
+                          loop
+                          playsInline
+                          autoPlay
+                          controls
+                          preload="metadata"
+                        />
+                      ) : (
+                        <Image
+                          src={slide.image}
+                          alt="Slide Preview"
+                          fill
+                          className="object-cover"
+                        />
+                      )}
                     </div>
                   </div>
                 )}

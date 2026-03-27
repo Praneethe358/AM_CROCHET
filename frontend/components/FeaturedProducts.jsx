@@ -62,6 +62,11 @@ export default function FeaturedProducts({ initialItems = [], limit = 6 }) {
   const renderBannerCard = (card, idx, isMobile = false) => {
     const targetHref = card.id && !String(card.id).startsWith("featured-") ? `/products/${card.id}` : "/products";
     const isPrimaryBanner = idx === 0;
+    const imageSizes = isMobile
+      ? "(max-width: 768px) 92vw, 45vw"
+      : isPrimaryBanner
+        ? "(max-width: 1024px) 92vw, 1200px"
+        : "(max-width: 1024px) 46vw, 620px";
 
     return (
       <article key={card.id} className={`group cursor-pointer ${!isMobile && isPrimaryBanner ? "md:col-span-2" : ""}`}>
@@ -80,7 +85,7 @@ export default function FeaturedProducts({ initialItems = [], limit = 6 }) {
             alt={card.name || "Featured collection"}
             fill
             className="object-cover transition-transform duration-700 group-hover:scale-105"
-            sizes={isMobile ? "100vw" : isPrimaryBanner ? "100vw" : "(max-width: 768px) 100vw, 50vw"}
+            sizes={imageSizes}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
 

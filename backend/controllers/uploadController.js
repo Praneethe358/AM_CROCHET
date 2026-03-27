@@ -73,7 +73,50 @@ const uploadMultipleImages = async (req, res, next) => {
   }
 };
 
+/**
+ * POST /api/upload/media — single media upload (image or video)
+ */
+const uploadMediaAsset = async (req, res, next) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({ message: 'Media file is required' });
+    }
+
+    const rawUrl = req.file.path || req.file.secure_url;
+
+    if (!rawUrl) {
+      return res.status(500).json({ message: 'Media upload failed' });
+    }
+
+    const mimeType = (req.file.mimetype || '').toLowerCase();
+    const requestedType = (req.body?.mediaType || '').toLowerCase();
+    const mediaType = requestedType === 'video' || mimeType.startsWith('video/') ? 'video' : 'image';
+
+    if (mediaType === 'video') {
+      return res.status(200).json({
+        success: true,
+        mediaType,
+        mediaUrl: rawUrl,
+        videoUrl: rawUrl,
+      });
+    }
+
+    const { original, display } = buildImageUrls(rawUrl);
+
+    return res.status(200).json({
+      success: true,
+      mediaType,
+      mediaUrl: original,
+      imageUrl: original,
+      displayUrl: display,
+    });
+  } catch (error) {
+    return next(error);
+  }
+};
+
 module.exports = {
   uploadImage,
   uploadMultipleImages,
+  uploadMediaAsset,
 };

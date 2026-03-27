@@ -57,6 +57,8 @@ export default function PromotionsShowcase({ initialPromotions = [] }) {
       });
   }, [effectivePromotions]);
 
+  const shouldEnableLoop = comboItems.length > 4;
+
   useEffect(() => {
     if (!comboItems.length) return undefined;
 
@@ -118,12 +120,12 @@ export default function PromotionsShowcase({ initialPromotions = [] }) {
           </Link>
         </div>
 
-        <div className="relative w-full">
+        <div className="relative w-full rounded-xl border border-theme-border/80 bg-white/70 p-1.5 shadow-[inset_0_0_0_1px_rgba(0,0,0,0.03)] md:rounded-2xl md:p-3">
           <Swiper
             modules={[Navigation]}
             spaceBetween={6}
             slidesPerView={2.05}
-            loop={comboItems.length > 2}
+            loop={shouldEnableLoop}
             grabCursor
             allowTouchMove={comboItems.length > 1}
             breakpoints={{
@@ -144,7 +146,7 @@ export default function PromotionsShowcase({ initialPromotions = [] }) {
 
               return (
                 <SwiperSlide key={`${item.promotionId}-${productId || index}`} className="h-auto">
-                  <article className="group flex h-full flex-col overflow-hidden rounded-none border border-theme-border/60 bg-white shadow-[0_4px_20px_rgba(0,0,0,0.02)] transition-all hover:shadow-[0_10px_30px_rgba(0,0,0,0.06)]">
+                  <article className="group flex h-full flex-col overflow-hidden rounded-lg border-2 border-theme-border/70 bg-white shadow-[0_6px_20px_rgba(0,0,0,0.04)] transition-all duration-300 hover:border-theme-accent/70 hover:shadow-[0_10px_30px_rgba(0,0,0,0.09)] md:rounded-xl">
                     <Link
                       href={productLink}
                       onClick={() => handleComboClick(item.promotionId)}
@@ -169,8 +171,8 @@ export default function PromotionsShowcase({ initialPromotions = [] }) {
                       </div>
                     </Link>
 
-                    <div className="flex min-h-[94px] flex-1 flex-col gap-1 p-2 md:min-h-[160px] md:gap-3 md:p-4">
-                      <span className="inline-flex max-w-full self-start truncate rounded-full bg-theme-accent px-2 py-0.5 text-[7px] font-bold uppercase tracking-wide text-theme-text md:px-3 md:py-1.5 md:text-xs">
+                    <div className="flex min-h-[94px] flex-1 flex-col gap-1 border-t border-theme-border/70 p-2 md:min-h-[160px] md:gap-3 md:p-4">
+                      <span className="inline-flex max-w-full self-start truncate rounded-full border border-theme-border/60 bg-theme-accent px-2 py-0.5 text-[7px] font-bold uppercase tracking-wide text-theme-text md:px-3 md:py-1.5 md:text-xs">
                         {item.badge}
                       </span>
                       
@@ -184,7 +186,7 @@ export default function PromotionsShowcase({ initialPromotions = [] }) {
                         <span className="text-sm font-bold text-theme-text md:text-xl">
                           ₹ {item.product?.price ? parseInt(item.product.price).toLocaleString('en-IN') : '2,099'}.00
                         </span>
-                        <button type="button" className="inline-flex items-center justify-center rounded-full bg-theme-text px-4 py-1.5 text-[10px] font-medium text-white transition-all hover:bg-theme-accent md:px-6 md:py-2.5 md:text-xs uppercase tracking-widest">
+                        <button type="button" className="inline-flex items-center justify-center rounded-full border border-theme-text bg-theme-text px-4 py-1.5 text-[10px] font-medium text-white transition-all hover:border-theme-accent hover:bg-theme-accent md:px-6 md:py-2.5 md:text-xs uppercase tracking-widest">
                           Add
                         </button>
                       </div>

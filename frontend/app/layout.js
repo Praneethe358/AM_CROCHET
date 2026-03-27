@@ -1,7 +1,7 @@
 import { Inter, Playfair_Display } from "next/font/google";
-import Script from "next/script";
 import "./globals.css";
 import AppShell from "@/components/AppShell";
+import DisableScrollRestoration from "@/components/DisableScrollRestoration";
 import { CartProvider } from "@/context/CartContext";
 import { AuthProvider } from "@/context/AuthContext";
 
@@ -17,19 +17,8 @@ export default function RootLayout({ children }) {
   // Global Layout wrapper
   return (
     <html lang="en" data-scroll-behavior="smooth" className={`${inter.variable} ${playfair.variable}`}>
-      <Script id="disable-scroll-restoration" strategy="beforeInteractive">
-        {`
-          try {
-            if ('scrollRestoration' in window.history) {
-              window.history.scrollRestoration = 'manual';
-            }
-            if (!window.location.hash) {
-              window.scrollTo(0, 0);
-            }
-          } catch (_) {}
-        `}
-      </Script>
       <body className="antialiased font-sans text-theme-text bg-theme-bg min-h-screen flex flex-col selection:bg-theme-accent selection:text-white pb-safe">
+        <DisableScrollRestoration />
         <AuthProvider>
           <CartProvider>
             <AppShell>{children}</AppShell>
