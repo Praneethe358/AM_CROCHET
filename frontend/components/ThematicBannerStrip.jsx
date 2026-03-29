@@ -18,12 +18,13 @@ const getAudienceLabel = (audience) => {
   return "Collection";
 };
 
-export default function ThematicBannerStrip({ initialSlides = [] }) {
+export default function ThematicBannerStrip({ initialSlides }) {
   const [slides, setSlides] = useState([]);
   const [activeIndex, setActiveIndex] = useState(0);
+  const hasInitialSlidesProp = Array.isArray(initialSlides);
 
   useEffect(() => {
-    if (Array.isArray(initialSlides) && initialSlides.length) {
+    if (hasInitialSlidesProp) {
       return;
     }
 
@@ -38,15 +39,15 @@ export default function ThematicBannerStrip({ initialSlides = [] }) {
     };
 
     loadSlides();
-  }, [initialSlides]);
+  }, [hasInitialSlidesProp]);
 
   const effectiveSlides = useMemo(() => {
-    if (Array.isArray(initialSlides) && initialSlides.length) {
+    if (hasInitialSlidesProp) {
       return initialSlides;
     }
 
     return slides;
-  }, [initialSlides, slides]);
+  }, [hasInitialSlidesProp, initialSlides, slides]);
 
   const orderedSlides = useMemo(() => {
     // Only show what's actually in Atlas; no fallbacks.

@@ -12,12 +12,13 @@ import 'swiper/css/navigation';
 
 import { getOptimizedImageUrl } from '@/utils/cloudinaryImage';
 
-export default function PromotionsShowcase({ initialPromotions = [] }) {
+export default function PromotionsShowcase({ initialPromotions }) {
   const [promotions, setPromotions] = useState([]);
   const [nowMs, setNowMs] = useState(() => Date.now());
+  const hasInitialPromotionsProp = Array.isArray(initialPromotions);
 
   useEffect(() => {
-    if (Array.isArray(initialPromotions) && initialPromotions.length) {
+    if (hasInitialPromotionsProp) {
       return;
     }
 
@@ -31,13 +32,13 @@ export default function PromotionsShowcase({ initialPromotions = [] }) {
     };
 
     loadPromotions();
-  }, [initialPromotions]);
+  }, [hasInitialPromotionsProp]);
 
   const effectivePromotions = useMemo(() => {
-    return (Array.isArray(initialPromotions) && initialPromotions.length)
+    return hasInitialPromotionsProp
       ? initialPromotions
       : promotions;
-  }, [initialPromotions, promotions]);
+  }, [hasInitialPromotionsProp, initialPromotions, promotions]);
 
   const comboItems = useMemo(() => {
     return effectivePromotions

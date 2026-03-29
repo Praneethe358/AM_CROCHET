@@ -11,11 +11,12 @@ import "swiper/css/pagination";
 
 import { getOptimizedImageUrl } from "@/utils/cloudinaryImage";
 
-export default function FeaturedProducts({ initialItems = [], limit = 6 }) {
+export default function FeaturedProducts({ initialItems, limit = 6 }) {
   const [featured, setFeatured] = useState([]);
+  const hasInitialItemsProp = Array.isArray(initialItems);
 
   useEffect(() => {
-    if (Array.isArray(initialItems) && initialItems.length) {
+    if (hasInitialItemsProp) {
       return;
     }
 
@@ -39,10 +40,10 @@ export default function FeaturedProducts({ initialItems = [], limit = 6 }) {
     };
 
     fetchFeaturedProducts();
-  }, [initialItems, limit]);
+  }, [hasInitialItemsProp, limit]);
 
   const effectiveFeatured = useMemo(() => {
-    if (Array.isArray(initialItems) && initialItems.length) {
+    if (hasInitialItemsProp) {
       return initialItems.map((item) => ({
         ...item,
         id: item._id || item.id,
@@ -51,7 +52,7 @@ export default function FeaturedProducts({ initialItems = [], limit = 6 }) {
     }
 
     return featured;
-  }, [initialItems, featured]);
+  }, [hasInitialItemsProp, initialItems, featured]);
 
   const cards = useMemo(() => {
     return effectiveFeatured.length ? effectiveFeatured.slice(0, limit) : [];

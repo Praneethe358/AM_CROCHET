@@ -7,30 +7,15 @@ import FeaturedProducts from "@/components/FeaturedProducts";
 import PromotionsShowcase from "@/components/PromotionsShowcase";
 import FeaturesStrip from "@/components/FeaturesStrip";
 import { getHomeData } from "@/services/homeApi";
-import { products as fallbackProducts } from "@/data/products";
 
 export const dynamic = "force-dynamic";
 
 const fallbackHomeData = {
   hero: {
-    slides: [
-      {
-        image: "/bags/bag1.jpg",
-        subtitle: "Handcrafted Luxury",
-        title: "AM CROCHET",
-        description: "Premium handcrafted crochet bags designed for timeless everyday elegance.",
-        link: "/products",
-      },
-    ],
+    slides: [],
   },
   featured: {
-    items: fallbackProducts.map((item) => ({
-      _id: `fallback-${item.id}`,
-      name: item.name,
-      price: item.price,
-      image: item.image,
-      images: [item.image],
-    })),
+    items: [],
     maxItems: 6,
   },
   promotions: { thematicBanners: [], deals: [] },
