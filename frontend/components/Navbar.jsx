@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useCart } from "@/context/CartContext";
 import { useAuth } from "@/context/AuthContext";
 import Container from "./Container";
+import Logo from "./Logo";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -80,9 +81,16 @@ export default function Navbar() {
         <Container>
           <div className="flex items-center justify-between">
             {/* Logo */}
-            <Link href="/" className={`relative z-10 flex text-xl md:text-2xl font-bold font-serif tracking-widest uppercase transition-colors duration-500 group ${isTransparent ? 'text-white' : 'text-black'}`}>
-              AM CROCHET<span className="text-theme-accent ml-0.5">.</span>
-            </Link>
+            <Logo
+              variant={isTransparent ? "light" : "dark"}
+              priority
+              className="relative z-10 shrink-0"
+              imageClassName="h-8 md:h-10 lg:h-12"
+              showText
+              textClassName={`hidden md:inline-block text-[11px] md:text-xs ${isTransparent ? "text-white/95" : "text-black"}`}
+              alt="AM CROCHET brand logo"
+              ariaLabel="AM CROCHET home"
+            />
 
             {/* Center Navigation (Desktop) */}
             <div className="hidden md:flex space-x-12 items-center">
@@ -185,7 +193,14 @@ export default function Navbar() {
               className="fixed top-0 right-0 bottom-0 w-[85%] max-w-sm bg-[#FDF6EC] z-50 shadow-2xl md:hidden border-l border-[#EADFD0] flex flex-col"
             >
               <div className="flex items-center justify-between p-6 border-b border-theme-border">
-                <span className="text-xl font-bold font-serif text-theme-text uppercase tracking-widest">AM CROCHET</span>
+                <Logo
+                  variant="dark"
+                  imageClassName="h-8 w-auto"
+                  showText
+                  textClassName="text-xs text-[#2C2C2C]"
+                  alt="AM CROCHET logo"
+                  ariaLabel="AM CROCHET home"
+                />
                 <button 
                   onClick={() => setMobileMenuOpen(false)}
                   className="p-2 -mr-2 text-[#2C2C2C] hover:text-[#C8A97E] transition-colors rounded-full bg-[#F7EFE5]"
