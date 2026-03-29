@@ -72,7 +72,7 @@ export default function FeaturedProducts({ initialItems = [], limit = 6 }) {
       <article key={card.id} className={`group cursor-pointer ${!isMobile && isPrimaryBanner ? "md:col-span-2" : ""}`}>
         <Link
           href={targetHref}
-          className={`relative block w-full overflow-hidden rounded-[2rem] bg-theme-secondary ${
+          className={`relative block w-full overflow-hidden rounded-lg md:rounded-xl bg-theme-secondary ${
             isMobile
               ? "aspect-[16/10]"
               : isPrimaryBanner
@@ -89,7 +89,7 @@ export default function FeaturedProducts({ initialItems = [], limit = 6 }) {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
 
-          <span className="absolute left-4 top-4 rounded-full border border-theme-border/70 bg-theme-accent/90 backdrop-blur-md px-4 py-1.5 text-[10px] font-bold tracking-widest text-theme-text uppercase shadow-sm">
+          <span className="absolute left-4 top-4 rounded-md border border-theme-border/70 bg-theme-accent/90 backdrop-blur-md px-4 py-1.5 text-[10px] font-bold tracking-widest text-theme-text uppercase shadow-sm">
             New
           </span>
 
