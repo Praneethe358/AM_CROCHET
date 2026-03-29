@@ -66,7 +66,6 @@ export default function Footer() {
             <ul className="space-y-4 text-sm">
               <li><Link href="/orders" className="hover:text-white transition-colors">Track Orders</Link></li>
               <li><Link href="/cart" className="hover:text-white transition-colors">Shopping Cart</Link></li>
-              <li><Link href="/profile" className="hover:text-white transition-colors">My Account</Link></li>
               <li><Link href="/login" className="hover:text-white transition-colors">Sign In / Register</Link></li>
               <li><Link href="/about-am-crochet-bags" className="hover:text-white transition-colors">About AM Crochet Bags</Link></li>
             </ul>
