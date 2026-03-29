@@ -55,7 +55,9 @@ export const metadata = {
     site: "@amcrochetbags",
   },
   verification: {
-    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || undefined,
+    google:
+      process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
+      || "a2TNDReSxPtZRtH4Pgk5FirSWZcnNaVI2PEhwlHiBOE",
   },
 };
 
