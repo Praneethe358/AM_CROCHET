@@ -109,16 +109,19 @@ export default function PromotionsShowcase({ initialPromotions }) {
   return (
     <section className="bg-theme-bg px-3 py-6 md:px-8 md:py-12 border-t border-theme-border/50">
       <div className="mx-auto max-w-[1400px]">
-        <div className="mb-3 flex items-center justify-between md:mb-6">
-          <h2 className="text-theme-text font-bold">
+        <div className="mb-3 grid grid-cols-[1fr_auto_1fr] items-center md:mb-6">
+          <div />
+          <h2 className="text-center text-theme-text font-bold">
             Special Combos
           </h2>
-          <Link 
-            href="/products" 
-            className="text-sm md:text-base text-theme-accent underline underline-offset-4 decoration-1 hover:text-theme-text transition-colors"
-          >
-            View All
-          </Link>
+          <div className="justify-self-end">
+            <Link 
+              href="/products" 
+              className="text-sm md:text-base text-theme-accent underline underline-offset-4 decoration-1 hover:text-theme-text transition-colors"
+            >
+              View All
+            </Link>
+          </div>
         </div>
 
         <div className="relative w-full rounded-xl border border-theme-border/80 bg-white/70 p-1.5 shadow-[inset_0_0_0_1px_rgba(0,0,0,0.03)] md:rounded-2xl md:p-3">
