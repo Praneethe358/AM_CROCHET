@@ -88,8 +88,8 @@ export default function Navbar() {
               imageClassName="h-8 md:h-10 lg:h-12"
               showText
               textClassName={`hidden md:inline-block text-[11px] md:text-xs ${isTransparent ? "text-white/95" : "text-black"}`}
-              alt="AM CROCHET brand logo"
-              ariaLabel="AM CROCHET home"
+              alt="AM Crochet Bags brand logo"
+              ariaLabel="AM Crochet Bags home"
             />
 
             {/* Center Navigation (Desktop) */}
@@ -198,8 +198,8 @@ export default function Navbar() {
                   imageClassName="h-8 w-auto"
                   showText
                   textClassName="text-xs text-[#2C2C2C]"
-                  alt="AM CROCHET logo"
-                  ariaLabel="AM CROCHET home"
+                  alt="AM Crochet Bags logo"
+                  ariaLabel="AM Crochet Bags home"
                 />
                 <button 
                   onClick={() => setMobileMenuOpen(false)}

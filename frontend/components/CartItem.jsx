@@ -7,9 +7,11 @@ import { Trash2 } from "lucide-react";
 import QuantitySelector from "./QuantitySelector";
 import { useCart } from "@/context/CartContext";
 import { getOptimizedImageUrl } from "@/utils/cloudinaryImage";
+import { buildProductPath } from "@/utils/seo";
 
 export default function CartItem({ item }) {
   const { removeFromCart, increaseQuantity, decreaseQuantity } = useCart();
+  const productHref = buildProductPath(item);
 
   return (
     <motion.div
@@ -22,7 +24,7 @@ export default function CartItem({ item }) {
     >
       {/* Product Image */}
       <div className="w-24 h-24 sm:w-32 sm:h-32 relative bg-gray-50 rounded-xl overflow-hidden flex-shrink-0 border border-gray-100/50 mx-auto sm:mx-0">
-        <Link href={`/products/${item.id}`}>
+        <Link href={productHref}>
           <Image
             src={getOptimizedImageUrl(item.image, { width: 300 })}
             alt={item.name}
@@ -35,7 +37,7 @@ export default function CartItem({ item }) {
       {/* Product Details */}
       <div className="flex-grow flex flex-col items-center sm:items-start text-center sm:text-left h-full justify-center mt-3 sm:mt-0">
         <Link
-          href={`/products/${item.id}`}
+          href={productHref}
           className="text-base sm:text-lg font-bold text-gray-900 tracking-tight hover:text-gray-500 transition-colors line-clamp-1"
         >
           {item.name}

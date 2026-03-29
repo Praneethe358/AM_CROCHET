@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useRef, useEffect, useMemo } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { useCart } from "@/context/CartContext";
 import { useAuth } from "@/context/AuthContext";
 import QuantitySelector from "./QuantitySelector";
@@ -10,6 +11,7 @@ import authClient from "@/services/authApi";
 import { toast } from "react-hot-toast";
 import { ChevronLeft, ChevronRight, ShoppingBag, Star, Heart, ShieldCheck, RotateCcw, Truck } from "lucide-react";
 import { getOptimizedImageUrl, getResponsiveSizes } from "@/utils/cloudinaryImage";
+import { buildCategoryPath } from "@/utils/seo";
 
 export default function ProductDetails({ product }) {
   const [quantity, setQuantity] = useState(1);
@@ -172,7 +174,7 @@ export default function ProductDetails({ product }) {
           <div className="w-full h-full relative">
             <Image
               src={getOptimizedImageUrl(galleryImages[activeImageIndex], { width: 1200 })}
-              alt={product.name}
+              alt={`${product.name} - handmade crochet bag by AM Crochet Bags`}
               fill
               priority
               sizes={getResponsiveSizes("detail")}
@@ -225,7 +227,7 @@ export default function ProductDetails({ product }) {
                 }`}
                 aria-label={`View image ${index + 1}`}
               >
-                <Image src={getOptimizedImageUrl(imageUrl, { width: 200 })} alt={`${product.name} ${index + 1}`} fill className="object-cover" sizes={getResponsiveSizes("thumbnail")} />
+                <Image src={getOptimizedImageUrl(imageUrl, { width: 200 })} alt={`${product.name} product image ${index + 1}`} fill className="object-cover" sizes={getResponsiveSizes("thumbnail")} />
               </button>
             ))}
           </div>
@@ -234,9 +236,9 @@ export default function ProductDetails({ product }) {
 
       {/* Right side: Modern Details */}
       <div className="flex flex-col justify-center py-1 md:py-0">
-        <p ref={addToRefs} className="text-xs font-semibold text-theme-faint tracking-widest uppercase mb-2">
+        <Link href={buildCategoryPath(product.category || "handbags")} ref={addToRefs} className="text-xs font-semibold text-theme-faint tracking-widest uppercase mb-2 hover:text-theme-text transition-colors">
           {product.category}
-        </p>
+        </Link>
         <h1 ref={addToRefs} className="text-2xl sm:text-3xl lg:text-4xl font-extrabold font-serif text-theme-text mb-2.5 tracking-tight leading-tight">
           {product.name}
         </h1>

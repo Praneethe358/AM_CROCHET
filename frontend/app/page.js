@@ -1,84 +1,36 @@
-"use client";
-
-import { useEffect, useState } from "react";
-import Hero from "@/components/Hero";
-import ThematicBannerStrip from "@/components/ThematicBannerStrip";
-import FeaturedProducts from "@/components/FeaturedProducts";
-import PromotionsShowcase from "@/components/PromotionsShowcase";
-import FeaturesStrip from "@/components/FeaturesStrip";
-import { getHomeData } from "@/services/homeApi";
+import HomePageClient from "@/components/HomePageClient";
+import { SITE_URL } from "@/utils/seo";
 
 export const dynamic = "force-dynamic";
 
-const fallbackHomeData = {
-  hero: {
-    slides: [],
+export const metadata = {
+  title: "AM Crochet Bags – Official Store | Handmade Crochet Bags India",
+  description:
+    "AM Crochet Bags offers premium handmade crochet bags, crochet handbags India shoppers love, and durable everyday styles at affordable prices.",
+  alternates: {
+    canonical: "/",
   },
-  featured: {
-    items: [],
-    maxItems: 6,
+  openGraph: {
+    title: "AM Crochet Bags – Official Store | Handmade Crochet Bags India",
+    description:
+      "Shop AM Crochet Bags for handmade crochet bags and crochet handbags India customers trust for style, durability, and value.",
+    url: SITE_URL,
+    type: "website",
   },
-  promotions: { thematicBanners: [], deals: [] },
 };
 
 export default function Home() {
-  const [homeData, setHomeData] = useState(fallbackHomeData);
-  const [isRefreshing, setIsRefreshing] = useState(true);
-
-  useEffect(() => {
-    let isMounted = true;
-
-    const loadHomeData = async () => {
-      try {
-        const data = await getHomeData();
-        if (!isMounted || !data) return;
-
-        setHomeData((prev) => ({
-          hero: data.hero || prev.hero,
-          featured: {
-            items: Array.isArray(data.featured?.items) && data.featured.items.length
-              ? data.featured.items
-              : prev.featured.items,
-            maxItems: data.featured?.maxItems || prev.featured.maxItems,
-          },
-          promotions: {
-            thematicBanners: Array.isArray(data.promotions?.thematicBanners)
-              ? data.promotions.thematicBanners
-              : prev.promotions.thematicBanners,
-            deals: Array.isArray(data.promotions?.deals)
-              ? data.promotions.deals
-              : prev.promotions.deals,
-          },
-        }));
-      } finally {
-        if (isMounted) {
-          setIsRefreshing(false);
-        }
-      }
-    };
-
-    loadHomeData();
-
-    return () => {
-      isMounted = false;
-    };
-  }, []);
-
   return (
     <>
-      {isRefreshing ? (
-        <div className="fixed top-24 right-4 z-40 rounded-full border border-theme-border bg-theme-card/95 px-3 py-1.5 text-[11px] font-medium tracking-wide text-theme-faint shadow-sm">
-          Refreshing content...
-        </div>
-      ) : null}
-      <Hero slides={homeData.hero?.slides} />
-      <ThematicBannerStrip initialSlides={homeData.promotions?.thematicBanners || []} />
-      <PromotionsShowcase initialPromotions={homeData.promotions?.deals || []} />
-      <FeaturedProducts
-        initialItems={homeData.featured?.items || []}
-        limit={homeData.featured?.maxItems || 6}
-      />
-      <FeaturesStrip />
+      <section className="sr-only" aria-label="Homepage SEO heading">
+        <h1>AM Crochet Bags</h1>
+        <p>
+          AM Crochet Bags creates handmade crochet bags and crochet handbags India customers trust for premium design, durability,
+          and value.
+        </p>
+      </section>
+
+      <HomePageClient />
     </>
   );
 }

@@ -3,7 +3,11 @@ import ProductGrid from "@/components/ProductGrid";
 import SectionTitle from "@/components/SectionTitle";
 
 export const metadata = {
-  title: "Products | BagStore",
+  title: "Shop Products | AM Crochet Bags",
+  description: "Explore handmade crochet bags from AM Crochet Bags, including premium handbags, backpacks, and accessories.",
+  alternates: {
+    canonical: "/products",
+  },
 };
 export const dynamic = "force-dynamic";
 
@@ -28,6 +32,7 @@ export default async function ProductsPage() {
   return (
     <div className="pt-24 md:pt-32 pb-16 md:pb-20 min-h-screen bg-white">
       <Container>
+        <h1 className="sr-only">AM Crochet Bags Product Collection</h1>
         <SectionTitle 
           title="Our Collection" 
           subtitle="Browse our entire collection of meticulously crafted bags." 

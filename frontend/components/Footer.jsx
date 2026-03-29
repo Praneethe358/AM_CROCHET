@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Instagram, Mail, Phone, MapPin } from "lucide-react";
 import Logo from "./Logo";
+import { buildCategoryPath } from "@/utils/seo";
 
 const WhatsappIcon = ({ size = 24, className = "" }) => (
   <svg
@@ -31,12 +32,12 @@ export default function Footer() {
               imageClassName="h-7 md:h-8 lg:h-9"
               showText
               textClassName="text-[11px] text-white/90"
-              alt="AM CROCHET footer logo"
-              ariaLabel="AM CROCHET home"
+              alt="AM Crochet Bags footer logo"
+              ariaLabel="AM Crochet Bags home"
             />
             <p className="text-sm leading-relaxed max-w-sm mb-8">
-              Premium handcrafted bags designed for everyday style and durability. 
-              Elevate your carry with our signature crochet collection.
+              AM Crochet Bags creates premium handmade crochet bags designed for everyday style and durability.
+              Elevate your carry with our signature collection.
             </p>
             <div className="flex items-center gap-4">
               <a href="#" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-white hover:text-black transition-all duration-300">
@@ -53,9 +54,9 @@ export default function Footer() {
             <h4 className="text-white font-medium mb-6 uppercase tracking-widest text-xs">Shop</h4>
             <ul className="space-y-4 text-sm">
               <li><Link href="/products" className="hover:text-white transition-colors">All Collections</Link></li>
-              <li><Link href="/products?category=handbags" className="hover:text-white transition-colors">Handbags</Link></li>
-              <li><Link href="/products?category=backpacks" className="hover:text-white transition-colors">Backpacks</Link></li>
-              <li><Link href="/products?category=accessories" className="hover:text-white transition-colors">Accessories</Link></li>
+              <li><Link href={buildCategoryPath("handbags")} className="hover:text-white transition-colors">Handbags</Link></li>
+              <li><Link href={buildCategoryPath("backpacks")} className="hover:text-white transition-colors">Backpacks</Link></li>
+              <li><Link href={buildCategoryPath("accessories")} className="hover:text-white transition-colors">Accessories</Link></li>
             </ul>
           </div>
 
@@ -67,6 +68,7 @@ export default function Footer() {
               <li><Link href="/cart" className="hover:text-white transition-colors">Shopping Cart</Link></li>
               <li><Link href="/profile" className="hover:text-white transition-colors">My Account</Link></li>
               <li><Link href="/login" className="hover:text-white transition-colors">Sign In / Register</Link></li>
+              <li><Link href="/about-am-crochet-bags" className="hover:text-white transition-colors">About AM Crochet Bags</Link></li>
             </ul>
           </div>
 
@@ -92,7 +94,7 @@ export default function Footer() {
         </div>
         
         <div className="border-t border-white/5 mt-16 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] md:text-xs uppercase tracking-[0.2em]">
-          <p>&copy; {currentYear} AM CROCHET. Built with passion.</p>
+          <p>&copy; {currentYear} AM Crochet Bags. Built with passion.</p>
           <div className="flex gap-8">
             <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
             <a href="#" className="hover:text-white transition-colors">Terms of Service</a>

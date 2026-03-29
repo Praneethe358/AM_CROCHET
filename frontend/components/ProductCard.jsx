@@ -6,11 +6,11 @@ import { motion } from "framer-motion";
 import { Plus } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { getOptimizedImageUrl, getResponsiveSizes } from "@/utils/cloudinaryImage";
+import { buildProductPath } from "@/utils/seo";
 
 export default function ProductCard({ product }) {
   const { addToCart } = useCart();
   const imageRef = useRef(null);
-  const productId = product.id || product._id;
   const rawImageSrc = product.images?.[0] || product.image || "";
   const imageSrc = getOptimizedImageUrl(rawImageSrc, { width: 800 });
 
@@ -21,7 +21,7 @@ export default function ProductCard({ product }) {
   };
 
   return (
-    <Link href={`/products/${productId}`} className="block group focus:outline-none">
+    <Link href={buildProductPath(product)} className="block group focus:outline-none">
       <motion.div 
         className="flex flex-col h-full bg-theme-bg rounded-xl sm:rounded-2xl transition-all duration-500 will-change-transform border border-theme-border/70 shadow-sm hover:shadow-[0_10px_35px_rgba(44,44,44,0.08)]"
         whileHover={{ y: -8 }}

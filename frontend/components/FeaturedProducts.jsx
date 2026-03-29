@@ -10,6 +10,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 
 import { getOptimizedImageUrl } from "@/utils/cloudinaryImage";
+import { buildProductPath } from "@/utils/seo";
 
 export default function FeaturedProducts({ initialItems, limit = 6 }) {
   const [featured, setFeatured] = useState([]);
@@ -61,7 +62,7 @@ export default function FeaturedProducts({ initialItems, limit = 6 }) {
   if (cards.length === 0) return null;
 
   const renderBannerCard = (card, idx, isMobile = false) => {
-    const targetHref = card.id && !String(card.id).startsWith("featured-") ? `/products/${card.id}` : "/products";
+    const targetHref = card.id && !String(card.id).startsWith("featured-") ? buildProductPath(card) : "/products";
     const isPrimaryBanner = idx === 0;
     const imageSizes = isMobile
       ? "(max-width: 768px) 92vw, 45vw"

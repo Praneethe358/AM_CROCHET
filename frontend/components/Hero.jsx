@@ -5,6 +5,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Autoplay, EffectFade } from 'swiper/modules';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
 
 // Import Swiper styles
 import 'swiper/css';
@@ -53,9 +54,13 @@ export default function Hero({ slides }) {
                   preload="metadata"
                 />
               ) : (
-                <div
-                  className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-                  style={{ backgroundImage: 'url(' + (slide.image || '') + ')' }}
+                <Image
+                  src={slide.image || ''}
+                  alt={slide.title ? `${slide.title} - AM Crochet Bags` : 'AM Crochet Bags hero image'}
+                  fill
+                  priority={index === 0}
+                  sizes="100vw"
+                  className="absolute inset-0 h-full w-full object-cover"
                 />
               )}
               <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/60" />

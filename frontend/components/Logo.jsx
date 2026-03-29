@@ -5,13 +5,13 @@ const DEFAULT_LOGO_SRC = "/bag.png";
 
 export default function Logo({
   href = "/",
-  alt = "AM CROCHET logo",
+  alt = "AM Crochet Bags logo",
   variant = "dark",
   className = "",
   imageClassName = "",
   textClassName = "",
   showText = false,
-  text = "AM CROCHET",
+  text = "AM Crochet Bags",
   priority = false,
   ariaLabel,
 }) {

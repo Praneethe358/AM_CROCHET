@@ -11,6 +11,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 
 import { getOptimizedImageUrl } from '@/utils/cloudinaryImage';
+import { buildProductPath } from '@/utils/seo';
 
 export default function PromotionsShowcase({ initialPromotions }) {
   const [promotions, setPromotions] = useState([]);
@@ -143,7 +144,7 @@ export default function PromotionsShowcase({ initialPromotions }) {
           >
             {comboItems.map((item, index) => {
               const productId = item.product?._id;
-              const productLink = productId ? `/products/${productId}` : '/products';
+              const productLink = productId ? buildProductPath(item.product) : '/products';
               const countdownText = formatCountdown(item.endDate);
               const discountValue = Number(item.discount);
               const showDiscount = Number.isFinite(discountValue) && discountValue > 0;
@@ -160,7 +161,7 @@ export default function PromotionsShowcase({ initialPromotions }) {
                     >
                       <Image
                         src={getOptimizedImageUrl(imageSrc, { width: 600 })}
-                        alt={item.product?.name || 'Combo item'}
+                        alt={item.product?.name ? `${item.product.name} - AM Crochet Bags` : 'Handmade crochet bag combo item'}
                         fill
                         className="object-cover transition-transform duration-700 group-hover:scale-105"
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"

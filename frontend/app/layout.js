@@ -4,13 +4,80 @@ import AppShell from "@/components/AppShell";
 import DisableScrollRestoration from "@/components/DisableScrollRestoration";
 import { CartProvider } from "@/context/CartContext";
 import { AuthProvider } from "@/context/AuthContext";
+import { BRAND_NAME, SITE_URL } from "@/utils/seo";
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair' });
 
 export const metadata = {
-  title: "AM CROCHET | Luxury Handcrafted Bags",
-  description: "Exquisite handcrafted crochet bags and accessories designed for enduring style and refined luxury.",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "AM Crochet Bags – Official Store | Handmade Crochet Bags India",
+    template: "%s | AM Crochet Bags",
+  },
+  description: "AM Crochet Bags offers premium handmade crochet bags. Stylish, durable, and affordable. Shop now.",
+  keywords: [
+    "AM Crochet Bags",
+    "handmade crochet bags",
+    "crochet handbags India",
+    "crochet bags online",
+    "women crochet handbags",
+  ],
+  alternates: {
+    canonical: "/",
+  },
+  icons: {
+    icon: "/bag.png",
+    shortcut: "/bag.png",
+    apple: "/bag.png",
+  },
+  openGraph: {
+    title: "AM Crochet Bags – Official Store | Handmade Crochet Bags India",
+    description: "AM Crochet Bags offers premium handmade crochet bags. Stylish, durable, and affordable. Shop now.",
+    url: SITE_URL,
+    siteName: BRAND_NAME,
+    locale: "en_IN",
+    type: "website",
+    images: [
+      {
+        url: "/bag.png",
+        width: 1200,
+        height: 630,
+        alt: "AM Crochet Bags brand image",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "AM Crochet Bags – Official Store | Handmade Crochet Bags India",
+    description: "AM Crochet Bags offers premium handmade crochet bags. Stylish, durable, and affordable. Shop now.",
+    images: ["/bag.png"],
+    site: "@amcrochetbags",
+  },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || undefined,
+  },
+};
+
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: BRAND_NAME,
+  url: SITE_URL,
+  logo: `${SITE_URL}/bag.png`,
+  description: "AM Crochet Bags offers premium handmade crochet bags. Stylish, durable, and affordable.",
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: BRAND_NAME,
+  url: SITE_URL,
+  potentialAction: {
+    "@type": "SearchAction",
+    target: `${SITE_URL}/search?q={search_term_string}`,
+    "query-input": "required name=search_term_string",
+  },
 };
 
 export default function RootLayout({ children }) {
@@ -24,6 +91,14 @@ export default function RootLayout({ children }) {
             <AppShell>{children}</AppShell>
           </CartProvider>
         </AuthProvider>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+        />
       </body>
     </html>
   );

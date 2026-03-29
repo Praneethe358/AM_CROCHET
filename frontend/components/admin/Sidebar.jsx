@@ -27,7 +27,7 @@ export default function Sidebar({ isOpen, setIsOpen }) {
     <aside className={`fixed left-0 top-0 bottom-0 w-64 bg-theme-bg border-r border-theme-border flex flex-col z-40 transition-transform duration-300 ${isOpen ? "translate-x-0" : "-translate-x-full"} md:translate-x-0`}>
       <div className="h-16 flex items-center justify-center border-b border-theme-border px-6 relative">
         <Link href="/admin" className="text-xl font-serif font-bold tracking-wider text-theme-text hover:opacity-80 transition-opacity">
-          AM CROCHET <span className="text-sm font-sans font-light">Admin</span>
+          AM Crochet Bags <span className="text-sm font-sans font-light">Admin</span>
         </Link>
       </div>
 
