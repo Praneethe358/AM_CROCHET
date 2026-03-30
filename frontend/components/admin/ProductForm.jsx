@@ -165,10 +165,10 @@ export default function ProductForm({ initialData = {}, onSubmit, isLoading }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6 max-w-2xl bg-white dark:bg-dark-card p-6 rounded-2xl shadow-sm border border-black/5 dark:border-white/10">
+    <form onSubmit={handleSubmit} className="space-y-6 max-w-2xl bg-theme-card p-6 rounded-2xl shadow-sm border border-theme-border text-theme-text">
       <div className="space-y-4">
         <div>
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+          <label className="block text-sm font-medium text-theme-text mb-1">
             Product Name *
           </label>
           <input
@@ -177,14 +177,14 @@ export default function ProductForm({ initialData = {}, onSubmit, isLoading }) {
             value={formData.name}
             onChange={handleChange}
             required
-            className="w-full px-4 py-2 border border-gray-300 dark:border-white/10 rounded-lg bg-transparent text-dark-text dark:text-cream focus:ring-2 focus:ring-black dark:focus:ring-cream outline-none transition-all"
+            className="w-full px-4 py-2 border border-theme-border rounded-lg bg-theme-card text-theme-text placeholder:text-theme-faint focus:ring-2 focus:ring-theme-accent/30 outline-none transition-all"
             placeholder="Crochet Tote Bag"
           />
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label className="block text-sm font-medium text-theme-text mb-1">
               Price *
             </label>
             <input
@@ -195,12 +195,12 @@ export default function ProductForm({ initialData = {}, onSubmit, isLoading }) {
               required
               min="0"
               step="0.01"
-              className="w-full px-4 py-2 border border-gray-300 dark:border-white/10 rounded-lg bg-transparent text-dark-text dark:text-cream focus:ring-2 focus:ring-black dark:focus:ring-cream outline-none transition-all"
+              className="w-full px-4 py-2 border border-theme-border rounded-lg bg-theme-card text-theme-text placeholder:text-theme-faint focus:ring-2 focus:ring-theme-accent/30 outline-none transition-all"
               placeholder="49.99"
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label className="block text-sm font-medium text-theme-text mb-1">
               Stock
             </label>
             <input
@@ -209,21 +209,21 @@ export default function ProductForm({ initialData = {}, onSubmit, isLoading }) {
               value={formData.stock}
               onChange={handleChange}
               min="0"
-              className="w-full px-4 py-2 border border-gray-300 dark:border-white/10 rounded-lg bg-transparent text-dark-text dark:text-cream focus:ring-2 focus:ring-black dark:focus:ring-cream outline-none transition-all"
+              className="w-full px-4 py-2 border border-theme-border rounded-lg bg-theme-card text-theme-text placeholder:text-theme-faint focus:ring-2 focus:ring-theme-accent/30 outline-none transition-all"
               placeholder="10"
             />
           </div>
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+          <label className="block text-sm font-medium text-theme-text mb-1">
             Category
           </label>
           <select
             name="category"
             value={formData.category}
             onChange={handleChange}
-            className="w-full px-4 py-2 border border-gray-300 dark:border-white/10 rounded-lg bg-transparent text-dark-text dark:text-cream focus:ring-2 focus:ring-black dark:focus:ring-cream outline-none transition-all"
+            className="w-full px-4 py-2 border border-theme-border rounded-lg bg-theme-card text-theme-text focus:ring-2 focus:ring-theme-accent/30 outline-none transition-all"
           >
             <option value="handbags">Handbags</option>
             <option value="backpacks">Backpacks</option>
@@ -235,8 +235,8 @@ export default function ProductForm({ initialData = {}, onSubmit, isLoading }) {
         {/* ────────── Image Upload Area ────────── */}
         <div>
           <div className="flex items-center justify-between mb-2">
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-              Product Images * <span className="text-xs text-gray-400">({images.length}/10)</span>
+            <label className="block text-sm font-medium text-theme-text">
+              Product Images * <span className="text-xs text-theme-faint">({images.length}/10)</span>
             </label>
           </div>
 
@@ -249,17 +249,17 @@ export default function ProductForm({ initialData = {}, onSubmit, isLoading }) {
             className={`relative flex flex-col items-center justify-center gap-2 p-6 rounded-xl border-2 border-dashed cursor-pointer transition-all duration-300 ${
               dragOver
                 ? "border-black dark:border-cream bg-black/5 dark:bg-white/5 scale-[1.01]"
-                : "border-gray-300 dark:border-white/15 hover:border-gray-400 dark:hover:border-white/25 hover:bg-gray-50 dark:hover:bg-white/[0.02]"
+                : "border-theme-border hover:border-theme-accent/50 hover:bg-theme-secondary"
             }`}
           >
             <div className={`p-3 rounded-full transition-colors ${dragOver ? "bg-black/10 dark:bg-white/10" : "bg-gray-100 dark:bg-white/5"}`}>
               <Upload className={`w-6 h-6 transition-colors ${dragOver ? "text-black dark:text-cream" : "text-gray-400"}`} />
             </div>
             <div className="text-center">
-              <p className="text-sm font-medium text-gray-600 dark:text-gray-300">
+              <p className="text-sm font-medium text-theme-text">
                 {dragOver ? "Drop images here" : "Click or drag images here"}
               </p>
-              <p className="text-xs text-gray-400 mt-1">
+              <p className="text-xs text-theme-faint mt-1">
                 JPG, PNG, WebP • Max 10MB each • Up to 10 images
               </p>
             </div>
@@ -279,7 +279,7 @@ export default function ProductForm({ initialData = {}, onSubmit, isLoading }) {
               type="url"
               value={manualUrl}
               onChange={(e) => setManualUrl(e.target.value)}
-              className="flex-1 px-4 py-2 border border-gray-300 dark:border-white/10 rounded-lg bg-transparent text-dark-text dark:text-cream focus:ring-2 focus:ring-black dark:focus:ring-cream outline-none transition-all text-sm"
+              className="flex-1 px-4 py-2 border border-theme-border rounded-lg bg-theme-card text-theme-text placeholder:text-theme-faint focus:ring-2 focus:ring-theme-accent/30 outline-none transition-all text-sm"
               placeholder="Or paste an image URL..."
               onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); addManualUrl(); } }}
             />
@@ -355,7 +355,7 @@ export default function ProductForm({ initialData = {}, onSubmit, isLoading }) {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+          <label className="block text-sm font-medium text-theme-text mb-1">
             Description
           </label>
           <textarea
@@ -363,25 +363,25 @@ export default function ProductForm({ initialData = {}, onSubmit, isLoading }) {
             value={formData.description}
             onChange={handleChange}
             rows="4"
-            className="w-full px-4 py-2 border border-gray-300 dark:border-white/10 rounded-lg bg-transparent text-dark-text dark:text-cream focus:ring-2 focus:ring-black dark:focus:ring-cream outline-none transition-all resize-none"
+            className="w-full px-4 py-2 border border-theme-border rounded-lg bg-theme-card text-theme-text placeholder:text-theme-faint focus:ring-2 focus:ring-theme-accent/30 outline-none transition-all resize-none"
             placeholder="Detailed product description..."
           ></textarea>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 items-end">
-          <label className="inline-flex items-center gap-2 text-sm font-medium text-gray-700 dark:text-gray-300">
+          <label className="inline-flex items-center gap-2 text-sm font-medium text-theme-text">
             <input
               type="checkbox"
               name="isFeatured"
               checked={formData.isFeatured}
               onChange={handleChange}
-              className="h-4 w-4 rounded border-gray-300 dark:border-white/10"
+              className="h-4 w-4 rounded border-theme-border"
             />
             Mark as Featured Product
           </label>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label className="block text-sm font-medium text-theme-text mb-1">
               Featured Order
             </label>
             <input
@@ -391,18 +391,18 @@ export default function ProductForm({ initialData = {}, onSubmit, isLoading }) {
               onChange={handleChange}
               min="1"
               disabled={!formData.isFeatured}
-              className="w-full px-4 py-2 border border-gray-300 dark:border-white/10 rounded-lg bg-transparent text-dark-text dark:text-cream focus:ring-2 focus:ring-black dark:focus:ring-cream outline-none transition-all disabled:opacity-60"
+              className="w-full px-4 py-2 border border-theme-border rounded-lg bg-theme-card text-theme-text placeholder:text-theme-faint focus:ring-2 focus:ring-theme-accent/30 outline-none transition-all disabled:opacity-60"
               placeholder="1"
             />
           </div>
         </div>
       </div>
 
-      <div className="flex items-center space-x-4 pt-4 border-t border-black/5 dark:border-white/10">
+      <div className="flex items-center space-x-4 pt-4 border-t border-theme-border">
         <button
           type="button"
           onClick={() => router.back()}
-          className="px-6 py-2 rounded-lg border border-gray-300 dark:border-white/10 text-gray-700 dark:text-gray-300 font-medium hover:bg-gray-50 dark:hover:bg-white/5 transition-colors"
+          className="px-6 py-2 rounded-lg border border-theme-border text-theme-text font-medium hover:bg-theme-secondary transition-colors"
         >
           Cancel
         </button>

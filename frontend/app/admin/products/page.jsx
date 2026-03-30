@@ -44,20 +44,20 @@ export default function AdminProductsPage() {
   return (
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        <h1 className="text-2xl sm:text-3xl font-serif text-dark-text dark:text-cream">Products</h1>
+        <h1 className="text-2xl sm:text-3xl font-serif text-theme-text">Products</h1>
         <Link
           href="/admin/products/add"
-          className="inline-flex items-center justify-center space-x-2 bg-black text-white dark:bg-cream dark:text-dark-bg px-4 py-2 rounded-lg text-sm font-medium hover:opacity-90 transition-opacity"
+          className="inline-flex items-center justify-center space-x-2 bg-theme-text text-white px-4 py-2 rounded-lg text-sm font-medium hover:opacity-90 transition-opacity"
         >
           <Plus size={16} />
           <span>Add Product</span>
         </Link>
       </div>
 
-      <div className="bg-white dark:bg-dark-card rounded-2xl shadow-sm border border-black/5 dark:border-white/10 overflow-hidden">
+      <div className="bg-theme-card rounded-2xl shadow-sm border border-theme-border overflow-hidden">
         {loading ? (
           <div className="flex items-center justify-center p-12">
-            <Loader2 className="w-8 h-8 animate-spin text-dark-text dark:text-cream" />
+            <Loader2 className="w-8 h-8 animate-spin text-theme-text" />
           </div>
         ) : (
           <ProductTable products={products} onDelete={handleDelete} />

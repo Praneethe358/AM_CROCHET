@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const DEFAULT_LOGO_SRC = "/bag.png";
+const DEFAULT_LOGO_SRC = "/bag-20260330.png";
 
 export default function Logo({
   href = "/",

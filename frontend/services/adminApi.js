@@ -1,5 +1,26 @@
 import authClient from "./authApi";
 
+const isRetryableRequestError = (error) => {
+  const message = (error?.message || "").toLowerCase();
+  return (
+    error?.code === "ECONNABORTED" ||
+    error?.code === "ERR_NETWORK" ||
+    message.includes("timeout") ||
+    message.includes("network")
+  );
+};
+
+const getWithRetry = async (url, config = {}, retries = 1) => {
+  try {
+    return await authClient.get(url, config);
+  } catch (error) {
+    if (retries > 0 && isRetryableRequestError(error)) {
+      return getWithRetry(url, config, retries - 1);
+    }
+    throw error;
+  }
+};
+
 export const getAdminProducts = async () => {
   const response = await authClient.get("/admin/products");
   return response.data?.data || [];
@@ -115,7 +136,7 @@ export const uploadAdminMedia = async (file, mediaType = "image") => {
 };
 
 export const getAdminHero = async () => {
-  const response = await authClient.get("/admin/hero");
+  const response = await getWithRetry("/admin/hero", { timeout: 25000 }, 1);
   return response.data?.data || null;
 };
 
@@ -145,7 +166,7 @@ export const deleteAdminCategory = async (id) => {
 };
 
 export const getAdminFeatured = async () => {
-  const response = await authClient.get("/admin/featured");
+  const response = await getWithRetry("/admin/featured", { timeout: 20000 }, 1);
   return response.data?.data || { items: [], maxItems: 6, isActive: true };
 };
 

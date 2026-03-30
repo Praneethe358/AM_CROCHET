@@ -98,6 +98,18 @@ export default function PromotionManager({
     onFieldChange("products", selected);
   };
 
+  const onToggleProduct = (productId) => {
+    setForm((prev) => {
+      const exists = prev.products.includes(productId);
+      return {
+        ...prev,
+        products: exists
+          ? prev.products.filter((id) => id !== productId)
+          : [...prev.products, productId],
+      };
+    });
+  };
+
   const onUploadBanner = async (event) => {
     const file = event.target.files?.[0];
     if (!file) return;
@@ -199,47 +211,47 @@ export default function PromotionManager({
 
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl sm:text-3xl font-serif text-dark-text dark:text-cream">{pageTitle}</h1>
-      {description ? <p className="text-sm text-gray-500 -mt-2">{description}</p> : null}
+      <h1 className="text-2xl sm:text-3xl font-serif text-theme-text">{pageTitle}</h1>
+      {description ? <p className="text-sm text-theme-faint -mt-2">{description}</p> : null}
 
-      <section className="bg-white dark:bg-dark-card rounded-2xl border border-black/5 dark:border-white/10 p-5 sm:p-6">
-        <h2 className="text-lg font-semibold text-dark-text dark:text-cream mb-4">{formTitle}</h2>
+      <section className="bg-theme-card rounded-2xl border border-theme-border p-5 sm:p-6">
+        <h2 className="text-lg font-semibold text-theme-text mb-4">{formTitle}</h2>
         <form onSubmit={onSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="md:col-span-2">
-            <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Title *</label>
+            <label className="text-sm font-medium text-theme-text">Title *</label>
             <input
               type="text"
               value={form.title}
               onChange={(e) => onFieldChange("title", e.target.value)}
-              className="mt-1 w-full rounded-lg border border-gray-300 dark:border-white/10 bg-transparent px-4 py-2"
+              className="mt-1 w-full rounded-lg border border-theme-border bg-theme-card px-4 py-2 text-theme-text placeholder:text-theme-faint focus:outline-none focus:ring-2 focus:ring-theme-accent/30"
               required
             />
           </div>
 
           <div className="md:col-span-2">
-            <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Description *</label>
+            <label className="text-sm font-medium text-theme-text">Description *</label>
             <textarea
               value={form.description}
               onChange={(e) => onFieldChange("description", e.target.value)}
               rows={3}
-              className="mt-1 w-full rounded-lg border border-gray-300 dark:border-white/10 bg-transparent px-4 py-2"
+              className="mt-1 w-full rounded-lg border border-theme-border bg-theme-card px-4 py-2 text-theme-text placeholder:text-theme-faint focus:outline-none focus:ring-2 focus:ring-theme-accent/30"
               required
             />
           </div>
 
           <div className="md:col-span-2 space-y-2">
-            <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Banner URL *</label>
+            <label className="text-sm font-medium text-theme-text">Banner URL *</label>
             <input
               type="url"
               value={form.banner}
               onChange={(e) => onFieldChange("banner", e.target.value)}
-              className="w-full rounded-lg border border-gray-300 dark:border-white/10 bg-transparent px-4 py-2"
+              className="w-full rounded-lg border border-theme-border bg-theme-card px-4 py-2 text-theme-text placeholder:text-theme-faint focus:outline-none focus:ring-2 focus:ring-theme-accent/30"
               placeholder="https://..."
               required
             />
 
             <div className="flex items-center gap-3">
-              <label className="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 dark:border-white/10 cursor-pointer text-sm">
+              <label className="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-theme-border cursor-pointer text-sm text-theme-text bg-theme-secondary hover:bg-theme-border transition-colors">
                 <Upload size={14} />
                 {uploading ? "Uploading..." : "Upload banner"}
                 <input
@@ -250,28 +262,28 @@ export default function PromotionManager({
                   className="hidden"
                 />
               </label>
-              {form.banner ? <span className="text-xs text-gray-500 truncate max-w-[220px]">{form.banner}</span> : null}
+              {form.banner ? <span className="text-xs text-theme-faint truncate max-w-[220px]">{form.banner}</span> : null}
             </div>
           </div>
 
           <div>
-            <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Discount %</label>
+            <label className="text-sm font-medium text-theme-text">Discount %</label>
             <input
               type="number"
               min="0"
               max="100"
               value={form.discount}
               onChange={(e) => onFieldChange("discount", e.target.value)}
-              className="mt-1 w-full rounded-lg border border-gray-300 dark:border-white/10 bg-transparent px-4 py-2"
+              className="mt-1 w-full rounded-lg border border-theme-border bg-theme-card px-4 py-2 text-theme-text placeholder:text-theme-faint focus:outline-none focus:ring-2 focus:ring-theme-accent/30"
             />
           </div>
 
           <div>
-            <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Status</label>
+            <label className="text-sm font-medium text-theme-text">Status</label>
             <select
               value={form.status}
               onChange={(e) => onFieldChange("status", e.target.value)}
-              className="mt-1 w-full rounded-lg border border-gray-300 dark:border-white/10 bg-transparent px-4 py-2"
+              className="mt-1 w-full rounded-lg border border-theme-border bg-theme-card px-4 py-2 text-theme-text focus:outline-none focus:ring-2 focus:ring-theme-accent/30"
             >
               <option value="active">Active</option>
               <option value="inactive">Inactive</option>
@@ -280,18 +292,18 @@ export default function PromotionManager({
 
           {isPlacementLocked ? (
             <div>
-              <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Placement</label>
-              <div className="mt-1 w-full rounded-lg border border-gray-300 dark:border-white/10 bg-gray-50 dark:bg-black/20 px-4 py-2 text-sm">
+              <label className="text-sm font-medium text-theme-text">Placement</label>
+              <div className="mt-1 w-full rounded-lg border border-theme-border bg-theme-secondary px-4 py-2 text-sm text-theme-text">
                 {getPlacementLabel(fixedPlacement)}
               </div>
             </div>
           ) : (
             <div>
-              <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Placement</label>
+              <label className="text-sm font-medium text-theme-text">Placement</label>
               <select
                 value={form.placement}
                 onChange={(e) => onFieldChange("placement", e.target.value)}
-                className="mt-1 w-full rounded-lg border border-gray-300 dark:border-white/10 bg-transparent px-4 py-2"
+                className="mt-1 w-full rounded-lg border border-theme-border bg-theme-card px-4 py-2 text-theme-text focus:outline-none focus:ring-2 focus:ring-theme-accent/30"
               >
                 <option value="general">General Promotion (not pinned to Home sections)</option>
                 <option value="home_thematic_banner">Home Banner Slider (Women/Teens/College banner)</option>
@@ -301,11 +313,11 @@ export default function PromotionManager({
           )}
 
           <div>
-            <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Audience</label>
+            <label className="text-sm font-medium text-theme-text">Audience</label>
             <select
               value={form.audience}
               onChange={(e) => onFieldChange("audience", e.target.value)}
-              className="mt-1 w-full rounded-lg border border-gray-300 dark:border-white/10 bg-transparent px-4 py-2"
+              className="mt-1 w-full rounded-lg border border-theme-border bg-theme-card px-4 py-2 text-theme-text focus:outline-none focus:ring-2 focus:ring-theme-accent/30"
             >
               <option value="">All Audiences</option>
               <option value="women">Women</option>
@@ -315,49 +327,76 @@ export default function PromotionManager({
           </div>
 
           <div>
-            <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Start date *</label>
+            <label className="text-sm font-medium text-theme-text">Start date *</label>
             <input
               type="date"
               value={form.startDate}
               onChange={(e) => onFieldChange("startDate", e.target.value)}
-              className="mt-1 w-full rounded-lg border border-gray-300 dark:border-white/10 bg-transparent px-4 py-2"
+              className="mt-1 w-full rounded-lg border border-theme-border bg-theme-card px-4 py-2 text-theme-text focus:outline-none focus:ring-2 focus:ring-theme-accent/30"
               required
             />
           </div>
 
           <div>
-            <label className="text-sm font-medium text-gray-700 dark:text-gray-300">End date *</label>
+            <label className="text-sm font-medium text-theme-text">End date *</label>
             <input
               type="date"
               value={form.endDate}
               onChange={(e) => onFieldChange("endDate", e.target.value)}
-              className="mt-1 w-full rounded-lg border border-gray-300 dark:border-white/10 bg-transparent px-4 py-2"
+              className="mt-1 w-full rounded-lg border border-theme-border bg-theme-card px-4 py-2 text-theme-text focus:outline-none focus:ring-2 focus:ring-theme-accent/30"
               required
             />
           </div>
 
           <div className="md:col-span-2">
-            <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Related products</label>
-            <select
-              multiple
-              value={form.products}
-              onChange={onSelectProducts}
-              className="mt-1 h-36 w-full rounded-lg border border-gray-300 dark:border-white/10 bg-transparent px-4 py-2"
-            >
-              {products.map((product) => (
-                <option key={product._id} value={product._id}>
-                  {product.name}
-                </option>
-              ))}
-            </select>
-            <p className="text-xs text-gray-500 mt-1">Hold Ctrl/Cmd to select multiple products.</p>
+            <label className="text-sm font-medium text-theme-text">Related products</label>
+            <div className="mt-1 space-y-2">
+              <div className="md:hidden rounded-lg border border-theme-border bg-theme-card max-h-56 overflow-y-auto divide-y divide-theme-border">
+                {products.length === 0 ? (
+                  <p className="px-3 py-2 text-xs text-theme-faint">No products available</p>
+                ) : (
+                  products.map((product) => {
+                    const checked = form.products.includes(product._id);
+                    return (
+                      <label
+                        key={product._id}
+                        className="flex items-center gap-3 px-3 py-2 text-sm cursor-pointer text-theme-text"
+                      >
+                        <input
+                          type="checkbox"
+                          checked={checked}
+                          onChange={() => onToggleProduct(product._id)}
+                          className="h-4 w-4 rounded border-gray-300 text-black focus:ring-black"
+                        />
+                        <span className="truncate">{product.name}</span>
+                      </label>
+                    );
+                  })
+                )}
+              </div>
+
+              <select
+                multiple
+                value={form.products}
+                onChange={onSelectProducts}
+                className="hidden md:block h-36 w-full rounded-lg border border-theme-border bg-theme-card px-4 py-2 text-theme-text focus:outline-none focus:ring-2 focus:ring-theme-accent/30"
+              >
+                {products.map((product) => (
+                  <option key={product._id} value={product._id}>
+                    {product.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <p className="text-xs text-theme-faint mt-1 hidden md:block">Hold Ctrl/Cmd to select multiple products.</p>
+            <p className="text-xs text-theme-faint mt-1 md:hidden">Tap products to select multiple options.</p>
           </div>
 
           <div className="md:col-span-2 flex items-center gap-3">
             <button
               type="submit"
               disabled={saving}
-              className="inline-flex items-center gap-2 rounded-lg bg-black text-white dark:bg-cream dark:text-dark-bg px-4 py-2 text-sm font-medium disabled:opacity-70"
+              className="inline-flex items-center gap-2 rounded-lg bg-theme-text text-white px-4 py-2 text-sm font-medium disabled:opacity-70"
             >
               {saving ? <Loader2 className="w-4 h-4 animate-spin" /> : null}
               {editingId ? "Update Promotion" : "Create Promotion"}
@@ -366,7 +405,7 @@ export default function PromotionManager({
               <button
                 type="button"
                 onClick={resetForm}
-                className="inline-flex items-center rounded-lg border border-gray-300 dark:border-white/10 px-4 py-2 text-sm"
+                className="inline-flex items-center rounded-lg border border-theme-border text-theme-text px-4 py-2 text-sm hover:bg-theme-secondary transition-colors"
               >
                 Cancel Edit
               </button>
@@ -375,22 +414,22 @@ export default function PromotionManager({
         </form>
       </section>
 
-      <section className="bg-white dark:bg-dark-card rounded-2xl border border-black/5 dark:border-white/10 overflow-hidden">
-        <div className="px-5 py-4 border-b border-black/5 dark:border-white/10">
-          <h2 className="text-lg font-semibold text-dark-text dark:text-cream">All Promotions</h2>
+      <section className="bg-theme-card rounded-2xl border border-theme-border overflow-hidden">
+        <div className="px-5 py-4 border-b border-theme-border">
+          <h2 className="text-lg font-semibold text-theme-text">All Promotions</h2>
         </div>
 
         {loading ? (
           <div className="flex items-center justify-center p-12">
-            <Loader2 className="w-8 h-8 animate-spin text-dark-text dark:text-cream" />
+            <Loader2 className="w-8 h-8 animate-spin text-theme-text" />
           </div>
         ) : !promotions.length ? (
-          <p className="p-6 text-sm text-gray-500">No promotions created yet.</p>
+          <p className="p-6 text-sm text-theme-faint">No promotions created yet.</p>
         ) : (
-          <div className="divide-y divide-black/5 dark:divide-white/10">
+          <div className="divide-y divide-theme-border">
             {promotions.map((promotion) => (
               <article key={promotion._id} className="p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center gap-4">
-                <div className="relative h-20 w-full sm:w-32 rounded-lg overflow-hidden border border-black/5 dark:border-white/10 shrink-0">
+                <div className="relative h-20 w-full sm:w-32 rounded-lg overflow-hidden border border-theme-border shrink-0">
                   <Image
                     src={getOptimizedImageUrl(promotion.banner || "", { width: 400 })}
                     alt={promotion.title}
@@ -400,9 +439,9 @@ export default function PromotionManager({
                 </div>
 
                 <div className="flex-1 min-w-0">
-                  <h3 className="font-medium text-dark-text dark:text-cream truncate">{promotion.title}</h3>
-                  <p className="text-xs text-gray-500 mt-1 line-clamp-2">{promotion.description}</p>
-                  <div className="text-xs text-gray-500 mt-2 flex flex-wrap gap-3">
+                  <h3 className="font-medium text-theme-text truncate">{promotion.title}</h3>
+                  <p className="text-xs text-theme-faint mt-1 line-clamp-2">{promotion.description}</p>
+                  <div className="text-xs text-theme-faint mt-2 flex flex-wrap gap-3">
                     <span>Status: {promotion.status}</span>
                     <span>Placement: {promotion.placement || "general"}</span>
                     {promotion.audience ? <span>Audience: {promotion.audience}</span> : null}
@@ -417,7 +456,7 @@ export default function PromotionManager({
                   <button
                     type="button"
                     onClick={() => onEdit(promotion)}
-                    className="inline-flex items-center gap-1 rounded-lg border border-gray-300 dark:border-white/10 px-3 py-2 text-xs"
+                    className="inline-flex items-center gap-1 rounded-lg border border-theme-border text-theme-text px-3 py-2 text-xs hover:bg-theme-secondary transition-colors"
                   >
                     <Pencil size={14} />
                     Edit

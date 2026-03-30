@@ -8,7 +8,7 @@ import { getOptimizedImageUrl } from "@/utils/cloudinaryImage";
 export default function ProductTable({ products, onDelete }) {
   if (!products || products.length === 0) {
     return (
-      <div className="p-8 text-center text-gray-500 dark:text-gray-400">
+      <div className="p-8 text-center text-theme-faint">
         No products found.
       </div>
     );
@@ -17,7 +17,7 @@ export default function ProductTable({ products, onDelete }) {
   return (
     <div className="overflow-x-auto">
       <table className="w-full text-left text-sm whitespace-nowrap">
-        <thead className="bg-gray-50 dark:bg-white/5 text-gray-600 dark:text-gray-300 font-medium border-b border-black/5 dark:border-white/10">
+        <thead className="bg-theme-secondary text-theme-text font-medium border-b border-theme-border">
           <tr>
             <th className="px-6 py-4">Product</th>
             <th className="px-6 py-4">Category</th>
@@ -27,12 +27,12 @@ export default function ProductTable({ products, onDelete }) {
             <th className="px-6 py-4 text-right">Actions</th>
           </tr>
         </thead>
-        <tbody className="divide-y divide-black/5 dark:divide-white/10">
+        <tbody className="divide-y divide-theme-border">
           {products.map((product) => (
-            <tr key={product._id} className="hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
+            <tr key={product._id} className="hover:bg-theme-secondary transition-colors">
               <td className="px-6 py-4">
                 <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 relative rounded-md overflow-hidden bg-gray-100 dark:bg-white/10 shrink-0">
+                  <div className="w-12 h-12 relative rounded-md overflow-hidden bg-theme-secondary shrink-0">
                     <Image
                       src={getOptimizedImageUrl(product.images?.[0] || product.image || "/bag.png", { width: 200 })}
                       alt={product.name}
@@ -40,15 +40,15 @@ export default function ProductTable({ products, onDelete }) {
                       className="object-cover"
                     />
                   </div>
-                  <span className="font-medium text-dark-text dark:text-cream truncate max-w-[200px]">
+                  <span className="font-medium text-theme-text truncate max-w-[200px]">
                     {product.name}
                   </span>
                 </div>
               </td>
-              <td className="px-6 py-4 text-gray-600 dark:text-gray-400 capitalize">
+              <td className="px-6 py-4 text-theme-faint capitalize">
                 {product.category || "Uncategorized"}
               </td>
-              <td className="px-6 py-4 text-dark-text dark:text-cream font-medium">₹{product.price?.toFixed(2)}
+              <td className="px-6 py-4 text-theme-text font-medium">₹{product.price?.toFixed(2)}
               </td>
               <td className="px-6 py-4">
                 {product.isFeatured ? (
@@ -56,18 +56,18 @@ export default function ProductTable({ products, onDelete }) {
                     Featured
                   </span>
                 ) : (
-                  <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-600 dark:bg-white/10 dark:text-gray-400">
+                  <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-theme-secondary text-theme-faint">
                     No
                   </span>
                 )}
               </td>
-              <td className="px-6 py-4 text-gray-600 dark:text-gray-400">
+              <td className="px-6 py-4 text-theme-faint">
                 {product.isFeatured ? product.featuredOrder || "-" : "-"}
               </td>
               <td className="px-6 py-4 text-right space-x-2">
                 <Link
                   href={`/admin/products/edit/${product._id}`}
-                  className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-gray-100 dark:bg-white/10 text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors"
+                  className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-theme-secondary text-theme-text hover:bg-theme-border transition-colors"
                 >
                   <Edit2 size={16} />
                 </Link>

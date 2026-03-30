@@ -145,23 +145,23 @@ export default function AdminFeaturedPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center p-12">
-        <Loader2 className="w-8 h-8 animate-spin text-dark-text dark:text-cream" />
+        <Loader2 className="w-8 h-8 animate-spin text-theme-text" />
       </div>
     );
   }
 
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl sm:text-3xl font-serif text-dark-text dark:text-cream">Featured Collection</h1>
+      <h1 className="text-2xl sm:text-3xl font-serif text-theme-text">Featured Collection</h1>
 
-      <section className="bg-white dark:bg-dark-card rounded-2xl border border-black/5 dark:border-white/10 p-5 sm:p-6 space-y-4">
+      <section className="bg-theme-card rounded-2xl border border-theme-border p-5 sm:p-6 space-y-4 text-theme-text">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3 items-end">
           <div className="md:col-span-2">
-            <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Add product</label>
+            <label className="text-sm font-medium text-theme-text">Add product</label>
             <select
               value={selectedProductId}
               onChange={(event) => setSelectedProductId(event.target.value)}
-              className="mt-1 w-full rounded-lg border border-gray-300 dark:border-white/10 bg-transparent px-4 py-2"
+              className="mt-1 w-full rounded-lg border border-theme-border bg-theme-card px-4 py-2 text-theme-text focus:outline-none focus:ring-2 focus:ring-theme-accent/30"
             >
               <option value="">Select a product</option>
               {availableProducts.map((product) => (
@@ -175,7 +175,7 @@ export default function AdminFeaturedPage() {
           <button
             type="button"
             onClick={addProduct}
-            className="inline-flex items-center justify-center rounded-lg bg-black text-white dark:bg-cream dark:text-dark-bg px-4 py-2 text-sm font-medium"
+            className="inline-flex items-center justify-center rounded-lg bg-theme-text text-white px-4 py-2 text-sm font-medium hover:opacity-90 transition-opacity"
           >
             Add to featured
           </button>
@@ -183,19 +183,19 @@ export default function AdminFeaturedPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           <div>
-            <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Max items</label>
+            <label className="text-sm font-medium text-theme-text">Max items</label>
             <input
               type="number"
               min="1"
               max="20"
               value={maxItems}
               onChange={(event) => setMaxItems(event.target.value)}
-              className="mt-1 w-full rounded-lg border border-gray-300 dark:border-white/10 bg-transparent px-4 py-2"
+              className="mt-1 w-full rounded-lg border border-theme-border bg-theme-card px-4 py-2 text-theme-text focus:outline-none focus:ring-2 focus:ring-theme-accent/30"
             />
           </div>
 
           <div className="flex items-end">
-            <label className="inline-flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300">
+            <label className="inline-flex items-center gap-2 text-sm text-theme-text">
               <input
                 type="checkbox"
                 checked={isActive}
@@ -206,24 +206,24 @@ export default function AdminFeaturedPage() {
           </div>
         </div>
 
-        <p className="text-xs text-gray-500">Selected: {selectedItems.length} / {maxItems}</p>
+        <p className="text-xs text-theme-faint">Selected: {selectedItems.length} / {maxItems}</p>
 
-        <div className="divide-y divide-black/5 dark:divide-white/10 rounded-xl border border-black/5 dark:border-white/10 overflow-hidden">
+        <div className="divide-y divide-theme-border rounded-xl border border-theme-border overflow-hidden">
           {!selectedItems.length ? (
-            <p className="p-4 text-sm text-gray-500">No featured products selected yet.</p>
+            <p className="p-4 text-sm text-theme-faint">No featured products selected yet.</p>
           ) : (
             selectedItems.map((item, index) => (
               <div key={item._id} className="p-3 flex items-center justify-between gap-3">
                 <div className="min-w-0">
-                  <p className="text-sm font-medium text-dark-text dark:text-cream truncate">{item.name}</p>
-                  <p className="text-xs text-gray-500">Order: {index + 1}</p>
+                  <p className="text-sm font-medium text-theme-text truncate">{item.name}</p>
+                  <p className="text-xs text-theme-faint">Order: {index + 1}</p>
                 </div>
 
                 <div className="flex items-center gap-2">
                   <button
                     type="button"
                     onClick={() => moveItem(index, -1)}
-                    className="inline-flex items-center justify-center rounded-lg border border-gray-300 dark:border-white/10 p-2 text-xs"
+                    className="inline-flex items-center justify-center rounded-lg border border-theme-border p-2 text-xs text-theme-text hover:bg-theme-secondary transition-colors"
                     aria-label="Move up"
                   >
                     <ArrowUp size={14} />
@@ -231,7 +231,7 @@ export default function AdminFeaturedPage() {
                   <button
                     type="button"
                     onClick={() => moveItem(index, 1)}
-                    className="inline-flex items-center justify-center rounded-lg border border-gray-300 dark:border-white/10 p-2 text-xs"
+                    className="inline-flex items-center justify-center rounded-lg border border-theme-border p-2 text-xs text-theme-text hover:bg-theme-secondary transition-colors"
                     aria-label="Move down"
                   >
                     <ArrowDown size={14} />
@@ -254,7 +254,7 @@ export default function AdminFeaturedPage() {
           type="button"
           onClick={saveCollection}
           disabled={saving}
-          className="inline-flex items-center gap-2 rounded-lg bg-black text-white dark:bg-cream dark:text-dark-bg px-4 py-2 text-sm font-medium disabled:opacity-70"
+          className="inline-flex items-center gap-2 rounded-lg bg-theme-text text-white px-4 py-2 text-sm font-medium disabled:opacity-70"
         >
           {saving ? <Loader2 className="w-4 h-4 animate-spin" /> : null}
           Save Featured Collection

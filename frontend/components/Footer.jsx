@@ -40,7 +40,12 @@ export default function Footer() {
               Elevate your carry with our signature collection.
             </p>
             <div className="flex items-center gap-4">
-              <a href="#" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-white hover:text-black transition-all duration-300">
+              <a
+                href="https://www.instagram.com/am_crochet_bag?igsh=MTNqbWU3NHR4MDFkag=="
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-white hover:text-black transition-all duration-300"
+              >
                 <Instagram size={18} />
               </a>
               <a href="#" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-white hover:text-black transition-all duration-300">
@@ -65,12 +70,9 @@ export default function Footer() {
           <div>
             <h4 className="text-white font-medium mb-6 uppercase tracking-widest text-xs">Customer Support</h4>
             <ul className="space-y-4 text-sm">
-              <li><Link href="/orders" className="hover:text-white transition-colors">Track Orders</Link></li>
               <li><Link href="/cart" className="hover:text-white transition-colors">Shopping Cart</Link></li>
               <li><Link href="/login" className="hover:text-white transition-colors">Sign In / Register</Link></li>
               <li><Link href="/about-am-crochet-bags" className="hover:text-white transition-colors">About AM Crochet Bags</Link></li>
-              <li><Link href="/blog/handmade-crochet-bags-care-tips" className="hover:text-white transition-colors">Handmade Crochet Bags Care Tips</Link></li>
-              <li><Link href="/blog/best-crochet-bags-for-daily-use" className="hover:text-white transition-colors">Best Crochet Bags for Daily Use</Link></li>
             </ul>
           </div>
 
@@ -80,7 +82,7 @@ export default function Footer() {
             <ul className="space-y-4 text-sm">
               <li className="flex items-center gap-3">
                 <Mail size={16} className="text-gray-500" />
-                <span>hello@amcrochet.com</span>
+                <span>amcrochet2026@gmail.com</span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone size={16} className="text-gray-500" />
@@ -88,7 +90,7 @@ export default function Footer() {
               </li>
               <li className="flex items-start gap-3">
                 <MapPin size={16} className="text-gray-500 mt-1" />
-                <span className="leading-relaxed">Hyderabad, India</span>
+                <span className="leading-relaxed">Coimbatore, India</span>
               </li>
             </ul>
           </div>

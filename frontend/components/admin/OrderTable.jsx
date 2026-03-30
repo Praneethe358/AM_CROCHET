@@ -5,7 +5,7 @@ import { format } from "date-fns";
 export default function OrderTable({ orders, onStatusUpdate }) {
   if (!orders || orders.length === 0) {
     return (
-      <div className="p-8 text-center text-gray-500 dark:text-gray-400">
+      <div className="p-8 text-center text-theme-faint">
         No orders found.
       </div>
     );
@@ -38,7 +38,7 @@ export default function OrderTable({ orders, onStatusUpdate }) {
   return (
     <div className="overflow-x-auto">
       <table className="w-full text-left text-sm whitespace-nowrap">
-        <thead className="bg-gray-50 dark:bg-white/5 text-gray-600 dark:text-gray-300 font-medium border-b border-black/5 dark:border-white/10">
+        <thead className="bg-theme-secondary text-theme-text font-medium border-b border-theme-border">
           <tr>
             <th className="px-6 py-4">Order ID</th>
             <th className="px-6 py-4">Date</th>
@@ -48,40 +48,40 @@ export default function OrderTable({ orders, onStatusUpdate }) {
             <th className="px-6 py-4">Status</th>
           </tr>
         </thead>
-        <tbody className="divide-y divide-black/5 dark:divide-white/10">
+        <tbody className="divide-y divide-theme-border">
           {orders.map((order) => (
-            <tr key={order._id} className="hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
-              <td className="px-6 py-4 font-mono text-xs text-gray-500 dark:text-gray-400">
+            <tr key={order._id} className="hover:bg-theme-secondary transition-colors">
+              <td className="px-6 py-4 font-mono text-xs text-theme-faint">
                 {order._id}
               </td>
-              <td className="px-6 py-4 text-dark-text dark:text-cream">
+              <td className="px-6 py-4 text-theme-text">
                 {order.createdAt ? format(new Date(order.createdAt), "MMM dd, yyyy") : "-"}
               </td>
-              <td className="px-6 py-4 text-dark-text dark:text-cream">
+              <td className="px-6 py-4 text-theme-text">
                 {order.user?.name || "Unknown"}
-                <div className="text-xs text-gray-500 dark:text-gray-400">
+                <div className="text-xs text-theme-faint">
                   {order.user?.email || ""}
                 </div>
               </td>
-              <td className="px-6 py-4 text-dark-text dark:text-cream">
+              <td className="px-6 py-4 text-theme-text">
                 <div className="space-y-1 min-w-56 max-w-72 whitespace-normal">
                   {(order.items || []).slice(0, 2).map((item, index) => (
-                    <div key={`${order._id}-item-${index}`} className="text-xs leading-5 text-gray-700 dark:text-gray-300">
+                    <div key={`${order._id}-item-${index}`} className="text-xs leading-5 text-theme-text">
                       <span className="font-medium">{item.product?.name || "Product"}</span>
-                      <span className="text-gray-500 dark:text-gray-400"> × {item.quantity || 0}</span>
+                      <span className="text-theme-faint"> × {item.quantity || 0}</span>
                     </div>
                   ))}
                   {(order.items || []).length > 2 && (
-                    <div className="text-xs text-gray-500 dark:text-gray-400">
+                    <div className="text-xs text-theme-faint">
                       +{(order.items || []).length - 2} more
                     </div>
                   )}
                   {(!order.items || order.items.length === 0) && (
-                    <div className="text-xs text-gray-500 dark:text-gray-400">No items</div>
+                    <div className="text-xs text-theme-faint">No items</div>
                   )}
                 </div>
               </td>
-              <td className="px-6 py-4 text-dark-text dark:text-cream font-medium">₹{Number(order.finalAmount || order.totalAmount || 0).toFixed(2)}
+              <td className="px-6 py-4 text-theme-text font-medium">₹{Number(order.finalAmount || order.totalAmount || 0).toFixed(2)}
               </td>
               <td className="px-6 py-4">
                 <div className="mb-2">

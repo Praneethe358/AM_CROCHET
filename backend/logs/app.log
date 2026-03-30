@@ -3249,3 +3249,24 @@
 2026-03-27 21:00:11 [INFO] MongoDB connected (primary): ac-tqplvla-shard-00-01.qyy87sr.mongodb.net
 2026-03-27 21:00:11 [INFO] Server running in development mode on port 5000
 2026-03-29 16:04:56 [ERROR] Failed to start server: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/
+2026-03-30 22:10:35 [INFO] MongoDB connected (primary): ac-tqplvla-shard-00-00.qyy87sr.mongodb.net
+2026-03-30 22:10:35 [INFO] Server running in development mode on port 5000
+2026-03-30 22:42:38 [INFO] API request {"method":"GET","url":"/api/health","statusCode":200,"durationMs":13,"ip":"::1"}
+2026-03-30 22:42:39 [INFO] API request {"method":"GET","url":"/api/admin/hero","statusCode":401,"durationMs":3,"ip":"::1"}
+2026-03-30 23:29:27 [INFO] API request {"method":"GET","url":"/api/health","statusCode":200,"durationMs":1,"ip":"::1"}
+2026-03-30 23:29:48 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":200,"durationMs":4901,"ip":"::1"}
+2026-03-30 23:29:48 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":200,"durationMs":5187,"ip":"::1"}
+2026-03-30 23:29:48 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":297,"ip":"::1"}
+2026-03-30 23:29:49 [INFO] API request {"method":"GET","url":"/api/home","statusCode":200,"durationMs":5734,"ip":"::1"}
+2026-03-30 23:29:49 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":6000,"ip":"::1"}
+2026-03-30 23:29:49 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":109,"ip":"::1"}
+2026-03-30 23:29:50 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":200,"durationMs":109,"ip":"::1"}
+2026-03-30 23:29:50 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":304,"durationMs":1651,"ip":"::1"}
+2026-03-30 23:30:14 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":137,"ip":"::1"}
+2026-03-30 23:30:14 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":143,"ip":"::1"}
+2026-03-30 23:30:14 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":304,"durationMs":238,"ip":"::1"}
+2026-03-30 23:30:14 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":202,"ip":"::1"}
+2026-03-30 23:30:14 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":202,"ip":"::1"}
+2026-03-30 23:30:14 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":304,"durationMs":189,"ip":"::1"}
+2026-03-30 23:30:15 [INFO] API request {"method":"GET","url":"/api/home","statusCode":200,"durationMs":956,"ip":"::1"}
+2026-03-30 23:30:15 [INFO] API request {"method":"GET","url":"/api/home","statusCode":304,"durationMs":200,"ip":"::1"}

@@ -43,13 +43,13 @@ export default function AdminOrdersPage() {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl sm:text-3xl font-serif text-dark-text dark:text-cream">Orders</h1>
+        <h1 className="text-2xl sm:text-3xl font-serif text-theme-text">Orders</h1>
       </div>
 
-      <div className="bg-white dark:bg-dark-card rounded-2xl shadow-sm border border-black/5 dark:border-white/10 overflow-hidden">
+      <div className="bg-theme-card rounded-2xl shadow-sm border border-theme-border overflow-hidden">
         {loading ? (
           <div className="flex items-center justify-center p-12">
-            <Loader2 className="w-8 h-8 animate-spin text-dark-text dark:text-cream" />
+            <Loader2 className="w-8 h-8 animate-spin text-theme-text" />
           </div>
         ) : (
           <OrderTable orders={orders} onStatusUpdate={handleStatusUpdate} />
