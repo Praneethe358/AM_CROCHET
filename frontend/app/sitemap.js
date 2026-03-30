@@ -5,12 +5,9 @@ export default async function sitemap() {
     "",
     "/products",
     "/about-am-crochet-bags",
-    "/promotions",
-    "/cart",
-    "/checkout",
-    "/orders",
-    "/login",
-    "/signup",
+    "/blog",
+    "/blog/handmade-crochet-bags-care-tips",
+    "/blog/best-crochet-bags-for-daily-use",
   ].map((path) => ({
     url: `${SITE_URL}${path}`,
     lastModified: new Date(),
@@ -26,6 +23,7 @@ export default async function sitemap() {
     const products = payload?.data || [];
 
     const productEntries = products
+      .filter((item) => item?._id)
       .map((item) => ({
         url: `${SITE_URL}${buildProductPath({ id: item._id, name: item.name })}`,
         lastModified: new Date(item.updatedAt || item.createdAt || Date.now()),

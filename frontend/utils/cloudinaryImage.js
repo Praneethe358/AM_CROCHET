@@ -30,13 +30,14 @@ export function getOptimizedImageUrl(url, options = {}) {
     width,
     height,
     crop = "limit",
-    quality = "auto:best",
+    quality = "auto:good",
     format = "auto",
   } = options;
 
   const parts = [];
   if (quality) parts.push(`q_${quality}`);
   if (format) parts.push(`f_${format}`);
+  parts.push("fl_progressive");
   parts.push("dpr_auto");   // serve 2× for retina screens automatically
   if (width) parts.push(`w_${width}`);
   if (height) parts.push(`h_${height}`);

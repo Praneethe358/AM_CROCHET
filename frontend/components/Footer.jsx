@@ -57,6 +57,7 @@ export default function Footer() {
               <li><Link href={buildCategoryPath("handbags")} className="hover:text-white transition-colors">Handbags</Link></li>
               <li><Link href={buildCategoryPath("backpacks")} className="hover:text-white transition-colors">Backpacks</Link></li>
               <li><Link href={buildCategoryPath("accessories")} className="hover:text-white transition-colors">Accessories</Link></li>
+              <li><Link href="/blog" className="hover:text-white transition-colors">Crochet Blog</Link></li>
             </ul>
           </div>
 
@@ -68,6 +69,8 @@ export default function Footer() {
               <li><Link href="/cart" className="hover:text-white transition-colors">Shopping Cart</Link></li>
               <li><Link href="/login" className="hover:text-white transition-colors">Sign In / Register</Link></li>
               <li><Link href="/about-am-crochet-bags" className="hover:text-white transition-colors">About AM Crochet Bags</Link></li>
+              <li><Link href="/blog/handmade-crochet-bags-care-tips" className="hover:text-white transition-colors">Handmade Crochet Bags Care Tips</Link></li>
+              <li><Link href="/blog/best-crochet-bags-for-daily-use" className="hover:text-white transition-colors">Best Crochet Bags for Daily Use</Link></li>
             </ul>
           </div>
 
