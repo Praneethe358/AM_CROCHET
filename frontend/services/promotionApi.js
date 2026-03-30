@@ -13,8 +13,15 @@ const getAuthHeaders = () => {
 };
 
 export const getActivePromotions = async (filters = {}) => {
-  const response = await axios.get(`${API_BASE_URL}/promotions`, { params: filters });
-  return response.data?.data || [];
+  try {
+    const response = await axios.get(`${API_BASE_URL}/promotions`, {
+      params: filters,
+      timeout: 8000,
+    });
+    return response.data?.data || [];
+  } catch {
+    return [];
+  }
 };
 
 export const getPromotionById = async (id) => {

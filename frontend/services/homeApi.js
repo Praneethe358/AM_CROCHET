@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:5000/api";
-const HOME_REQUEST_TIMEOUT_MS = 15000;
-const HOME_REQUEST_RETRY_COUNT = 1;
+const HOME_REQUEST_TIMEOUT_MS = 6000;
+const HOME_REQUEST_RETRY_COUNT = 0;
 
 const defaultHomeData = {
   hero: null,
@@ -17,7 +17,19 @@ export const getHomeData = async () => {
       timeout: HOME_REQUEST_TIMEOUT_MS,
     });
 
-    return response.data?.data || defaultHomeData;
+    const data = response.data?.data || {};
+    return {
+      hero: data.hero || null,
+      featured: {
+        items: Array.isArray(data.featured?.items) ? data.featured.items : [],
+        maxItems: data.featured?.maxItems || 6,
+      },
+      categories: Array.isArray(data.categories) ? data.categories : [],
+      promotions: {
+        thematicBanners: Array.isArray(data.promotions?.thematicBanners) ? data.promotions.thematicBanners : [],
+        deals: Array.isArray(data.promotions?.deals) ? data.promotions.deals : [],
+      },
+    };
   };
 
   try {

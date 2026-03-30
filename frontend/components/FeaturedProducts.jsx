@@ -14,7 +14,7 @@ import { buildProductPath } from "@/utils/seo";
 
 export default function FeaturedProducts({ initialItems, limit = 6 }) {
   const [featured, setFeatured] = useState([]);
-  const hasInitialItemsProp = Array.isArray(initialItems);
+  const hasInitialItemsProp = Array.isArray(initialItems) && initialItems.length > 0;
 
   useEffect(() => {
     if (hasInitialItemsProp) {
@@ -24,7 +24,9 @@ export default function FeaturedProducts({ initialItems, limit = 6 }) {
     const fetchFeaturedProducts = async () => {
       try {
         const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:5000/api";
-        const response = await axios.get(`${API_BASE_URL}/products?isFeatured=true&sort=featured&limit=${limit}`);
+        const response = await axios.get(`${API_BASE_URL}/products?isFeatured=true&sort=featured&limit=${limit}`, {
+          timeout: 8000,
+        });
         const items = response.data?.data || [];
 
         setFeatured(

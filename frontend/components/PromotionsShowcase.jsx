@@ -16,7 +16,7 @@ import { buildProductPath } from '@/utils/seo';
 export default function PromotionsShowcase({ initialPromotions }) {
   const [promotions, setPromotions] = useState([]);
   const [nowMs, setNowMs] = useState(() => Date.now());
-  const hasInitialPromotionsProp = Array.isArray(initialPromotions);
+  const hasInitialPromotionsProp = Array.isArray(initialPromotions) && initialPromotions.length > 0;
 
   useEffect(() => {
     if (hasInitialPromotionsProp) {

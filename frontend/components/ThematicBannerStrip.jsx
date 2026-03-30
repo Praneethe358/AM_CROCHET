@@ -19,7 +19,7 @@ const getAudienceLabel = (audience) => {
 export default function ThematicBannerStrip({ initialSlides }) {
   const [slides, setSlides] = useState([]);
   const [activeIndex, setActiveIndex] = useState(0);
-  const hasInitialSlidesProp = Array.isArray(initialSlides);
+  const hasInitialSlidesProp = Array.isArray(initialSlides) && initialSlides.length > 0;
 
   useEffect(() => {
     if (hasInitialSlidesProp) {

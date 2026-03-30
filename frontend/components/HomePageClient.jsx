@@ -8,6 +8,8 @@ import PromotionsShowcase from "@/components/PromotionsShowcase";
 import FeaturesStrip from "@/components/FeaturesStrip";
 import { getHomeData } from "@/services/homeApi";
 
+const REFRESH_FALLBACK_HIDE_MS = 8000;
+
 const initialHomeData = {
   hero: {
     slides: [],
@@ -25,6 +27,9 @@ export default function HomePageClient() {
 
   useEffect(() => {
     let isMounted = true;
+    const refreshTimeoutId = window.setTimeout(() => {
+      if (isMounted) setIsRefreshing(false);
+    }, REFRESH_FALLBACK_HIDE_MS);
 
     const loadHomeData = async () => {
       try {
@@ -59,6 +64,7 @@ export default function HomePageClient() {
 
     return () => {
       isMounted = false;
+      window.clearTimeout(refreshTimeoutId);
     };
   }, []);
 
@@ -70,10 +76,26 @@ export default function HomePageClient() {
         </div>
       ) : null}
       <Hero slides={homeData.hero?.slides} />
-      <ThematicBannerStrip initialSlides={homeData.promotions?.thematicBanners || []} />
-      <PromotionsShowcase initialPromotions={homeData.promotions?.deals || []} />
+      <ThematicBannerStrip
+        initialSlides={
+          Array.isArray(homeData.promotions?.thematicBanners) && homeData.promotions.thematicBanners.length > 0
+            ? homeData.promotions.thematicBanners
+            : undefined
+        }
+      />
+      <PromotionsShowcase
+        initialPromotions={
+          Array.isArray(homeData.promotions?.deals) && homeData.promotions.deals.length > 0
+            ? homeData.promotions.deals
+            : undefined
+        }
+      />
       <FeaturedProducts
-        initialItems={homeData.featured?.items || []}
+        initialItems={
+          Array.isArray(homeData.featured?.items) && homeData.featured.items.length > 0
+            ? homeData.featured.items
+            : undefined
+        }
         limit={homeData.featured?.maxItems || 6}
       />
       <FeaturesStrip />
