@@ -1,9 +1,17 @@
 $ErrorActionPreference = 'Stop'
 
+# Ensure relative Node requires (./models/*) resolve no matter where script is launched from.
+$backendRoot = Split-Path -Parent $PSScriptRoot
+Set-Location $backendRoot
+
 $baseUrl = if ($env:BASE_URL) { $env:BASE_URL } else { 'http://localhost:5000' }
-$testEmail = if ($env:SMOKE_EMAIL) { $env:SMOKE_EMAIL } else { 'admin.smoke@amcrochet.test' }
-$testPassword = if ($env:SMOKE_PASSWORD) { $env:SMOKE_PASSWORD } else { 'Admin@12345' }
-$couponCode = if ($env:SMOKE_COUPON) { $env:SMOKE_COUPON } else { 'SMOKE10' }
+$testEmail = $env:SMOKE_EMAIL
+$testPassword = $env:SMOKE_PASSWORD
+$couponCode = $env:SMOKE_COUPON
+
+if ([string]::IsNullOrWhiteSpace($testEmail) -or [string]::IsNullOrWhiteSpace($testPassword) -or [string]::IsNullOrWhiteSpace($couponCode)) {
+  throw 'Missing required env vars: SMOKE_EMAIL, SMOKE_PASSWORD, SMOKE_COUPON'
+}
 
 function Invoke-Json {
   param(
@@ -31,9 +39,33 @@ function Invoke-Json {
     return Invoke-RestMethod @params
   }
   catch {
+    $responseBody = $null
+
+    if ($_.ErrorDetails -and $_.ErrorDetails.Message) {
+      $responseBody = $_.ErrorDetails.Message
+    }
+    elseif ($_.Exception.Response -and $_.Exception.Response.Content) {
+      try {
+        $responseBody = $_.Exception.Response.Content.ReadAsStringAsync().GetAwaiter().GetResult()
+      }
+      catch {
+        $responseBody = $null
+      }
+    }
     if ($_.Exception.Response) {
-      $reader = New-Object System.IO.StreamReader($_.Exception.Response.GetResponseStream())
-      $responseBody = $reader.ReadToEnd()
+      try {
+        $stream = $_.Exception.Response.GetResponseStream()
+        if ($stream) {
+          $reader = New-Object System.IO.StreamReader($stream)
+          $responseBody = $reader.ReadToEnd()
+        }
+      }
+      catch {
+        # Ignore stream read errors and fall through to generic error.
+      }
+    }
+
+    if ($responseBody) {
       throw "Request failed [$Method $Url]: $responseBody"
     }
 
@@ -102,12 +134,14 @@ if (-not $token) { throw 'Login did not return token' }
 $authHeader = @{ Authorization = "Bearer $token" }
 
 Write-Host "[5/11] Create product"
+$productName = if ($env:SMOKE_PRODUCT_NAME) { $env:SMOKE_PRODUCT_NAME } else { "Catalog Product $(Get-Date -Format 'yyyyMMddHHmmss')" }
+$productImage = if ($env:SMOKE_PRODUCT_IMAGE) { $env:SMOKE_PRODUCT_IMAGE } else { 'https://res.cloudinary.com/demo/image/upload/sample.jpg' }
 $product = Invoke-Json -Method 'POST' -Url "$baseUrl/api/products" -Headers $authHeader -Body @{
-  name = "Smoke Test Bag $(Get-Date -Format 'yyyyMMddHHmmss')"
+  name = $productName
   price = 1499
   category = 'travel'
-  description = 'Smoke test product'
-  image = 'https://example.com/bag.webp'
+  description = 'Automated validation product'
+  image = $productImage
   stock = 10
 }
 $productId = $product.data._id

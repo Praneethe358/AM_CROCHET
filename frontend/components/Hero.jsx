@@ -13,14 +13,12 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/effect-fade';
 
-const defaultSlides = [];
-
 export default function Hero({ slides }) {
   const activeSlides = useMemo(() => {
     if (Array.isArray(slides) && slides.length > 0) {
       return slides;
     }
-    return defaultSlides;
+    return [];
   }, [slides]);
 
   if (!activeSlides || activeSlides.length === 0) return null;

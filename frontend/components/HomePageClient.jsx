@@ -8,7 +8,7 @@ import PromotionsShowcase from "@/components/PromotionsShowcase";
 import FeaturesStrip from "@/components/FeaturesStrip";
 import { getHomeData } from "@/services/homeApi";
 
-const fallbackHomeData = {
+const initialHomeData = {
   hero: {
     slides: [],
   },
@@ -20,7 +20,7 @@ const fallbackHomeData = {
 };
 
 export default function HomePageClient() {
-  const [homeData, setHomeData] = useState(fallbackHomeData);
+  const [homeData, setHomeData] = useState(initialHomeData);
   const [isRefreshing, setIsRefreshing] = useState(true);
 
   useEffect(() => {

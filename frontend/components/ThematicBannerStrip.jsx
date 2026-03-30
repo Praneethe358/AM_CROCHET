@@ -9,8 +9,6 @@ import { getOptimizedImageUrl } from "@/utils/cloudinaryImage";
 
 const audienceOrder = ["women", "teens", "college"];
 
-const fallbackSlides = {};
-
 const getAudienceLabel = (audience) => {
   if (audience === "women") return "Women";
   if (audience === "teens") return "Teens";
@@ -50,7 +48,6 @@ export default function ThematicBannerStrip({ initialSlides }) {
   }, [hasInitialSlidesProp, initialSlides, slides]);
 
   const orderedSlides = useMemo(() => {
-    // Only show what's actually in Atlas; no fallbacks.
     return effectiveSlides;
   }, [effectiveSlides]);
 
@@ -77,7 +74,7 @@ export default function ThematicBannerStrip({ initialSlides }) {
   };
 
   const handleShopClick = async () => {
-    if (activeSlide?._id && !activeSlide._id.startsWith("fallback")) {
+    if (activeSlide?._id) {
       await trackPromotionClick(activeSlide._id);
     }
   };
@@ -104,12 +101,16 @@ export default function ThematicBannerStrip({ initialSlides }) {
 
             <div className="p-4 sm:p-8 md:p-10">
               <p className="text-xs sm:text-sm uppercase tracking-[0.18em] font-semibold text-theme-faint">{getAudienceLabel(activeSlide.audience)}</p>
-              <h2 className="mt-1.5 text-3xl md:text-4xl font-bold tracking-tight text-theme-text leading-tight">
-                {activeSlide.title || "Season Collection"}
-              </h2>
-              <p className="mt-2 text-theme-muted text-xs sm:text-base leading-relaxed max-w-xl">
-                {activeSlide.description || "Discover premium styles crafted for your daily lifestyle."}
-              </p>
+              {activeSlide.title ? (
+                <h2 className="mt-1.5 text-3xl md:text-4xl font-bold tracking-tight text-theme-text leading-tight">
+                  {activeSlide.title}
+                </h2>
+              ) : null}
+              {activeSlide.description ? (
+                <p className="mt-2 text-theme-muted text-xs sm:text-base leading-relaxed max-w-xl">
+                  {activeSlide.description}
+                </p>
+              ) : null}
               {activeSlide.discount !== null && activeSlide.discount !== undefined ? (
                 <p className="mt-3 text-lg font-semibold text-theme-accent">Up to {activeSlide.discount}% OFF</p>
               ) : null}
