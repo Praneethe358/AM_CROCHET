@@ -3,6 +3,23 @@ import React, { createContext, useState, useContext, useEffect } from "react";
 
 const CartContext = createContext();
 
+const getItemId = (item) => item?.id || item?._id || item?.productId || null;
+
+const normalizeQuantity = (value) => {
+  const parsed = Number(value);
+  if (!Number.isFinite(parsed) || parsed < 1) return 1;
+  return Math.floor(parsed);
+};
+
+const normalizeCartItem = (item = {}) => {
+  const id = getItemId(item);
+  return {
+    ...item,
+    id,
+    quantity: normalizeQuantity(item.quantity),
+  };
+};
+
 export function CartProvider({ children }) {
   const [cartItems, setCartItems] = useState([]);
 
@@ -11,8 +28,11 @@ export function CartProvider({ children }) {
     try {
       const storedCart = localStorage.getItem("cart");
       if (storedCart) {
-        // eslint-disable-next-line
-        setCartItems(JSON.parse(storedCart));
+        const parsed = JSON.parse(storedCart);
+        const normalized = Array.isArray(parsed)
+          ? parsed.map((item) => normalizeCartItem(item)).filter((item) => item.id)
+          : [];
+        setCartItems(normalized);
       }
     } catch (e) {
       console.error(e);
@@ -26,13 +46,18 @@ export function CartProvider({ children }) {
 
   const addToCart = (product, quantity) => {
     setCartItems((prevItems) => {
-      const existing = prevItems.find((item) => item.id === product.id);
+      const productId = getItemId(product);
+      if (!productId) return prevItems;
+
+      const existing = prevItems.find((item) => item.id === productId);
+      const nextQty = normalizeQuantity(quantity);
+
       if (existing) {
         return prevItems.map((item) =>
-          item.id === product.id ? { ...item, quantity: item.quantity + quantity } : item
+          item.id === productId ? { ...item, quantity: normalizeQuantity(item.quantity + nextQty) } : item
         );
       }
-      return [...prevItems, { ...product, quantity }];
+      return [...prevItems, normalizeCartItem({ ...product, id: productId, quantity: nextQty })];
     });
   };
 
@@ -43,7 +68,7 @@ export function CartProvider({ children }) {
   const increaseQuantity = (productId) => {
     setCartItems((prevItems) =>
       prevItems.map((item) =>
-        item.id === productId ? { ...item, quantity: item.quantity + 1 } : item
+        item.id === productId ? { ...item, quantity: normalizeQuantity(item.quantity + 1) } : item
       )
     );
   };
@@ -52,7 +77,7 @@ export function CartProvider({ children }) {
     setCartItems((prevItems) =>
       prevItems.map((item) =>
         item.id === productId && item.quantity > 1
-          ? { ...item, quantity: item.quantity - 1 }
+          ? { ...item, quantity: normalizeQuantity(item.quantity - 1) }
           : item
       )
     );

@@ -49,6 +49,12 @@ export function getOptimizedImageUrl(url, options = {}) {
   return url.replace("/image/upload/", `/image/upload/${transformStr}/`);
 }
 
+export function resolveImageSrc(url, options = {}, fallback = "/bag.png") {
+  const normalized = typeof url === "string" ? url.trim() : "";
+  if (!normalized) return fallback;
+  return getOptimizedImageUrl(normalized, options);
+}
+
 /**
  * Responsive sizes helper for Next.js <Image> `sizes` prop
  * Returns a sensible default sizes string.

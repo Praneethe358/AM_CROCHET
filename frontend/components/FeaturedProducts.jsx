@@ -9,7 +9,7 @@ import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 
-import { getOptimizedImageUrl } from "@/utils/cloudinaryImage";
+import { resolveImageSrc } from "@/utils/cloudinaryImage";
 import { buildProductPath } from "@/utils/seo";
 
 export default function FeaturedProducts({ initialItems, limit = 6 }) {
@@ -85,7 +85,7 @@ export default function FeaturedProducts({ initialItems, limit = 6 }) {
           } border border-theme-border/50 shadow-sm`}
         >
           <Image
-            src={getOptimizedImageUrl(card.image, { width: 1400 })}
+            src={resolveImageSrc(card.image, { width: 1400 })}
             alt={card.name || "Featured collection"}
             fill
             className="object-cover transition-transform duration-700 group-hover:scale-105"

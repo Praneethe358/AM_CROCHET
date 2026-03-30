@@ -10,7 +10,7 @@ import { gsap } from "gsap";
 import authClient from "@/services/authApi";
 import { toast } from "react-hot-toast";
 import { ChevronLeft, ChevronRight, ShoppingBag, Star, Heart, ShieldCheck, RotateCcw, Truck } from "lucide-react";
-import { getOptimizedImageUrl, getResponsiveSizes } from "@/utils/cloudinaryImage";
+import { getResponsiveSizes, resolveImageSrc } from "@/utils/cloudinaryImage";
 import { buildCategoryPath } from "@/utils/seo";
 
 export default function ProductDetails({ product }) {
@@ -173,7 +173,7 @@ export default function ProductDetails({ product }) {
           <div className="absolute inset-0 bg-gradient-to-tr from-theme-bg/30 to-transparent z-10 pointer-events-none mix-blend-overlay"></div>
           <div className="w-full h-full relative">
             <Image
-              src={getOptimizedImageUrl(galleryImages[activeImageIndex], { width: 1200 })}
+              src={resolveImageSrc(galleryImages[activeImageIndex], { width: 1200 })}
               alt={`${product.name} - handmade crochet bag by AM Crochet Bags`}
               fill
               priority
@@ -227,7 +227,7 @@ export default function ProductDetails({ product }) {
                 }`}
                 aria-label={`View image ${index + 1}`}
               >
-                <Image src={getOptimizedImageUrl(imageUrl, { width: 200 })} alt={`${product.name} product image ${index + 1}`} fill className="object-cover" sizes={getResponsiveSizes("thumbnail")} />
+                <Image src={resolveImageSrc(imageUrl, { width: 200 })} alt={`${product.name} product image ${index + 1}`} fill className="object-cover" sizes={getResponsiveSizes("thumbnail")} />
               </button>
             ))}
           </div>

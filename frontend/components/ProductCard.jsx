@@ -5,14 +5,14 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Plus } from "lucide-react";
 import { useCart } from "@/context/CartContext";
-import { getOptimizedImageUrl, getResponsiveSizes } from "@/utils/cloudinaryImage";
+import { getResponsiveSizes, resolveImageSrc } from "@/utils/cloudinaryImage";
 import { buildProductPath } from "@/utils/seo";
 
 export default function ProductCard({ product }) {
   const { addToCart } = useCart();
   const imageRef = useRef(null);
   const rawImageSrc = product.images?.[0] || product.image || "";
-  const imageSrc = getOptimizedImageUrl(rawImageSrc, { width: 800 });
+  const imageSrc = resolveImageSrc(rawImageSrc, { width: 800 });
 
   const handleQuickAdd = (e) => {
     e.preventDefault(); 

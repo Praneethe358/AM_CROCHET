@@ -10,7 +10,7 @@ import { Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 
-import { getOptimizedImageUrl } from '@/utils/cloudinaryImage';
+import { resolveImageSrc } from '@/utils/cloudinaryImage';
 import { buildProductPath } from '@/utils/seo';
 
 export default function PromotionsShowcase({ initialPromotions }) {
@@ -160,7 +160,7 @@ export default function PromotionsShowcase({ initialPromotions }) {
                       className="relative block w-full aspect-square overflow-hidden bg-gray-100"
                     >
                       <Image
-                        src={getOptimizedImageUrl(imageSrc, { width: 600 })}
+                        src={resolveImageSrc(imageSrc, { width: 600 })}
                         alt={item.product?.name ? `${item.product.name} - AM Crochet Bags` : 'Handmade crochet bag combo item'}
                         fill
                         className="object-cover transition-transform duration-700 group-hover:scale-105"

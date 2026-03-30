@@ -95,10 +95,18 @@ export default function CheckoutPage() {
   const openWhatsApp = (orderData) => {
     try {
       const message = generateWhatsAppMessage(orderData);
+      if (!message) {
+        toast.error("Cannot open WhatsApp with an empty order.");
+        return false;
+      }
       const encodedMessage = encodeURIComponent(message);
       const whatsappUrl = `https://wa.me/${WHATSAPP_PHONE}?text=${encodedMessage}`;
-      
-      window.open(whatsappUrl, "_blank");
+
+      const popup = window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+      if (!popup) {
+        toast.error("Popup blocked. Please allow popups and try again.");
+        return false;
+      }
       return true;
     } catch (error) {
       console.error("WhatsApp redirect error:", error);
@@ -126,12 +134,20 @@ export default function CheckoutPage() {
 
   const confirmWhatsAppOrder = async () => {
     setShowConfirmModal(false);
-    
-    const itemsPayload = cartItems.map((item) => ({
+
+    const itemsPayload = (cartItems || []).map((item) => ({
       productId: item._id || item.id || item.productId,
       quantity: Number(item.quantity || 1),
       price: Number(item.price || 0),
     }));
+
+    const hasInvalidItems = itemsPayload.some(
+      (item) => !item.productId || item.quantity < 1
+    );
+    if (hasInvalidItems) {
+      toast.error("Some cart items are invalid. Please review your cart and try again.");
+      return;
+    }
 
     if (!idempotencyKeyRef.current) {
       if (typeof crypto !== "undefined" && typeof crypto.randomUUID === "function") {

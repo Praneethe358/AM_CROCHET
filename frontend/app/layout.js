@@ -1,6 +1,7 @@
 import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import AppShell from "@/components/AppShell";
+import AppErrorBoundary from "@/components/AppErrorBoundary";
 import DisableScrollRestoration from "@/components/DisableScrollRestoration";
 import { CartProvider } from "@/context/CartContext";
 import { AuthProvider } from "@/context/AuthContext";
@@ -83,11 +84,13 @@ export default function RootLayout({ children }) {
     <html lang="en" data-scroll-behavior="smooth" className={`${inter.variable} ${playfair.variable}`}>
       <body className="antialiased font-sans text-theme-text bg-theme-bg min-h-screen flex flex-col selection:bg-theme-accent selection:text-white pb-safe">
         <DisableScrollRestoration />
-        <AuthProvider>
-          <CartProvider>
-            <AppShell>{children}</AppShell>
-          </CartProvider>
-        </AuthProvider>
+        <AppErrorBoundary>
+          <AuthProvider>
+            <CartProvider>
+              <AppShell>{children}</AppShell>
+            </CartProvider>
+          </AuthProvider>
+        </AppErrorBoundary>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}

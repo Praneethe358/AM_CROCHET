@@ -6,7 +6,7 @@ import { Pagination, Autoplay, EffectFade } from 'swiper/modules';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
-import { getOptimizedImageUrl } from '@/utils/cloudinaryImage';
+import { resolveImageSrc } from '@/utils/cloudinaryImage';
 
 // Import Swiper styles
 import 'swiper/css';
@@ -52,9 +52,9 @@ export default function Hero({ slides }) {
                   playsInline
                   preload="metadata"
                 />
-              ) : (
+              ) : slide?.image ? (
                 <Image
-                  src={getOptimizedImageUrl(slide.image || '', { width: 1920 })}
+                  src={resolveImageSrc(slide.image, { width: 1920 })}
                   alt={slide.title ? `${slide.title} - AM Crochet Bags` : 'AM Crochet Bags hero image'}
                   fill
                   priority={index === 0}
@@ -62,7 +62,7 @@ export default function Hero({ slides }) {
                   sizes="100vw"
                   className="absolute inset-0 h-full w-full object-cover"
                 />
-              )}
+              ) : null}
               <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/60" />
             </motion.div>
 

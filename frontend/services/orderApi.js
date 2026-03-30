@@ -23,7 +23,7 @@ export const syncCartWithBackend = async (cartItems = []) => {
   }
 
   try {
-    await authClient.delete("/cart");
+    await authClient.delete("/cart", { timeout: 10000 });
 
     for (const item of cartItems) {
       const productId = getProductIdentifier(item);
@@ -35,7 +35,7 @@ export const syncCartWithBackend = async (cartItems = []) => {
       await authClient.post("/cart", {
         productId,
         quantity: Number(item.quantity) || 1,
-      });
+      }, { timeout: 10000 });
     }
   } catch (error) {
     if (error instanceof Error) {
@@ -48,7 +48,7 @@ export const syncCartWithBackend = async (cartItems = []) => {
 
 export const getUserOrdersRequest = async () => {
   try {
-    const response = await authClient.get("/orders/my");
+    const response = await authClient.get("/orders/my", { timeout: 10000 });
     return response.data?.data || [];
   } catch (error) {
     throw new Error(extractMessage(error));
@@ -64,7 +64,10 @@ export const createOrderRecordRequest = async (payload, options = {}) => {
       requestPayload.idempotencyKey = options.idempotencyKey;
     }
 
-    const response = await authClient.post("/orders", requestPayload, { headers });
+    const response = await authClient.post("/orders", requestPayload, {
+      headers,
+      timeout: 12000,
+    });
     return response.data?.data || response.data;
   } catch (error) {
     throw new Error(extractMessage(error));
