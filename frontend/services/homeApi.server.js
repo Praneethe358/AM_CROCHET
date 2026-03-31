@@ -1,5 +1,6 @@
 const HOME_REVALIDATE_SECONDS = 300;
 const HOME_REQUEST_TIMEOUT_MS = 6000;
+let lastSuccessfulHomeData = null;
 
 const defaultHomeData = {
   hero: {
@@ -53,17 +54,20 @@ export async function getHomeDataServer() {
 
   try {
     const response = await fetchWithTimeout(`${API_BASE_URL}/home`, {
+      cache: "force-cache",
       next: { revalidate: HOME_REVALIDATE_SECONDS, tags: ["home-data"] },
     });
 
     if (!response.ok) {
-      return defaultHomeData;
+      return lastSuccessfulHomeData || defaultHomeData;
     }
 
     const payload = await response.json();
-    return normalizeHomeData(payload?.data || {});
+    const normalized = normalizeHomeData(payload?.data || {});
+    lastSuccessfulHomeData = normalized;
+    return normalized;
   } catch (_error) {
-    return defaultHomeData;
+    return lastSuccessfulHomeData || defaultHomeData;
   }
 }
 

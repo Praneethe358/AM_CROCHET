@@ -1,10 +1,70 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import Hero from "@/components/Hero";
-import ThematicBannerStrip from "@/components/ThematicBannerStrip";
-import FeaturedProducts from "@/components/FeaturedProducts";
-import PromotionsShowcase from "@/components/PromotionsShowcase";
-import FeaturesStrip from "@/components/FeaturesStrip";
+
+function SectionSkeleton({ className = "" }) {
+  return <div className={`animate-pulse rounded-xl bg-theme-secondary/70 ${className}`} />;
+}
+
+const ThematicBannerStrip = dynamic(() => import("@/components/ThematicBannerStrip"), {
+  ssr: false,
+  loading: () => (
+    <section className="bg-theme-bg py-4 sm:py-10">
+      <div className="mx-auto max-w-7xl px-0 sm:px-6 lg:px-8">
+        <SectionSkeleton className="h-[300px] w-full rounded-none sm:h-[360px] sm:rounded-3xl" />
+      </div>
+    </section>
+  ),
+});
+
+const PromotionsShowcase = dynamic(() => import("@/components/PromotionsShowcase"), {
+  ssr: false,
+  loading: () => (
+    <section className="bg-theme-bg px-3 py-6 md:px-8 md:py-12">
+      <div className="mx-auto max-w-[1400px]">
+        <SectionSkeleton className="mb-4 h-8 w-44" />
+        <div className="grid grid-cols-2 gap-2 md:grid-cols-4 md:gap-4">
+          <SectionSkeleton className="aspect-square w-full" />
+          <SectionSkeleton className="aspect-square w-full" />
+          <SectionSkeleton className="aspect-square w-full" />
+          <SectionSkeleton className="aspect-square w-full" />
+        </div>
+      </div>
+    </section>
+  ),
+});
+
+const FeaturedProducts = dynamic(() => import("@/components/FeaturedProducts"), {
+  ssr: false,
+  loading: () => (
+    <section className="bg-theme-bg py-12 sm:py-20">
+      <div className="mx-auto max-w-[1400px] px-4 sm:px-8 lg:px-16">
+        <div className="mb-8 flex justify-center">
+          <SectionSkeleton className="h-8 w-52" />
+        </div>
+        <div className="grid grid-cols-1 gap-3 md:grid-cols-2 md:gap-5">
+          <SectionSkeleton className="aspect-[16/9] w-full md:aspect-[21/9]" />
+          <SectionSkeleton className="aspect-[16/9] w-full" />
+        </div>
+      </div>
+    </section>
+  ),
+});
+
+const FeaturesStrip = dynamic(() => import("@/components/FeaturesStrip"), {
+  ssr: false,
+  loading: () => (
+    <section className="bg-theme-bg px-4 pb-16 sm:px-8">
+      <div className="mx-auto grid max-w-[1200px] grid-cols-2 gap-3 md:grid-cols-4">
+        <SectionSkeleton className="h-20 w-full" />
+        <SectionSkeleton className="h-20 w-full" />
+        <SectionSkeleton className="h-20 w-full" />
+        <SectionSkeleton className="h-20 w-full" />
+      </div>
+    </section>
+  ),
+});
 
 const initialHomeData = {
   hero: {

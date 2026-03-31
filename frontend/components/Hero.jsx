@@ -54,13 +54,13 @@ export default function Hero({ slides }) {
                 />
               ) : slide?.image ? (
                 <Image
-                  src={resolveImageSrc(slide.image, { width: 1920 })}
+                  src={resolveImageSrc(slide.image, { width: 1600 })}
                   alt={slide.title ? `${slide.title} - AM Crochet Bags` : 'AM Crochet Bags hero image'}
                   fill
                   priority={index === 0}
                   fetchPriority={index === 0 ? "high" : "auto"}
                   loading={index === 0 ? "eager" : "lazy"}
-                  sizes="100vw"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 100vw"
                   className="absolute inset-0 h-full w-full object-cover"
                 />
               ) : null}

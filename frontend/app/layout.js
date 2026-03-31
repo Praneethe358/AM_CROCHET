@@ -7,8 +7,19 @@ import { CartProvider } from "@/context/CartContext";
 import { AuthProvider } from "@/context/AuthContext";
 import { BRAND_NAME, SITE_URL } from "@/utils/seo";
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
-const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair' });
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter",
+  fallback: ["system-ui", "Segoe UI", "Arial", "sans-serif"],
+});
+
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-playfair",
+  fallback: ["Georgia", "Times New Roman", "serif"],
+});
 
 export const metadata = {
   metadataBase: new URL(SITE_URL),
