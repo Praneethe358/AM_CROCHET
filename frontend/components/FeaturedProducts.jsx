@@ -3,6 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import axios from "axios";
+import { motion, useReducedMotion } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 
@@ -14,6 +15,7 @@ import { buildProductPath } from "@/utils/seo";
 
 export default function FeaturedProducts({ initialItems, limit = 6 }) {
   const [featured, setFeatured] = useState([]);
+  const prefersReducedMotion = useReducedMotion();
   const hasInitialItemsProp = Array.isArray(initialItems) && initialItems.length > 0;
 
   useEffect(() => {
@@ -23,17 +25,37 @@ export default function FeaturedProducts({ initialItems, limit = 6 }) {
 
     const fetchFeaturedProducts = async () => {
       try {
-        const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:5000/api";
-        const response = await axios.get(`${API_BASE_URL}/products?isFeatured=true&sort=featured&limit=${limit}`, {
-          timeout: 8000,
-        });
+        const configuredBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:5000/api";
+        const isLocalHost = typeof window !== "undefined" && ["localhost", "127.0.0.1"].includes(window.location.hostname);
+        const fallbackBaseUrl = isLocalHost ? "http://localhost:5000/api" : null;
+        const baseUrlCandidates = [...new Set([configuredBaseUrl, fallbackBaseUrl].filter(Boolean))];
+
+        let response = null;
+        let lastError = null;
+
+        for (const baseUrl of baseUrlCandidates) {
+          try {
+            response = await axios.get(`${baseUrl}/products?isFeatured=true&sort=featured&limit=${limit}`, {
+              timeout: 8000,
+            });
+            break;
+          } catch (requestError) {
+            lastError = requestError;
+          }
+        }
+
+        if (!response) {
+          throw lastError || new Error("Unable to load featured products");
+        }
+
         const items = response.data?.data || [];
 
         setFeatured(
           items.map((item) => ({
             ...item,
             id: item._id,
-            image: item.image || item.images?.[0] || "",
+            image: item.images?.[0] || item.image || "",
+            hoverImage: item.images?.[1] || item.images?.[0] || item.image || "",
           }))
         );
       } catch (error) {
@@ -50,7 +72,8 @@ export default function FeaturedProducts({ initialItems, limit = 6 }) {
       return initialItems.map((item) => ({
         ...item,
         id: item._id || item.id,
-        image: item.image || item.images?.[0] || "",
+        image: item.images?.[0] || item.image || "",
+        hoverImage: item.images?.[1] || item.images?.[0] || item.image || "",
       }));
     }
 
@@ -71,9 +94,17 @@ export default function FeaturedProducts({ initialItems, limit = 6 }) {
       : isPrimaryBanner
         ? "(max-width: 1024px) 92vw, 1200px"
         : "(max-width: 1024px) 46vw, 620px";
+    const hasHoverImage = Boolean(card.hoverImage) && card.hoverImage !== card.image;
 
     return (
-      <article key={card.id} className={`group cursor-pointer ${!isMobile && isPrimaryBanner ? "md:col-span-2" : ""}`}>
+      <motion.article
+        key={card.id}
+        initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.15 }}
+        transition={{ duration: prefersReducedMotion ? 0.12 : 0.5, delay: prefersReducedMotion ? 0 : Math.min(idx * 0.08, 0.32), ease: [0.22, 1, 0.36, 1] }}
+        className={`group cursor-pointer ${!isMobile && isPrimaryBanner ? "md:col-span-2" : ""}`}
+      >
         <Link
           href={targetHref}
           className={`relative block w-full overflow-hidden rounded-lg md:rounded-xl bg-theme-secondary ${
@@ -88,9 +119,18 @@ export default function FeaturedProducts({ initialItems, limit = 6 }) {
             src={resolveImageSrc(card.image, { width: 1400 })}
             alt={card.name || "Featured collection"}
             fill
-            className="object-cover transition-transform duration-700 group-hover:scale-105"
+            className={`object-cover transition-all duration-500 group-hover:scale-105 ${hasHoverImage ? "group-hover:opacity-0" : ""}`}
             sizes={imageSizes}
           />
+          {hasHoverImage ? (
+            <Image
+              src={resolveImageSrc(card.hoverImage, { width: 1400 })}
+              alt={card.name ? `${card.name} alternate view` : "Featured collection alternate view"}
+              fill
+              className="object-cover opacity-0 transition-all duration-500 group-hover:opacity-100 group-hover:scale-105"
+              sizes={imageSizes}
+            />
+          ) : null}
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
 
           <span className="absolute left-4 top-4 rounded-md border border-theme-border/70 bg-theme-accent/90 backdrop-blur-md px-4 py-1.5 text-[10px] font-bold tracking-widest text-theme-text uppercase shadow-sm">
@@ -107,7 +147,7 @@ export default function FeaturedProducts({ initialItems, limit = 6 }) {
             </span>
           </div>
         </Link>
-      </article>
+      </motion.article>
     );
   };
 

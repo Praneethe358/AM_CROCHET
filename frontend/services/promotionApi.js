@@ -1,7 +1,23 @@
 import axios from "axios";
 import authClient, { getStoredToken } from "./authApi";
+import { getApiBaseCandidates } from "@/utils/apiBase";
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:5000/api";
+
+const getWithFallback = async (path, config = {}) => {
+  const baseUrlCandidates = getApiBaseCandidates();
+  let lastError = null;
+
+  for (const baseUrl of baseUrlCandidates) {
+    try {
+      return await axios.get(`${baseUrl}${path}`, config);
+    } catch (requestError) {
+      lastError = requestError;
+    }
+  }
+
+  throw lastError || new Error("Promotion request failed");
+};
 
 const getAuthHeaders = () => {
   const token = getStoredToken();
@@ -14,7 +30,7 @@ const getAuthHeaders = () => {
 
 export const getActivePromotions = async (filters = {}) => {
   try {
-    const response = await axios.get(`${API_BASE_URL}/promotions`, {
+    const response = await getWithFallback("/promotions", {
       params: filters,
       timeout: 8000,
     });
@@ -25,7 +41,7 @@ export const getActivePromotions = async (filters = {}) => {
 };
 
 export const getPromotionById = async (id) => {
-  const response = await axios.get(`${API_BASE_URL}/promotions/${id}`);
+  const response = await getWithFallback(`/promotions/${id}`);
   return response.data?.data || null;
 };
 

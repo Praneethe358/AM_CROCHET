@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { motion, useReducedMotion } from 'framer-motion';
 import { getActivePromotions, trackPromotionClick } from '@/services/promotionApi';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
@@ -16,6 +17,7 @@ import { buildProductPath } from '@/utils/seo';
 export default function PromotionsShowcase({ initialPromotions }) {
   const [promotions, setPromotions] = useState([]);
   const [nowMs, setNowMs] = useState(() => Date.now());
+  const prefersReducedMotion = useReducedMotion();
   const hasInitialPromotionsProp = Array.isArray(initialPromotions) && initialPromotions.length > 0;
 
   useEffect(() => {
@@ -149,23 +151,40 @@ export default function PromotionsShowcase({ initialPromotions }) {
               const discountValue = Number(item.discount);
               const showDiscount = Number.isFinite(discountValue) && discountValue > 0;
               
-              const imageSrc = item.product?.image || item.product?.images?.[0] || item.banner || '';
+              const primaryImageSrc = item.product?.images?.[0] || item.product?.image || item.banner || '';
+              const hoverImageSrc = item.product?.images?.[1] || item.product?.images?.[0] || item.product?.image || item.banner || '';
+              const hasHoverImage = Boolean(hoverImageSrc) && hoverImageSrc !== primaryImageSrc;
 
               return (
                 <SwiperSlide key={`${item.promotionId}-${productId || index}`} className="h-auto">
-                  <article className="group flex h-full flex-col overflow-hidden rounded-lg border-2 border-theme-border/70 bg-white shadow-[0_6px_20px_rgba(0,0,0,0.04)] transition-all duration-300 hover:border-theme-accent/70 hover:shadow-[0_10px_30px_rgba(0,0,0,0.09)] md:rounded-xl">
+                  <motion.article
+                    initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{ duration: prefersReducedMotion ? 0.12 : 0.45, delay: prefersReducedMotion ? 0 : Math.min(index * 0.05, 0.2), ease: [0.22, 1, 0.36, 1] }}
+                    className="group flex h-full flex-col overflow-hidden rounded-lg border-2 border-theme-border/70 bg-white shadow-[0_6px_20px_rgba(0,0,0,0.04)] transition-all duration-300 hover:border-theme-accent/70 hover:shadow-[0_10px_30px_rgba(0,0,0,0.09)] md:rounded-xl"
+                  >
                     <Link
                       href={productLink}
                       onClick={() => handleComboClick(item.promotionId)}
                       className="relative block w-full aspect-square overflow-hidden bg-gray-100"
                     >
                       <Image
-                        src={resolveImageSrc(imageSrc, { width: 600 })}
+                        src={resolveImageSrc(primaryImageSrc, { width: 600 })}
                         alt={item.product?.name ? `${item.product.name} - AM Crochet Bags` : 'Handmade crochet bag combo item'}
                         fill
-                        className="object-cover transition-transform duration-700 group-hover:scale-105"
+                        className={`object-cover transition-all duration-500 group-hover:scale-105 ${hasHoverImage ? "group-hover:opacity-0" : ""}`}
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                       />
+                      {hasHoverImage ? (
+                        <Image
+                          src={resolveImageSrc(hoverImageSrc, { width: 600 })}
+                          alt={item.product?.name ? `${item.product.name} alternate view` : 'Handmade crochet bag combo item alternate view'}
+                          fill
+                          className="object-cover opacity-0 transition-all duration-500 group-hover:opacity-100 group-hover:scale-105"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                        />
+                      ) : null}
                       {countdownText ? (
                         <div className="absolute left-2 top-2 z-10 flex items-center gap-1.5 rounded-full bg-theme-text/80 backdrop-blur-md px-2.5 py-1 text-[9px] font-semibold text-white md:gap-2 md:px-4 md:py-2 md:text-xs">
                           <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="animate-pulse"><line x1="10" x2="14" y1="2" y2="2"/><line x1="12" x2="15" y1="14" y2="11"/><circle cx="12" cy="14" r="8"/></svg>
@@ -205,7 +224,7 @@ export default function PromotionsShowcase({ initialPromotions }) {
                         </button>
                       </div>
                     </div>
-                  </article>
+                  </motion.article>
                 </SwiperSlide>
               );
             })}

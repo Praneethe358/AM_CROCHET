@@ -1,6 +1,6 @@
 import axios from "axios";
+import { getApiBaseCandidates } from "@/utils/apiBase";
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:5000/api";
 const HOME_REQUEST_TIMEOUT_MS = 6000;
 const HOME_REQUEST_RETRY_COUNT = 0;
 
@@ -13,9 +13,25 @@ const defaultHomeData = {
 
 export const getHomeData = async () => {
   const fetchOnce = async () => {
-    const response = await axios.get(`${API_BASE_URL}/home`, {
-      timeout: HOME_REQUEST_TIMEOUT_MS,
-    });
+    let response = null;
+    let lastError = null;
+
+    const baseUrlCandidates = getApiBaseCandidates();
+
+    for (const baseUrl of baseUrlCandidates) {
+      try {
+        response = await axios.get(`${baseUrl}/home`, {
+          timeout: HOME_REQUEST_TIMEOUT_MS,
+        });
+        break;
+      } catch (requestError) {
+        lastError = requestError;
+      }
+    }
+
+    if (!response) {
+      throw lastError || new Error("Failed to fetch home data");
+    }
 
     const data = response.data?.data || {};
     return {

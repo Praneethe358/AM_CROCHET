@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { motion, useReducedMotion } from "framer-motion";
 import { getActivePromotions, trackPromotionClick } from "@/services/promotionApi";
 import { resolveImageSrc } from "@/utils/cloudinaryImage";
 
@@ -19,6 +20,7 @@ const getAudienceLabel = (audience) => {
 export default function ThematicBannerStrip({ initialSlides }) {
   const [slides, setSlides] = useState([]);
   const [activeIndex, setActiveIndex] = useState(0);
+  const prefersReducedMotion = useReducedMotion();
   const hasInitialSlidesProp = Array.isArray(initialSlides) && initialSlides.length > 0;
 
   useEffect(() => {
@@ -99,7 +101,13 @@ export default function ThematicBannerStrip({ initialSlides }) {
               <div className="absolute inset-0 bg-gradient-to-r from-theme-text/40 to-transparent" />
             </div>
 
-            <div className="p-4 sm:p-8 md:p-10">
+            <motion.div
+              key={activeSlide?._id || activeIndex}
+              initial={prefersReducedMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: 24 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: prefersReducedMotion ? 0.12 : 0.5, ease: [0.22, 1, 0.36, 1] }}
+              className="p-4 sm:p-8 md:p-10"
+            >
               <p className="text-xs sm:text-sm uppercase tracking-[0.18em] font-semibold text-theme-faint">{getAudienceLabel(activeSlide.audience)}</p>
               {activeSlide.title ? (
                 <h2 className="mt-1.5 text-3xl md:text-4xl font-bold tracking-tight text-theme-text leading-tight">
@@ -130,7 +138,7 @@ export default function ThematicBannerStrip({ initialSlides }) {
                   Explore more
                 </Link>
               </div>
-            </div>
+            </motion.div>
           </div>
 
           <button

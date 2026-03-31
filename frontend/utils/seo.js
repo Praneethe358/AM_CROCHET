@@ -1,4 +1,4 @@
-export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://am-crochet1.vercel.app";
+export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://am-crochet.vercel.app";
 export const BRAND_NAME = "AM Crochet Bags";
 
 export const slugify = (value = "") =>

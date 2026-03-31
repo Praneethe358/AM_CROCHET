@@ -55,7 +55,7 @@ export async function generateMetadata({ params }) {
         title: `${product.name} | AM Crochet Bags`,
         description: productDescription,
         url: `${SITE_URL}${canonicalPath}`,
-        type: "product",
+        type: "website",
         images: product.image
           ? [
               {

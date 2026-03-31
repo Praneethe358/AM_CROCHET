@@ -28,6 +28,7 @@ export default function AppShell({ children }) {
   const { authLoading } = useAuth();
   const pathname = usePathname();
   const isAdminRoute = pathname?.startsWith("/admin");
+  const shouldBlockForAuth = authLoading && isAdminRoute;
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -67,7 +68,7 @@ export default function AppShell({ children }) {
         }}
       />
 
-      {authLoading ? (
+      {shouldBlockForAuth ? (
         <FullScreenLoader />
       ) : (
         <>

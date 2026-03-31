@@ -48,7 +48,12 @@ export default function Footer() {
               >
                 <Instagram size={18} />
               </a>
-              <a href="#" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-white hover:text-black transition-all duration-300">
+              <a
+                href="https://wa.me/918220423270"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-white hover:text-black transition-all duration-300"
+              >
                 <WhatsappIcon size={18} />
               </a>
             </div>
@@ -86,7 +91,7 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-3">
                 <Phone size={16} className="text-gray-500" />
-                <span>+91 98765 43210</span>
+                <span>+91 82204 23270</span>
               </li>
               <li className="flex items-start gap-3">
                 <MapPin size={16} className="text-gray-500 mt-1" />

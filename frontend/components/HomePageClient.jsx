@@ -8,11 +8,19 @@ import PromotionsShowcase from "@/components/PromotionsShowcase";
 import FeaturesStrip from "@/components/FeaturesStrip";
 import { getHomeData } from "@/services/homeApi";
 
-const REFRESH_FALLBACK_HIDE_MS = 8000;
+const REFRESH_FALLBACK_HIDE_MS = 2500;
 
 const initialHomeData = {
   hero: {
-    slides: [],
+    slides: [
+      {
+        image: "/bag.png",
+        title: "AM Crochet",
+        subtitle: "Handcrafted Signature Bags",
+        description: "Premium handmade crochet bags designed for everyday style.",
+        link: "/products",
+      },
+    ],
   },
   featured: {
     items: [],

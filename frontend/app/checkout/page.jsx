@@ -12,8 +12,8 @@ import OrderSummary from "@/components/OrderSummary";
 import { useCart } from "@/context/CartContext";
 import { createOrderRecordRequest } from "@/services/orderApi";
 
-// WhatsApp business number (without + or country code spaces)
-const WHATSAPP_PHONE = "919080689844"; // Update this with actual WhatsApp business number
+// WhatsApp business number in international format for wa.me
+const WHATSAPP_PHONE = "918220423270";
 
 export default function CheckoutPage() {
   const router = useRouter();

@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef } from "react";
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -10,9 +10,11 @@ import { buildProductPath } from "@/utils/seo";
 
 export default function ProductCard({ product }) {
   const { addToCart } = useCart();
-  const imageRef = useRef(null);
-  const rawImageSrc = product.images?.[0] || product.image || "";
-  const imageSrc = resolveImageSrc(rawImageSrc, { width: 800 });
+  const primaryRawImageSrc = product.images?.[0] || product.image || "";
+  const hoverRawImageSrc = product.images?.[1] || product.images?.[0] || product.image || "";
+  const primaryImageSrc = resolveImageSrc(primaryRawImageSrc, { width: 800 });
+  const hoverImageSrc = resolveImageSrc(hoverRawImageSrc, { width: 800 });
+  const hasHoverImage = Boolean(hoverRawImageSrc) && hoverRawImageSrc !== primaryRawImageSrc;
 
   const handleQuickAdd = (e) => {
     e.preventDefault(); 
@@ -34,13 +36,21 @@ export default function ProductCard({ product }) {
             transition={{ duration: 0.6, ease: [0.25, 1, 0.5, 1] }}
           >
             <Image
-              ref={imageRef}
-              src={imageSrc}
+              src={primaryImageSrc}
               alt={product.name}
               fill
               sizes={getResponsiveSizes("card")}
-              className="object-cover mix-blend-multiply opacity-95 transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-[1.05] will-change-transform"
+              className={`object-cover mix-blend-multiply opacity-95 transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-[1.05] will-change-transform ${hasHoverImage ? "group-hover:opacity-0" : ""}`}
             />
+            {hasHoverImage ? (
+              <Image
+                src={hoverImageSrc}
+                alt={`${product.name} alternate view`}
+                fill
+                sizes={getResponsiveSizes("card")}
+                className="object-cover mix-blend-multiply opacity-0 transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:opacity-95 group-hover:scale-[1.05] will-change-transform"
+              />
+            ) : null}
           </motion.div>
           
           {/* Subtle warm overlay on hover */}
