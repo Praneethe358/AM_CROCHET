@@ -1,7 +1,8 @@
 import HomePageClient from "@/components/HomePageClient";
 import { SITE_URL } from "@/utils/seo";
+import { getHomeDataServer, HOME_REVALIDATE_SECONDS } from "@/services/homeApi.server";
 
-export const dynamic = "force-dynamic";
+export const revalidate = HOME_REVALIDATE_SECONDS;
 
 export const metadata = {
   title: "AM Crochet Bags – Official Store | Handmade Crochet Bags India",
@@ -19,7 +20,9 @@ export const metadata = {
   },
 };
 
-export default function Home() {
+export default async function Home() {
+  const initialHomeData = await getHomeDataServer();
+
   return (
     <>
       <section className="sr-only" aria-label="Homepage SEO heading">
@@ -30,7 +33,7 @@ export default function Home() {
         </p>
       </section>
 
-      <HomePageClient />
+      <HomePageClient initialHomeData={initialHomeData} />
     </>
   );
 }

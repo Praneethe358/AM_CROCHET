@@ -173,6 +173,7 @@ export default function PromotionsShowcase({ initialPromotions }) {
                         src={resolveImageSrc(primaryImageSrc, { width: 600 })}
                         alt={item.product?.name ? `${item.product.name} - AM Crochet Bags` : 'Handmade crochet bag combo item'}
                         fill
+                        loading="lazy"
                         className={`object-cover transition-all duration-500 group-hover:scale-105 ${hasHoverImage ? "group-hover:opacity-0" : ""}`}
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                       />
@@ -181,6 +182,7 @@ export default function PromotionsShowcase({ initialPromotions }) {
                           src={resolveImageSrc(hoverImageSrc, { width: 600 })}
                           alt={item.product?.name ? `${item.product.name} alternate view` : 'Handmade crochet bag combo item alternate view'}
                           fill
+                          loading="lazy"
                           className="object-cover opacity-0 transition-all duration-500 group-hover:opacity-100 group-hover:scale-105"
                           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                         />

@@ -50,7 +50,7 @@ export default function Hero({ slides }) {
                   muted
                   loop
                   playsInline
-                  preload="metadata"
+                  preload={index === 0 ? "auto" : "none"}
                 />
               ) : slide?.image ? (
                 <Image
@@ -59,6 +59,7 @@ export default function Hero({ slides }) {
                   fill
                   priority={index === 0}
                   fetchPriority={index === 0 ? "high" : "auto"}
+                  loading={index === 0 ? "eager" : "lazy"}
                   sizes="100vw"
                   className="absolute inset-0 h-full w-full object-cover"
                 />

@@ -30,7 +30,7 @@ export function getOptimizedImageUrl(url, options = {}) {
     width,
     height,
     crop = "limit",
-    quality = "auto:good",
+    quality = "auto",
     format = "auto",
   } = options;
 
@@ -39,7 +39,11 @@ export function getOptimizedImageUrl(url, options = {}) {
   if (format) parts.push(`f_${format}`);
   parts.push("fl_progressive");
   parts.push("dpr_auto");   // serve 2× for retina screens automatically
-  if (width) parts.push(`w_${width}`);
+  if (width) {
+    parts.push(`w_${width}`);
+  } else {
+    parts.push("w_auto");
+  }
   if (height) parts.push(`h_${height}`);
   if ((width || height) && crop) parts.push(`c_${crop}`);
 

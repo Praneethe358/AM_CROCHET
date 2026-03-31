@@ -119,6 +119,7 @@ export default function FeaturedProducts({ initialItems, limit = 6 }) {
             src={resolveImageSrc(card.image, { width: 1400 })}
             alt={card.name || "Featured collection"}
             fill
+            loading="lazy"
             className={`object-cover transition-all duration-500 group-hover:scale-105 ${hasHoverImage ? "group-hover:opacity-0" : ""}`}
             sizes={imageSizes}
           />
@@ -127,6 +128,7 @@ export default function FeaturedProducts({ initialItems, limit = 6 }) {
               src={resolveImageSrc(card.hoverImage, { width: 1400 })}
               alt={card.name ? `${card.name} alternate view` : "Featured collection alternate view"}
               fill
+              loading="lazy"
               className="object-cover opacity-0 transition-all duration-500 group-hover:opacity-100 group-hover:scale-105"
               sizes={imageSizes}
             />

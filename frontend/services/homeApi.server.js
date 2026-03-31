@@ -1,0 +1,70 @@
+const HOME_REVALIDATE_SECONDS = 300;
+const HOME_REQUEST_TIMEOUT_MS = 6000;
+
+const defaultHomeData = {
+  hero: {
+    slides: [
+      {
+        image: "/bag.png",
+        title: "AM Crochet",
+        subtitle: "Handcrafted Signature Bags",
+        description: "Premium handmade crochet bags designed for everyday style.",
+        link: "/products",
+      },
+    ],
+  },
+  featured: { items: [], maxItems: 6 },
+  categories: [],
+  promotions: { thematicBanners: [], deals: [] },
+};
+
+function normalizeHomeData(data = {}) {
+  return {
+    hero: data.hero || defaultHomeData.hero,
+    featured: {
+      items: Array.isArray(data.featured?.items) ? data.featured.items : [],
+      maxItems: data.featured?.maxItems || 6,
+    },
+    categories: Array.isArray(data.categories) ? data.categories : [],
+    promotions: {
+      thematicBanners: Array.isArray(data.promotions?.thematicBanners) ? data.promotions.thematicBanners : [],
+      deals: Array.isArray(data.promotions?.deals) ? data.promotions.deals : [],
+    },
+  };
+}
+
+async function fetchWithTimeout(url, options = {}, timeoutMs = HOME_REQUEST_TIMEOUT_MS) {
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
+
+  try {
+    const response = await fetch(url, {
+      ...options,
+      signal: controller.signal,
+    });
+    return response;
+  } finally {
+    clearTimeout(timeoutId);
+  }
+}
+
+export async function getHomeDataServer() {
+  const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:5000/api";
+
+  try {
+    const response = await fetchWithTimeout(`${API_BASE_URL}/home`, {
+      next: { revalidate: HOME_REVALIDATE_SECONDS, tags: ["home-data"] },
+    });
+
+    if (!response.ok) {
+      return defaultHomeData;
+    }
+
+    const payload = await response.json();
+    return normalizeHomeData(payload?.data || {});
+  } catch (_error) {
+    return defaultHomeData;
+  }
+}
+
+export { HOME_REVALIDATE_SECONDS, defaultHomeData };

@@ -307,6 +307,7 @@ export default function AdminHeroPage() {
                           src={slide.image}
                           alt="Slide Preview"
                           fill
+                          sizes="(max-width: 768px) 100vw, 384px"
                           className="object-cover"
                         />
                       )}

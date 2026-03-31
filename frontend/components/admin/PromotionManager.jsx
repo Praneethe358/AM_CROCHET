@@ -434,6 +434,7 @@ export default function PromotionManager({
                     src={getOptimizedImageUrl(promotion.banner || "", { width: 400 })}
                     alt={promotion.title}
                     fill
+                    sizes="(max-width: 640px) 100vw, 128px"
                     className="object-cover"
                   />
                 </div>

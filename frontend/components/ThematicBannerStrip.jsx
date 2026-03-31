@@ -95,6 +95,7 @@ export default function ThematicBannerStrip({ initialSlides }) {
                 src={resolveImageSrc(activeSlide.banner, { width: 1400 })}
                 alt={activeSlide.title || "Thematic promotion banner"}
                 fill
+                loading="lazy"
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 50vw"
               />

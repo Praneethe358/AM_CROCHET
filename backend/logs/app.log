@@ -3270,3 +3270,385 @@
 2026-03-30 23:30:14 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":304,"durationMs":189,"ip":"::1"}
 2026-03-30 23:30:15 [INFO] API request {"method":"GET","url":"/api/home","statusCode":200,"durationMs":956,"ip":"::1"}
 2026-03-30 23:30:15 [INFO] API request {"method":"GET","url":"/api/home","statusCode":304,"durationMs":200,"ip":"::1"}
+2026-03-31 09:57:29 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":200,"durationMs":5121,"ip":"::1"}
+2026-03-31 09:57:29 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":331,"ip":"::1"}
+2026-03-31 09:57:29 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":304,"durationMs":5600,"ip":"::1"}
+2026-03-31 09:57:30 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":304,"durationMs":447,"ip":"::1"}
+2026-03-31 09:57:30 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":6198,"ip":"::1"}
+2026-03-31 09:57:30 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":273,"ip":"::1"}
+2026-03-31 09:59:40 [INFO] API request {"method":"GET","url":"/api/home","statusCode":200,"durationMs":291,"ip":"::1"}
+2026-03-31 09:59:41 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":200,"durationMs":259,"ip":"::1"}
+2026-03-31 10:03:00 [INFO] MongoDB connected (primary): ac-tqplvla-shard-00-00.qyy87sr.mongodb.net
+2026-03-31 10:03:50 [ERROR] Error: CORS policy does not allow this origin
+    at origin (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\server.js:46:21)
+    at C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\cors\lib\index.js:219:13
+    at optionsCallback (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\cors\lib\index.js:199:9)
+    at corsMiddleware (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\cors\lib\index.js:204:7)
+    at Layer.handle [as handle_request] (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\express\lib\router\index.js:328:13)
+    at C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\express\lib\router\index.js:286:9
+    at Function.process_params (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\express\lib\router\index.js:280:10)
+    at C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\xss-clean\lib\index.js:11:5 {"path":"/api/promotions?placement=home_thematic_banner","method":"GET","statusCode":500}
+2026-03-31 10:03:50 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":500,"durationMs":2,"ip":"::1"}
+2026-03-31 10:03:50 [ERROR] Error: CORS policy does not allow this origin
+    at origin (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\server.js:46:21)
+    at C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\cors\lib\index.js:219:13
+    at optionsCallback (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\cors\lib\index.js:199:9)
+    at corsMiddleware (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\cors\lib\index.js:204:7)
+    at Layer.handle [as handle_request] (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\express\lib\router\index.js:328:13)
+    at C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\express\lib\router\index.js:286:9
+    at Function.process_params (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\express\lib\router\index.js:280:10)
+    at C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\xss-clean\lib\index.js:11:5 {"path":"/api/promotions?placement=special_combos","method":"GET","statusCode":500}
+2026-03-31 10:03:50 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":500,"durationMs":1,"ip":"::1"}
+2026-03-31 10:03:50 [ERROR] Error: CORS policy does not allow this origin
+    at origin (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\server.js:46:21)
+    at C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\cors\lib\index.js:219:13
+    at optionsCallback (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\cors\lib\index.js:199:9)
+    at corsMiddleware (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\cors\lib\index.js:204:7)
+    at Layer.handle [as handle_request] (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\express\lib\router\index.js:328:13)
+    at C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\express\lib\router\index.js:286:9
+    at Function.process_params (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\express\lib\router\index.js:280:10)
+    at C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\xss-clean\lib\index.js:11:5 {"path":"/api/products?isFeatured=true&sort=featured&limit=6","method":"GET","statusCode":500}
+2026-03-31 10:03:50 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":500,"durationMs":2,"ip":"::1"}
+2026-03-31 10:03:50 [ERROR] Error: CORS policy does not allow this origin
+    at origin (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\server.js:46:21)
+    at C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\cors\lib\index.js:219:13
+    at optionsCallback (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\cors\lib\index.js:199:9)
+    at corsMiddleware (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\cors\lib\index.js:204:7)
+    at Layer.handle [as handle_request] (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\express\lib\router\index.js:328:13)
+    at C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\express\lib\router\index.js:286:9
+    at Function.process_params (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\express\lib\router\index.js:280:10)
+    at C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\xss-clean\lib\index.js:11:5 {"path":"/api/home","method":"GET","statusCode":500}
+2026-03-31 10:03:50 [INFO] API request {"method":"GET","url":"/api/home","statusCode":500,"durationMs":1,"ip":"::1"}
+2026-03-31 10:03:50 [ERROR] Error: CORS policy does not allow this origin
+    at origin (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\server.js:46:21)
+    at C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\cors\lib\index.js:219:13
+    at optionsCallback (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\cors\lib\index.js:199:9)
+    at corsMiddleware (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\cors\lib\index.js:204:7)
+    at Layer.handle [as handle_request] (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\express\lib\router\index.js:328:13)
+    at C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\express\lib\router\index.js:286:9
+    at Function.process_params (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\express\lib\router\index.js:280:10)
+    at C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\xss-clean\lib\index.js:11:5 {"path":"/api/promotions?placement=home_thematic_banner","method":"GET","statusCode":500}
+2026-03-31 10:03:50 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":500,"durationMs":2,"ip":"::1"}
+2026-03-31 10:03:50 [ERROR] Error: CORS policy does not allow this origin
+    at origin (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\server.js:46:21)
+    at C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\cors\lib\index.js:219:13
+    at optionsCallback (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\cors\lib\index.js:199:9)
+    at corsMiddleware (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\cors\lib\index.js:204:7)
+    at Layer.handle [as handle_request] (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\express\lib\router\index.js:328:13)
+    at C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\express\lib\router\index.js:286:9
+    at Function.process_params (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\express\lib\router\index.js:280:10)
+    at C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\xss-clean\lib\index.js:11:5 {"path":"/api/promotions?placement=special_combos","method":"GET","statusCode":500}
+2026-03-31 10:03:50 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":500,"durationMs":1,"ip":"::1"}
+2026-03-31 10:03:50 [ERROR] Error: CORS policy does not allow this origin
+    at origin (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\server.js:46:21)
+    at C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\cors\lib\index.js:219:13
+    at optionsCallback (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\cors\lib\index.js:199:9)
+    at corsMiddleware (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\cors\lib\index.js:204:7)
+    at Layer.handle [as handle_request] (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\express\lib\router\index.js:328:13)
+    at C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\express\lib\router\index.js:286:9
+    at Function.process_params (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\express\lib\router\index.js:280:10)
+    at C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\xss-clean\lib\index.js:11:5 {"path":"/api/products?isFeatured=true&sort=featured&limit=6","method":"GET","statusCode":500}
+2026-03-31 10:03:50 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":500,"durationMs":1,"ip":"::1"}
+2026-03-31 10:03:50 [ERROR] Error: CORS policy does not allow this origin
+    at origin (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\server.js:46:21)
+    at C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\cors\lib\index.js:219:13
+    at optionsCallback (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\cors\lib\index.js:199:9)
+    at corsMiddleware (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\cors\lib\index.js:204:7)
+    at Layer.handle [as handle_request] (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\express\lib\router\index.js:328:13)
+    at C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\express\lib\router\index.js:286:9
+    at Function.process_params (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\express\lib\router\index.js:280:10)
+    at C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\xss-clean\lib\index.js:11:5 {"path":"/api/home","method":"GET","statusCode":500}
+2026-03-31 10:03:50 [INFO] API request {"method":"GET","url":"/api/home","statusCode":500,"durationMs":1,"ip":"::1"}
+2026-03-31 10:05:06 [INFO] MongoDB connected (primary): ac-tqplvla-shard-00-02.qyy87sr.mongodb.net
+2026-03-31 10:05:06 [INFO] Server running in development mode on port 5000
+2026-03-31 10:05:34 [INFO] API request {"method":"GET","url":"/api/home","statusCode":200,"durationMs":257,"ip":"::1"}
+2026-03-31 10:05:40 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":200,"durationMs":187,"ip":"::1"}
+2026-03-31 10:06:08 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":200,"durationMs":248,"ip":"::1"}
+2026-03-31 10:06:08 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":200,"durationMs":248,"ip":"::1"}
+2026-03-31 10:06:08 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":200,"durationMs":345,"ip":"::1"}
+2026-03-31 10:06:08 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":92,"ip":"::1"}
+2026-03-31 10:06:08 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":94,"ip":"::1"}
+2026-03-31 10:06:09 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":304,"durationMs":303,"ip":"::1"}
+2026-03-31 10:06:09 [INFO] API request {"method":"GET","url":"/api/home","statusCode":200,"durationMs":1360,"ip":"::1"}
+2026-03-31 10:06:10 [INFO] API request {"method":"GET","url":"/api/home","statusCode":304,"durationMs":312,"ip":"::1"}
+2026-03-31 10:06:19 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":175,"ip":"::1"}
+2026-03-31 10:06:19 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":190,"ip":"::1"}
+2026-03-31 10:06:19 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":304,"durationMs":215,"ip":"::1"}
+2026-03-31 10:06:19 [INFO] API request {"method":"GET","url":"/api/home","statusCode":304,"durationMs":217,"ip":"::1"}
+2026-03-31 10:06:20 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":190,"ip":"::1"}
+2026-03-31 10:06:20 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":175,"ip":"::1"}
+2026-03-31 10:06:20 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":304,"durationMs":352,"ip":"::1"}
+2026-03-31 10:06:20 [INFO] API request {"method":"GET","url":"/api/home","statusCode":304,"durationMs":349,"ip":"::1"}
+2026-03-31 10:06:32 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":247,"ip":"::1"}
+2026-03-31 10:06:32 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":552,"ip":"::1"}
+2026-03-31 10:06:33 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":612,"ip":"::1"}
+2026-03-31 10:06:33 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":304,"durationMs":1166,"ip":"::1"}
+2026-03-31 10:06:33 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":668,"ip":"::1"}
+2026-03-31 10:06:33 [INFO] API request {"method":"GET","url":"/api/home","statusCode":304,"durationMs":1452,"ip":"::1"}
+2026-03-31 10:06:34 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":304,"durationMs":821,"ip":"::1"}
+2026-03-31 10:06:34 [INFO] API request {"method":"GET","url":"/api/home","statusCode":304,"durationMs":735,"ip":"::1"}
+2026-03-31 10:07:20 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":1310,"ip":"::1"}
+2026-03-31 10:07:20 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":1316,"ip":"::1"}
+2026-03-31 10:07:20 [INFO] API request {"method":"GET","url":"/api/home","statusCode":304,"durationMs":1823,"ip":"::1"}
+2026-03-31 10:07:20 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":304,"durationMs":1832,"ip":"::1"}
+2026-03-31 10:07:20 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":533,"ip":"::1"}
+2026-03-31 10:07:20 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":533,"ip":"::1"}
+2026-03-31 10:07:21 [INFO] API request {"method":"GET","url":"/api/home","statusCode":304,"durationMs":287,"ip":"::1"}
+2026-03-31 10:07:21 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":304,"durationMs":289,"ip":"::1"}
+2026-03-31 10:07:39 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":173,"ip":"::1"}
+2026-03-31 10:07:39 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":183,"ip":"::1"}
+2026-03-31 10:07:39 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":304,"durationMs":280,"ip":"::1"}
+2026-03-31 10:07:39 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":90,"ip":"::1"}
+2026-03-31 10:07:39 [INFO] API request {"method":"GET","url":"/api/home","statusCode":304,"durationMs":279,"ip":"::1"}
+2026-03-31 10:07:39 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":98,"ip":"::1"}
+2026-03-31 10:07:39 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":304,"durationMs":402,"ip":"::1"}
+2026-03-31 10:07:39 [INFO] API request {"method":"GET","url":"/api/home","statusCode":304,"durationMs":401,"ip":"::1"}
+2026-03-31 10:08:36 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":170,"ip":"::1"}
+2026-03-31 10:08:36 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":172,"ip":"::1"}
+2026-03-31 10:08:36 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":304,"durationMs":366,"ip":"::1"}
+2026-03-31 10:08:36 [INFO] API request {"method":"GET","url":"/api/home","statusCode":304,"durationMs":365,"ip":"::1"}
+2026-03-31 10:08:41 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":126,"ip":"::1"}
+2026-03-31 10:08:41 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":137,"ip":"::1"}
+2026-03-31 10:08:41 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":304,"durationMs":337,"ip":"::1"}
+2026-03-31 10:08:41 [INFO] API request {"method":"GET","url":"/api/home","statusCode":304,"durationMs":331,"ip":"::1"}
+2026-03-31 10:08:54 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":170,"ip":"::1"}
+2026-03-31 10:08:54 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":155,"ip":"::1"}
+2026-03-31 10:08:54 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":304,"durationMs":355,"ip":"::1"}
+2026-03-31 10:08:54 [INFO] API request {"method":"GET","url":"/api/home","statusCode":304,"durationMs":352,"ip":"::1"}
+2026-03-31 10:09:05 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":111,"ip":"::1"}
+2026-03-31 10:09:05 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":140,"ip":"::1"}
+2026-03-31 10:09:05 [INFO] API request {"method":"GET","url":"/api/home","statusCode":304,"durationMs":268,"ip":"::1"}
+2026-03-31 10:09:05 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":304,"durationMs":275,"ip":"::1"}
+2026-03-31 10:23:22 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":236,"ip":"::1"}
+2026-03-31 10:23:22 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":410,"ip":"::1"}
+2026-03-31 10:23:22 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":304,"durationMs":579,"ip":"::1"}
+2026-03-31 10:23:23 [INFO] API request {"method":"GET","url":"/api/home","statusCode":304,"durationMs":738,"ip":"::1"}
+2026-03-31 10:23:50 [INFO] API request {"method":"OPTIONS","url":"/api/auth/login","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-31 10:23:51 [INFO] API request {"method":"POST","url":"/api/auth/login","statusCode":200,"durationMs":488,"ip":"::1"}
+2026-03-31 10:23:52 [INFO] API request {"method":"OPTIONS","url":"/api/admin/products","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-31 10:23:52 [INFO] API request {"method":"OPTIONS","url":"/api/admin/orders","statusCode":204,"durationMs":0,"ip":"::1"}
+2026-03-31 10:23:52 [INFO] API request {"method":"OPTIONS","url":"/api/admin/products","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-31 10:23:52 [INFO] API request {"method":"OPTIONS","url":"/api/admin/orders","statusCode":204,"durationMs":0,"ip":"::1"}
+2026-03-31 10:23:52 [INFO] API request {"method":"OPTIONS","url":"/api/admin/orders","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-31 10:23:52 [INFO] API request {"method":"OPTIONS","url":"/api/admin/products","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-31 10:23:52 [INFO] API request {"method":"OPTIONS","url":"/api/admin/products","statusCode":204,"durationMs":0,"ip":"::1"}
+2026-03-31 10:23:52 [INFO] API request {"method":"OPTIONS","url":"/api/admin/orders","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-31 10:23:53 [INFO] API request {"method":"GET","url":"/api/admin/products","statusCode":200,"durationMs":470,"ip":"::1"}
+2026-03-31 10:23:53 [INFO] API request {"method":"GET","url":"/api/admin/orders","statusCode":200,"durationMs":661,"ip":"::1"}
+2026-03-31 10:23:53 [INFO] API request {"method":"GET","url":"/api/admin/products","statusCode":304,"durationMs":390,"ip":"::1"}
+2026-03-31 10:23:53 [INFO] API request {"method":"GET","url":"/api/admin/products","statusCode":304,"durationMs":499,"ip":"::1"}
+2026-03-31 10:23:53 [INFO] API request {"method":"GET","url":"/api/admin/orders","statusCode":304,"durationMs":698,"ip":"::1"}
+2026-03-31 10:23:54 [INFO] API request {"method":"GET","url":"/api/admin/products","statusCode":304,"durationMs":302,"ip":"::1"}
+2026-03-31 10:23:54 [INFO] API request {"method":"GET","url":"/api/admin/orders","statusCode":304,"durationMs":462,"ip":"::1"}
+2026-03-31 10:23:54 [INFO] API request {"method":"GET","url":"/api/admin/orders","statusCode":304,"durationMs":550,"ip":"::1"}
+2026-03-31 10:24:04 [INFO] API request {"method":"OPTIONS","url":"/api/admin/products","statusCode":204,"durationMs":0,"ip":"::1"}
+2026-03-31 10:24:04 [INFO] API request {"method":"OPTIONS","url":"/api/admin/products","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-31 10:24:04 [INFO] API request {"method":"GET","url":"/api/admin/products","statusCode":304,"durationMs":274,"ip":"::1"}
+2026-03-31 10:24:05 [INFO] API request {"method":"GET","url":"/api/admin/products","statusCode":304,"durationMs":203,"ip":"::1"}
+2026-03-31 10:24:42 [INFO] API request {"method":"OPTIONS","url":"/api/upload","statusCode":204,"durationMs":0,"ip":"::1"}
+2026-03-31 10:24:48 [INFO] API request {"method":"POST","url":"/api/upload","statusCode":200,"durationMs":6282,"ip":"::1"}
+2026-03-31 10:24:49 [INFO] API request {"method":"OPTIONS","url":"/api/upload","statusCode":204,"durationMs":0,"ip":"::1"}
+2026-03-31 10:24:52 [INFO] API request {"method":"POST","url":"/api/upload","statusCode":200,"durationMs":3466,"ip":"::1"}
+2026-03-31 10:24:56 [INFO] API request {"method":"POST","url":"/api/upload","statusCode":200,"durationMs":1996,"ip":"::1"}
+2026-03-31 10:25:26 [INFO] API request {"method":"OPTIONS","url":"/api/admin/products","statusCode":204,"durationMs":0,"ip":"::1"}
+2026-03-31 10:25:26 [INFO] API request {"method":"POST","url":"/api/admin/products","statusCode":201,"durationMs":325,"ip":"::1"}
+2026-03-31 10:25:27 [INFO] API request {"method":"GET","url":"/api/admin/products","statusCode":200,"durationMs":274,"ip":"::1"}
+2026-03-31 10:25:27 [INFO] API request {"method":"GET","url":"/api/admin/products","statusCode":304,"durationMs":244,"ip":"::1"}
+2026-03-31 10:25:33 [INFO] API request {"method":"OPTIONS","url":"/api/admin/products","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-31 10:25:33 [INFO] API request {"method":"OPTIONS","url":"/api/admin/products","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-31 10:25:33 [INFO] API request {"method":"GET","url":"/api/admin/products","statusCode":304,"durationMs":411,"ip":"::1"}
+2026-03-31 10:25:34 [INFO] API request {"method":"GET","url":"/api/admin/products","statusCode":304,"durationMs":401,"ip":"::1"}
+2026-03-31 10:25:34 [INFO] API request {"method":"OPTIONS","url":"/api/admin/orders","statusCode":204,"durationMs":0,"ip":"::1"}
+2026-03-31 10:25:34 [INFO] API request {"method":"OPTIONS","url":"/api/admin/orders","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-31 10:25:34 [INFO] API request {"method":"GET","url":"/api/admin/products","statusCode":304,"durationMs":360,"ip":"::1"}
+2026-03-31 10:25:34 [INFO] API request {"method":"GET","url":"/api/admin/orders","statusCode":304,"durationMs":561,"ip":"::1"}
+2026-03-31 10:25:34 [INFO] API request {"method":"GET","url":"/api/admin/products","statusCode":304,"durationMs":409,"ip":"::1"}
+2026-03-31 10:25:35 [INFO] API request {"method":"GET","url":"/api/admin/orders","statusCode":304,"durationMs":610,"ip":"::1"}
+2026-03-31 10:25:37 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":345,"ip":"::1"}
+2026-03-31 10:25:37 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":200,"durationMs":392,"ip":"::1"}
+2026-03-31 10:25:37 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":304,"durationMs":743,"ip":"::1"}
+2026-03-31 10:25:37 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":584,"ip":"::1"}
+2026-03-31 10:25:38 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":737,"ip":"::1"}
+2026-03-31 10:25:38 [INFO] API request {"method":"GET","url":"/api/home","statusCode":304,"durationMs":1331,"ip":"::1"}
+2026-03-31 10:25:39 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":304,"durationMs":1407,"ip":"::1"}
+2026-03-31 10:25:39 [INFO] API request {"method":"GET","url":"/api/home","statusCode":304,"durationMs":987,"ip":"::1"}
+2026-03-31 10:25:48 [INFO] API request {"method":"GET","url":"/api/products?limit=60&sort=newest","statusCode":200,"durationMs":228,"ip":"::1"}
+2026-03-31 10:26:04 [INFO] API request {"method":"GET","url":"/api/products/69cb53bea146c2494b7c8921","statusCode":200,"durationMs":243,"ip":"::1"}
+2026-03-31 10:26:04 [INFO] API request {"method":"GET","url":"/api/products?limit=8&sort=newest","statusCode":200,"durationMs":115,"ip":"::1"}
+2026-03-31 10:29:45 [INFO] API request {"method":"OPTIONS","url":"/api/wishlist","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-31 10:29:45 [INFO] API request {"method":"OPTIONS","url":"/api/wishlist","statusCode":204,"durationMs":0,"ip":"::1"}
+2026-03-31 10:29:45 [INFO] API request {"method":"GET","url":"/api/wishlist","statusCode":200,"durationMs":290,"ip":"::1"}
+2026-03-31 10:29:46 [INFO] API request {"method":"GET","url":"/api/wishlist","statusCode":304,"durationMs":503,"ip":"::1"}
+2026-03-31 10:30:08 [INFO] API request {"method":"GET","url":"/api/products/69c10e54df5128d1dc73e03d","statusCode":200,"durationMs":249,"ip":"::1"}
+2026-03-31 10:30:09 [INFO] API request {"method":"GET","url":"/api/products?limit=8&sort=newest","statusCode":200,"durationMs":173,"ip":"::1"}
+2026-03-31 10:30:09 [INFO] API request {"method":"OPTIONS","url":"/api/wishlist","statusCode":204,"durationMs":0,"ip":"::1"}
+2026-03-31 10:30:09 [INFO] API request {"method":"OPTIONS","url":"/api/wishlist","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-31 10:30:09 [INFO] API request {"method":"GET","url":"/api/wishlist","statusCode":304,"durationMs":323,"ip":"::1"}
+2026-03-31 10:30:09 [INFO] API request {"method":"GET","url":"/api/wishlist","statusCode":304,"durationMs":205,"ip":"::1"}
+2026-03-31 10:30:16 [INFO] API request {"method":"OPTIONS","url":"/api/wishlist","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-31 10:30:16 [INFO] API request {"method":"OPTIONS","url":"/api/wishlist","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-31 10:30:16 [INFO] API request {"method":"GET","url":"/api/wishlist","statusCode":304,"durationMs":280,"ip":"::1"}
+2026-03-31 10:30:16 [INFO] API request {"method":"GET","url":"/api/wishlist","statusCode":304,"durationMs":306,"ip":"::1"}
+2026-03-31 10:30:17 [INFO] API request {"method":"GET","url":"/api/products?limit=60&sort=newest","statusCode":200,"durationMs":186,"ip":"::1"}
+2026-03-31 10:30:35 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":149,"ip":"::1"}
+2026-03-31 10:30:35 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":148,"ip":"::1"}
+2026-03-31 10:30:35 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":304,"durationMs":213,"ip":"::1"}
+2026-03-31 10:30:35 [INFO] API request {"method":"GET","url":"/api/home","statusCode":304,"durationMs":238,"ip":"::1"}
+2026-03-31 10:30:35 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":94,"ip":"::1"}
+2026-03-31 10:30:36 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":100,"ip":"::1"}
+2026-03-31 10:30:36 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":304,"durationMs":186,"ip":"::1"}
+2026-03-31 10:30:36 [INFO] API request {"method":"GET","url":"/api/home","statusCode":304,"durationMs":220,"ip":"::1"}
+2026-03-31 10:33:17 [INFO] API request {"method":"OPTIONS","url":"/api/user/me","statusCode":204,"durationMs":0,"ip":"::1"}
+2026-03-31 10:33:18 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":488,"ip":"::1"}
+2026-03-31 10:33:18 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":565,"ip":"::1"}
+2026-03-31 10:33:18 [INFO] API request {"method":"GET","url":"/api/home","statusCode":304,"durationMs":656,"ip":"::1"}
+2026-03-31 10:33:18 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":304,"durationMs":692,"ip":"::1"}
+2026-03-31 10:33:19 [INFO] API request {"method":"GET","url":"/api/user/me","statusCode":304,"durationMs":1649,"ip":"::1"}
+2026-03-31 10:33:30 [INFO] API request {"method":"OPTIONS","url":"/api/admin/orders","statusCode":204,"durationMs":0,"ip":"::1"}
+2026-03-31 10:33:30 [INFO] API request {"method":"OPTIONS","url":"/api/admin/products","statusCode":204,"durationMs":0,"ip":"::1"}
+2026-03-31 10:33:30 [INFO] API request {"method":"OPTIONS","url":"/api/admin/products","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-31 10:33:30 [INFO] API request {"method":"OPTIONS","url":"/api/admin/orders","statusCode":204,"durationMs":0,"ip":"::1"}
+2026-03-31 10:33:30 [INFO] API request {"method":"OPTIONS","url":"/api/admin/orders","statusCode":204,"durationMs":0,"ip":"::1"}
+2026-03-31 10:33:30 [INFO] API request {"method":"OPTIONS","url":"/api/admin/products","statusCode":204,"durationMs":0,"ip":"::1"}
+2026-03-31 10:33:30 [INFO] API request {"method":"OPTIONS","url":"/api/admin/orders","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-31 10:33:30 [INFO] API request {"method":"OPTIONS","url":"/api/admin/products","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-31 10:33:31 [INFO] API request {"method":"GET","url":"/api/admin/products","statusCode":304,"durationMs":694,"ip":"::1"}
+2026-03-31 10:33:31 [INFO] API request {"method":"GET","url":"/api/admin/orders","statusCode":304,"durationMs":943,"ip":"::1"}
+2026-03-31 10:33:32 [INFO] API request {"method":"GET","url":"/api/admin/products","statusCode":304,"durationMs":455,"ip":"::1"}
+2026-03-31 10:33:32 [INFO] API request {"method":"GET","url":"/api/admin/orders","statusCode":304,"durationMs":917,"ip":"::1"}
+2026-03-31 10:33:32 [INFO] API request {"method":"GET","url":"/api/admin/products","statusCode":304,"durationMs":705,"ip":"::1"}
+2026-03-31 10:33:34 [INFO] API request {"method":"GET","url":"/api/admin/products","statusCode":304,"durationMs":1428,"ip":"::1"}
+2026-03-31 10:33:34 [INFO] API request {"method":"GET","url":"/api/admin/orders","statusCode":304,"durationMs":2176,"ip":"::1"}
+2026-03-31 10:33:35 [INFO] API request {"method":"OPTIONS","url":"/api/admin/promotions","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-31 10:33:35 [INFO] API request {"method":"OPTIONS","url":"/api/admin/products","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-31 10:33:35 [INFO] API request {"method":"OPTIONS","url":"/api/admin/promotions","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-31 10:33:35 [INFO] API request {"method":"OPTIONS","url":"/api/admin/products","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-31 10:33:36 [INFO] API request {"method":"GET","url":"/api/admin/orders","statusCode":304,"durationMs":1226,"ip":"::1"}
+2026-03-31 10:33:36 [INFO] API request {"method":"GET","url":"/api/admin/products","statusCode":304,"durationMs":890,"ip":"::1"}
+2026-03-31 10:33:37 [INFO] API request {"method":"GET","url":"/api/admin/promotions","statusCode":200,"durationMs":1614,"ip":"::1"}
+2026-03-31 10:33:38 [INFO] API request {"method":"GET","url":"/api/admin/products","statusCode":304,"durationMs":1406,"ip":"::1"}
+2026-03-31 10:33:38 [INFO] API request {"method":"GET","url":"/api/admin/promotions","statusCode":304,"durationMs":1409,"ip":"::1"}
+2026-03-31 10:34:03 [INFO] API request {"method":"OPTIONS","url":"/api/upload","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-31 10:34:40 [INFO] API request {"method":"POST","url":"/api/upload","statusCode":200,"durationMs":37247,"ip":"::1"}
+2026-03-31 10:34:43 [INFO] API request {"method":"OPTIONS","url":"/api/admin/promotions","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-31 10:34:58 [INFO] API request {"method":"POST","url":"/api/admin/promotions","statusCode":201,"durationMs":14433,"ip":"::1"}
+2026-03-31 10:35:08 [INFO] API request {"method":"OPTIONS","url":"/api/admin/products","statusCode":204,"durationMs":3,"ip":"::1"}
+2026-03-31 10:35:08 [INFO] API request {"method":"OPTIONS","url":"/api/admin/products","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-31 10:35:08 [INFO] API request {"method":"OPTIONS","url":"/api/admin/orders","statusCode":204,"durationMs":0,"ip":"::1"}
+2026-03-31 10:35:08 [INFO] API request {"method":"OPTIONS","url":"/api/admin/orders","statusCode":204,"durationMs":0,"ip":"::1"}
+2026-03-31 10:35:11 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":2023,"ip":"::1"}
+2026-03-31 10:35:11 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":2052,"ip":"::1"}
+2026-03-31 10:35:13 [INFO] API request {"method":"GET","url":"/api/admin/products","statusCode":304,"durationMs":4707,"ip":"::1"}
+2026-03-31 10:35:13 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":200,"durationMs":4021,"ip":"::1"}
+2026-03-31 10:35:13 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":2013,"ip":"::1"}
+2026-03-31 10:35:13 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":2037,"ip":"::1"}
+2026-03-31 10:35:16 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":304,"durationMs":2774,"ip":"::1"}
+2026-03-31 10:35:16 [INFO] API request {"method":"GET","url":"/api/admin/products","statusCode":304,"durationMs":2846,"ip":"::1"}
+2026-03-31 10:35:17 [INFO] API request {"method":"OPTIONS","url":"/api/user/me","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-31 10:35:19 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":1828,"ip":"::1"}
+2026-03-31 10:35:19 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":1849,"ip":"::1"}
+2026-03-31 10:35:21 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":304,"durationMs":3396,"ip":"::1"}
+2026-03-31 10:35:21 [INFO] API request {"method":"GET","url":"/api/user/me","statusCode":304,"durationMs":3374,"ip":"::1"}
+2026-03-31 10:35:21 [INFO] API request {"method":"GET","url":"/api/home","statusCode":200,"durationMs":3420,"ip":"::1"}
+2026-03-31 10:35:29 [INFO] API request {"method":"OPTIONS","url":"/api/user/me","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-31 10:35:31 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":1657,"ip":"::1"}
+2026-03-31 10:35:31 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":1689,"ip":"::1"}
+2026-03-31 10:35:33 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":304,"durationMs":4027,"ip":"::1"}
+2026-03-31 10:35:33 [INFO] API request {"method":"GET","url":"/api/home","statusCode":304,"durationMs":4035,"ip":"::1"}
+2026-03-31 10:35:33 [INFO] API request {"method":"GET","url":"/api/user/me","statusCode":304,"durationMs":4030,"ip":"::1"}
+2026-03-31 10:35:44 [INFO] API request {"method":"OPTIONS","url":"/api/user/me","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-31 10:35:45 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":1035,"ip":"::1"}
+2026-03-31 10:35:45 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":1056,"ip":"::1"}
+2026-03-31 10:35:46 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":304,"durationMs":2057,"ip":"::1"}
+2026-03-31 10:35:46 [INFO] API request {"method":"GET","url":"/api/home","statusCode":304,"durationMs":2076,"ip":"::1"}
+2026-03-31 10:35:46 [INFO] API request {"method":"GET","url":"/api/user/me","statusCode":304,"durationMs":2239,"ip":"::1"}
+2026-03-31 10:36:05 [INFO] API request {"method":"POST","url":"/api/promotions/69c69a76f61032f973d810e0/click","statusCode":200,"durationMs":850,"ip":"::1"}
+2026-03-31 10:36:05 [INFO] API request {"method":"GET","url":"/api/products/69c10e54df5128d1dc73e03d","statusCode":200,"durationMs":1112,"ip":"::1"}
+2026-03-31 10:36:06 [INFO] API request {"method":"GET","url":"/api/products?limit=8&sort=newest","statusCode":200,"durationMs":300,"ip":"::1"}
+2026-03-31 10:36:06 [INFO] API request {"method":"OPTIONS","url":"/api/wishlist","statusCode":204,"durationMs":0,"ip":"::1"}
+2026-03-31 10:36:06 [INFO] API request {"method":"OPTIONS","url":"/api/wishlist","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-31 10:36:07 [INFO] API request {"method":"GET","url":"/api/wishlist","statusCode":304,"durationMs":1001,"ip":"::1"}
+2026-03-31 10:36:08 [INFO] API request {"method":"GET","url":"/api/wishlist","statusCode":304,"durationMs":1379,"ip":"::1"}
+2026-03-31 10:36:09 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":588,"ip":"::1"}
+2026-03-31 10:36:09 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":658,"ip":"::1"}
+2026-03-31 10:36:10 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":573,"ip":"::1"}
+2026-03-31 10:36:10 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":200,"durationMs":1164,"ip":"::1"}
+2026-03-31 10:36:10 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":533,"ip":"::1"}
+2026-03-31 10:36:10 [INFO] API request {"method":"GET","url":"/api/home","statusCode":200,"durationMs":1197,"ip":"::1"}
+2026-03-31 10:36:11 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":304,"durationMs":1305,"ip":"::1"}
+2026-03-31 10:36:11 [INFO] API request {"method":"GET","url":"/api/home","statusCode":304,"durationMs":1684,"ip":"::1"}
+2026-03-31 10:36:22 [INFO] API request {"method":"POST","url":"/api/promotions/69cb55efa146c2494b7c89be/click","statusCode":200,"durationMs":399,"ip":"::1"}
+2026-03-31 10:36:23 [INFO] API request {"method":"GET","url":"/api/products/69cb53bea146c2494b7c8921","statusCode":200,"durationMs":662,"ip":"::1"}
+2026-03-31 10:36:23 [INFO] API request {"method":"GET","url":"/api/products?limit=8&sort=newest","statusCode":200,"durationMs":149,"ip":"::1"}
+2026-03-31 10:36:23 [INFO] API request {"method":"OPTIONS","url":"/api/wishlist","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-31 10:36:23 [INFO] API request {"method":"OPTIONS","url":"/api/wishlist","statusCode":204,"durationMs":1,"ip":"::1"}
+2026-03-31 10:36:24 [INFO] API request {"method":"GET","url":"/api/wishlist","statusCode":304,"durationMs":763,"ip":"::1"}
+2026-03-31 10:36:24 [INFO] API request {"method":"GET","url":"/api/wishlist","statusCode":304,"durationMs":642,"ip":"::1"}
+2026-03-31 10:36:37 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":417,"ip":"::1"}
+2026-03-31 10:36:37 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":444,"ip":"::1"}
+2026-03-31 10:36:37 [INFO] API request {"method":"GET","url":"/api/promotions?placement=home_thematic_banner","statusCode":304,"durationMs":262,"ip":"::1"}
+2026-03-31 10:36:37 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":200,"durationMs":685,"ip":"::1"}
+2026-03-31 10:36:38 [INFO] API request {"method":"GET","url":"/api/home","statusCode":200,"durationMs":750,"ip":"::1"}
+2026-03-31 10:36:38 [INFO] API request {"method":"GET","url":"/api/products?isFeatured=true&sort=featured&limit=6","statusCode":304,"durationMs":327,"ip":"::1"}
+2026-03-31 10:36:38 [INFO] API request {"method":"GET","url":"/api/promotions?placement=special_combos","statusCode":304,"durationMs":513,"ip":"::1"}
+2026-03-31 10:36:38 [INFO] API request {"method":"GET","url":"/api/home","statusCode":304,"durationMs":556,"ip":"::1"}
+2026-03-31 10:41:48 [ERROR] MongoServerSelectionError: getaddrinfo ENOTFOUND ac-tqplvla-shard-00-02.qyy87sr.mongodb.net
+    at Topology.selectServer (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\sdam\topology.js:327:38)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:549:9)
+    at process.processTimers (node:internal/timers:523:7)
+    at async tryOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:196:22)
+    at async executeOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:78:16)
+    at async FindCursor._initialize (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\find_cursor.js:62:26)
+    at async FindCursor.cursorInit (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:632:27)
+    at async FindCursor.fetchBatch (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:666:13)
+    at async FindCursor.next (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:342:17) {"path":"/api/promotions?placement=home_thematic_banner","method":"GET","statusCode":500}
+2026-03-31 10:41:48 [ERROR] MongoServerSelectionError: getaddrinfo ENOTFOUND ac-tqplvla-shard-00-02.qyy87sr.mongodb.net
+    at Topology.selectServer (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\sdam\topology.js:327:38)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:549:9)
+    at process.processTimers (node:internal/timers:523:7)
+    at async tryOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:196:22)
+    at async executeOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:78:16)
+    at async FindCursor._initialize (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\find_cursor.js:62:26)
+    at async FindCursor.cursorInit (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:632:27)
+    at async FindCursor.fetchBatch (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:666:13)
+    at async FindCursor.next (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:342:17) {"path":"/api/promotions?placement=special_combos","method":"GET","statusCode":500}
+2026-03-31 10:41:48 [ERROR] MongoServerSelectionError: getaddrinfo ENOTFOUND ac-tqplvla-shard-00-02.qyy87sr.mongodb.net
+    at Topology.selectServer (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\sdam\topology.js:327:38)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:549:9)
+    at process.processTimers (node:internal/timers:523:7)
+    at async tryOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:196:22)
+    at async executeOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:78:16)
+    at async AggregationCursor._initialize (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\aggregation_cursor.js:57:26)
+    at async AggregationCursor.cursorInit (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:632:27)
+    at async AggregationCursor.fetchBatch (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:666:13)
+    at async AggregationCursor.next (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:342:17) {"path":"/api/products?isFeatured=true&sort=featured&limit=6","method":"GET","statusCode":500}
+2026-03-31 10:41:48 [ERROR] MongoServerSelectionError: getaddrinfo ENOTFOUND ac-tqplvla-shard-00-02.qyy87sr.mongodb.net
+    at Topology.selectServer (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\sdam\topology.js:327:38)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:549:9)
+    at process.processTimers (node:internal/timers:523:7)
+    at async tryOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:196:22)
+    at async executeOperation (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\operations\execute_operation.js:78:16)
+    at async FindCursor._initialize (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\find_cursor.js:62:26)
+    at async FindCursor.cursorInit (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:632:27)
+    at async FindCursor.fetchBatch (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:666:13)
+    at async FindCursor.next (C:\Users\prane\OneDrive\Desktop\AM CROCHET\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:342:17) {"path":"/api/home","method":"GET","statusCode":500}

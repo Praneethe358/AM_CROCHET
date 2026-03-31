@@ -30,6 +30,7 @@ export default function CartItem({ item }) {
             src={resolveImageSrc(item.image, { width: 300 })}
             alt={item?.name || "Product image"}
             fill
+            sizes="(max-width: 640px) 96px, 128px"
             className="object-cover transition-transform duration-500 group-hover:scale-105"
           />
         </Link>

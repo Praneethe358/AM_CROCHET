@@ -37,6 +37,7 @@ export default function ProductTable({ products, onDelete }) {
                       src={getOptimizedImageUrl(product.images?.[0] || product.image || "/bag.png", { width: 200 })}
                       alt={product.name}
                       fill
+                      sizes="48px"
                       className="object-cover"
                     />
                   </div>
