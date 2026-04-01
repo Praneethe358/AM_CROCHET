@@ -17,7 +17,7 @@ export default function CartPage() {
   const subtotal = items.reduce((total, item) => total + Number(item.price || 0) * Number(item.quantity || 1), 0);
 
   return (
-    <div className="pt-24 md:pt-32 pb-36 md:pb-24 min-h-screen bg-white">
+    <div className="pt-24 md:pt-32 pb-20 md:pb-24 min-h-screen bg-white">
       <Container>
         <motion.div
           className="mb-6 md:mb-12 flex items-end justify-between gap-3"
@@ -90,20 +90,6 @@ export default function CartPage() {
           </div>
         )}
       </Container>
-
-      {items.length > 0 && (
-        <div className="md:hidden fixed bottom-[84px] left-0 right-0 z-30 border-t border-gray-200 bg-white/95 backdrop-blur px-4 py-2.5 flex items-center justify-between">
-          <div>
-            <p className="text-[11px] uppercase tracking-wide text-gray-500">Subtotal</p>
-            <p className="text-base font-bold text-gray-900">₹{subtotal.toFixed(2)}</p>
-          </div>
-          <Link href="/checkout">
-            <Button variant="primary" className="px-4 py-2.5 text-sm rounded-lg">
-              Checkout
-            </Button>
-          </Link>
-        </div>
-      )}
     </div>
   );
 }
