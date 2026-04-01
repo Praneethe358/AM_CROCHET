@@ -1,8 +1,8 @@
 import HomePageClient from "@/components/HomePageClient";
 import { SITE_URL } from "@/utils/seo";
-import { getHomeDataServer, HOME_REVALIDATE_SECONDS } from "@/services/homeApi.server";
+import { getHomeDataServer } from "@/services/homeApi.server";
 
-export const revalidate = HOME_REVALIDATE_SECONDS;
+export const revalidate = 300;
 
 export const metadata = {
   title: "AM Crochet Bags – Official Store | Handmade Crochet Bags India",

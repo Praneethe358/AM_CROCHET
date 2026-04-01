@@ -53,7 +53,7 @@ export function getOptimizedImageUrl(url, options = {}) {
   return url.replace("/image/upload/", `/image/upload/${transformStr}/`);
 }
 
-export function resolveImageSrc(url, options = {}, fallback = "/bag.png") {
+export function resolveImageSrc(url, options = {}, fallback = "/bag.webp") {
   const normalized = typeof url === "string" ? url.trim() : "";
   if (!normalized) return fallback;
   return getOptimizedImageUrl(normalized, options);

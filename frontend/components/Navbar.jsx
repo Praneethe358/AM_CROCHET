@@ -4,7 +4,6 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { ShoppingBag, Menu, X, User, LogOut } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
 import { useCart } from "@/context/CartContext";
 import { useAuth } from "@/context/AuthContext";
 import Container from "./Container";
@@ -66,10 +65,7 @@ export default function Navbar() {
 
   return (
     <>
-      <motion.nav
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] ${
           isTransparent
             ? "bg-transparent py-6 md:py-8"
@@ -100,6 +96,7 @@ export default function Navbar() {
                   <Link
                     key={link.name}
                     href={link.href}
+                    prefetch={false}
                     className={`group relative py-2 text-xs uppercase tracking-[0.2em] font-medium transition-colors duration-500 focus:outline-none ${
                       isTransparent ? "text-white/90 hover:text-white" : "text-gray-600 hover:text-black"
                     }`}
@@ -120,41 +117,35 @@ export default function Navbar() {
                     <User size={14} className={isTransparent ? 'text-white' : 'text-gray-500'} />
                     <span className="text-xs font-medium tracking-wide max-w-[100px] truncate">{user?.name || "Account"}</span>
                   </div>
-                  <motion.button
-                    whileTap={{ scale: 0.97 }}
+                  <button
                     onClick={handleLogout}
-                    className={`flex items-center justify-center gap-2 px-4 py-2 rounded-full text-xs font-medium tracking-widest uppercase transition-all duration-500 ${isTransparent ? 'bg-white text-black hover:bg-white/90' : 'bg-black text-white hover:bg-gray-800'}`}
+                    className={`flex items-center justify-center gap-2 px-4 py-2 rounded-full text-xs font-medium tracking-widest uppercase transition-all duration-500 active:scale-[0.97] ${isTransparent ? 'bg-white text-black hover:bg-white/90' : 'bg-black text-white hover:bg-gray-800'}`}
                   >
                     Logout
-                  </motion.button>
+                  </button>
                 </div>
               ) : (
                 <div className="hidden md:flex items-center gap-4">
-                  <Link href="/login" className="text-xs font-medium tracking-widest uppercase hover:opacity-70 transition-opacity">
+                  <Link prefetch={false} href="/login" className="text-xs font-medium tracking-widest uppercase hover:opacity-70 transition-opacity">
                     Login
                   </Link>
-                  <Link href="/signup" className={`flex items-center justify-center px-5 py-2 rounded-full text-xs font-medium tracking-widest uppercase transition-all duration-500 ${isTransparent ? 'bg-white text-black hover:bg-white/90' : 'bg-black text-white hover:bg-gray-800'}`}>
+                  <Link prefetch={false} href="/signup" className={`flex items-center justify-center px-5 py-2 rounded-full text-xs font-medium tracking-widest uppercase transition-all duration-500 ${isTransparent ? 'bg-white text-black hover:bg-white/90' : 'bg-black text-white hover:bg-gray-800'}`}>
                     Sign Up
                   </Link>
                 </div>
               )}
 
-              <Link href="/cart" className="relative transition-opacity duration-500 hover:opacity-70 focus:outline-none flex items-center justify-center h-10 w-10">
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <Link prefetch={false} href="/cart" className="relative transition-opacity duration-500 hover:opacity-70 focus:outline-none flex items-center justify-center h-10 w-10">
+                <div className="transition-transform hover:scale-105 active:scale-95">
                   <ShoppingBag size={20} strokeWidth={1.5} className="transition-colors duration-500" />
-                </motion.div>
-                <AnimatePresence>
-                  {totalItems > 0 && (
-                    <motion.div
-                      initial={{ scale: 0, opacity: 0 }}
-                      animate={{ scale: 1, opacity: 1 }}
-                      exit={{ scale: 0, opacity: 0 }}
-                      className={`absolute top-1.5 right-1 text-[9px] font-bold h-4 w-4 rounded-full flex items-center justify-center -translate-y-1/2 translate-x-1/2 ${isTransparent ? 'bg-white text-black' : 'bg-black text-white'}`}
-                    >
-                      {totalItems}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                </div>
+                {totalItems > 0 && (
+                  <div
+                    className={`absolute top-1.5 right-1 text-[9px] font-bold h-4 w-4 rounded-full flex items-center justify-center -translate-y-1/2 translate-x-1/2 ${isTransparent ? 'bg-white text-black' : 'bg-black text-white'}`}
+                  >
+                    {totalItems}
+                  </div>
+                )}
               </Link>
 
               {/* Mobile menu button */}
@@ -168,30 +159,21 @@ export default function Navbar() {
             </div>
           </div>
         </Container>
-      </motion.nav>
+      </nav>
 
       {/* Mobile Menu Drawer */}
-      <AnimatePresence>
-        {mobileMenuOpen && (
-          <>
-            {/* Backdrop overlay */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 md:hidden"
-              onClick={() => setMobileMenuOpen(false)}
-            />
+      {mobileMenuOpen && (
+        <>
+          {/* Backdrop overlay */}
+          <div
+            className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 md:hidden"
+            onClick={() => setMobileMenuOpen(false)}
+          />
 
-            {/* Slide-in drawer */}
-            <motion.div 
-              initial={{ x: "100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100%" }}
-              transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="fixed top-0 right-0 bottom-0 w-[85%] max-w-sm bg-[#FDF6EC] z-50 shadow-2xl md:hidden border-l border-[#EADFD0] flex flex-col"
-            >
+          {/* Slide-in drawer */}
+          <div
+            className="fixed top-0 right-0 bottom-0 w-[85%] max-w-sm bg-[#FDF6EC] z-50 shadow-2xl md:hidden border-l border-[#EADFD0] flex flex-col"
+          >
               <div className="flex items-center justify-between p-6 border-b border-theme-border">
                 <Logo
                   variant="dark"
@@ -216,6 +198,7 @@ export default function Navbar() {
                     <Link 
                       key={link.name} 
                       href={link.href}
+                      prefetch={false}
                       onClick={() => setMobileMenuOpen(false)}
                       className={`text-2xl font-serif tracking-tight transition-colors duration-300 ${isActive ? "text-[#C8A97E]" : "text-[#2C2C2C] hover:text-[#C8A97E]"}`}
                     >
@@ -232,19 +215,19 @@ export default function Navbar() {
                       <User size={18} className="text-[#C8A97E]" />
                       {user?.name || "Account"}
                     </div>
-                    <motion.button
-                      whileTap={{ scale: 0.97 }}
+                    <button
                       onClick={handleLogout}
-                      className="w-full flex items-center justify-center gap-2 bg-[#2C2C2C] text-white py-4 rounded-xl font-medium"
+                      className="w-full flex items-center justify-center gap-2 bg-[#2C2C2C] text-white py-4 rounded-xl font-medium active:scale-[0.97]"
                     >
                       <LogOut size={18} />
                       Logout
-                    </motion.button>
+                    </button>
                   </>
                 ) : (
                   <>
                     <Link 
                       href="/login" 
+                      prefetch={false}
                       onClick={() => setMobileMenuOpen(false)}
                       className="w-full flex items-center justify-center gap-2 bg-[#2C2C2C] text-white py-4 rounded-xl font-medium"
                     >
@@ -253,6 +236,7 @@ export default function Navbar() {
                     </Link>
                     <Link 
                       href="/signup" 
+                      prefetch={false}
                       onClick={() => setMobileMenuOpen(false)}
                       className="w-full flex items-center justify-center gap-2 bg-transparent text-[#2C2C2C] border-2 border-[#EADFD0] py-4 rounded-xl font-medium"
                     >
@@ -262,6 +246,7 @@ export default function Navbar() {
                 )}
                 <Link 
                   href="/cart" 
+                  prefetch={false}
                   onClick={() => setMobileMenuOpen(false)}
                   className="w-full flex items-center justify-center gap-2 bg-transparent text-[#2C2C2C] border-2 border-[#EADFD0] py-4 rounded-xl font-medium"
                 >
@@ -269,10 +254,9 @@ export default function Navbar() {
                   View Cart {totalItems > 0 && `(${totalItems})`}
                 </Link>
               </div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
+          </div>
+        </>
+      )}
     </>
   );
 }
