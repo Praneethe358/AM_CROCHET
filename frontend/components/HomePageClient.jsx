@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import Hero from "@/components/Hero";
 
@@ -87,37 +86,6 @@ const initialHomeData = {
 };
 
 export default function HomePageClient({ initialHomeData: serverData }) {
-  const [deferredSectionsReady, setDeferredSectionsReady] = useState(false);
-
-  useEffect(() => {
-    if (typeof window === "undefined") return undefined;
-
-    let isActivated = false;
-    let timeoutId;
-
-    const markReady = () => {
-      if (isActivated) return;
-      isActivated = true;
-      setDeferredSectionsReady(true);
-    };
-
-    window.addEventListener("scroll", markReady, { once: true, passive: true });
-    window.addEventListener("pointerdown", markReady, { once: true, passive: true });
-    window.addEventListener("touchstart", markReady, { once: true, passive: true });
-    window.addEventListener("keydown", markReady, { once: true });
-    timeoutId = window.setTimeout(markReady, 3000);
-
-    return () => {
-      if (timeoutId) {
-        window.clearTimeout(timeoutId);
-      }
-      window.removeEventListener("scroll", markReady);
-      window.removeEventListener("pointerdown", markReady);
-      window.removeEventListener("touchstart", markReady);
-      window.removeEventListener("keydown", markReady);
-    };
-  }, []);
-
   const homeData = {
     hero: serverData?.hero || initialHomeData.hero,
     featured: {
@@ -139,33 +107,29 @@ export default function HomePageClient({ initialHomeData: serverData }) {
   return (
     <>
       <Hero slides={homeData.hero?.slides} />
-      {deferredSectionsReady ? (
-        <>
-          <ThematicBannerStrip
-            initialSlides={
-              Array.isArray(homeData.promotions?.thematicBanners) && homeData.promotions.thematicBanners.length > 0
-                ? homeData.promotions.thematicBanners
-                : undefined
-            }
-          />
-          <PromotionsShowcase
-            initialPromotions={
-              Array.isArray(homeData.promotions?.deals) && homeData.promotions.deals.length > 0
-                ? homeData.promotions.deals
-                : undefined
-            }
-          />
-          <FeaturedProducts
-            initialItems={
-              Array.isArray(homeData.featured?.items) && homeData.featured.items.length > 0
-                ? homeData.featured.items
-                : undefined
-            }
-            limit={homeData.featured?.maxItems || 6}
-          />
-          <FeaturesStrip />
-        </>
-      ) : null}
+      <ThematicBannerStrip
+        initialSlides={
+          Array.isArray(homeData.promotions?.thematicBanners) && homeData.promotions.thematicBanners.length > 0
+            ? homeData.promotions.thematicBanners
+            : undefined
+        }
+      />
+      <PromotionsShowcase
+        initialPromotions={
+          Array.isArray(homeData.promotions?.deals) && homeData.promotions.deals.length > 0
+            ? homeData.promotions.deals
+            : undefined
+        }
+      />
+      <FeaturedProducts
+        initialItems={
+          Array.isArray(homeData.featured?.items) && homeData.featured.items.length > 0
+            ? homeData.featured.items
+            : undefined
+        }
+        limit={homeData.featured?.maxItems || 6}
+      />
+      <FeaturesStrip />
     </>
   );
 }
