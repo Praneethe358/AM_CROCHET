@@ -126,7 +126,7 @@ export default function PromotionsShowcase({ initialPromotions }) {
           </div>
         </div>
 
-        <div className="relative w-full rounded-xl border border-theme-border/80 bg-white/70 p-1.5 shadow-[inset_0_0_0_1px_rgba(0,0,0,0.03)] md:rounded-2xl md:p-3">
+        <div className="relative w-full">
           <Swiper
             modules={[Navigation]}
             spaceBetween={6}
@@ -141,7 +141,7 @@ export default function PromotionsShowcase({ initialPromotions }) {
               1024: { slidesPerView: 4 },
             }}
             navigation
-            className="promotions-swiper pb-2 !px-0.5 md:!px-2"
+            className="promotions-swiper pb-4 !px-2 md:!px-4 -mx-2 md:-mx-4"
           >
             {comboItems.map((item, index) => {
               const productId = item.product?._id;
