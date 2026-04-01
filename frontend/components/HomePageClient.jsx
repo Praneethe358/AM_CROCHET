@@ -92,14 +92,25 @@ export default function HomePageClient({ initialHomeData: serverData }) {
   useEffect(() => {
     if (typeof window === "undefined") return undefined;
 
-    const markReady = () => setDeferredSectionsReady(true);
+    let isActivated = false;
+    let timeoutId;
+
+    const markReady = () => {
+      if (isActivated) return;
+      isActivated = true;
+      setDeferredSectionsReady(true);
+    };
 
     window.addEventListener("scroll", markReady, { once: true, passive: true });
     window.addEventListener("pointerdown", markReady, { once: true, passive: true });
     window.addEventListener("touchstart", markReady, { once: true, passive: true });
     window.addEventListener("keydown", markReady, { once: true });
+    timeoutId = window.setTimeout(markReady, 3000);
 
     return () => {
+      if (timeoutId) {
+        window.clearTimeout(timeoutId);
+      }
       window.removeEventListener("scroll", markReady);
       window.removeEventListener("pointerdown", markReady);
       window.removeEventListener("touchstart", markReady);
