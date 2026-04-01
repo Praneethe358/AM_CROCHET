@@ -21,6 +21,7 @@ const nextConfig = {
       },
     ],
     formats: ["image/avif", "image/webp"],
+    qualities: [64, 68, 75],
     minimumCacheTTL: 31536000,
     // Expanded device sizes for retina displays
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],

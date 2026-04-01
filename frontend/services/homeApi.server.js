@@ -6,7 +6,7 @@ const defaultHomeData = {
   hero: {
     slides: [
       {
-        image: "/bag.webp",
+        image: "/bags/bag2.jpg",
         title: "AM Crochet",
         subtitle: "Handcrafted Signature Bags",
         description: "Premium handmade crochet bags designed for everyday style.",

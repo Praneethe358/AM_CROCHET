@@ -48,7 +48,7 @@ function HeroSlideContent({ slide }) {
 function HeroStaticFrame({ slide }) {
   const imageSrc = slide?.image ? resolveImageSrc(slide.image, { width: 1100 }) : null;
   const isCloudinaryImage = typeof imageSrc === 'string' && imageSrc.includes('res.cloudinary.com');
-  const staticImageSrc = isCloudinaryImage ? '/bag.webp' : imageSrc;
+  const staticImageSrc = imageSrc || '/bags/bag2.jpg';
 
   return (
     <div className="relative w-full h-full">
@@ -62,7 +62,7 @@ function HeroStaticFrame({ slide }) {
             fetchPriority="high"
             loading="eager"
             decoding="sync"
-            unoptimized
+            unoptimized={isCloudinaryImage}
             quality={68}
             sizes="100vw"
             className="absolute inset-0 h-full w-full object-cover"
