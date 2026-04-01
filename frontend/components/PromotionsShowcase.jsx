@@ -54,6 +54,7 @@ export default function PromotionsShowcase({ initialPromotions }) {
           promotionId: promotion._id,
           badge: promotion.title || 'MOST-LOVED COMBO',
           title: promotion.title,
+          banner: promotion.banner,
           discount: promotion.discount,
           endDate: promotion.endDate,
         }));
@@ -150,8 +151,8 @@ export default function PromotionsShowcase({ initialPromotions }) {
               const discountValue = Number(item.discount);
               const showDiscount = Number.isFinite(discountValue) && discountValue > 0;
               
-              const primaryImageSrc = item.product?.images?.[0] || item.product?.image || '';
-              const hoverImageSrc = item.product?.images?.[1] || item.product?.images?.[0] || item.product?.image || '';
+              const primaryImageSrc = item.product?.images?.[0] || item.product?.image || item.banner || '';
+              const hoverImageSrc = item.product?.images?.[1] || item.product?.images?.[0] || item.product?.image || item.banner || '';
               const hasHoverImage = Boolean(hoverImageSrc) && hoverImageSrc !== primaryImageSrc;
 
               return (
