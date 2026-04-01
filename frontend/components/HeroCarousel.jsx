@@ -18,7 +18,7 @@ export default function HeroCarousel({ slides }) {
       modules={[Pagination, Autoplay, EffectFade]}
       effect="fade"
       speed={1500}
-      autoplay={{ delay: 6000, disableOnInteraction: false }}
+      autoplay={{ delay: 3000, disableOnInteraction: false }}
       pagination={{ clickable: true }}
       className="w-full h-full luxury-swiper"
     >

@@ -39,9 +39,9 @@ export const metadata = {
     canonical: "/",
   },
   icons: {
-    icon: "/bag.png",
-    shortcut: "/bag.png",
-    apple: "/bag.png",
+    icon: "/bag-20260330.png",
+    shortcut: "/bag-20260330.png",
+    apple: "/bag-20260330.png",
   },
   openGraph: {
     title: "AM Crochet Bags – Official Store | Handmade Crochet Bags India",
@@ -52,7 +52,7 @@ export const metadata = {
     type: "website",
     images: [
       {
-        url: "/bag.png",
+        url: "/bag-20260330.png",
         width: 1200,
         height: 630,
         alt: "AM Crochet Bags brand image",
@@ -63,7 +63,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "AM Crochet Bags – Official Store | Handmade Crochet Bags India",
     description: "AM Crochet Bags offers premium handmade crochet bags. Stylish, durable, and affordable. Shop now.",
-    images: ["/bag.png"],
+    images: ["/bag-20260330.png"],
     site: "@amcrochetbags",
   },
   verification: {
@@ -78,7 +78,7 @@ const organizationSchema = {
   "@type": "Organization",
   name: BRAND_NAME,
   url: SITE_URL,
-  logo: `${SITE_URL}/bag.png`,
+  logo: `${SITE_URL}/bag-20260330.png`,
   description: "AM Crochet Bags offers premium handmade crochet bags. Stylish, durable, and affordable.",
 };
 
