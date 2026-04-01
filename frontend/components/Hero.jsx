@@ -62,7 +62,6 @@ function HeroStaticFrame({ slide }) {
             fetchPriority="high"
             loading="eager"
             decoding="sync"
-            unoptimized={isCloudinaryImage}
             quality={68}
             sizes="100vw"
             className="absolute inset-0 h-full w-full object-cover"

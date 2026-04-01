@@ -50,7 +50,6 @@ export default function HeroCarousel({ slides }) {
                 fetchPriority={index === 0 ? 'high' : 'auto'}
                 loading={index === 0 ? 'eager' : 'lazy'}
                 decoding={index === 0 ? 'sync' : 'async'}
-                unoptimized={isCloudinaryImage}
                 quality={index === 0 ? 68 : 64}
                 sizes="100vw"
                 className="absolute inset-0 h-full w-full object-cover"

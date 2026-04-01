@@ -17,7 +17,7 @@ export default function CartPage() {
   const subtotal = items.reduce((total, item) => total + Number(item.price || 0) * Number(item.quantity || 1), 0);
 
   return (
-    <div className="pt-24 md:pt-32 pb-20 md:pb-24 min-h-screen bg-white">
+    <div className="pt-24 md:pt-32 pb-36 md:pb-24 min-h-screen bg-white">
       <Container>
         <motion.div
           className="mb-6 md:mb-12 flex items-end justify-between gap-3"
