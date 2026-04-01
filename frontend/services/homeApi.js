@@ -1,8 +1,8 @@
 import axios from "axios";
+import { axiosWithRetry } from "@/lib/fetchWithRetry";
 import { getApiBaseCandidates } from "@/utils/apiBase";
 
-const HOME_REQUEST_TIMEOUT_MS = 6000;
-const HOME_REQUEST_RETRY_COUNT = 0;
+const HOME_REQUEST_TIMEOUT_MS = 8000;
 
 const defaultHomeData = {
   hero: null,
@@ -11,7 +11,7 @@ const defaultHomeData = {
   promotions: { thematicBanners: [], deals: [] },
 };
 
-export const getHomeData = async () => {
+export const getHomeData = async ({ onRetry } = {}) => {
   const fetchOnce = async () => {
     let response = null;
     let lastError = null;
@@ -42,28 +42,27 @@ export const getHomeData = async () => {
       },
       categories: Array.isArray(data.categories) ? data.categories : [],
       promotions: {
-        thematicBanners: Array.isArray(data.promotions?.thematicBanners) ? data.promotions.thematicBanners : [],
-        deals: Array.isArray(data.promotions?.deals) ? data.promotions.deals : [],
+        thematicBanners: Array.isArray(data.promotions?.thematicBanners)
+          ? data.promotions.thematicBanners
+          : [],
+        deals: Array.isArray(data.promotions?.deals)
+          ? data.promotions.deals
+          : [],
       },
     };
   };
 
   try {
-    return await fetchOnce();
-  } catch (error) {
-    const isRetryable =
-      error?.code === "ECONNABORTED"
-      || error?.message?.toLowerCase?.().includes("timeout")
-      || !error?.response;
+    const result = await axiosWithRetry(fetchOnce, {
+      retries: 3,
+      retryDelay: 2000,
+      onRetry,
+    });
 
-    if (isRetryable && HOME_REQUEST_RETRY_COUNT > 0) {
-      try {
-        return await fetchOnce();
-      } catch (_retryError) {
-        return defaultHomeData;
-      }
-    }
-
+    // axiosWithRetry returns the axios response for raw axios calls,
+    // but fetchOnce already extracts the data, so result IS the data.
+    return result;
+  } catch (_error) {
     return defaultHomeData;
   }
 };

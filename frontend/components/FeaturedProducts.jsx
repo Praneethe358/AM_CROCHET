@@ -2,10 +2,11 @@
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import axios from "axios";
 import { motion, useReducedMotion } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
+import { axiosWithRetry } from "@/lib/fetchWithRetry";
+import axios from "axios";
 
 import "swiper/css";
 import "swiper/css/pagination";
@@ -15,6 +16,8 @@ import { buildProductPath } from "@/utils/seo";
 
 export default function FeaturedProducts({ initialItems, limit = 6 }) {
   const [featured, setFeatured] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [retrying, setRetrying] = useState(false);
   const prefersReducedMotion = useReducedMotion();
   const hasInitialItemsProp = Array.isArray(initialItems) && initialItems.length > 0;
 
@@ -24,29 +27,42 @@ export default function FeaturedProducts({ initialItems, limit = 6 }) {
     }
 
     const fetchFeaturedProducts = async () => {
+      setLoading(true);
+      setRetrying(false);
+
       try {
         const configuredBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:5000/api";
         const isLocalHost = typeof window !== "undefined" && ["localhost", "127.0.0.1"].includes(window.location.hostname);
         const fallbackBaseUrl = isLocalHost ? "http://localhost:5000/api" : null;
         const baseUrlCandidates = [...new Set([configuredBaseUrl, fallbackBaseUrl].filter(Boolean))];
 
-        let response = null;
-        let lastError = null;
+        const fetchOnce = async () => {
+          let response = null;
+          let lastError = null;
 
-        for (const baseUrl of baseUrlCandidates) {
-          try {
-            response = await axios.get(`${baseUrl}/products?isFeatured=true&sort=featured&limit=${limit}`, {
-              timeout: 8000,
-            });
-            break;
-          } catch (requestError) {
-            lastError = requestError;
+          for (const baseUrl of baseUrlCandidates) {
+            try {
+              response = await axios.get(`${baseUrl}/products?isFeatured=true&sort=featured&limit=${limit}`, {
+                timeout: 8000,
+              });
+              break;
+            } catch (requestError) {
+              lastError = requestError;
+            }
           }
-        }
 
-        if (!response) {
-          throw lastError || new Error("Unable to load featured products");
-        }
+          if (!response) {
+            throw lastError || new Error("Unable to load featured products");
+          }
+
+          return response;
+        };
+
+        const response = await axiosWithRetry(fetchOnce, {
+          retries: 3,
+          retryDelay: 2000,
+          onRetry: () => setRetrying(true),
+        });
 
         const items = response.data?.data || [];
 
@@ -61,6 +77,9 @@ export default function FeaturedProducts({ initialItems, limit = 6 }) {
       } catch (error) {
         console.error("Failed to load featured products", error);
         setFeatured([]);
+      } finally {
+        setLoading(false);
+        setRetrying(false);
       }
     };
 
@@ -83,6 +102,32 @@ export default function FeaturedProducts({ initialItems, limit = 6 }) {
   const cards = useMemo(() => {
     return effectiveFeatured.length ? effectiveFeatured.slice(0, limit) : [];
   }, [effectiveFeatured, limit]);
+
+  // Show skeleton while loading (no initial server data)
+  if (loading && cards.length === 0) {
+    return (
+      <section className="bg-theme-bg py-12 sm:py-20" id="featured-products">
+        <div className="mx-auto max-w-[1400px] px-4 sm:px-8 lg:px-16">
+          <div className="mb-5 md:mb-8 text-center">
+            <div className="mx-auto h-8 w-52 animate-pulse rounded-lg bg-theme-secondary/70" />
+          </div>
+          {retrying && (
+            <div className="mb-4 text-center">
+              <span className="inline-flex items-center gap-2 rounded-full border border-theme-border bg-theme-card/90 px-4 py-1.5 text-xs text-theme-faint">
+                <span className="inline-block h-3 w-3 animate-spin rounded-full border-2 border-theme-border border-t-theme-accent" />
+                Connecting to server…
+              </span>
+            </div>
+          )}
+          <div className="grid grid-cols-1 gap-3 md:grid-cols-2 md:gap-5">
+            <div className="animate-pulse rounded-xl bg-theme-secondary/70 aspect-[16/9] md:aspect-[21/9] md:col-span-2" />
+            <div className="animate-pulse rounded-xl bg-theme-secondary/70 aspect-[16/9]" />
+            <div className="animate-pulse rounded-xl bg-theme-secondary/70 aspect-[16/9]" />
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   if (cards.length === 0) return null;
 

@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useAuth } from "@/context/AuthContext";
+import { warmupBackend } from "@/lib/fetchWithRetry";
 
 const DeferredToaster = dynamic(
   () => import("react-hot-toast").then((mod) => mod.Toaster),
@@ -29,6 +30,11 @@ export default function AppShell({ children }) {
   const [toasterReady, setToasterReady] = useState(false);
   const isAdminRoute = pathname?.startsWith("/admin");
   const shouldBlockForAuth = authLoading && isAdminRoute;
+
+  // Silently wake the backend on first app load
+  useEffect(() => {
+    warmupBackend();
+  }, []);
 
   useEffect(() => {
     if (typeof window === "undefined") return undefined;

@@ -1,8 +1,10 @@
 import axios from "axios";
 import authClient, { getStoredToken } from "./authApi";
+import { axiosWithRetry } from "@/lib/fetchWithRetry";
 import { getApiBaseCandidates } from "@/utils/apiBase";
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:5000/api";
+const API_BASE_URL =
+  process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:5000/api";
 
 const getWithFallback = async (path, config = {}) => {
   const baseUrlCandidates = getApiBaseCandidates();
@@ -30,10 +32,14 @@ const getAuthHeaders = () => {
 
 export const getActivePromotions = async (filters = {}) => {
   try {
-    const response = await getWithFallback("/promotions", {
-      params: filters,
-      timeout: 8000,
-    });
+    const response = await axiosWithRetry(
+      () =>
+        getWithFallback("/promotions", {
+          params: filters,
+          timeout: 8000,
+        }),
+      { retries: 3, retryDelay: 2000 }
+    );
     return response.data?.data || [];
   } catch {
     return [];
@@ -41,7 +47,10 @@ export const getActivePromotions = async (filters = {}) => {
 };
 
 export const getPromotionById = async (id) => {
-  const response = await getWithFallback(`/promotions/${id}`);
+  const response = await axiosWithRetry(
+    () => getWithFallback(`/promotions/${id}`),
+    { retries: 3, retryDelay: 2000 }
+  );
   return response.data?.data || null;
 };
 
@@ -54,7 +63,10 @@ export const trackPromotionClick = async (id) => {
 };
 
 export const getAdminPromotions = async () => {
-  const response = await authClient.get("/admin/promotions");
+  const response = await axiosWithRetry(
+    () => authClient.get("/admin/promotions"),
+    { retries: 2, retryDelay: 2000 }
+  );
   return response.data?.data || [];
 };
 
@@ -64,7 +76,10 @@ export const createAdminPromotion = async (promotionData) => {
 };
 
 export const updateAdminPromotion = async (id, promotionData) => {
-  const response = await authClient.put(`/admin/promotions/${id}`, promotionData);
+  const response = await authClient.put(
+    `/admin/promotions/${id}`,
+    promotionData
+  );
   return response.data?.data || response.data;
 };
 

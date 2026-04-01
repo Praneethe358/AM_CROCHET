@@ -1,4 +1,5 @@
 import axios from "axios";
+import { axiosWithRetry } from "@/lib/fetchWithRetry";
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:5000/api";
 const TOKEN_KEY = "auth_token";
@@ -98,7 +99,10 @@ export const signupRequest = async (userData) => {
 
 export const getCurrentUserRequest = async () => {
   try {
-    const response = await authClient.get("/user/me");
+    const response = await axiosWithRetry(
+      () => authClient.get("/user/me"),
+      { retries: 3, retryDelay: 2000 }
+    );
     return response.data?.data?.user || response.data?.user;
   } catch (error) {
     throw new Error(extractMessage(error));

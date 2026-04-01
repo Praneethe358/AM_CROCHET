@@ -1,4 +1,5 @@
 import authClient from "@/services/authApi";
+import { axiosWithRetry } from "@/lib/fetchWithRetry";
 
 const extractMessage = (error) => {
   return (
@@ -8,7 +9,8 @@ const extractMessage = (error) => {
   );
 };
 
-const isObjectId = (value) => typeof value === "string" && /^[a-f\d]{24}$/i.test(value);
+const isObjectId = (value) =>
+  typeof value === "string" && /^[a-f\d]{24}$/i.test(value);
 
 const getProductIdentifier = (item) => {
   if (isObjectId(item?._id)) return item._id;
@@ -29,13 +31,19 @@ export const syncCartWithBackend = async (cartItems = []) => {
       const productId = getProductIdentifier(item);
 
       if (!productId) {
-        throw new Error("One or more items are not ready for secure checkout yet.");
+        throw new Error(
+          "One or more items are not ready for secure checkout yet."
+        );
       }
 
-      await authClient.post("/cart", {
-        productId,
-        quantity: Number(item.quantity) || 1,
-      }, { timeout: 10000 });
+      await authClient.post(
+        "/cart",
+        {
+          productId,
+          quantity: Number(item.quantity) || 1,
+        },
+        { timeout: 10000 }
+      );
     }
   } catch (error) {
     if (error instanceof Error) {
@@ -48,7 +56,10 @@ export const syncCartWithBackend = async (cartItems = []) => {
 
 export const getUserOrdersRequest = async () => {
   try {
-    const response = await authClient.get("/orders/my", { timeout: 10000 });
+    const response = await axiosWithRetry(
+      () => authClient.get("/orders/my", { timeout: 10000 }),
+      { retries: 3, retryDelay: 2000 }
+    );
     return response.data?.data || [];
   } catch (error) {
     throw new Error(extractMessage(error));

@@ -1,28 +1,11 @@
 import authClient from "./authApi";
-
-const isRetryableRequestError = (error) => {
-  const message = (error?.message || "").toLowerCase();
-  return (
-    error?.code === "ECONNABORTED" ||
-    error?.code === "ERR_NETWORK" ||
-    message.includes("timeout") ||
-    message.includes("network")
-  );
-};
-
-const getWithRetry = async (url, config = {}, retries = 1) => {
-  try {
-    return await authClient.get(url, config);
-  } catch (error) {
-    if (retries > 0 && isRetryableRequestError(error)) {
-      return getWithRetry(url, config, retries - 1);
-    }
-    throw error;
-  }
-};
+import { axiosWithRetry } from "@/lib/fetchWithRetry";
 
 export const getAdminProducts = async () => {
-  const response = await authClient.get("/admin/products");
+  const response = await axiosWithRetry(
+    () => authClient.get("/admin/products"),
+    { retries: 3, retryDelay: 2000 }
+  );
   return response.data?.data || [];
 };
 
@@ -42,15 +25,18 @@ export const deleteAdminProduct = async (id) => {
 };
 
 export const getAdminOrders = async () => {
-  const response = await authClient.get("/admin/orders");
+  const response = await axiosWithRetry(
+    () => authClient.get("/admin/orders"),
+    { retries: 3, retryDelay: 2000 }
+  );
   return response.data?.data || [];
 };
 
 export const updateOrderStatus = async (id, orderStatus) => {
-  const response = await authClient.put(
-    `/admin/orders/${id}`,
-    { status: orderStatus, orderStatus },
-  );
+  const response = await authClient.put(`/admin/orders/${id}`, {
+    status: orderStatus,
+    orderStatus,
+  });
   return response.data?.data || response.data;
 };
 
@@ -136,7 +122,10 @@ export const uploadAdminMedia = async (file, mediaType = "image") => {
 };
 
 export const getAdminHero = async () => {
-  const response = await getWithRetry("/admin/hero", { timeout: 25000 }, 1);
+  const response = await axiosWithRetry(
+    () => authClient.get("/admin/hero", { timeout: 25000 }),
+    { retries: 3, retryDelay: 2000 }
+  );
   return response.data?.data || null;
 };
 
@@ -146,7 +135,10 @@ export const updateAdminHero = async (heroData) => {
 };
 
 export const getAdminCategories = async () => {
-  const response = await authClient.get("/admin/categories");
+  const response = await axiosWithRetry(
+    () => authClient.get("/admin/categories"),
+    { retries: 3, retryDelay: 2000 }
+  );
   return response.data?.data || [];
 };
 
@@ -156,7 +148,10 @@ export const createAdminCategory = async (categoryData) => {
 };
 
 export const updateAdminCategory = async (id, categoryData) => {
-  const response = await authClient.put(`/admin/categories/${id}`, categoryData);
+  const response = await authClient.put(
+    `/admin/categories/${id}`,
+    categoryData
+  );
   return response.data?.data || response.data;
 };
 
@@ -166,7 +161,10 @@ export const deleteAdminCategory = async (id) => {
 };
 
 export const getAdminFeatured = async () => {
-  const response = await getWithRetry("/admin/featured", { timeout: 20000 }, 1);
+  const response = await axiosWithRetry(
+    () => authClient.get("/admin/featured", { timeout: 20000 }),
+    { retries: 3, retryDelay: 2000 }
+  );
   return response.data?.data || { items: [], maxItems: 6, isActive: true };
 };
 

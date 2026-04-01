@@ -1,4 +1,5 @@
 import authClient from "@/services/authApi";
+import { axiosWithRetry } from "@/lib/fetchWithRetry";
 
 let razorpayScriptPromise = null;
 
@@ -37,9 +38,19 @@ export const loadRazorpayScript = () => {
   return razorpayScriptPromise;
 };
 
-export const createPaymentOrderRequest = async ({ couponCode, shippingAddress } = {}) => {
+export const createPaymentOrderRequest = async ({
+  couponCode,
+  shippingAddress,
+} = {}) => {
   try {
-    const preferred = await authClient.post("/payment/create-order", { couponCode, shippingAddress });
+    const preferred = await axiosWithRetry(
+      () =>
+        authClient.post("/payment/create-order", {
+          couponCode,
+          shippingAddress,
+        }),
+      { retries: 2, retryDelay: 2000 }
+    );
     return preferred.data?.data || preferred.data;
   } catch (preferredError) {
     if (preferredError?.response?.status !== 404) {
@@ -47,7 +58,11 @@ export const createPaymentOrderRequest = async ({ couponCode, shippingAddress } 
     }
 
     try {
-      const fallback = await authClient.post("/orders/create", { couponCode, shippingAddress });
+      const fallback = await axiosWithRetry(
+        () =>
+          authClient.post("/orders/create", { couponCode, shippingAddress }),
+        { retries: 2, retryDelay: 2000 }
+      );
       return fallback.data?.data || fallback.data;
     } catch (fallbackError) {
       throw new Error(extractMessage(fallbackError));
