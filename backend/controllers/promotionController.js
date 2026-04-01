@@ -40,6 +40,17 @@ const normalizeAndValidateDates = (startDate, endDate) => {
   return { startDate: nextStart, endDate: nextEnd };
 };
 
+const normalizePlacement = (placement) => {
+  if (placement === 'special_combos') return 'special_combos';
+  if (placement === 'home_thematic_banner') return 'home_thematic_banner';
+  return 'general';
+};
+
+const normalizeBanner = (banner) => {
+  if (typeof banner !== 'string') return '';
+  return banner.trim();
+};
+
 const getPromotions = async (req, res, next) => {
   try {
     const now = new Date();
@@ -147,6 +158,15 @@ const createPromotion = async (req, res, next) => {
       placement,
       audience,
     } = req.body;
+    const resolvedPlacement = normalizePlacement(placement);
+    const normalizedBanner = normalizeBanner(banner);
+
+    if (resolvedPlacement !== 'special_combos' && !normalizedBanner) {
+      return res.status(400).json({
+        success: false,
+        message: 'banner is required for this placement',
+      });
+    }
 
     const validatedDates = normalizeAndValidateDates(startDate, endDate);
     if (validatedDates.error) {
@@ -156,13 +176,13 @@ const createPromotion = async (req, res, next) => {
     const promotion = await Promotion.create({
       title,
       description,
-      banner,
+      banner: resolvedPlacement === 'special_combos' ? null : normalizedBanner,
       discount: discount === undefined || discount === '' ? null : Number(discount),
       products: parseProducts(products),
       startDate: validatedDates.startDate,
       endDate: validatedDates.endDate,
       status: status || 'active',
-      placement: placement || 'general',
+      placement: resolvedPlacement,
       audience: audience || null,
       createdBy: req.user.id,
     });
@@ -225,6 +245,10 @@ const updatePromotion = async (req, res, next) => {
       updates.discount = updates.discount === '' ? null : Number(updates.discount);
     }
 
+    if (updates.banner !== undefined) {
+      updates.banner = normalizeBanner(updates.banner);
+    }
+
     if (updates.audience !== undefined) {
       updates.audience = updates.audience || null;
     }
@@ -232,6 +256,20 @@ const updatePromotion = async (req, res, next) => {
     const existing = await Promotion.findById(id).lean();
     if (!existing) {
       return res.status(404).json({ success: false, message: 'Promotion not found' });
+    }
+
+    const resolvedPlacement = normalizePlacement(updates.placement !== undefined ? updates.placement : existing.placement);
+    const resolvedBanner = updates.banner !== undefined ? updates.banner : normalizeBanner(existing.banner);
+
+    if (resolvedPlacement === 'special_combos') {
+      updates.banner = null;
+    } else if (!resolvedBanner) {
+      return res.status(400).json({
+        success: false,
+        message: 'banner is required for this placement',
+      });
+    } else if (updates.banner !== undefined) {
+      updates.banner = resolvedBanner;
     }
 
     const nextStart = updates.startDate !== undefined ? updates.startDate : existing.startDate;

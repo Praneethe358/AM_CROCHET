@@ -57,6 +57,8 @@ export default function PromotionManager({
   const [uploading, setUploading] = useState(false);
 
   const isPlacementLocked = Boolean(fixedPlacement);
+  const resolvedPlacement = fixedPlacement || form.placement;
+  const isSpecialCombosPlacement = resolvedPlacement === "special_combos";
   const formTitle = useMemo(() => (editingId ? "Edit Promotion" : "Create Promotion"), [editingId]);
 
   useEffect(() => {
@@ -111,6 +113,11 @@ export default function PromotionManager({
   };
 
   const onUploadBanner = async (event) => {
+    if (isSpecialCombosPlacement) {
+      event.target.value = "";
+      return;
+    }
+
     const file = event.target.files?.[0];
     if (!file) return;
 
@@ -164,18 +171,17 @@ export default function PromotionManager({
 
   const onSubmit = async (event) => {
     event.preventDefault();
+    const placement = fixedPlacement || form.placement;
+    const requiresBanner = placement !== "special_combos";
 
-    if (!form.title || !form.description || !form.banner || !form.startDate || !form.endDate) {
+    if (!form.title || !form.description || !form.startDate || !form.endDate || (requiresBanner && !form.banner)) {
       toast.error("Please fill all required fields");
       return;
     }
 
-    const placement = fixedPlacement || form.placement;
-
     const payload = {
       title: form.title.trim(),
       description: form.description.trim(),
-      banner: form.banner.trim(),
       discount: form.discount === "" ? undefined : Number(form.discount),
       startDate: new Date(form.startDate).toISOString(),
       endDate: new Date(form.endDate).toISOString(),
@@ -184,6 +190,10 @@ export default function PromotionManager({
       audience: form.audience || undefined,
       products: form.products,
     };
+
+    if (placement !== "special_combos") {
+      payload.banner = form.banner.trim();
+    }
 
     try {
       setSaving(true);
@@ -239,32 +249,38 @@ export default function PromotionManager({
             />
           </div>
 
-          <div className="md:col-span-2 space-y-2">
-            <label className="text-sm font-medium text-theme-text">Banner URL *</label>
-            <input
-              type="url"
-              value={form.banner}
-              onChange={(e) => onFieldChange("banner", e.target.value)}
-              className="w-full rounded-lg border border-theme-border bg-theme-card px-4 py-2 text-theme-text placeholder:text-theme-faint focus:outline-none focus:ring-2 focus:ring-theme-accent/30"
-              placeholder="https://..."
-              required
-            />
-
-            <div className="flex items-center gap-3">
-              <label className="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-theme-border cursor-pointer text-sm text-theme-text bg-theme-secondary hover:bg-theme-border transition-colors">
-                <Upload size={14} />
-                {uploading ? "Uploading..." : "Upload banner"}
-                <input
-                  type="file"
-                  accept="image/*"
-                  onChange={onUploadBanner}
-                  disabled={uploading}
-                  className="hidden"
-                />
-              </label>
-              {form.banner ? <span className="text-xs text-theme-faint truncate max-w-[220px]">{form.banner}</span> : null}
+          {isSpecialCombosPlacement ? (
+            <div className="md:col-span-2 rounded-lg border border-theme-border bg-theme-secondary px-4 py-3 text-sm text-theme-faint">
+              Special Combos uses linked product images, so banner URL and upload are disabled for faster management.
             </div>
-          </div>
+          ) : (
+            <div className="md:col-span-2 space-y-2">
+              <label className="text-sm font-medium text-theme-text">Banner URL *</label>
+              <input
+                type="url"
+                value={form.banner}
+                onChange={(e) => onFieldChange("banner", e.target.value)}
+                className="w-full rounded-lg border border-theme-border bg-theme-card px-4 py-2 text-theme-text placeholder:text-theme-faint focus:outline-none focus:ring-2 focus:ring-theme-accent/30"
+                placeholder="https://..."
+                required
+              />
+
+              <div className="flex items-center gap-3">
+                <label className="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-theme-border cursor-pointer text-sm text-theme-text bg-theme-secondary hover:bg-theme-border transition-colors">
+                  <Upload size={14} />
+                  {uploading ? "Uploading..." : "Upload banner"}
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={onUploadBanner}
+                    disabled={uploading}
+                    className="hidden"
+                  />
+                </label>
+                {form.banner ? <span className="text-xs text-theme-faint truncate max-w-[220px]">{form.banner}</span> : null}
+              </div>
+            </div>
+          )}
 
           <div>
             <label className="text-sm font-medium text-theme-text">Discount %</label>
@@ -431,7 +447,13 @@ export default function PromotionManager({
               <article key={promotion._id} className="p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center gap-4">
                 <div className="relative h-20 w-full sm:w-32 rounded-lg overflow-hidden border border-theme-border shrink-0">
                   <Image
-                    src={getOptimizedImageUrl(promotion.banner || "", { width: 400 })}
+                    src={getOptimizedImageUrl(
+                      promotion.banner
+                      || promotion.products?.[0]?.images?.[0]
+                      || promotion.products?.[0]?.image
+                      || "/bag.webp",
+                      { width: 400 }
+                    )}
                     alt={promotion.title}
                     fill
                     sizes="(max-width: 640px) 100vw, 128px"

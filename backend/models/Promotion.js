@@ -17,7 +17,7 @@ const promotionSchema = new mongoose.Schema(
     },
     banner: {
       type: String,
-      required: [true, 'Banner image is required'],
+      default: null,
       trim: true,
     },
     discount: {
