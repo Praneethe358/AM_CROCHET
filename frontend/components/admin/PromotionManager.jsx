@@ -58,6 +58,8 @@ export default function PromotionManager({
 
   const isPlacementLocked = Boolean(fixedPlacement);
   const formTitle = useMemo(() => (editingId ? "Edit Promotion" : "Create Promotion"), [editingId]);
+  const effectivePlacement = fixedPlacement || form.placement;
+  const requiresBanner = effectivePlacement !== "special_combos";
 
   useEffect(() => {
     const loadData = async () => {
@@ -165,7 +167,12 @@ export default function PromotionManager({
   const onSubmit = async (event) => {
     event.preventDefault();
 
-    if (!form.title || !form.description || !form.banner || !form.startDate || !form.endDate) {
+    if (!form.title || !form.description || !form.startDate || !form.endDate) {
+      toast.error("Please fill all required fields");
+      return;
+    }
+
+    if (requiresBanner && !form.banner) {
       toast.error("Please fill all required fields");
       return;
     }
@@ -175,7 +182,6 @@ export default function PromotionManager({
     const payload = {
       title: form.title.trim(),
       description: form.description.trim(),
-      banner: form.banner.trim(),
       discount: form.discount === "" ? undefined : Number(form.discount),
       startDate: new Date(form.startDate).toISOString(),
       endDate: new Date(form.endDate).toISOString(),
@@ -184,6 +190,10 @@ export default function PromotionManager({
       audience: form.audience || undefined,
       products: form.products,
     };
+
+    if (requiresBanner) {
+      payload.banner = form.banner.trim();
+    }
 
     try {
       setSaving(true);
@@ -239,32 +249,34 @@ export default function PromotionManager({
             />
           </div>
 
-          <div className="md:col-span-2 space-y-2">
-            <label className="text-sm font-medium text-theme-text">Banner URL *</label>
-            <input
-              type="url"
-              value={form.banner}
-              onChange={(e) => onFieldChange("banner", e.target.value)}
-              className="w-full rounded-lg border border-theme-border bg-theme-card px-4 py-2 text-theme-text placeholder:text-theme-faint focus:outline-none focus:ring-2 focus:ring-theme-accent/30"
-              placeholder="https://..."
-              required
-            />
+          {requiresBanner ? (
+            <div className="md:col-span-2 space-y-2">
+              <label className="text-sm font-medium text-theme-text">Banner URL *</label>
+              <input
+                type="url"
+                value={form.banner}
+                onChange={(e) => onFieldChange("banner", e.target.value)}
+                className="w-full rounded-lg border border-theme-border bg-theme-card px-4 py-2 text-theme-text placeholder:text-theme-faint focus:outline-none focus:ring-2 focus:ring-theme-accent/30"
+                placeholder="https://..."
+                required
+              />
 
-            <div className="flex items-center gap-3">
-              <label className="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-theme-border cursor-pointer text-sm text-theme-text bg-theme-secondary hover:bg-theme-border transition-colors">
-                <Upload size={14} />
-                {uploading ? "Uploading..." : "Upload banner"}
-                <input
-                  type="file"
-                  accept="image/*"
-                  onChange={onUploadBanner}
-                  disabled={uploading}
-                  className="hidden"
-                />
-              </label>
-              {form.banner ? <span className="text-xs text-theme-faint truncate max-w-[220px]">{form.banner}</span> : null}
+              <div className="flex items-center gap-3">
+                <label className="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-theme-border cursor-pointer text-sm text-theme-text bg-theme-secondary hover:bg-theme-border transition-colors">
+                  <Upload size={14} />
+                  {uploading ? "Uploading..." : "Upload banner"}
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={onUploadBanner}
+                    disabled={uploading}
+                    className="hidden"
+                  />
+                </label>
+                {form.banner ? <span className="text-xs text-theme-faint truncate max-w-[220px]">{form.banner}</span> : null}
+              </div>
             </div>
-          </div>
+          ) : null}
 
           <div>
             <label className="text-sm font-medium text-theme-text">Discount %</label>
@@ -429,15 +441,21 @@ export default function PromotionManager({
           <div className="divide-y divide-theme-border">
             {promotions.map((promotion) => (
               <article key={promotion._id} className="p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center gap-4">
-                <div className="relative h-20 w-full sm:w-32 rounded-lg overflow-hidden border border-theme-border shrink-0">
-                  <Image
-                    src={getOptimizedImageUrl(promotion.banner || "", { width: 400 })}
-                    alt={promotion.title}
-                    fill
-                    sizes="(max-width: 640px) 100vw, 128px"
-                    className="object-cover"
-                  />
-                </div>
+                {promotion.banner ? (
+                  <div className="relative h-20 w-full sm:w-32 rounded-lg overflow-hidden border border-theme-border shrink-0">
+                    <Image
+                      src={getOptimizedImageUrl(promotion.banner, { width: 400 })}
+                      alt={promotion.title}
+                      fill
+                      sizes="(max-width: 640px) 100vw, 128px"
+                      className="object-cover"
+                    />
+                  </div>
+                ) : (
+                  <div className="h-20 w-full sm:w-32 rounded-lg border border-dashed border-theme-border shrink-0 flex items-center justify-center text-[11px] text-theme-faint bg-theme-secondary/40">
+                    No banner
+                  </div>
+                )}
 
                 <div className="flex-1 min-w-0">
                   <h3 className="font-medium text-theme-text truncate">{promotion.title}</h3>

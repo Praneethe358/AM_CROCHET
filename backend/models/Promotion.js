@@ -17,7 +17,9 @@ const promotionSchema = new mongoose.Schema(
     },
     banner: {
       type: String,
-      required: [true, 'Banner image is required'],
+      required() {
+        return this.placement !== 'special_combos';
+      },
       trim: true,
     },
     discount: {

@@ -27,7 +27,13 @@ const promotionValidation = [
     .withMessage('description is required')
     .isLength({ max: 1200 })
     .withMessage('description must be at most 1200 characters'),
-  body('banner').trim().notEmpty().withMessage('banner is required').isURL().withMessage('banner must be a valid URL'),
+  body('banner')
+    .if((_, { req }) => (req.body.placement || 'general') !== 'special_combos')
+    .trim()
+    .notEmpty()
+    .withMessage('banner is required')
+    .isURL()
+    .withMessage('banner must be a valid URL'),
   body('discount')
     .optional({ values: 'falsy' })
     .isFloat({ min: 0, max: 100 })
