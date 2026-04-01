@@ -3,17 +3,7 @@ const HOME_REQUEST_TIMEOUT_MS = 6000;
 let lastSuccessfulHomeData = null;
 
 const defaultHomeData = {
-  hero: {
-    slides: [
-      {
-        image: "/bags/bag2.jpg",
-        title: "AM Crochet",
-        subtitle: "Handcrafted Signature Bags",
-        description: "Premium handmade crochet bags designed for everyday style.",
-        link: "/products",
-      },
-    ],
-  },
+  hero: null,
   featured: { items: [], maxItems: 6 },
   categories: [],
   promotions: { thematicBanners: [], deals: [] },
@@ -21,7 +11,7 @@ const defaultHomeData = {
 
 function normalizeHomeData(data = {}) {
   return {
-    hero: data.hero || defaultHomeData.hero,
+    hero: Object.prototype.hasOwnProperty.call(data, 'hero') ? data.hero : defaultHomeData.hero,
     featured: {
       items: Array.isArray(data.featured?.items) ? data.featured.items : [],
       maxItems: data.featured?.maxItems || 6,

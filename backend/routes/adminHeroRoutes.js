@@ -11,6 +11,16 @@ router.use(authMiddleware, adminMiddleware);
 
 const heroValidation = [
   body('slides').isArray().withMessage('slides must be an array'),
+  body('slides').custom((slides, { req }) => {
+    const rawActive = req.body?.isActive;
+    const isHeroActive = rawActive === undefined || rawActive === true || rawActive === 'true';
+
+    if (isHeroActive && Array.isArray(slides) && slides.length === 0) {
+      throw new Error('At least one slide is required when hero visibility is enabled');
+    }
+
+    return true;
+  }),
   body('slides.*.mediaType')
     .optional()
     .isIn(['image', 'video'])

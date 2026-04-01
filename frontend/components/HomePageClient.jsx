@@ -68,17 +68,7 @@ const FeaturesStrip = dynamic(() => import("@/components/FeaturesStrip"), {
 });
 
 const initialHomeData = {
-  hero: {
-    slides: [
-      {
-        image: "/bags/bag2.jpg",
-        title: "AM Crochet",
-        subtitle: "Handcrafted Signature Bags",
-        description: "Premium handmade crochet bags designed for everyday style.",
-        link: "/products",
-      },
-    ],
-  },
+  hero: null,
   featured: {
     items: [],
     maxItems: 6,
@@ -119,7 +109,7 @@ export default function HomePageClient({ initialHomeData: serverData }) {
   }, []);
 
   const homeData = {
-    hero: serverData?.hero || initialHomeData.hero,
+    hero: serverData?.hero ?? initialHomeData.hero,
     featured: {
       items: Array.isArray(serverData?.featured?.items)
         ? serverData.featured.items
@@ -135,6 +125,15 @@ export default function HomePageClient({ initialHomeData: serverData }) {
         : initialHomeData.promotions.deals,
     },
   };
+
+  useEffect(() => {
+    if (process.env.NODE_ENV === "production") return;
+
+    const heroSlides = homeData?.hero?.slides;
+    if (!Array.isArray(heroSlides) || heroSlides.length === 0) {
+      console.warn("Homepage hero is hidden because no active slides were returned from backend.");
+    }
+  }, [homeData?.hero]);
 
   return (
     <>

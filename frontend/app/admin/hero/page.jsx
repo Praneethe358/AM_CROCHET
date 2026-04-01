@@ -12,6 +12,7 @@ export default function AdminHeroPage() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [uploadingIndex, setUploadingIndex] = useState(null);
+  const isVisibleWithoutSlides = isActive && slides.length === 0;
 
   useEffect(() => {
     const loadHero = async () => {
@@ -53,6 +54,10 @@ export default function AdminHeroPage() {
     const newSlides = [...slides];
     newSlides.splice(index, 1);
     setSlides(newSlides);
+
+    if (isActive && newSlides.length === 0) {
+      toast("Hero is still visible but has no slides. Add a slide or turn visibility off before saving.");
+    }
   };
 
   const onFieldChange = (index, field, value) => {
@@ -105,12 +110,18 @@ export default function AdminHeroPage() {
   const onSave = async (event) => {
     event.preventDefault();
 
+    if (isActive && slides.length === 0) {
+      toast.error("At least one slide is required while hero visibility is enabled");
+      return;
+    }
+
     const invalid = slides.some((slide) => {
       const mediaType = slide.mediaType === "video" ? "video" : "image";
+      const title = (slide.title || "").trim();
       const hasImage = Boolean((slide.image || "").trim());
       const hasVideo = Boolean((slide.video || "").trim());
 
-      if (!slide.title) return true;
+      if (!title) return true;
       if (hasImage && hasVideo) return true;
       if (mediaType === "image" && !hasImage) return true;
       if (mediaType === "video" && !hasVideo) return true;
@@ -143,7 +154,12 @@ export default function AdminHeroPage() {
       toast.success("Hero sections updated");
     } catch (error) {
       console.error(error);
-      toast.error(error?.response?.data?.message || "Failed to save hero sections");
+      const fieldErrors = error?.response?.data?.errors;
+      if (Array.isArray(fieldErrors) && fieldErrors.length > 0) {
+        toast.error(fieldErrors[0]?.msg || "Hero validation failed");
+      } else {
+        toast.error(error?.response?.data?.message || "Failed to save hero sections");
+      }
     } finally {
       setSaving(false);
     }
@@ -171,6 +187,12 @@ export default function AdminHeroPage() {
       </div>
 
       <form onSubmit={onSave} className="space-y-6">
+        {isVisibleWithoutSlides ? (
+          <div className="rounded-xl border border-amber-300 bg-amber-50 px-4 py-3 text-sm text-amber-800">
+            Hero visibility is enabled, but there are no slides. Add at least one slide or disable visibility to save.
+          </div>
+        ) : null}
+
         {slides.length === 0 ? (
           <div className="bg-theme-card rounded-2xl border border-theme-border p-12 text-center">
             <p className="text-theme-faint">No slides found. Click &quot;Add Slide&quot; to begin.</p>
@@ -337,7 +359,7 @@ export default function AdminHeroPage() {
 
           <button
             type="submit"
-            disabled={saving || uploadingIndex !== null}
+            disabled={saving || uploadingIndex !== null || isVisibleWithoutSlides}
             className="px-6 py-2.5 bg-theme-accent hover:bg-[#b0956f] text-white text-sm font-medium rounded-lg transition-colors flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {saving ? <Loader2 className="w-4 h-4 animate-spin" /> : null}

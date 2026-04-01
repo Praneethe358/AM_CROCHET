@@ -59,13 +59,25 @@ const upsertAdminHero = async (req, res, next) => {
 
     const { slides, isActive } = req.body;
     const normalizedSlides = normalizeSlides(slides);
+    const isHeroActive = isActive === false || isActive === 'false' ? false : true;
+    const hasUsableSlide = normalizedSlides.some((slide) => {
+      if (!slide?.title) return false;
+      if (slide.mediaType === 'video') return Boolean(slide.video);
+      return Boolean(slide.image);
+    });
+
+    if (isHeroActive && !hasUsableSlide) {
+      return res.status(400).json({
+        message: 'At least one valid slide is required when hero visibility is enabled',
+      });
+    }
 
     const hero = await Hero.findOneAndUpdate(
       { key: HERO_KEY },
       {
         key: HERO_KEY,
         slides: normalizedSlides,
-        isActive: isActive === false || isActive === 'false' ? false : true,
+        isActive: isHeroActive,
       },
       {
         upsert: true,
