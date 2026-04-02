@@ -18,6 +18,9 @@ const WhatsappIcon = ({ size = 24, className = "" }) => (
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const WHATSAPP_PHONE = "918220423270";
+  const WHATSAPP_MESSAGE = "Hi, I'm interested in your crochet bags. Could you please share more details about availability and pricing?";
+  const whatsappUrl = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
 
   return (
     <footer className="bg-[#0a0a0a] text-gray-400 py-12 md:py-20 mt-16 border-t border-white/5">
@@ -49,7 +52,7 @@ export default function Footer() {
                 <Instagram size={18} />
               </a>
               <a
-                href="https://wa.me/918220423270"
+                href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-white hover:text-black transition-all duration-300"
