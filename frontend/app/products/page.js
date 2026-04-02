@@ -50,7 +50,7 @@ export default async function ProductsPage() {
           subtitle="Browse our entire collection of meticulously crafted bags."
         />
         <div className="mt-5 flex flex-wrap gap-2.5">
-          {["handbags", "backpacks", "accessories"].map((category) => (
+          {["handbags"].map((category) => (
             <Link
               key={category}
               href={buildCategoryPath(category)}

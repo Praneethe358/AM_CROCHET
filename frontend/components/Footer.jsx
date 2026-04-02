@@ -65,8 +65,6 @@ export default function Footer() {
             <ul className="space-y-4 text-sm">
               <li><Link href="/products" className="hover:text-white transition-colors">All Collections</Link></li>
               <li><Link href={buildCategoryPath("handbags")} className="hover:text-white transition-colors">Handbags</Link></li>
-              <li><Link href={buildCategoryPath("backpacks")} className="hover:text-white transition-colors">Backpacks</Link></li>
-              <li><Link href={buildCategoryPath("accessories")} className="hover:text-white transition-colors">Accessories</Link></li>
               <li><Link href="/blog" className="hover:text-white transition-colors">Crochet Blog</Link></li>
             </ul>
           </div>
