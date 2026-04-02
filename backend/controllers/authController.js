@@ -116,8 +116,39 @@ const getCurrentUser = async (req, res, next) => {
   }
 };
 
+const updateUserProfile = async (req, res, next) => {
+  try {
+    const { name, password } = req.body;
+    const user = await User.findById(req.user.id);
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    if (name) user.name = name;
+    if (password) user.password = password;
+
+    await user.save();
+
+    return res.status(200).json({
+      message: 'Profile updated successfully',
+      data: {
+        user: {
+          id: user._id,
+          name: user.name,
+          email: user.email,
+          role: user.role,
+        },
+      },
+    });
+  } catch (error) {
+    return next(error);
+  }
+};
+
 module.exports = {
   register,
   login,
   getCurrentUser,
+  updateUserProfile,
 };

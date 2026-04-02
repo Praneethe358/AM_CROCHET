@@ -109,4 +109,13 @@ export const getCurrentUserRequest = async () => {
   }
 };
 
+export const updateProfileRequest = async (userData) => {
+  try {
+    const response = await authClient.put("/user/profile", userData);
+    return response.data?.data?.user || response.data?.user;
+  } catch (error) {
+    throw new Error(extractMessage(error));
+  }
+};
+
 export default authClient;

@@ -2,7 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { LayoutDashboard, Package, ShoppingBag, LogOut, ImageIcon, Star, FolderTree, Layers, Gift } from "lucide-react";
+import { LayoutDashboard, Package, ShoppingBag, LogOut, ImageIcon, Star, FolderTree, Layers, Gift, Settings } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
 
 export default function Sidebar({ isOpen, setIsOpen }) {
@@ -21,6 +21,7 @@ export default function Sidebar({ isOpen, setIsOpen }) {
     { name: "Featured", href: "/admin/featured", icon: <Star size={20} /> },
     { name: "Products", href: "/admin/products", icon: <Package size={20} /> },
     { name: "Orders", href: "/admin/orders", icon: <ShoppingBag size={20} /> },
+    { name: "Settings", href: "/admin/settings", icon: <Settings size={20} /> },
   ];
 
   return (
