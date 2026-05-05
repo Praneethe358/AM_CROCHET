@@ -10,3 +10,5 @@
 
 - Added project documentation detail update 5.
 
+- Added project documentation detail update 6.
+
