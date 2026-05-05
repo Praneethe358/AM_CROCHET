@@ -2,7 +2,7 @@
 
 - Added project documentation detail update 1.2.
 
-- Added project documentation detail update 2.
+- Added project documentation detail update 2.3
 
 - Added project documentation detail update 3.
 
