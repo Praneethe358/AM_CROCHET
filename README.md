@@ -8,3 +8,5 @@
 
 - Added project documentation detail update 4.
 
+- Added project documentation detail update 5.
+
