@@ -5,6 +5,8 @@
  * Works in both Server Components (native fetch) and Client Components (axios).
  */
 
+import { getNormalizedApiBaseUrl } from "@/utils/apiBase";
+
 const DEFAULT_RETRIES = 3;
 const DEFAULT_RETRY_DELAY_MS = 2000;
 const DEFAULT_TIMEOUT_MS = 10000;
@@ -234,8 +236,9 @@ export function warmupBackend() {
   if (typeof window === "undefined") return Promise.resolve();
   if (warmupPromise) return warmupPromise;
 
-  const API_BASE_URL =
-    process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:5000/api";
+  const API_BASE_URL = getNormalizedApiBaseUrl(
+    process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:5000/api"
+  );
 
   warmupPromise = fetch(`${API_BASE_URL}/health`, {
     method: "GET",
