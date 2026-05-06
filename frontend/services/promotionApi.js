@@ -1,9 +1,10 @@
 import axios from "axios";
 import authClient, { getStoredToken } from "./authApi";
 import { axiosWithRetry } from "@/lib/fetchWithRetry";
-import { getApiBaseCandidates, getApiBaseUrl } from "@/utils/apiBase";
+import { getApiBaseCandidates } from "@/utils/apiBase";
 
-const API_BASE_URL = getApiBaseUrl();
+const API_BASE_URL =
+  process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:5000/api";
 
 const getWithFallback = async (path, config = {}) => {
   const baseUrlCandidates = getApiBaseCandidates();

@@ -3,11 +3,10 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { BRAND_NAME, SITE_URL, buildProductPath, extractProductIdFromSlug } from "@/utils/seo";
-import { getApiBaseUrl } from "@/utils/apiBase";
 
 export const dynamic = "force-dynamic";
 
-const API_BASE_URL = getApiBaseUrl();
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:5000/api";
 
 const normalizeProduct = (item) => ({
   ...item,

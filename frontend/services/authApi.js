@@ -1,8 +1,7 @@
 import axios from "axios";
 import { axiosWithRetry } from "@/lib/fetchWithRetry";
-import { getApiBaseUrl } from "@/utils/apiBase";
 
-const API_BASE_URL = getApiBaseUrl();
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:5000/api";
 const TOKEN_KEY = "auth_token";
 let unauthorizedHandler = null;
 let isHandlingUnauthorized = false;

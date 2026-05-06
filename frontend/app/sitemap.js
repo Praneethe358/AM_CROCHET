@@ -1,5 +1,4 @@
 import { SITE_URL, buildProductPath, slugify } from "@/utils/seo";
-import { getApiBaseUrl } from "@/utils/apiBase";
 
 export default async function sitemap() {
   const staticPages = [
@@ -16,7 +15,7 @@ export default async function sitemap() {
     priority: path === "" ? 1 : 0.7,
   }));
 
-  const API_BASE_URL = getApiBaseUrl();
+  const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:5000/api";
 
   try {
     const response = await fetch(`${API_BASE_URL}/products?limit=500&sort=newest`, { cache: "no-store" });

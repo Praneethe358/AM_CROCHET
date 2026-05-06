@@ -3,7 +3,6 @@ import ProductGrid from "@/components/ProductGrid";
 import SectionTitle from "@/components/SectionTitle";
 import Link from "next/link";
 import { humanizeSlug, slugify } from "@/utils/seo";
-import { getApiBaseUrl } from "@/utils/apiBase";
 
 export const dynamic = "force-dynamic";
 
@@ -32,7 +31,7 @@ const getCategorySeoContent = (categoryName) => {
 
 export default async function CategoryPage({ params }) {
   const { slug } = await params;
-  const API_BASE_URL = getApiBaseUrl();
+  const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:5000/api";
   let products = [];
 
   try {

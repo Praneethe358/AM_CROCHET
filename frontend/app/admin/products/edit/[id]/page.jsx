@@ -8,7 +8,6 @@ import ProductForm from "@/components/admin/ProductForm";
 import { updateAdminProduct } from "@/services/adminApi";
 import { toast } from "react-hot-toast";
 import axios from "axios";
-import { getApiBaseUrl } from "@/utils/apiBase";
 
 export default function EditProductPage() {
   const router = useRouter();
@@ -24,7 +23,7 @@ export default function EditProductPage() {
 
     try {
       setLoading(true);
-      const API_BASE_URL = getApiBaseUrl();
+      const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:5000/api";
       const { data } = await axios.get(`${API_BASE_URL}/products/${id}`);
       setProduct(data?.data || null);
     } catch (error) {

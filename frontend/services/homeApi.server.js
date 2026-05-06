@@ -1,5 +1,4 @@
 import { serverFetchWithRetry } from "@/lib/fetchWithRetry";
-import { getApiBaseUrl } from "@/utils/apiBase";
 
 const HOME_REVALIDATE_SECONDS = 300;
 let lastSuccessfulHomeData = null;
@@ -33,7 +32,8 @@ function normalizeHomeData(data = {}) {
 }
 
 export async function getHomeDataServer() {
-  const API_BASE_URL = getApiBaseUrl();
+  const API_BASE_URL =
+    process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:5000/api";
 
   try {
     const payload = await serverFetchWithRetry(`${API_BASE_URL}/home`, {
