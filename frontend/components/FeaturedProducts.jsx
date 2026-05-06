@@ -7,6 +7,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 import { axiosWithRetry } from "@/lib/fetchWithRetry";
 import axios from "axios";
+import { getApiBaseCandidates } from "@/utils/apiBase";
 
 import "swiper/css";
 import "swiper/css/pagination";
@@ -31,10 +32,7 @@ export default function FeaturedProducts({ initialItems, limit = 6 }) {
       setRetrying(false);
 
       try {
-        const configuredBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:5000/api";
-        const isLocalHost = typeof window !== "undefined" && ["localhost", "127.0.0.1"].includes(window.location.hostname);
-        const fallbackBaseUrl = isLocalHost ? "http://localhost:5000/api" : null;
-        const baseUrlCandidates = [...new Set([configuredBaseUrl, fallbackBaseUrl].filter(Boolean))];
+        const baseUrlCandidates = getApiBaseCandidates();
 
         const fetchOnce = async () => {
           let response = null;
