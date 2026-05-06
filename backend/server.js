@@ -111,6 +111,14 @@ app.use(xssClean());
 app.use(cors(corsOptions));
 app.use(express.json());
 
+app.get('/', (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: 'AM Crochet API is running',
+    data: { health: '/api/health', docs: '/api/docs' },
+  });
+});
+
 app.get('/api/health', (req, res) => {
   res.status(200).json({
     success: true,
