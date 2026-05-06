@@ -4,6 +4,7 @@ import SectionTitle from "@/components/SectionTitle";
 import Link from "next/link";
 import { buildCategoryPath } from "@/utils/seo";
 import { serverFetchWithRetry } from "@/lib/fetchWithRetry";
+import { getApiBaseUrl } from "@/utils/apiBase";
 
 export const metadata = {
   title: "Shop Products | AM Crochet Bags",
@@ -16,8 +17,7 @@ export const metadata = {
 export const dynamic = "force-dynamic";
 
 export default async function ProductsPage() {
-  const API_BASE_URL =
-    process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:5000/api";
+  const API_BASE_URL = getApiBaseUrl();
   let products = [];
 
   try {

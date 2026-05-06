@@ -1,3 +1,5 @@
+import { getApiBaseUrl } from "@/utils/apiBase";
+
 /**
  * Centralized fetch utility with retry logic for resilient API calls.
  * Handles Render cold-start timeouts, network failures, and non-200 responses.
@@ -234,8 +236,7 @@ export function warmupBackend() {
   if (typeof window === "undefined") return Promise.resolve();
   if (warmupPromise) return warmupPromise;
 
-  const API_BASE_URL =
-    process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:5000/api";
+  const API_BASE_URL = getApiBaseUrl();
 
   warmupPromise = fetch(`${API_BASE_URL}/health`, {
     method: "GET",

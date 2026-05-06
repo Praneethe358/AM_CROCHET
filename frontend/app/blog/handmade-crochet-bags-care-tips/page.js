@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Container from "@/components/Container";
 import { buildProductPath } from "@/utils/seo";
+import { getApiBaseUrl } from "@/utils/apiBase";
 
 export const metadata = {
   title: "Handmade Crochet Bags Care Tips | AM Crochet Bags",
@@ -11,7 +12,7 @@ export const metadata = {
   },
 };
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:5000/api";
+const API_BASE_URL = getApiBaseUrl();
 
 async function getRecommendedProducts() {
   try {
