@@ -13,7 +13,6 @@ import "swiper/css/pagination";
 
 import { resolveImageSrc } from "@/utils/cloudinaryImage";
 import { buildProductPath } from "@/utils/seo";
-import { getApiBaseCandidates } from "@/utils/apiBase";
 
 export default function FeaturedProducts({ initialItems, limit = 6 }) {
   const [featured, setFeatured] = useState([]);
@@ -32,7 +31,10 @@ export default function FeaturedProducts({ initialItems, limit = 6 }) {
       setRetrying(false);
 
       try {
-        const baseUrlCandidates = getApiBaseCandidates();
+        const configuredBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:5000/api";
+        const isLocalHost = typeof window !== "undefined" && ["localhost", "127.0.0.1"].includes(window.location.hostname);
+        const fallbackBaseUrl = isLocalHost ? "http://localhost:5000/api" : null;
+        const baseUrlCandidates = [...new Set([configuredBaseUrl, fallbackBaseUrl].filter(Boolean))];
 
         const fetchOnce = async () => {
           let response = null;
