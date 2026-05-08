@@ -111,6 +111,25 @@ app.use(xssClean());
 app.use(cors(corsOptions));
 app.use(express.json());
 
+app.get('/', (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: 'AM Crochet Backend API',
+    data: {
+      status: 'running',
+      environment: process.env.NODE_ENV || 'development',
+      timestamp: new Date().toISOString(),
+      endpoints: {
+        health: '/api/health',
+        docs: '/api/docs',
+        auth: '/api/auth',
+        products: '/api/products',
+        cart: '/api/cart',
+      },
+    },
+  });
+});
+
 app.get('/api/health', (req, res) => {
   res.status(200).json({
     success: true,
