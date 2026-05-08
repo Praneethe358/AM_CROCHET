@@ -1,6 +1,6 @@
 import { serverFetchWithRetry } from "@/lib/fetchWithRetry";
 
-const HOME_REVALIDATE_SECONDS = 300;
+const HOME_REVALIDATE_SECONDS = 0;
 let lastSuccessfulHomeData = null;
 
 const defaultHomeData = {
@@ -41,6 +41,7 @@ export async function getHomeDataServer() {
       retryDelay: 2000,
       timeout: 8000,
       revalidate: HOME_REVALIDATE_SECONDS,
+      cache: "no-store",
       tags: ["home-data"],
     });
 

@@ -2,7 +2,8 @@ import HomePageClient from "@/components/HomePageClient";
 import { SITE_URL } from "@/utils/seo";
 import { getHomeDataServer } from "@/services/homeApi.server";
 
-export const revalidate = 300;
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 export const metadata = {
   title: "AM Crochet Bags – Official Store | Handmade Crochet Bags India",

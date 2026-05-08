@@ -215,7 +215,7 @@ export async function serverFetchWithRetry(url, options = {}) {
 
   return fetchWithRetry(url, {
     ...rest,
-    cache: revalidate !== undefined ? "force-cache" : undefined,
+    cache: rest.cache ?? (revalidate !== undefined ? "force-cache" : undefined),
     next: Object.keys(nextOptions).length > 0 ? nextOptions : undefined,
   });
 }

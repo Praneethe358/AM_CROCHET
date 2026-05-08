@@ -3665,3 +3665,5 @@
 2026-05-08 13:20:09 [INFO] Server running in development mode on port 5000
 2026-05-08 13:20:15 [INFO] API request {"method":"GET","url":"/api/health","statusCode":200,"durationMs":27,"ip":"::1"}
 2026-05-08 13:20:15 [INFO] API request {"method":"GET","url":"/favicon.ico","statusCode":404,"durationMs":3,"ip":"::1"}
+2026-05-08 13:52:23 [INFO] MongoDB connected (primary): ac-tqplvla-shard-00-00.qyy87sr.mongodb.net
+2026-05-08 13:52:23 [INFO] Server running in development mode on port 5000
